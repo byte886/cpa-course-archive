@@ -5,7 +5,7 @@
   BAIDU_ENC_PASS=lover123 python3 baidu_upload.py <本地文件> <网盘路径> [token]
 
 网盘路径必须以 /apps/CPA课程归档/ 开头。
-使用 curl 走 ClashX 代理（127.0.0.1:7890）。
+直连百度服务器（不走代理），自动用 114 DNS 解析以兼容 Tailscale 环境。
 """
 
 import hashlib
@@ -13,11 +13,43 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 
 CHUNK_SIZE = 4 * 1024 * 1024  # 4MB
-PROXY = "http://127.0.0.1:7890"
-API_BASE = "https://pan.baidu.com/rest/2.0/xpan/file"
-UPLOAD_BASE = "https://d.pcs.baidu.com/rest/2.0/pcs/superfile2"
+API_HOST = "pan.baidu.com"
+UPLOAD_HOST = "d.pcs.baidu.com"
+API_BASE = f"https://{API_HOST}/rest/2.0/xpan/file"
+UPLOAD_BASE = f"https://{UPLOAD_HOST}/rest/2.0/pcs/superfile2"
+FALLBACK_DNS = "114.114.114.114"
+
+
+def resolve_dns(host):
+    """用指定 DNS 服务器解析域名，返回 IP（兼容 Tailscale 劫持系统 DNS 的情况）"""
+    try:
+        result = subprocess.run(
+            ["nslookup", host, FALLBACK_DNS],
+            capture_output=True, text=True, timeout=5
+        )
+        # 解析 nslookup 输出，取最后一个 Address
+        for line in result.stdout.splitlines():
+            if line.startswith("Address:") and "#" not in line:
+                # 有些行是 "Address: 114.114.114.114#53"（DNS服务器本身）
+                ip = line.split("Address:")[1].strip()
+                if "#" not in ip:
+                    return ip
+    except Exception as e:
+        print(f"  DNS resolution warning: {e}", file=sys.stderr)
+    return None
+
+
+def get_resolve_args():
+    """获取 curl --resolve 参数，绕过系统 DNS"""
+    args = []
+    for host in [API_HOST, UPLOAD_HOST]:
+        ip = resolve_dns(host)
+        if ip:
+            args += ["--resolve", f"{host}:443:{ip}"]
+    return args
 
 
 def get_token():
@@ -42,25 +74,23 @@ def get_token():
     return json.loads(result.stdout)["access_token"]
 
 
-def curl_api(url, params=None, data=None, file_path=None, file_field="file"):
-    """通过 curl 调用 API（避免 Python urllib 代理问题）"""
+def curl_api(url, params=None, data=None, file_path=None, file_field="file", timeout=300):
+    """通过 curl 直连调用 API（不走代理，用 --resolve 绕过 DNS）"""
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
 
-    cmd = ["curl", "-s", "-x", PROXY]
+    cmd = ["curl", "-s", "--connect-timeout", "10"] + get_resolve_args()
 
     if file_path:
-        # 文件上传（multipart）
         cmd += ["-F", f"{file_field}=@{file_path}"]
     if data:
-        # 表单数据
         for k, v in data.items():
             cmd += ["--data-urlencode", f"{k}={v}"]
     elif not file_path:
         cmd += ["-X", "POST"]
 
     cmd.append(url)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     if result.returncode != 0:
         raise RuntimeError(f"curl failed: {result.stderr}")
     return json.loads(result.stdout)
@@ -101,10 +131,9 @@ def upload_file(local_path, remote_path, token):
         sys.exit(1)
     uploadid = result["uploadid"]
     need_upload = result.get("block_list", list(range(len(chunks))))
-    print(f"  Need upload: {len(need_upload)} chunks (sec upload possible)")
+    print(f"  Need upload: {len(need_upload)} chunks (MD5 sec-upload possible)")
 
-    # 3. 上传分片（写入临时文件，curl -F 读取）
-    import tempfile
+    # 3. 上传分片
     tmp_dir = tempfile.mkdtemp(prefix="baidu_upload_")
     try:
         for i, seq in enumerate(need_upload):
@@ -112,7 +141,8 @@ def upload_file(local_path, remote_path, token):
             with open(chunk_file, "wb") as f:
                 f.write(chunks[seq])
 
-            print(f"[2/3] Uploading chunk {seq} ({i+1}/{len(need_upload)})...", end=" ", flush=True)
+            pct = (i + 1) / len(need_upload) * 100
+            print(f"[2/3] Chunk {seq} ({i+1}/{len(need_upload)}, {pct:.0f}%)...", end=" ", flush=True)
             result = curl_api(UPLOAD_BASE, {
                 "method": "upload",
                 "access_token": token,
@@ -156,7 +186,6 @@ def mkdir_p(remote_dir, token):
     current = ""
     for part in parts:
         current += "/" + part
-        # /apps 是系统目录，不需要创建
         if current == "/apps":
             continue
         result = curl_api(API_BASE, {
@@ -183,6 +212,11 @@ if __name__ == "__main__":
     if not os.path.isfile(local_file):
         print(f"File not found: {local_file}", file=sys.stderr)
         sys.exit(1)
+
+    # 显示 DNS 解析结果
+    for host in [API_HOST, UPLOAD_HOST]:
+        ip = resolve_dns(host)
+        print(f"DNS: {host} -> {ip or 'FAILED'}")
 
     # 确保远程目录存在
     remote_dir = os.path.dirname(remote_file)
