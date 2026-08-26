@@ -118,13 +118,32 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
 
 ## 4. 同步百度网盘
 
-> 待配置：需在百度网盘开放平台创建应用并完成 OAuth 授权。
+### 4.1 应用信息
 
-- 按课程/讲座目录结构上传
-- 视频、文档原件、文字稿都同步
-- 支持新建目录、删除、移动、重命名
+- 应用：CPA课程归档（AppID: 124199604）
+- 沙箱目录：`/apps/CPA课程归档/`（网盘客户端中为"我的应用数据/CPA课程归档/"）
+- 凭证：`.secrets/baidu_credentials.enc`（AES-256-CBC 加密，密码 lover123）
+- **API 调用需走 ClashX 代理**（`-x http://127.0.0.1:7890`），直连超时
 
-API 参考：`skill/references/baidupan.md`
+### 4.2 上传流程
+
+1. 解密获取 access_token：
+   ```bash
+   openssl enc -aes-256-cbc -d -pbkdf2 -pass pass:lover123 -base64 -in .secrets/baidu_credentials.enc
+   ```
+2. 按目录结构在网盘创建文件夹（mkdir API）
+3. 分片上传文件（precreate → upload 4MB分片 → create）
+4. 上传后 list 验证文件存在且大小正确
+
+### 4.3 目录映射
+
+本地目录 → 网盘路径：
+```
+税法-蔡俊峻/01_xxx/video.mp4 → /apps/CPA课程归档/税法-蔡俊峻/01_xxx/video.mp4
+税法-蔡俊峻/01_xxx/docs/     → /apps/CPA课程归档/税法-蔡俊峻/01_xxx/docs/
+```
+
+API 参考：`skill/references/baidupan.md`，完整创建过程：`docs/BAIDU_NETDISK_SETUP.md`
 
 ---
 
@@ -224,5 +243,5 @@ CPA 备考知识库（知识空间）
 - m3u8 token 和 authorize token 会过期，每个视频需重新捕获
 - 课程表 tab 可能因内存崩溃（ffmpeg 占内存），需重新加载
 - 不要在浏览器中点击"下载"按钮（会触发 Chrome 下载弹窗），直接用 curl 下载 CDN 直链
-- 代理：访问 GitHub/Homebrew 需 ClashX 代理（127.0.0.1:7890），高顿/百度直连
+- 代理：GitHub/Homebrew/百度API 需 ClashX 代理（127.0.0.1:7890），高顿课程页/百度网盘网页端直连
 - 密钥管理见 `scripts/secrets.sh`，加密文件在 `.secrets/`
