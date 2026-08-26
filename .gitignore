@@ -25,3 +25,9 @@ segments/
 # Temporary
 test_*
 对比_*
+
+# Python virtual environments
+transcription/venv/
+.venv-transcribe/
+*.pyc
+__pycache__/
