@@ -2,10 +2,22 @@
 
 自动化下载高顿 Glive 平台 CPA 课程回放视频（HLS AES-128 加密），解密合并压缩后归档，并构建飞书知识库。
 
+## 仓库地址
+
+- GitHub: https://github.com/byte886/cpa-course-archive （私有）
+
 ## 课程
 
-- 【26考季】VIPCPA系列-税法（蔡俊峻老师）
-- 【26考季】VIPCPA系列-会计（罗翔老师）
+- 【26考季】VIPCPA系列-税法（蔡俊峻老师）— 39场直播（跳过开班典礼后38场）
+- 【26考季】VIPCPA系列-会计（罗翔老师）— 待采集
+
+## 存储分工
+
+| 位置 | 内容 |
+|------|------|
+| GitHub 仓库 | Skill 代码、需求文档、项目计划、报告模板、密钥管理脚本 |
+| 百度网盘 | 视频文件、讲义文档、文字稿 |
+| 飞书 | 任务报告、知识库 |
 
 ## 技术方案
 
@@ -20,20 +32,58 @@
 
 ```
 gaodun_downloads/
-├── 税法-蔡俊峻/
-│   ├── 01_税法全面精讲01-税法总论/
-│   │   ├── video.mp4
-│   │   └── docs/
-│   └── ...
-├── 会计-罗翔/
-│   └── ...
-├── _tools/           # 下载脚本
-└── _reports/         # 任务报告
+├── skill/                    # 全局 Skill 副本（同步到 GitHub）
+│   ├── SKILL.md
+│   ├── scripts/              # capture_key.js, download_decrypt.js, compress.sh
+│   └── references/           # encryption.md, baidupan.md
+├── scripts/
+│   └── secrets.sh            # 密钥加密/解密工具
+├── docs/
+│   ├── PROJECT_PLAN.md       # 项目计划
+│   ├── COURSE_INDEX.md       # 课程清单索引
+│   └── manifest.json         # 下载清单（含完成状态）
+├── reports/
+│   └── REPORT_TEMPLATE.md    # 任务报告模板
+├── .secrets/                 # 加密凭证（.gitignore，不提交）
+│   └── gh_token.enc          # GitHub Token (AES-256-CBC 加密)
+├── 税法-蔡俊峻/               # 课程文件（同步到百度网盘）
+│   └── 01_税法全面精讲01-税法总论/
+│       ├── video.mp4
+│       ├── transcript.md     # 视频文字稿
+│       └── docs/
+└── 会计-罗翔/
 ```
 
-## 使用方法
+## 密钥管理
 
-使用 `gaodun-course-downloader` Skill 执行下载流程。
+敏感凭证（GitHub Token、百度网盘 OAuth Token 等）使用 openssl AES-256-CBC 加密存储：
+
+```bash
+# 加密保存 token
+./scripts/secrets.sh encrypt <token>
+
+# 解密查看
+./scripts/secrets.sh decrypt
+
+# 解密并登录 gh
+./scripts/secrets.sh gh-auth
+```
+
+- 加密算法：`openssl enc -aes-256-cbc -salt -pbkdf2`
+- 加密文件存于 `.secrets/` 目录，已加入 `.gitignore`，不会提交到 GitHub
+- 解密密码由用户保管，AI 不记录密码；需要解密时向用户询问
+
+## 完整工作流
+
+1. 建目录（按课程/讲座）
+2. 下载视频（1080P 解密合并压缩验证）
+3. 下载讲义文档（PDF/PPT/DOC）
+4. 同步到百度网盘
+5. 解析视频（语音转文字 + 画面 OCR）和文档（文字提取）
+6. 文字稿存本地 + 同步网盘
+7. 梳理到飞书知识库
+8. 做课后练习验证知识库覆盖度，补充遗漏
+9. 生成任务报告到飞书
 
 ## 压缩参数
 
