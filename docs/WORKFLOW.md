@@ -14,23 +14,41 @@
 
 ## 1. 建目录
 
-按课程/讲座创建本地目录结构：
+### 1.1 目录结构
+
+本地根目录：`~/Desktop/高顿/`（与百度网盘 `/apps/CPA课程归档/高顿/` 完全镜像）
 
 ```
-<课程名-老师>/
-└── NN_讲座标题/
-    ├── video.mp4          # 压缩后的最终视频
-    ├── transcript.md      # 视频文字稿（语音转文字 + 画面 OCR）
-    ├── docs/              # 讲义文档原件
-    │   └── *.pdf / *.pptx / *.docx
-    └── docs_text/         # 文档提取的文字
-        └── *.md
+高顿/
+└── CPA/                              ← 专业名（未来可扩展其他专业）
+    ├── 课程库/                        ← 走完整流程的（有知识库）
+    │   └── 【26考季】VIPCPA系列-税法（蔡俊峻老师）/
+    │       └── 01_税法全面精讲01-税法总论/
+    │           ├── video.mp4          # 压缩后的最终视频
+    │           ├── transcript.md      # 视频文字稿（语音转文字 + 画面 OCR）
+    │           ├── docs/              # 讲义文档原件
+    │           │   └── *.pdf / *.pptx / *.docx
+    │           └── docs_text/         # 文档提取的文字
+    │               └── *.md
+    └── 待整理/                        ← 未走完整流程的（暂无知识库）
+        └── 【26考季】VIPCPA-基础必修-会计（罗翔老师）/
+            └── 01_会计总论(一)/
+                └── video.mp4
 ```
 
 目录名规则：
-- 课程目录：`税法-蔡俊峻`、`会计-罗翔`
+- 公司目录：`高顿`
+- 专业目录：`CPA`（未来可加其他专业）
+- 课程目录：使用高顿学习空间中的完整课程名，如 `【26考季】VIPCPA系列-税法（蔡俊峻老师）`
 - 讲座目录：`01_税法全面精讲01-税法总论`（两位序号 + 标题）
 - **跳过开班典礼**，不下载不建目录
+- "待整理"中的课程走完知识库流程后，移动到"课程库"下
+
+### 1.2 本地与网盘同步原则
+
+- 所有文件先放入本地目录，再上传到网盘
+- 本地和网盘目录结构始终保持一致
+- 上传完成后在网盘验证文件大小
 
 ---
 
@@ -123,7 +141,7 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
 - 应用：CPA课程归档（AppID: 124199604）
 - 沙箱目录：`/apps/CPA课程归档/`（网盘客户端中为"我的应用数据/CPA课程归档/"）
 - 凭证：`.secrets/baidu_credentials.enc`（AES-256-CBC 加密，密码 lover123）
-- **API 调用需走 ClashX 代理**（`-x http://127.0.0.1:7890`），直连超时
+- **API 直连即可**，不需要代理（Tailscale DNS Override 已修复，详见 BAIDU_NETDISK_SETUP.md）
 
 ### 4.2 上传流程
 
@@ -139,8 +157,8 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
 
 本地目录 → 网盘路径：
 ```
-税法-蔡俊峻/01_xxx/video.mp4 → /apps/CPA课程归档/税法-蔡俊峻/01_xxx/video.mp4
-税法-蔡俊峻/01_xxx/docs/     → /apps/CPA课程归档/税法-蔡俊峻/01_xxx/docs/
+~/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_xxx/video.mp4
+  → /apps/CPA课程归档/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_xxx/video.mp4
 ```
 
 API 参考：`skill/references/baidupan.md`，完整创建过程：`docs/BAIDU_NETDISK_SETUP.md`
@@ -243,5 +261,5 @@ CPA 备考知识库（知识空间）
 - m3u8 token 和 authorize token 会过期，每个视频需重新捕获
 - 课程表 tab 可能因内存崩溃（ffmpeg 占内存），需重新加载
 - 不要在浏览器中点击"下载"按钮（会触发 Chrome 下载弹窗），直接用 curl 下载 CDN 直链
-- 代理：GitHub/Homebrew/百度API 需 ClashX 代理（127.0.0.1:7890），高顿课程页/百度网盘网页端直连
+- 代理：GitHub/Homebrew/npm 需 ClashX 代理（127.0.0.1:7890），高顿课程页/百度API/百度网盘直连（Tailscale DNS 已修复）
 - 密钥管理见 `scripts/secrets.sh`，加密文件在 `.secrets/`
