@@ -5,7 +5,7 @@
   BAIDU_ENC_PASS=lover123 python3 baidu_upload.py <本地文件> <网盘路径> [token]
 
 网盘路径必须以 /apps/CPA课程归档/ 开头。
-直连百度服务器（不走代理），自动用 114 DNS 解析以兼容 Tailscale 环境。
+直连百度服务器（国内服务，不走代理）。
 """
 
 import hashlib
@@ -16,40 +16,8 @@ import sys
 import tempfile
 
 CHUNK_SIZE = 4 * 1024 * 1024  # 4MB
-API_HOST = "pan.baidu.com"
-UPLOAD_HOST = "d.pcs.baidu.com"
-API_BASE = f"https://{API_HOST}/rest/2.0/xpan/file"
-UPLOAD_BASE = f"https://{UPLOAD_HOST}/rest/2.0/pcs/superfile2"
-FALLBACK_DNS = "114.114.114.114"
-
-
-def resolve_dns(host):
-    """用指定 DNS 服务器解析域名，返回 IP（兼容 Tailscale 劫持系统 DNS 的情况）"""
-    try:
-        result = subprocess.run(
-            ["nslookup", host, FALLBACK_DNS],
-            capture_output=True, text=True, timeout=5
-        )
-        # 解析 nslookup 输出，取最后一个 Address
-        for line in result.stdout.splitlines():
-            if line.startswith("Address:") and "#" not in line:
-                # 有些行是 "Address: 114.114.114.114#53"（DNS服务器本身）
-                ip = line.split("Address:")[1].strip()
-                if "#" not in ip:
-                    return ip
-    except Exception as e:
-        print(f"  DNS resolution warning: {e}", file=sys.stderr)
-    return None
-
-
-def get_resolve_args():
-    """获取 curl --resolve 参数，绕过系统 DNS"""
-    args = []
-    for host in [API_HOST, UPLOAD_HOST]:
-        ip = resolve_dns(host)
-        if ip:
-            args += ["--resolve", f"{host}:443:{ip}"]
-    return args
+API_BASE = "https://pan.baidu.com/rest/2.0/xpan/file"
+UPLOAD_BASE = "https://d.pcs.baidu.com/rest/2.0/pcs/superfile2"
 
 
 def get_token():
@@ -75,11 +43,11 @@ def get_token():
 
 
 def curl_api(url, params=None, data=None, file_path=None, file_field="file", timeout=300):
-    """通过 curl 直连调用 API（不走代理，用 --resolve 绕过 DNS）"""
+    """通过 curl 直连调用 API（不走代理）"""
     if params:
         url += "?" + "&".join(f"{k}={v}" for k, v in params.items())
 
-    cmd = ["curl", "-s", "--connect-timeout", "10"] + get_resolve_args()
+    cmd = ["curl", "-s", "--connect-timeout", "10"]
 
     if file_path:
         cmd += ["-F", f"{file_field}=@{file_path}"]
@@ -212,11 +180,6 @@ if __name__ == "__main__":
     if not os.path.isfile(local_file):
         print(f"File not found: {local_file}", file=sys.stderr)
         sys.exit(1)
-
-    # 显示 DNS 解析结果
-    for host in [API_HOST, UPLOAD_HOST]:
-        ip = resolve_dns(host)
-        print(f"DNS: {host} -> {ip or 'FAILED'}")
 
     # 确保远程目录存在
     remote_dir = os.path.dirname(remote_file)

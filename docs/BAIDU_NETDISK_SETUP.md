@@ -140,48 +140,49 @@ curl -X POST "https://openapi.baidu.com/oauth/2.0/token" \
 
 ### 2.3 常用 API
 
-所有 API 调用需走代理（ClashX 127.0.0.1:7890），因为 openapi.baidu.com 和 pan.baidu.com 的 API 端点在当前网络环境下直连超时。
+**直连即可，不需要代理**（Tailscale DNS 已配置 114.114.114.114 全局 nameserver 并开启 Override DNS servers）。
 
 #### 获取用户信息
 
 ```bash
-curl -s "https://pan.baidu.com/rest/2.0/xpan/nas?method=uinfo&access_token=<TOKEN>" -x http://127.0.0.1:7890
+curl -s "https://pan.baidu.com/rest/2.0/xpan/nas?method=uinfo&access_token=<TOKEN>"
 ```
 
 #### 创建文件夹
 
 ```bash
 curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=mkdir&access_token=<TOKEN>" \
-  --data-urlencode "path=/apps/CPA课程归档/税法-蔡俊峻" -x http://127.0.0.1:7890
+  --data-urlencode "path=/apps/CPA课程归档/税法-蔡俊峻"
 ```
 
 #### 获取文件列表
 
 ```bash
-curl -s "https://pan.baidu.com/rest/2.0/xpan/file?method=list&access_token=<TOKEN>&dir=<URL编码的路径>&order=time&desc=1" -x http://127.0.0.1:7890
+curl -s "https://pan.baidu.com/rest/2.0/xpan/file?method=list&access_token=<TOKEN>&dir=<URL编码的路径>&order=time&desc=1"
 ```
 
 #### 上传文件（分片上传）
 
-大文件需分片上传，流程：
-1. `precreate`：预创建，获取 uploadid
-2. `upload`：逐片上传（每片 4MB）
-3. `create`：合并分片
+使用 `scripts/baidu_upload.py` 脚本：
 
-详见 [百度网盘上传API文档](https://pan.baidu.com/union/doc/fl2z0t89u)。
+```bash
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py <本地文件> <网盘路径>
+```
+
+流程：precreate（预创建）→ upload（4MB分片上传）→ create（合并）。支持 MD5 秒传和断点续传。
 
 #### 删除文件/文件夹
 
 ```bash
 curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&access_token=<TOKEN>&opera=delete" \
-  -d 'filelist=["/apps/CPA课程归档/测试目录"]' -x http://127.0.0.1:7890
+  -d 'filelist=["/apps/CPA课程归档/测试目录"]'
 ```
 
 #### 移动/重命名
 
 ```bash
 curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&access_token=<TOKEN>&opera=move" \
-  -d 'filelist[{"path":"/apps/CPA课程归档/旧名","dest":"/apps/CPA课程归档/新名"}]' -x http://127.0.0.1:7890
+  -d 'filelist=[{"path":"/apps/CPA课程归档/旧名","dest":"/apps/CPA课程归档/新名"}]'
 ```
 
 ### 2.4 错误码
@@ -229,3 +230,15 @@ curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&acc
 - 加密文件 `.secrets/baidu_credentials.enc` 已提交到 GitHub 公有仓库（无密码无法解密）
 - 解密密码由用户保管，AI 不记忆密码，需要时询问用户
 - 如怀疑凭证泄露，立即在应用详情页重置 SecretKey 并重新授权
+
+### 3.5 网络配置（Tailscale DNS 修复）
+
+**问题**：Tailscale MagicDNS 接管系统 DNS（100.100.100.100）但未配置全局 nameserver 转发，导致非 Tailscale 域名解析超时（5秒+），表现为百度网盘 app 慢、命令行 curl 超时。
+
+**解决**（已在 Tailscale 后台配置）：
+1. 登录 https://login.tailscale.com/admin/dns
+2. Global nameservers 中已有 114.114.114.114
+3. 打开 **Override DNS servers** 开关（关键！）
+4. 配置后 Quad100（100.100.100.100）会将非 Tailscale 域名转发给 114 DNS
+
+**Tailscale 开机自启**：已配置 `TailscaleStartOnLogin=1` + `restartState=maintainCurrentState`，开机自动启动并保持连接。
