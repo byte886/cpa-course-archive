@@ -167,30 +167,46 @@ API 参考：`skill/references/baidupan.md`，完整创建过程：`docs/BAIDU_N
 
 ## 5. 内容解析
 
-### 5.1 视频转文字
+### 5.1 视频转文字（已确定方案：FunASR SenseVoiceSmall）
 
-待确定方案（候选：飞书妙记、Whisper 等）。
+**方案选型**：阿里 FunASR（SenseVoiceSmall），开源本地方案，0成本。
+- 中文 CER 8-10%，优于 Whisper（22-31%）
+- CPU 推理速度快（VAD 加速后约 15x 实时）
+- 内置标点恢复，无需额外后处理
+- 用户有讲义 PDF，不需要 OCR，只做音频转文字
 
-需要提取：
-- **语音内容**：讲师讲课全文
-- **画面内容**：PPT 画面中的文字（OCR），按时间点标注
+**环境配置**（macOS x86_64）：
+- Python 3.12（Homebrew），torch 2.2.2（macOS x86_64 最高可用版本）
+- numpy 1.26.4（不可升级到 2.x），funasr 1.4.3
+- 虚拟环境：`transcription/venv/`
+- 模型缓存：`~/.cache/modelscope/models/iic--SenseVoiceSmall/`（936MB）
+- VAD 模型：`iic/speech_fsmn_vad_zh-cn-16k-common-pytorch`
 
-输出为 `transcript.md`，结构：
-```markdown
-# 讲座标题
+**性能数据**（Mac Pro i5-13600KF / 128GB / 纯 CPU）：
+- 不用 VAD：10分钟音频 190秒（3.1x 实时），2.5小时视频约 48分钟
+- 用 VAD（fsmn-vad, max_single_segment_time=30000）：10分钟音频 38.5秒（15.6x 实时），2.5小时视频约 10分钟
+- 模型加载：3-4秒
 
-## 元信息
-- 课程：税法-蔡俊峻
-- 讲次：01
-- 时长：3h15m
-- 日期：2026-03-13
+**转写脚本**：`transcription/transcribe_pipeline.py`
+- 提取音频（ffmpeg 16kHz mono WAV）→ VAD 分段转写 → 后处理（去除特殊标记）→ 输出 markdown + json
+- 支持断点续传：已存在 transcript.md 且 >100 字节的视频自动跳过
+- 在 **iTerm 中运行**（可开多个窗口并行处理不同视频）
 
-## 文字稿
-[00:00:00] 内容...
-
-## PPT 画面文字
-[00:05:30] 幻灯片标题及要点...
+**运行方式**：
+```bash
+cd transcription
+source venv/bin/activate
+python transcribe_pipeline.py <视频路径或目录> <输出目录>
 ```
+
+**输出格式**：
+- `transcript.md`：自动分段的文字稿（按语义分段，无精确时间轴）
+- `transcript.json`：原始转写结果（含元信息）
+
+**已知问题**：
+- 开头可能有 `<|zh|><|HAPPY|><|Speech|><|withitn|>` 特殊标记，脚本已后处理去除
+- 个别同音错误（如"概数"应为"概述"），需结合讲义校对
+- SenseVoice 不输出字级时间戳（timestamp=None），知识库不需要精确时间轴
 
 ### 5.2 文档文字提取
 
@@ -253,6 +269,43 @@ CPA 备考知识库（知识空间）
 - 做题结果
 
 报告模板：`reports/REPORT_TEMPLATE.md`
+
+---
+
+## 当前进度（2026-08-26 更新）
+
+### 已完成
+
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| 项目目录结构 | ✅ | GitHub 仓库 byte886/cpa-course-archive（公有） |
+| 全局 Skill | ✅ | gaodun-course-downloader（视频下载/压缩/网盘上传） |
+| 飞书知识库 | ✅ | "CPA备考知识库"（space_id: 7678261729456852192），节点结构已搭好 |
+| 百度网盘 API | ✅ | 应用"CPA课程归档"，沙箱目录 /apps/CPA课程归档/ |
+| 税法-蔡俊峻 01 | ✅ | 视频下载+压缩（246MB）+ 已上传网盘 |
+| 基础必修-会计（罗翔）12讲 | ✅ | 桌面手工录制视频全部压缩完成（12个，共2.4GB），输出到待整理目录 |
+
+### 进行中
+
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| 视频转文字测试 | 🔄 | FunASR SenseVoiceSmall 环境已搭好，10分钟片段测试通过，整集测试进行中 |
+
+### 待完成
+
+- [ ] 整集转写测试通过后，批量转写全部视频
+- [ ] 转写文本与讲义 PDF 合并梳理，写入飞书知识库
+- [ ] 基础必修12个视频上传百度网盘
+- [ ] 税法剩余 37 讲下载+压缩+上传
+- [ ] 会计课程下载+压缩+上传
+- [ ] 各课程讲义文档下载+文字提取
+- [ ] 知识库完成后做题验证
+
+### 视频来源说明
+
+- **网站下载**：通过 Playwright 捕获 HLS AES-128 密钥，下载解密合并后压缩（税法01已完成）
+- **手工录制**：用户之前手工录制的视频（桌面"会计基础必修08-资产"目录），作为输入源直接压缩，输出到结构化目录 `高顿/CPA/待整理/课程名/课次/video.mp4`
+- 两种来源的视频压缩参数一致（H.265 CRF30 / preset fast / AAC 96k / hvc1 / faststart）
 
 ---
 
