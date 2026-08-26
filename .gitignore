@@ -1,0 +1,28 @@
+# Video files
+*.ts
+*.mp4
+*.mov
+*.mkv
+*.m3u8
+
+# Documents (large PDFs)
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+# Segment caches
+segments/
+*.dec.ts
+
+# OS files
+.DS_Store
+*.log
+
+# Temporary
+test_*
+对比_*
+.secrets/
