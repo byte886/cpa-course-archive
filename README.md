@@ -91,4 +91,3 @@ gaodun_downloads/
 - CRF：30（课件文字清晰，头像略糊但不影响学习）
 - Preset：fast
 - 音频：AAC 96kbps
-- 全片约 246MB / 3小时15分
