@@ -4,15 +4,30 @@
 
 ## 文档清单
 
+### 目录结构
+
+```
+docs/project-management/
+├── README.md                    # 本文档，项目管理规范总览
+├── standards/                   # 规范/指南类（教你如何做）
+│   ├── PROJECT_PLAN.md          # 项目计划
+│   ├── PROJECT_MAINTENANCE.md   # 项目维护规范（结构维护/文档组织/文档分解/Docs as Code）
+│   └── QUALITY_ASSURANCE.md     # 质量保证规范（验证标准和流程）
+├── active/                      # 过程文档类（实际做了什么）
+│   ├── TASK_STATUS.md           # 任务状态（唯一任务状态来源）
+│   └── COURSE_INDEX.md          # 课程清单索引
+└── test-plans/                  # 测试计划（每个测试任务一个文件）
+    └── TEST_PLAN_税法01.md      # 税法01完整流程测试计划
+```
+
 | 文档 | 用途 |
 |------|------|
-| `README.md` | 本文档，项目管理规范总览 |
-| `TASK_STATUS.md` | 任务状态（唯一任务状态来源） |
-| `PROJECT_PLAN.md` | 项目计划 |
-| `PROJECT_MAINTENANCE.md` | 项目维护规范（结构维护/文档组织/文档分解/Docs as Code） |
-| `COURSE_INDEX.md` | 课程清单索引 |
-| `QUALITY_ASSURANCE.md` | 质量保证规范（验证标准和流程） |
-| `TEST_PLAN_*.md` | 测试计划（如 TEST_PLAN_税法01.md） |
+| `standards/PROJECT_PLAN.md` | 项目计划 |
+| `standards/PROJECT_MAINTENANCE.md` | 项目维护规范（结构维护/文档组织/文档分解/Docs as Code） |
+| `standards/QUALITY_ASSURANCE.md` | 质量保证规范（验证标准和流程） |
+| `active/TASK_STATUS.md` | 任务状态（唯一任务状态来源） |
+| `active/COURSE_INDEX.md` | 课程清单索引 |
+| `test-plans/TEST_PLAN_*.md` | 测试计划（如 TEST_PLAN_税法01.md） |
 
 > **报告类文档**（任务报告、验证报告）统一放在 `reports/` 目录下，详见 `reports/README.md`。
 > **具体课程验证报告**放在对应课程目录下（和被验证对象在一起）。
@@ -25,7 +40,7 @@
 
 ### 唯一任务状态来源
 
-**`docs/project-management/TASK_STATUS.md`**（Markdown 文档）
+**`docs/project-management/active/TASK_STATUS.md`**（Markdown 文档）
 
 - 所有任务状态、进度、详情以本文档为准
 - AI 助手直接编辑本文档更新任务状态
@@ -89,7 +104,7 @@
 ### 1.1 单样本测试优先
 
 - 每个新功能/新流程先做**单样本测试**，验证通过后再批量执行
-- 测试前明确**测试目标、范围、步骤、通过标准**，记录到 `docs/TEST_PLAN_*.md`
+- 测试前明确**测试目标、范围、步骤、通过标准**，记录到 `docs/project-management/test-plans/TEST_PLAN_*.md`
 - 测试过程中发现的问题立即记录，分类处理
 
 ### 1.2 测试通过标准
@@ -180,7 +195,7 @@
 
 ## 4. 测试计划文档模板
 
-每个测试任务创建 `docs/TEST_PLAN_*.md`，包含以下章节：
+每个测试任务创建 `docs/project-management/test-plans/TEST_PLAN_*.md`，包含以下章节：
 
 ```markdown
 # 测试计划：[测试名称]
