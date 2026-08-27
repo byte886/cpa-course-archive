@@ -85,38 +85,56 @@ CPA备考知识库/
 
 ```
 cpa-course-archive/
-├── skill/                    # 全局 Skill 副本
-│   ├── SKILL.md
-│   ├── scripts/              # capture_key.js, download_decrypt.js, compress.sh
-│   └── references/           # encryption.md, baidupan.md
+├── .gitignore                # Git忽略规则（视频/文档/音频/转写结果等）
+├── README.md                 # 项目说明（本文档）
+├── .secrets/                 # 加密凭证（已提交，密码由用户保管）
+│   ├── gh_token.enc          # GitHub Personal Access Token（加密）
+│   └── baidu_credentials.enc # 百度网盘API凭证（加密）
+├── skill/                    # 全局 Skill 副本（gaodun-course-downloader）
+│   ├── SKILL.md              # Skill说明文档
+│   ├── scripts/              # Skill脚本
+│   │   ├── capture_key.js    # HLS密钥截获
+│   │   ├── download_decrypt.js # HLS下载解密
+│   │   └── compress.sh       # ffmpeg压缩脚本
+│   └── references/           # Skill参考文档
+│       ├── encryption.md     # 加密说明
+│       └── baidupan.md      # 百度网盘API说明
 ├── scripts/                  # 所有脚本统一放这里
 │   ├── baidu_upload.py       # 百度网盘分片上传
 │   ├── batch_upload.sh       # 批量上传
-│   ├── transcribe_pipeline.py # 音频转文字
+│   ├── transcribe_pipeline.py # 音频转文字（FunASR+VAD）
 │   ├── batch_transcribe.sh   # 批量转写
-│   ├── batch_ocr.sh          # 批量OCR
-│   └── secrets.sh            # 密钥加密/解密工具
+│   ├── batch_ocr.sh          # 批量OCR（macOS Vision）
+│   ├── secrets.sh            # 密钥加密/解密工具
+│   └── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
 ├── docs/
 │   ├── WORKFLOW.md           # 总体工作流（索引+流程）
+│   ├── manifest.json         # 文档清单
 │   ├── project-management/   # 项目管理
-│   │   ├── README.md         # 项目管理规范
+│   │   ├── README.md         # 项目管理规范（任务管理/测试驱动/缺陷管理）
 │   │   ├── PROJECT_PLAN.md   # 项目计划
 │   │   ├── COURSE_INDEX.md   # 课程清单索引
-│   │   ├── TASK_STATUS.md    # 任务状态
-│   │   └── TEST_PLAN_*.md    # 测试计划
+│   │   ├── TASK_STATUS.md    # 任务状态（唯一任务状态来源）
+│   │   └── TEST_PLAN_*.md    # 测试计划（如TEST_PLAN_税法01.md）
 │   └── development/          # 开发文档
 │       ├── README.md         # 开发文档索引
-│       ├── transcription.md  # 音频转文字
-│       ├── ocr.md            # OCR文字提取
-│       ├── netdisk-setup.md  # 百度网盘接入
+│       ├── git-workflow.md   # Git工作流（SSH/代理/大文件/pre-commit/敏感信息）
+│       ├── transcription.md  # 音频转文字（FunASR环境/参数/性能）
+│       ├── ocr.md            # OCR文字提取（macOS Vision）
+│       ├── netdisk-setup.md # 百度网盘接入（API/上传/目录管理）
 │       ├── video-processing.md # 视频处理（待创建）
 │       └── knowledge-base.md # 知识库建设（待创建）
 ├── reports/
 │   └── REPORT_TEMPLATE.md    # 任务报告模板
-└── .secrets/                 # 加密凭证（已提交，密码由用户保管）
-    ├── gh_token.enc
-    └── baidu_credentials.enc
+├── transcription/            # 转写工作目录（gitignore忽略，不提交）
+│   ├── venv/                 # Python虚拟环境（funasr/torch）
+│   └── transcripts_full/     # 转写结果输出（gitignore忽略）
+│       └── video/            # 视频转写结果（transcript.md/transcript.json）
+└── .git/hooks/
+    └── pre-commit            # 实际生效的pre-commit hook（从scripts/pre-commit复制）
 ```
+
+> **说明**：`transcription/` 目录是转写工作目录，包含虚拟环境和转写结果，已在 `.gitignore` 中忽略，不提交到GitHub。生成结果（视频/文字稿/讲义）统一放在本地 `~/Desktop/高顿/` 和百度网盘，不放在项目仓库。
 
 ## 技术方案
 
