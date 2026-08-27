@@ -89,14 +89,28 @@ cpa-course-archive/
 │   ├── SKILL.md
 │   ├── scripts/              # capture_key.js, download_decrypt.js, compress.sh
 │   └── references/           # encryption.md, baidupan.md
-├── scripts/
+├── scripts/                  # 所有脚本统一放这里
 │   ├── baidu_upload.py       # 百度网盘分片上传
+│   ├── batch_upload.sh       # 批量上传
+│   ├── transcribe_pipeline.py # 音频转文字
+│   ├── batch_transcribe.sh   # 批量转写
+│   ├── batch_ocr.sh          # 批量OCR
 │   └── secrets.sh            # 密钥加密/解密工具
 ├── docs/
-│   ├── PROJECT_PLAN.md       # 项目计划
-│   ├── WORKFLOW.md           # 完整工作流（持续更新）
-│   ├── COURSE_INDEX.md       # 课程清单索引
-│   └── BAIDU_NETDISK_SETUP.md # 百度网盘接入文档
+│   ├── WORKFLOW.md           # 总体工作流（索引+流程）
+│   ├── project-management/   # 项目管理
+│   │   ├── README.md         # 项目管理规范
+│   │   ├── PROJECT_PLAN.md   # 项目计划
+│   │   ├── COURSE_INDEX.md   # 课程清单索引
+│   │   ├── TASK_STATUS.md    # 任务状态
+│   │   └── TEST_PLAN_*.md    # 测试计划
+│   └── development/          # 开发文档
+│       ├── README.md         # 开发文档索引
+│       ├── transcription.md  # 音频转文字
+│       ├── ocr.md            # OCR文字提取
+│       ├── netdisk-setup.md  # 百度网盘接入
+│       ├── video-processing.md # 视频处理（待创建）
+│       └── knowledge-base.md # 知识库建设（待创建）
 ├── reports/
 │   └── REPORT_TEMPLATE.md    # 任务报告模板
 └── .secrets/                 # 加密凭证（已提交，密码由用户保管）
@@ -121,6 +135,34 @@ cpa-course-archive/
 ```bash
 ./scripts/secrets.sh decrypt <name>   # 解密查看
 ```
+
+## 项目维护规则
+
+> 每次开始新任务前、完成大任务后，必须检查项目结构是否合理，发现问题主动梳理调整。
+
+### 结构维护原则
+
+1. **GitHub 仓库只放代码和文档**：Skill 脚本、项目文档、工作流、报告模板、加密凭证。生成结果（视频、PDF、文字稿、音频）不放在项目目录，放本地 `~/Desktop/高顿/` 和百度网盘。
+2. **脚本统一放 `scripts/`**：所有可执行脚本（Python、Shell）统一放在 `scripts/` 目录，不分散在各子目录。
+3. **文档按专业领域分类**：`docs/project-management/`（项目管理）、`docs/development/`（开发文档），WORKFLOW.md 只保留总体流程和索引。
+4. **任务文档不放根目录**：任务状态、测试计划、项目计划等统一放 `docs/project-management/`。
+5. **定期清理**：测试文件、临时日志、残留目录及时清理，不堆积。
+
+### 检查触发时机
+
+- 开始新任务前：读取项目文档时检查结构
+- 完成大任务后：检查是否产生新的散乱文件
+- 发现结构问题时：主动梳理调整，不等待积累
+
+### 存储分工（不可混淆）
+
+| 位置 | 内容 |
+|------|------|
+| GitHub 仓库 | Skill 代码、需求文档、工作流、项目计划、报告模板、加密凭证 |
+| 本地 `~/Desktop/高顿/` | 视频文件、讲义文档、文字稿（生成结果） |
+| 百度网盘 `/apps/CPA课程归档/高顿/` | 与本地完全镜像 |
+| 飞书知识库「CPA备考知识库」 | 视频文字稿、文档文字、知识梳理 |
+| 飞书文档 | 任务报告 |
 
 ## 完整工作流
 
