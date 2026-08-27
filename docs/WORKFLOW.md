@@ -161,60 +161,37 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
   → /apps/CPA课程归档/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_xxx/video.mp4
 ```
 
+**注意**：网盘路径必须包含 `高顿/` 层，与本地目录结构完全一致。上传脚本 `scripts/batch_upload.sh` 中 `REMOTE_BASE="/apps/CPA课程归档/高顿"`。
+
 API 参考：`skill/references/baidupan.md`，完整创建过程：`docs/BAIDU_NETDISK_SETUP.md`
 
 ---
 
 ## 5. 内容解析
 
-### 5.1 视频转文字（已确定方案：FunASR SenseVoiceSmall）
+### 5.1 视频转文字
 
-**方案选型**：阿里 FunASR（SenseVoiceSmall），开源本地方案，0成本。
-- 中文 CER 8-10%，优于 Whisper（22-31%）
-- CPU 推理速度快（VAD 加速后约 15x 实时）
-- 内置标点恢复，无需额外后处理
-- 用户有讲义 PDF，不需要 OCR，只做音频转文字
+**方案**：阿里 FunASR（SenseVoiceSmall），开源本地方案，0成本。
 
-**环境配置**（macOS x86_64）：
-- Python 3.12（Homebrew），torch 2.2.2（macOS x86_64 最高可用版本）
-- numpy 1.26.4（不可升级到 2.x），funasr 1.4.3
+- 中文 CER 8-10%，优于 Whisper
+- VAD 加速后约 15x 实时（2.5小时视频约10分钟）
 - 虚拟环境：`transcription/venv/`
-- 模型缓存：`~/.cache/modelscope/models/iic--SenseVoiceSmall/`（936MB）
-- VAD 模型：`iic/speech_fsmn_vad_zh-cn-16k-common-pytorch`
+- 脚本：`transcription/transcribe_pipeline.py`（单视频）、`transcription/batch_transcribe.sh`（批量）
+- 在 **iTerm 中运行**（可开多个窗口并行）
 
-**性能数据**（Mac Pro i5-13600KF / 128GB / 纯 CPU）：
-- 不用 VAD：10分钟音频 190秒（3.1x 实时），2.5小时视频约 48分钟
-- 用 VAD（fsmn-vad, max_single_segment_time=30000）：10分钟音频 38.5秒（15.6x 实时），2.5小时视频约 10分钟
-- 模型加载：3-4秒
-
-**转写脚本**：`transcription/transcribe_pipeline.py`
-- 提取音频（ffmpeg 16kHz mono WAV）→ VAD 分段转写 → 后处理（去除特殊标记）→ 输出 markdown + json
-- 支持断点续传：已存在 transcript.md 且 >100 字节的视频自动跳过
-- 在 **iTerm 中运行**（可开多个窗口并行处理不同视频）
-
-**运行方式**：
-```bash
-cd transcription
-source venv/bin/activate
-python transcribe_pipeline.py <视频路径或目录> <输出目录>
-```
-
-**输出格式**：
-- `transcript.md`：自动分段的文字稿（按语义分段，无精确时间轴）
-- `transcript.json`：原始转写结果（含元信息）
-
-**已知问题**：
-- 开头可能有 `<|zh|><|HAPPY|><|Speech|><|withitn|>` 特殊标记，脚本已后处理去除
-- 个别同音错误（如"概数"应为"概述"），需结合讲义校对
-- SenseVoice 不输出字级时间戳（timestamp=None），知识库不需要精确时间轴
+**详细文档**：[development/transcription.md](./development/transcription.md)
 
 ### 5.2 文档文字提取
 
-- PDF：`pdftotext` 或 Python pdfplumber
-- PPT：python-pptx
-- DOC：python-docx 或 textutil（macOS）
+**方案**：macOS Vision 框架 OCR（系统原生免费）。
 
-输出到 `docs_text/` 目录，保持文件名对应。
+- 高顿课件 PDF 多为图片型 PDF，需 OCR
+- 工具：Swift 编译的 `/tmp/ocr_vision` + PyMuPDF（200 DPI）
+- 性能：116页约2分钟
+- 批量脚本：`transcription/batch_ocr.sh`（后台运行 + iTerm tail -f）
+- 遇到表格/公式/图表时用 AI 视觉补充识别
+
+**详细文档**：[development/ocr.md](./development/ocr.md)
 
 ---
 
@@ -272,7 +249,20 @@ CPA 备考知识库（知识空间）
 
 ---
 
-## 当前进度（2026-08-26 更新）
+## 9. 项目管理规范
+
+本项目遵循测试驱动开发和缺陷管理规范，包括：
+- 测试驱动原则（单样本测试优先）
+- 缺陷分类（严重程度+优先级）
+- 小问题顺手修复、大问题讨论处理
+- 缺陷管理流程（发现→分类→记录→处理→验证→关闭→报告）
+- 测试计划文档模板
+
+**详细文档**：[project-management/README.md](./project-management/README.md)
+
+---
+
+## 当前进度（2026-08-27 更新）
 
 ### 已完成
 

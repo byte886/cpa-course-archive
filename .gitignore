@@ -31,3 +31,25 @@ transcription/venv/
 .venv-transcribe/
 *.pyc
 __pycache__/
+
+# Generated results (upload to Baidu Netdisk, not GitHub)
+# Audio files
+*.wav
+*.mp3
+*.aac
+
+# Transcription results
+transcription/transcripts_full/
+transcription/transcripts_test/
+transcription/transcripts/
+
+# OCR test pages
+transcription/pdf_test_pages/
+
+# Upload logs
+reports/upload_log_*.txt
+
+# Secrets (encrypted files are committed, plaintext are not)
+.secrets/*.json
+.secrets/*.txt
+!*.enc
