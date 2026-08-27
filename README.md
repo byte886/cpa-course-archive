@@ -170,6 +170,34 @@ cpa-course-archive/
 - 可自动化的检查（大文件、敏感信息）必须用 pre-commit hook 强制执行
 - 新增重要规则时，先问自己：这个规则放在哪一层？只放子文档够吗？
 
+### 文档分解原则
+
+当文档过大或内容跨领域时，必须分解为独立文档，避免单文档臃肿难维护。
+
+**触发分解的信号**：
+- 文档超过 **500 行** 或阅读时间超过 10 分钟
+- 内容覆盖 **2 个以上独立专业领域**（如 git 操作 + 视频压缩 + OCR）
+- 某个子主题有独立的配置、参数、常见问题，可单独查阅
+- 需要频繁更新某个子主题，但其他部分很少变动
+
+**分解方式**：
+1. 按专业领域建目录：`docs/development/`、`docs/project-management/`
+2. 目录下按主题分文档：`git-workflow.md`、`transcription.md`、`ocr.md`
+3. 父文档（如 WORKFLOW.md）只保留**总体流程 + 索引链接**，不保留详细内容
+4. 每个子文档独立完整，可单独阅读，不依赖父文档上下文
+
+**反例（不要这样做）**：
+- ❌ 把所有内容都塞在 WORKFLOW.md 里，超过 1000 行
+- ❌ 分解后父文档只放链接不放摘要，导致不点开链接不知道内容是什么
+- ❌ 子文档引用父文档的上下文，单独阅读时看不懂
+
+**实例**：WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解为：
+- `docs/development/git-workflow.md`（Git 工作流）
+- `docs/development/transcription.md`（音频转文字）
+- `docs/development/ocr.md`（OCR 文字提取）
+- `docs/development/netdisk-setup.md`（百度网盘集成）
+- WORKFLOW.md 只保留总体流程和索引链接
+
 ### 存储分工（不可混淆）
 
 | 位置 | 内容 |
