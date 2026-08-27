@@ -6,7 +6,7 @@ set -e
 
 # 配置
 PROJECT_DIR="/Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads"
-TRANSCRIBE_SCRIPT="$PROJECT_DIR/transcription/transcribe_pipeline.py"
+TRANSCRIBE_SCRIPT="$PROJECT_DIR/scripts/transcribe_pipeline.py"
 VENV_PYTHON="$PROJECT_DIR/transcription/venv/bin/python"
 BASE_DIR="$HOME/Desktop/高顿/CPA"
 
