@@ -55,3 +55,6 @@ reports/upload_log_*.txt
 .secrets/*.json
 .secrets/*.txt
 !*.enc
+
+# Data directory (symlink to external data directory, not committed)
+data/
