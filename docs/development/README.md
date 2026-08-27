@@ -7,6 +7,7 @@
 | 文档 | 说明 | 状态 |
 |------|------|------|
 | [git-workflow.md](./git-workflow.md) | GitHub工作流：SSH配置、代理设置、常见问题 | ✅ 已完成 |
+| [playwright-cli-guide.md](./playwright-cli-guide.md) | Playwright CLI使用指南：正确用法、常见错误、最佳实践、命令速查表 | ✅ 已完成 |
 | [video-processing.md](./video-processing.md) | 视频处理详细指南：前置条件、加密方案逆向分析、详细操作流程、关键陷阱汇总 | ✅ 已完成 |
 | [transcription.md](./transcription.md) | 音频转文字：FunASR环境配置、性能数据、脚本使用 | ✅ 已完成 |
 | [ocr.md](./ocr.md) | OCR文字提取：macOS Vision框架、PDF转图片、表格/图表AI补充 | ✅ 已完成 |
