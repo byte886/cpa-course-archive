@@ -12,6 +12,7 @@
 | [ocr.md](./ocr.md) | OCR文字提取：macOS Vision框架、PDF转图片、表格/图表AI补充 | ✅ 已完成 |
 | [netdisk-setup.md](./netdisk-setup.md) | 百度网盘集成：应用创建、API配置、上传脚本 | ✅ 已完成 |
 | [knowledge-base.md](./knowledge-base.md) | 知识库建设：飞书知识库结构、内容梳理、做题验证 | ⏳ 待创建 |
+| [knowledge-base-organization.md](./knowledge-base-organization.md) | 知识库组织规范（AI友好）：Answer-First/原子结构/层级规范/MECE分类/FAQ优化 | ✅ 已完成 |
 
 ## 技术栈
 
