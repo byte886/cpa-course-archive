@@ -1,0 +1,231 @@
+# 视频处理详细指南
+
+> 本文档详细说明高顿Glive课程回放视频的下载、解密、压缩与归档流程。
+> 包含加密方案逆向分析、详细操作步骤、关键陷阱汇总等内容。
+> 总体工作流见 `../WORKFLOW.md` 第2节。
+
+## 前置条件
+
+1. **Playwright Extension 模式**：用户 Chrome 已安装 Playwright Extension 并提供 token
+   - 连接命令：`PLAYWRIGHT_MCP_EXTENSION_TOKEN=<token> npx playwright cli -s=ga attach --extension=chrome`
+   - 会话名：`ga`
+2. **Node.js**：用于下载解密脚本（`skill/scripts/download_decrypt.js`）
+3. **ffmpeg**：需支持 libx265，路径通常为 `/usr/local/bin/ffmpeg`
+4. **iTerm2**：压缩命令在 iTerm 窗口中运行，用户可直接看进度
+
+## 加密方案（核心知识）
+
+### HLS 加密结构
+
+高顿课程回放视频为标准 HLS，m3u8 文件包含加密密钥信息：
+
+```
+#EXT-X-KEY:METHOD=AES-128,URI=".../replay/authorize?...",IV=0x...
+```
+
+- `.ts` 分片可公开下载，但内容是 AES-128-CBC 加密
+- 每个分片用相同 IV 独立解密（标准 HLS 行为）
+- 解密时需 `setAutoPadding(false)`
+
+### 密钥获取链路
+
+密钥获取涉及浏览器端的复杂通信：
+
+1. **authorize 接口**：返回 92 字节密文
+2. **hls.js Worker**：发 `postMessage({type:"decrypt",...})` 给主线程
+3. **主线程 WASM 解密**：解密后返回 32 字节响应
+4. **实际 AES key**：响应前 16 字节的原始 ASCII 字符串（不是 hex 解码）
+
+### 关键细节
+
+- **密钥不是 hex 解码**：Worker 返回 32 字节 ASCII hex 字符串，但 hls.js 只读前 16 字节原始字节作为 AES key
+- **IV 直接取自 m3u8**：`IV=0x...`，去掉 `0x` 前缀使用
+- **每个视频密钥不同**：必须逐个捕获，不能复用
+- **m3u8 token 会过期**：批量下载时需定期重新打开播放器获取新 token
+
+详细逆向分析见 `../../skill/references/encryption.md`。
+
+## 详细操作流程
+
+### 步骤1：连接浏览器
+
+```bash
+PLAYWRIGHT_MCP_EXTENSION_TOKEN=<token> npx playwright cli -s=ga attach --extension=chrome
+```
+
+### 步骤2：打开课程表并遍历回放
+
+课程表 URL 格式：`https://glivepro.gaodun.com/course/<course_id>/class-schedule`
+
+- 用 `snapshot`/`find` 找到"看回放"按钮
+- **跳过"开班典礼"**（标题含"开班典礼"的场次）
+- 点击"看回放"会在新标签页打开播放器（`v-glive.gaodun.com/player?token=...`）
+- 切换到新标签页：`npx playwright cli -s=ga tab-select 1`
+
+### 步骤3：捕获 FHD 密钥
+
+在播放器标签页运行 capture_key.js（注入 Worker hook → reload → 播放 → 切换 1080P → 提取密钥）：
+
+```bash
+npx playwright cli -s=ga run-code skill/scripts/capture_key.js
+```
+
+返回 JSON 包含 `streams` 数组，每项有 `quality`、`m3u8`、`keyAscii`。取 `FHD-1080P` 项。
+
+**注意**：
+- 自定义元素标签名（如 `G-3F001E35`）每次加载会变，通过 `.gp-video-wrap` 子元素遍历找 `.video` 属性
+- 清晰度按钮 class：`.gp-setting-quality-item`，FHD 选项文本含"1080"
+- 如果 FHD 切换后没有新密钥，检查视频是否已在播放（需 seek 到 0 并 play）
+
+### 步骤4：下载 m3u8 和分片
+
+```bash
+# 下载 FHD m3u8
+curl -s -o playlist.m3u8 "<fhd_m3u8_url>" \
+  -H "User-Agent: Mozilla/5.0 ..." -H "Referer: https://v-glive.gaodun.com/"
+
+# 下载+解密+合并全部分片（20并发，支持断点续传）
+node skill/scripts/download_decrypt.js playlist.m3u8 merged.ts ./segments <keyAscii> <iv_hex> 20
+```
+
+IV 从 m3u8 的 `#EXT-X-KEY` 行提取，去掉 `0x` 前缀。
+
+**验证**：检查每个分片解密后首字节为 0x47（TS sync byte）。
+
+### 步骤5：压缩（在 iTerm 中运行，显示实时进度）
+
+```bash
+# 在 iTerm 新标签页中运行（用户可见 ffmpeg 实时进度）
+osascript -e "tell application \"iTerm\"
+  tell current window
+    create tab with default profile
+    tell current session
+      write text \"cd '<output_dir>'; bash '<skill_dir>/scripts/compress.sh' merged.ts video.mp4 30\"
+    end tell
+  end tell
+end tell"
+```
+
+**压缩参数**：
+- 视频编码：libx265 (H.265)
+- CRF：30（课件文字清晰、头像略糊但不影响学习）
+- preset：fast（编码速度与压缩率的平衡）
+- 音频：AAC 96kbps
+- 标签：hvc1（Apple 设备兼容）
+- faststart：开启（支持边下边播）
+
+**ffmpeg 进度解读**：
+- `frame=98521`：已编码帧数
+- `fps=168`：编码速度（帧/秒）
+- `q=32.0`：量化参数
+- `size=171776KiB`：当前输出大小
+- `time=01:48:22.25`：已编码视频时长
+- `bitrate=216.4kbits/s`：当前码率
+- `speed=11.1x`：编码速度是播放速度的11.1倍
+- `elapsed=0:09:45.79`：已用时间
+
+**进度计算**：已编码时长 / 总时长 × 100%
+
+压缩完成后 compress.sh 自动验证时长和可播放性。
+
+### 步骤6：下载讲义文档
+
+在课程表页，每个直播场次下有"讲义|"/"课件|"前缀的条目，带"下载"链接。
+
+```bash
+# 在浏览器中提取下载链接
+npx playwright cli -s=ga eval "
+(() => {
+  const items = document.querySelectorAll('.gp-classmate-item, [class*=material]');
+  // 遍历找到含'下载'的元素，提取 href 或 onclick 中的 URL
+  ...
+})()
+"
+```
+
+下载 PDF 到对应场次的 `docs/` 子目录。
+
+**文档格式**：可能是 PDF、PPT、DOC 等，以实际下载为准。下载后用 `file` 命令确认格式。
+
+**完整性校验**：
+- PDF 可用 `pdfinfo` 检查页数
+- 检查文件大小是否合理（过小可能下载不完整）
+
+### 步骤7：目录结构
+
+```
+<download_root>/
+├── 税法-蔡俊峻/
+│   ├── 01_税法全面精讲01-税法总论/
+│   │   ├── video.mp4          # 压缩后视频
+│   │   ├── playlist.m3u8      # m3u8 备份
+│   │   ├── segments/          # 解密分片缓存（可删除）
+│   │   ├── merged.ts          # 合并后原始TS（可删除）
+│   │   └── docs/              # 讲义课件 PDF
+│   ├── 02_.../
+│   └── ...
+├── 会计-罗翔/
+│   └── ...
+└── _reports/                  # 任务报告
+```
+
+### 步骤8：验证清单
+
+每个视频压缩后必须确认：
+- [ ] ffprobe 能正常读取（moov atom 存在）
+- [ ] 输出时长与输入时长差 < 2 秒
+- [ ] 视频编码为 hevc，分辨率 1920x1080
+- [ ] 音频编码为 aac
+- [ ] 文件可正常播放（首尾都有画面）
+
+### 步骤9：百度网盘上传（可选）
+
+百度网盘开放平台 REST API 支持文件上传、目录管理（mkdir/move/delete/rename）。
+配置和使用见 `netdisk-setup.md`。
+
+## 关键陷阱汇总
+
+### 浏览器与 Playwright
+
+1. **Extension 模式下 CDP 不可用**（"Not allowed"），只能用 Playwright CLI 命令
+2. **Worker hook 必须在 reload 前注入**（addInitScript），否则 Worker 已创建无法拦截
+3. **ref 是动态的**：每次页面变化后重新 snapshot/find
+4. **播放器自定义元素在 closed shadow DOM 内**：通过 `.gp-video-wrap` 子元素的 `.video` 属性访问
+
+### 加密与密钥
+
+5. **密钥不是 hex 解码**：Worker 返回 32 字节 ASCII hex 字符串，但 hls.js 只读前 16 字节原始字节作为 AES key
+6. **m3u8 token 会过期**：批量下载时需定期重新打开播放器获取新 token
+7. **每个视频密钥不同**：必须逐个捕获，不能复用
+
+### 压缩与处理
+
+8. **课程表 tab 可能因内存崩溃**（ffmpeg 占内存），需重新加载
+9. **压缩参数 CRF 30**：经测试课件文字清晰、头像略糊但不影响学习，如需更高质量可降低 CRF（如 28），但体积会增大
+
+### 知识库操作（扩展）
+
+10. **知识库操作必须使用API**：所有知识库操作（创建、更新、删除、移动节点）必须使用lark-cli，不使用Playwright手动操作
+11. **父节点链接必须使用完整URL**：不能使用相对路径（如`./知识拆解`），必须使用完整飞书URL（`https://zcnjheoajxng.feishu.cn/wiki/[node_token]`）
+12. **同步后必须执行结构检查**：避免出现重复节点、空节点、错误位置等问题，使用`scripts/check-kb-structure.sh`
+13. **具体产出物放对应课程目录**：验证报告、同步报告等放在对应课程目录下，不放在通用目录
+14. **删除节点是异步操作**：`lark-cli wiki +node-delete`是异步的，需要轮询任务状态确认完成
+
+## 相关脚本
+
+| 脚本 | 位置 | 说明 |
+|------|------|------|
+| 密钥捕获 | `skill/scripts/capture_key.js` | Playwright Worker hook 注入脚本 |
+| 下载解密 | `skill/scripts/download_decrypt.js` | HLS分片下载解密合并脚本 |
+| 压缩脚本 | `skill/scripts/compress.sh` | ffmpeg H.265压缩脚本 |
+| 知识库结构检查 | `scripts/check-kb-structure.sh` | 自动检测重复节点、空节点、链接问题 |
+
+## 参考文档
+
+| 文档 | 位置 | 说明 |
+|------|------|------|
+| 加密逆向分析 | `skill/references/encryption.md` | HLS AES-128 加密详细逆向分析 |
+| 百度网盘 | `skill/references/baidupan.md` | 百度网盘API配置和使用 |
+| 总体工作流 | `../WORKFLOW.md` | 完整工作流（下载→压缩→转写→知识库→做题验证） |
+| 知识库组织规范 | `knowledge-base-organization.md` | 知识库结构设计、节点命名规范、父页面规范 |
+| 飞书API使用说明 | `feishu-api.md` | wiki节点删除、文档更新、权限设置、常见问题 |

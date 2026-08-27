@@ -59,7 +59,8 @@
 ## 2. 下载视频
 
 ### 参考文档
-- [skill/SKILL.md](../skill/SKILL.md) — 视频下载、解密、压缩的完整脚本和参数说明
+- [docs/development/video-processing.md](development/video-processing.md) — 视频处理详细指南：前置条件、加密方案逆向分析、详细操作流程、关键陷阱汇总
+- [skill/SKILL.md](../skill/SKILL.md) — 视频下载、解密、压缩的完整脚本和参数说明（skill副本）
 
 ### 2.1 捕获密钥和 m3u8
 

@@ -7,6 +7,7 @@
 | 文档 | 说明 | 状态 |
 |------|------|------|
 | [git-workflow.md](./git-workflow.md) | GitHub工作流：SSH配置、代理设置、常见问题 | ✅ 已完成 |
+| [video-processing.md](./video-processing.md) | 视频处理详细指南：前置条件、加密方案逆向分析、详细操作流程、关键陷阱汇总 | ✅ 已完成 |
 | [transcription.md](./transcription.md) | 音频转文字：FunASR环境配置、性能数据、脚本使用 | ✅ 已完成 |
 | [ocr.md](./ocr.md) | OCR文字提取：macOS Vision框架、PDF转图片、表格/图表AI补充 | ✅ 已完成 |
 | [netdisk-setup.md](./netdisk-setup.md) | 百度网盘集成：应用创建、API配置、上传脚本 | ✅ 已完成 |
@@ -15,7 +16,7 @@
 | [feishu-api.md](./feishu-api.md) | 飞书API使用注意事项：wiki节点删除/文档更新/权限设置/常见问题 | ✅ 已完成 |
 | [exam-workflow.md](./exam-workflow.md) | 做题流程与交互规范：页面管理/补题流程/答题卡操作/踩坑记录 | ✅ 已完成 |
 
-> **说明**：视频处理（下载、解密、压缩、验证）的详细说明在 `skill/SKILL.md` 和 `docs/WORKFLOW.md` 第2节中，不再单独创建 video-processing.md。知识库建设的详细说明在 `knowledge-base-organization.md` 和 `knowledge-base-sources.md` 中，不再单独创建 knowledge-base.md。
+> **说明**：视频处理（下载、解密、压缩、验证）的详细说明在 `video-processing.md` 中，包含加密方案逆向分析和关键陷阱汇总。脚本在 `skill/scripts/` 目录下。
 
 ## 技术栈
 
