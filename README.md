@@ -207,3 +207,16 @@ cpa-course-archive/
 详见 [docs/WORKFLOW.md](docs/WORKFLOW.md)（持续更新）。
 
 简要流程：建目录 → 下载视频 → 下载文档 → 压缩验证 → 同步网盘 → 内容解析 → 知识库 → 做题验证 → 任务报告
+
+## 文档同步清单
+
+每次完成阶段性任务后，按清单检查并同步相关文档。详见 [docs/project-management/DOC_SYNC_CHECKLIST.md](docs/project-management/DOC_SYNC_CHECKLIST.md)。
+
+清单包含：
+- 任务管理类（任务状态、测试计划、课程索引）
+- 做题产出类（做题记录、用户笔记、验证报告）
+- 知识库内容类（知识拆解、考试指导、通用方法）
+- 方法论类（做题方法论、知识库组织方法论）
+- 工作流与项目计划
+- 开发文档类
+- 项目概览类（README）
