@@ -12,7 +12,8 @@
 | `COURSE_INDEX.md` | 课程清单索引 |
 | `QUALITY_ASSURANCE.md` | 质量保证规范（验证标准和流程） |
 | `TEST_PLAN_*.md` | 测试计划（如 TEST_PLAN_税法01.md） |
-| `VERIFICATION_*.md` | 验证报告（如 VERIFICATION_税法01_knowledge.md） |
+
+> **报告类文档**（任务报告、验证报告）统一放在 `reports/` 目录下，详见 `reports/README.md`。
 
 ---
 
