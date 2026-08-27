@@ -180,7 +180,7 @@ cpa-course-archive/
 ## 项目维护规则
 
 > 每次开始新任务前、完成大任务后，必须检查项目结构是否合理，发现问题主动梳理调整。
-> 详细规范见 [docs/project-management/PROJECT_MAINTENANCE.md](docs/project-management/PROJECT_MAINTENANCE.md)
+> 详细规范见 [docs/project-management/standards/PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md)
 
 ### 核心原则
 

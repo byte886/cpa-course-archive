@@ -37,7 +37,7 @@
 - 后续建议
 
 **模板**：`VERIFICATION_TEMPLATE.md`
-**规范**：`docs/project-management/QUALITY_ASSURANCE.md`
+**规范**：`docs/project-management/standards/QUALITY_ASSURANCE.md`
 
 ## 命名规范
 
