@@ -25,6 +25,8 @@ segments/
 # Temporary
 test_*
 对比_*
+# 例外：测试计划文档需要提交（TEST_PLAN_*.md 不被 test_* 忽略）
+!docs/project-management/TEST_PLAN_*.md
 
 # Python virtual environments
 transcription/venv/
