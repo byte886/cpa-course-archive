@@ -109,6 +109,8 @@ cpa-course-archive/
 │   ├── batch_transcribe.sh   # 批量转写
 │   ├── batch_ocr.sh          # 批量OCR（macOS Vision）
 │   ├── secrets.sh            # 密钥加密/解密工具
+│   ├── setup-data-symlink.sh # data/符号链接设置（跨电脑调整路径）
+│   ├── setup-transcription-env.sh # 转写环境搭建（新电脑一键创建虚拟环境）
 │   └── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
 ├── docs/
 │   ├── WORKFLOW.md           # 总体工作流（索引+流程）
@@ -129,15 +131,25 @@ cpa-course-archive/
 │       └── knowledge-base.md # 知识库建设（待创建）
 ├── reports/
 │   └── REPORT_TEMPLATE.md    # 任务报告模板
-├── transcription/            # 转写工作目录（gitignore忽略，不提交）
-│   ├── venv/                 # Python虚拟环境（funasr/torch）
-│   └── transcripts_full/     # 转写结果输出（gitignore忽略）
+├── transcription/            # 转写工作目录
+│   ├── requirements.txt      # Python依赖清单（64个包，新电脑复现环境用）
+│   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）
+│   └── transcripts_full/     # 转写结果输出（gitignore忽略，不提交）
 │       └── video/            # 视频转写结果（transcript.md/transcript.json）
+├── data/                     # 符号链接目录（gitignore忽略，不提交）
+│   └── 高顿/                 # 符号链接 → ~/Desktop/高顿/（不同电脑可指向不同路径）
 └── .git/hooks/
     └── pre-commit            # 实际生效的pre-commit hook（从scripts/pre-commit复制）
 ```
 
-> **说明**：`transcription/` 目录是转写工作目录，包含虚拟环境和转写结果，已在 `.gitignore` 中忽略，不提交到GitHub。生成结果（视频/文字稿/讲义）统一放在本地 `~/Desktop/高顿/` 和百度网盘，不放在项目仓库。
+> **Git忽略目录说明**：
+> | 目录 | 忽略原因 | 复现方式 |
+> |------|----------|----------|
+> | `transcription/venv/` | Python虚拟环境，路径硬编码，不应复制 | `./scripts/setup-transcription-env.sh` 重新创建 |
+> | `transcription/transcripts_full/` | 转写结果，生成文件，放本地和网盘 | 重新运行转写脚本生成 |
+> | `data/` | 符号链接指向外部大文件目录（视频/文档） | `./scripts/setup-data-symlink.sh` 创建链接 |
+> 
+> **虚拟环境迁移原则**：Python虚拟环境不直接复制到新电脑，用 `requirements.txt` + 搭建脚本重新创建。
 
 ## 技术方案
 
