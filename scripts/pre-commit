@@ -1,0 +1,83 @@
+#!/bin/bash
+# Git pre-commit hook：提交前自动检查
+# 检查内容：大文件、敏感信息、.gitignore遗漏
+# 安装：cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+set -e
+
+# 配置
+MAX_FILE_SIZE=1048576  # 1MB（超过则警告，超过10MB则阻止）
+HARD_LIMIT=10485760    # 10MB（硬限制，超过则阻止提交）
+
+# 敏感信息关键词
+SENSITIVE_PATTERNS=("password" "passwd" "secret" "api_key" "apikey" "access_token" "private_key" "token=")
+
+echo "🔍 pre-commit 检查中..."
+
+# 1. 检查大文件
+echo ""
+echo "📦 检查大文件..."
+large_files=0
+blocked=0
+for file in $(git diff --cached --name-only --diff-filter=ACM); do
+  if [ -f "$file" ]; then
+    size=$(wc -c < "$file" 2>/dev/null || echo 0)
+    if [ "$size" -gt "$HARD_LIMIT" ]; then
+      echo "  ❌ 超过10MB硬限制: $(du -h "$file" | cut -f1) $file"
+      blocked=1
+    elif [ "$size" -gt "$MAX_FILE_SIZE" ]; then
+      echo "  ⚠️  超过1MB: $(du -h "$file" | cut -f1) $file"
+      large_files=1
+    fi
+  fi
+done
+
+if [ "$blocked" -eq 1 ]; then
+  echo ""
+  echo "❌ 提交被阻止：存在超过10MB的文件"
+  echo "   请将大文件加入.gitignore，或移到项目目录外"
+  exit 1
+fi
+
+# 2. 检查敏感信息
+echo ""
+echo "🔐 检查敏感信息..."
+sensitive_found=0
+for file in $(git diff --cached --name-only --diff-filter=ACM); do
+  if [ -f "$file" ] && [[ "$file" != *.enc ]] && [[ "$file" != *.md ]]; then
+    for pattern in "${SENSITIVE_PATTERNS[@]}"; do
+      if grep -qi "$pattern" "$file" 2>/dev/null; then
+        echo "  ⚠️  可能包含敏感信息 ($pattern): $file"
+        sensitive_found=1
+      fi
+    done
+  fi
+done
+
+# 3. 检查.gitignore是否遗漏常见大文件类型
+echo ""
+echo "📋 检查文件类型..."
+video_files=0
+for file in $(git diff --cached --name-only --diff-filter=ACM); do
+  case "$file" in
+    *.mp4|*.mov|*.mkv|*.avi|*.wav|*.mp3|*.aac|*.flac)
+      echo "  ⚠️  音视频文件: $file"
+      video_files=1
+      ;;
+    *.pdf|*.doc|*.docx|*.ppt|*.pptx|*.xls|*.xlsx)
+      echo "  ⚠️  文档文件: $file"
+      video_files=1
+      ;;
+  esac
+done
+
+# 总结
+echo ""
+if [ "$large_files" -eq 1 ] || [ "$sensitive_found" -eq 1 ] || [ "$video_files" -eq 1 ]; then
+  echo "⚠️  发现潜在问题，请确认是否继续提交"
+  echo "   如需跳过检查: git commit --no-verify"
+  # 不阻止提交，只警告（单人项目）
+fi
+
+echo "✅ pre-commit 检查完成"
+exit 0
