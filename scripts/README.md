@@ -19,21 +19,23 @@
 ## 脚本分类
 
 ### 视频处理
-- `transcribe_pipeline.py` - 单视频转写
-- `batch_transcribe.sh` - 批量转写
+- `transcribe_pipeline.py` - 单视频转写（核心逻辑）
+- `batch_transcribe.sh` - 批量转写（调用 transcribe_pipeline.py，循环处理）
 - `batch_ocr.sh` - 批量OCR（讲义文档）
 
 ### 百度网盘
-- `baidu_upload.py` - 单文件上传
-- `batch_upload.sh` - 批量上传
+- `baidu_upload.py` - 单文件分片上传（核心逻辑，4MB分片+MD5秒传）
+- `batch_upload.sh` - 批量上传（调用 baidu_upload.py，循环处理多个视频）
+
+> **单文件+批量分工模式**：核心逻辑用 Python（功能强、可复用），批量调度用 Shell（简单、支持断点续传、iTerm显示进度）。同样的模式还有 `transcribe_pipeline.py` + `batch_transcribe.sh`。
 
 ### 环境与配置
-- `setup-data-symlink.sh` - 数据符号链接
-- `setup-transcription-env.sh` - 转写环境搭建
-- `secrets.sh` - 密钥管理
+- `setup-data-symlink.sh` - 数据符号链接（跨电脑数据目录路径不同）
+- `setup-transcription-env.sh` - 转写环境搭建（新电脑一键创建FunASR虚拟环境）
+- `secrets.sh` - 密钥管理（加密/解密GitHub Token和百度网盘凭证）
 
 ### Git 钩子
-- `pre-commit` - pre-commit hook源文件
+- `pre-commit` - pre-commit hook源文件（大文件/敏感信息检查，复制到.git/hooks/生效）
 
 ## 运行方式
 
