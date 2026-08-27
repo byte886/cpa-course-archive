@@ -185,6 +185,52 @@ playwright cli -s=<session> eval "document.querySelector('.exam-report, .report,
 4. 如果结果确实异常，记录问题并等待用户指示
 5. 不要凭猜测记录结果
 
+### 4.4 Session连接异常与登录状态共享
+
+**症状**：
+- Playwright CLI命令响应缓慢或超时
+- 重新打开session后跳转到登录页面，登录状态丢失
+- `open`命令创建新的浏览器上下文，不共享用户已登录的Chrome状态
+
+**根本原因**：
+- Playwright CLI的`open`命令默认创建新的浏览器上下文，与用户正在使用的Chrome浏览器隔离
+- 新的浏览器上下文没有用户的登录cookie和session，因此需要重新登录
+
+**解决方案（已验证有效）**：
+
+使用`attach --extension=chrome`模式连接到用户已经运行的Chrome浏览器，可以共享登录状态：
+
+```bash
+# 1. 关闭当前session（如果有）
+playwright cli -s=<session> close
+
+# 2. 使用extension模式attach到用户的Chrome浏览器
+playwright cli -s=<session> attach --extension=chrome
+
+# 3. 使用tab-new打开新标签页（共享登录状态）
+playwright cli -s=<session> tab-new "https://目标网站URL"
+
+# 4. 切换到新标签页
+playwright cli -s=<session> tab-select 1
+```
+
+**关键要点**：
+1. **必须使用`attach --extension=chrome`**，而不是`open`命令
+2. **必须使用`tab-new`打开新标签页**，而不是在attach后的默认页面操作
+3. **attach后的默认页面是Playwright扩展的连接页面**，不是目标网站
+4. **用户的Chrome浏览器必须已经打开并登录**目标网站
+5. **这种方式共享用户Chrome的所有状态**：登录cookie、session、缓存等
+
+**判断是否需要重新连接的流程**：
+1. 执行简单命令（如`tab-list`）检查session是否存活
+2. 如果`tab-list`成功但其他命令超时，可能是页面状态问题，尝试刷新页面
+3. 如果重新打开session后跳转到登录页面，使用`attach --extension=chrome`模式
+4. 如果用户的Chrome浏览器没有打开，需要通知用户先打开Chrome并登录
+
+**已验证场景**：
+- 高顿平台（glivepro.gaodun.com）：attach模式成功共享登录状态，无需重新登录
+- 分章真题测22题：使用attach模式完成全部题目，正确率95%
+
 ## 五、多轮迭代测试优化流程
 
 ### 5.1 触发条件
@@ -207,6 +253,7 @@ playwright cli -s=<session> eval "document.querySelector('.exam-report, .report,
 | 高顿题库做题 | glivepro.gaodun.com | 课后练习/模考 | 2026-08-28 | 3轮 | exam-workflow.md | ✅ 已优化 |
 | 高顿题库成绩读取 | glivepro.gaodun.com | 考试报告页面 | 2026-08-28 | 2轮 | interaction-workflow.md | ✅ 已优化 |
 | 高顿题库页面管理 | glivepro.gaodun.com | 标签页管理 | 2026-08-28 | 2轮 | interaction-workflow.md | ✅ 已优化 |
+| 高顿平台登录状态共享 | glivepro.gaodun.com | Session连接/登录 | 2026-08-28 | 1轮 | interaction-workflow.md 4.4 | ✅ 已优化 |
 
 **判断流程**：
 
