@@ -6,6 +6,7 @@
 
 | 文档 | 说明 | 状态 |
 |------|------|------|
+| [git-workflow.md](./git-workflow.md) | GitHub工作流：SSH配置、代理设置、常见问题 | ✅ 已完成 |
 | [video-processing.md](./video-processing.md) | 视频处理：下载、解密、压缩、验证 | ⏳ 待创建 |
 | [transcription.md](./transcription.md) | 音频转文字：FunASR环境配置、性能数据、脚本使用 | ✅ 已完成 |
 | [ocr.md](./ocr.md) | OCR文字提取：macOS Vision框架、PDF转图片、表格/图表AI补充 | ✅ 已完成 |
