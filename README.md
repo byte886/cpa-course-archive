@@ -238,7 +238,7 @@ cpa-course-archive/
 | 任务类型 | 先看 | 再看 |
 |----------|------|------|
 | **全局规则** | [AGENTS.md](AGENTS.md) | - |
-| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [skill/SKILL.md](skill/SKILL.md) |
+| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [video-processing.md](docs/development/video-processing.md) |
 | 文档下载 | [WORKFLOW.md 第3节](docs/WORKFLOW.md) | - |
 | 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/netdisk-setup.md) |
 | 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/transcription.md) |
