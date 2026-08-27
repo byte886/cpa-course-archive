@@ -8,6 +8,7 @@
 |------|------|------|------|
 | `baidu_upload.py` | Python | 百度网盘分片上传大文件（4MB分片，MD5秒传） | `BAIDU_ENC_PASS=<密码> python3 scripts/baidu_upload.py <本地文件> <网盘路径>` |
 | `batch_upload.sh` | Shell | 批量上传视频到百度网盘（iTerm运行，断点续传） | `bash scripts/batch_upload.sh` |
+| `upload_course.sh` | Shell | 课程目录批量上传（自动过滤技术过程文档，递归遍历目录） | `bash scripts/upload_course.sh <本地课程目录> <网盘课程目录>` |
 | `transcribe_pipeline.py` | Python | 单视频音频转文字（FunASR + VAD，输出transcript.md/json） | `python3 scripts/transcribe_pipeline.py <视频路径> <输出目录>` |
 | `batch_transcribe.sh` | Shell | 批量视频转写（iTerm运行，自动依次处理，断点续传） | `bash scripts/batch_transcribe.sh` |
 | `batch_ocr.sh` | Shell | 批量PDF OCR（macOS Vision框架，输出合并Markdown） | `bash scripts/batch_ocr.sh` |
@@ -25,7 +26,10 @@
 
 ### 百度网盘
 - `baidu_upload.py` - 单文件分片上传（核心逻辑，4MB分片+MD5秒传）
-- `batch_upload.sh` - 批量上传（调用 baidu_upload.py，循环处理多个视频）
+- `batch_upload.sh` - 批量上传视频（调用 baidu_upload.py，循环处理多个视频）
+- `upload_course.sh` - 课程目录批量上传（递归遍历目录，自动过滤技术过程文档）
+
+> **文件过滤原则**：`upload_course.sh` 自动过滤技术过程文档（VERIFICATION_*.md、transcript.json、*.tmp、*.log），只上传面向使用者的内容。详细原则见 [PROJECT_MAINTENANCE.md 第九章](../docs/project-management/standards/PROJECT_MAINTENANCE.md)。
 
 > **单文件+批量分工模式**：核心逻辑用 Python（功能强、可复用），批量调度用 Shell（简单、支持断点续传、iTerm显示进度）。同样的模式还有 `transcribe_pipeline.py` + `batch_transcribe.sh`。
 
