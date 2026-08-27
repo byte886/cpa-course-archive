@@ -8,7 +8,8 @@
 |------|------|
 | `REPORT_TEMPLATE.md` | 任务报告模板 |
 | `VERIFICATION_TEMPLATE.md` | 验证报告模板 |
-| `VERIFICATION_*.md` | 具体验证报告（如 VERIFICATION_税法01_knowledge.md） |
+
+> **具体报告位置**：针对具体课程的任务报告和验证报告，放在**对应课程目录下**（和被验证对象在一起），不放在本目录。本目录只存放通用模板。
 
 ## 报告类型
 

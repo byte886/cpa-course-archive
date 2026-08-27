@@ -63,6 +63,7 @@ NN_讲座标题/
 ├── transcript.json    # 转写原始数据（含时间戳）
 ├── knowledge.md       # 知识梳理（转写+讲义合并，生成知识库用）
 ├── docs/              # 讲义文档原件（PDF/PPT/DOC）
+├── VERIFICATION_knowledge.md  # 知识梳理文档验证报告
 └── .uploaded          # 上传标记（已上传到百度网盘后生成）
 ```
 

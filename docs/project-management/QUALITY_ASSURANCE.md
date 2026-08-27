@@ -57,11 +57,13 @@ done
 
 ### 1.4 验证报告模板
 
-验证报告命名格式：`VERIFICATION_{课程编号}_{对象类型}.md`
+验证报告命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
 
 **模板位置**：`reports/VERIFICATION_TEMPLATE.md`
 
-**具体报告位置**：`reports/VERIFICATION_*.md`（所有具体验证报告统一放在 reports/ 目录下）
+**具体报告位置**：放在**对应课程目录下**，和被验证的对象在一起（如 `01_税法全面精讲01-税法总论/VERIFICATION_knowledge.md`）
+
+> **文件归属原则**：针对具体课程/讲座的产出物（验证报告、测试计划等），放在对应课程目录下；通用模板和规范放在 `docs/` 或 `reports/` 下。
 
 报告内容：
 1. 验证基本信息（时间、对象、验证方式）
@@ -71,7 +73,7 @@ done
 5. 验证结论（通过/不通过）
 6. 后续建议
 
-参考实例：`reports/VERIFICATION_税法01_knowledge.md`
+参考实例：`data/高顿/CPA/课程库/.../01_税法全面精讲01-税法总论/VERIFICATION_knowledge.md`
 
 ### 1.5 问题处理
 
@@ -122,9 +124,9 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 ## 四、验证报告归档
 
 - 验证报告模板：`reports/VERIFICATION_TEMPLATE.md`
-- 所有具体验证报告统一放在 `reports/` 目录
-- 命名格式：`VERIFICATION_{课程编号}_{对象类型}.md`
-- 验证报告随项目代码一起提交到GitHub
+- 具体验证报告：放在**对应课程目录下**（和被验证对象在一起）
+- 命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
+- 验证报告随课程产出物一起同步到百度网盘
 - 验证通过后，在任务状态文档中标记"已验证"
 
 ---
