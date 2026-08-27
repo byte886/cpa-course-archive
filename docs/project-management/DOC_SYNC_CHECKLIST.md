@@ -103,6 +103,7 @@
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
 | knowledge-base-organization.md | `docs/development/` | 知识库结构设计、节点命名规范、层级调整方法 |
+| knowledge-base-sources.md | `docs/development/` | 知识库来源清单、来源选择流程、同步流程、发展重设计原则 |
 
 ---
 

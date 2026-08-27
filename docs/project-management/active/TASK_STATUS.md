@@ -1,6 +1,6 @@
 # 项目任务状态
 
-> 最后更新：2026-08-27
+> 最后更新：2026-08-28
 > 本文档是项目**唯一任务状态来源**，所有任务状态以此为准。
 > 飞书Base仅保留模板，不日常维护（见 project-management/README.md 第0章）
 
@@ -126,10 +126,11 @@
 
 | 子任务 | 状态 | 详情 |
 |--------|------|------|
-| 4.2.1 税法01知识库页面 | ✅ | 知识本身（Wmz1d6vLaoLr4wxjNyIcAp6zn2Y）+ 考试指导（CnsldO9kXokDKcxFj4EcrOVOnNf）+ 父页面目录（EV7vdI57wopS2ixYUbFcQPKmnwQ） |
-| 4.2.2 父页面目录规范 | ✅ | 父页面包含课程信息块和子节点链接（见 knowledge-base-organization.md 1.0.1） |
+| 4.2.1 税法01知识库页面 | ✅ | 知识拆解（UdXMwwwVliUCskkZ9pZcdq2xnZe）+ 考试指导（Lt66w6QxNiw3JCkk2G9cCSQunkc）+ 章节父节点目录（XTJFwu5zBiUNCDkXqEgcTI2fnPg）+ 课程父节点（UM6bwW23tiYkCVk3nXtc3TpBnGe） |
+| 4.2.2 父页面目录规范 | ✅ | 课程父节点和章节父节点都包含目录清单（子节点完整URL链接、章节概述、重点内容、学习建议），见 knowledge-base-organization.md 1.0.1 |
 | 4.2.3 互联网分享权限 | ✅ | Anyone with the link can view，应用到当前页面及子页面 |
-| 4.2.4 其他课程 | ⏳ 待启动 | 测试通过后批量处理 |
+| 4.2.4 知识库结构检查与清理 | ✅ | 已删除独立的重复文档（M763wvGcnigwWVkqaOIcDbxPnib和YfOmwNUp7irm9akqy88ckmknnyg），确认01税法总论下只有2个子节点，无重复 |
+| 4.2.5 其他课程 | ⏳ 待启动 | 测试通过后批量处理 |
 
 ### 4.3 做题验证（验证-补充闭环）
 
