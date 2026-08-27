@@ -1,4 +1,7 @@
-# 百度网盘 API 集成
+# 百度网盘 API 快速参考
+
+> 本文档是 Skill 运行时的快速参考，只保留 API 端点、错误码、关键限制等运行时需要的信息。
+> 完整接入过程、详细使用、管理维护、凭证安全见 [docs/development/netdisk-setup.md](../../docs/development/netdisk-setup.md)
 
 ## 应用信息
 
@@ -40,19 +43,6 @@
 
 所有路径必须以 `/apps/CPA课程归档/` 开头。
 
-## 目录结构
-
-```
-/apps/CPA课程归档/
-├── 税法-蔡俊峻/
-│   ├── 01_税法全面精讲01-税法总论/
-│   │   ├── video.mp4
-│   │   └── docs/
-│   └── ...
-└── 会计-罗翔/
-    └── ...
-```
-
 ## 错误码
 
 | 码 | 含义 | 处理 |
@@ -66,4 +56,4 @@
 
 - 应用详情：https://pan.baidu.com/union/console/app/124199604
 - 授权管理：https://passport.baidu.com/accountbind
-- 完整创建过程文档：`docs/BAIDU_NETDISK_SETUP.md`
+- 完整文档：[docs/development/netdisk-setup.md](../../docs/development/netdisk-setup.md)

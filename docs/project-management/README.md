@@ -9,11 +9,13 @@
 | `README.md` | 本文档，项目管理规范总览 |
 | `TASK_STATUS.md` | 任务状态（唯一任务状态来源） |
 | `PROJECT_PLAN.md` | 项目计划 |
+| `PROJECT_MAINTENANCE.md` | 项目维护规范（结构维护/文档组织/文档分解/Docs as Code） |
 | `COURSE_INDEX.md` | 课程清单索引 |
 | `QUALITY_ASSURANCE.md` | 质量保证规范（验证标准和流程） |
 | `TEST_PLAN_*.md` | 测试计划（如 TEST_PLAN_税法01.md） |
 
 > **报告类文档**（任务报告、验证报告）统一放在 `reports/` 目录下，详见 `reports/README.md`。
+> **具体课程验证报告**放在对应课程目录下（和被验证对象在一起）。
 
 ---
 
