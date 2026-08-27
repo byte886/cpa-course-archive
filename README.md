@@ -58,11 +58,18 @@
 每个讲座目录下：
 ```
 NN_讲座标题/
-├── video.mp4          # 压缩后的最终视频
-├── transcript.md      # 视频文字稿（语音转文字 + 画面 OCR）
+├── video.mp4          # 压缩后的最终视频（H.265 CRF30）
+├── transcript.md      # 视频文字稿（语音转文字）
+├── transcript.json    # 转写原始数据（含时间戳）
+├── knowledge.md       # 知识梳理（转写+讲义合并，生成知识库用）
 ├── docs/              # 讲义文档原件（PDF/PPT/DOC）
-└── docs_text/         # 文档提取的文字
+└── .uploaded          # 上传标记（已上传到百度网盘后生成）
 ```
+
+> **说明**：
+> - `docs_text/` 目录已取消，文档提取的文字直接合并到 `knowledge.md`
+> - `.uploaded` 是上传标记文件，存在表示已上传到百度网盘
+> - 课程根目录下可能有 `upload_log.txt`（上传日志）和 `.DS_Store`（macOS系统文件，应忽略）
 
 ### 飞书知识库
 
