@@ -27,12 +27,16 @@
 
 ## 脚本位置
 
+> 所有脚本统一放在 `scripts/` 目录，详细说明见 [scripts/README.md](../../scripts/README.md)
+
 | 脚本 | 位置 | 说明 |
 |------|------|------|
 | 视频下载解密 | `skill/scripts/download_decrypt.js` | HLS分片下载解密合并 |
 | 视频压缩 | `skill/scripts/compress.sh` | ffmpeg批量压缩 |
 | 网盘上传 | `scripts/baidu_upload.py` | 百度网盘分片上传 |
 | 批量上传 | `scripts/batch_upload.sh` | 批量上传到网盘 |
-| 音频转写 | `transcription/transcribe_pipeline.py` | FunASR批量转写 |
-| 批量转写 | `transcription/batch_transcribe.sh` | 批量转写（iTerm运行） |
-| 批量OCR | `transcription/batch_ocr.sh` | 批量OCR（后台+iTerm tail） |
+| 音频转写 | `scripts/transcribe_pipeline.py` | FunASR单视频转写 |
+| 批量转写 | `scripts/batch_transcribe.sh` | 批量转写（iTerm运行） |
+| 批量OCR | `scripts/batch_ocr.sh` | 批量OCR（macOS Vision） |
+| 密钥管理 | `scripts/secrets.sh` | 加密/解密工具 |
+| 环境搭建 | `scripts/setup-*.sh` | 数据符号链接/转写环境 |
