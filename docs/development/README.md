@@ -16,6 +16,7 @@
 | [knowledge-base-sources.md](./knowledge-base-sources.md) | 知识库来源清单：视频转写、讲义文档、用户留言、做题记录等来源的整理流程 | ✅ 已完成 |
 | [feishu-api.md](./feishu-api.md) | 飞书API使用注意事项：wiki节点删除/文档更新/权限设置/常见问题 | ✅ 已完成 |
 | [exam-workflow.md](./exam-workflow.md) | 做题流程与交互规范：页面管理/补题流程/答题卡操作/踩坑记录 | ✅ 已完成 |
+| [interaction-workflow.md](./interaction-workflow.md) | 通用交互流程与优化规范：页面管理/强制执行检查清单/结果读取/异常处理（适用于做题、模考等所有Web交互场景） | ✅ 已完成 |
 
 > **说明**：视频处理（下载、解密、压缩、验证）的详细说明在 `video-processing.md` 中，包含加密方案逆向分析和关键陷阱汇总。脚本在 `skill/scripts/` 目录下。
 
