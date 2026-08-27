@@ -12,7 +12,8 @@
 | [ocr.md](./ocr.md) | OCR文字提取：macOS Vision框架、PDF转图片、表格/图表AI补充 | ✅ 已完成 |
 | [netdisk-setup.md](./netdisk-setup.md) | 百度网盘集成：应用创建、API配置、上传脚本 | ✅ 已完成 |
 | [knowledge-base.md](./knowledge-base.md) | 知识库建设：飞书知识库结构、内容梳理、做题验证 | ⏳ 待创建 |
-| [knowledge-base-organization.md](./knowledge-base-organization.md) | 知识库组织规范（AI友好）：Answer-First/原子结构/层级规范/MECE分类/FAQ优化 | ✅ 已完成 |
+| [knowledge-base-organization.md](./knowledge-base-organization.md) | 知识库组织规范（AI友好）：Answer-First/原子结构/层级规范/MECE分类/FAQ优化/父页面规范 | ✅ 已完成 |
+| [feishu-api.md](./feishu-api.md) | 飞书API使用注意事项：wiki节点删除/文档更新/权限设置/常见问题 | ✅ 已完成 |
 
 ## 技术栈
 

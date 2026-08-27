@@ -1,0 +1,113 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e4]:
+    - generic [ref=f1e8]:
+      - generic [ref=f1e9]:
+        - button [ref=f1e10] [cursor=pointer]
+        - button [ref=f1e14] [cursor=pointer]
+        - heading "Feishu Docs" [level=1] [ref=f1e18] [cursor=pointer]
+      - generic [ref=f1e20]:
+        - generic [ref=f1e21] [cursor=pointer]:
+          - generic [ref=f1e22]: C
+          - generic [ref=f1e24]: CPA备考知识库
+        - generic [ref=f1e26]: Search
+        - generic [ref=f1e35]:
+          - generic [ref=f1e36]: Ask Doubao
+          - generic [ref=f1e44]:
+            - generic [ref=f1e46]:
+              - button "Table of contents" [ref=f1e47]
+              - generic [ref=f1e52]:
+                - button [ref=f1e53] [cursor=pointer]
+                - generic [ref=f1e57] [cursor=pointer]
+            - list [ref=f1e63]:
+              - generic [ref=f1e65] [cursor=pointer]:
+                - button [ref=f1e67]
+                - button "CPA" [ref=f1e78]
+              - generic [ref=f1e81] [cursor=pointer]:
+                - button [ref=f1e83]
+                - button "课程库" [ref=f1e94]
+              - generic [ref=f1e97] [cursor=pointer]:
+                - button [ref=f1e99]
+                - button "【26考季】VIPCPA系列-税法（蔡俊峻老师）" [ref=f1e110]
+              - button "第一章 税法总论" [ref=f1e123] [cursor=pointer]
+              - button "01_税法全面精讲01-税法总论-考试指导" [ref=f1e136] [cursor=pointer]
+              - button "第一章 税法总论 - 考试指导" [ref=f1e149] [cursor=pointer]
+              - button "【26考季】VIPCPA系列-会计（罗翔老师）" [ref=f1e162] [cursor=pointer]
+              - generic [ref=f1e165] [cursor=pointer]:
+                - button [ref=f1e167]
+                - button "【26考季】VIPCPA-基础必修-会计（罗翔老师）" [ref=f1e178]
+        - generic [ref=f1e180]:
+          - generic [ref=f1e181]: Settings
+          - generic [ref=f1e190]: Share wiki space
+          - generic [ref=f1e199]: Data overview
+          - generic [ref=f1e209]: Trash
+    - generic [ref=f1e219]:
+      - generic [ref=f1e224]:
+        - generic [ref=f1e228]:
+          - button "C" [ref=f1e229] [cursor=pointer]
+          - generic [ref=f1e232]:
+            - generic [ref=f1e234]:
+              - generic [ref=f1e235]: 用户148499的组织
+              - generic [ref=f1e240]: CPA备考知识库
+              - generic [ref=f1e245]:
+                - generic [ref=f1e246] [cursor=pointer]: CPA
+                - button [ref=f1e248] [cursor=pointer]
+              - generic [ref=f1e250]:
+                - generic [ref=f1e251] [cursor=pointer]: 课程库
+                - button [ref=f1e253] [cursor=pointer]
+              - generic [ref=f1e255]:
+                - generic [ref=f1e256] [cursor=pointer]: 【26考季】VIPCPA系列-税法（蔡俊峻老师）
+                - button [ref=f1e258] [cursor=pointer]
+            - generic [ref=f1e262]: "Last modified: Just now"
+        - generic [ref=f1e268]:
+          - generic [ref=f1e269]:
+            - button "Share" [ref=f1e271] [cursor=pointer]
+            - button "Editing" [ref=f1e282] [cursor=pointer]
+          - generic [ref=f1e295] [cursor=pointer]
+          - button [ref=f1e300] [cursor=pointer]
+          - button [ref=f1e306] [cursor=pointer]
+          - button [ref=f1e310] [cursor=pointer]
+          - generic [ref=f1e315]: Ask Doubao
+          - generic [ref=f1e328] [cursor=pointer]
+      - generic [ref=f1e334]:
+        - generic [ref=f1e335]:
+          - generic [ref=f1e343]:
+            - generic [ref=f1e344]:
+              - generic [ref=f1e345]: Add Cover
+              - heading "【26考季】VIPCPA系列-税法（蔡俊峻老师）" [level=1] [ref=f1e352]
+              - generic [ref=f1e357]:
+                - generic [ref=f1e358]: 用户148499
+                - generic [ref=f1e369]: Modified Today
+            - generic [ref=f1e374]:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - text: Type '/' for commands, or
+                      - generic [ref=f1e379] [cursor=pointer]: Write With AI
+          - generic [ref=f1e383]:
+            - generic [ref=f1e384]:
+              - textbox "Enter keywords" [ref=f1e391]
+              - button "Hide" [ref=f1e396] [cursor=pointer]
+            - generic [ref=f1e398]:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic "Meeting Notes"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic "Weekly Status Report"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic "To-Do List"
+              - generic:
+                - generic:
+                  - generic:
+                    - generic "Milestone Tracking Kanban"
+              - generic: More templates
+        - generic [ref=f1e401]:
+          - generic [ref=f1e402]: Comments (0)
+          - generic [ref=f1e404] [cursor=pointer]
+        - button [ref=f1e412] [cursor=pointer]
+  - textbox [active] [ref=f1e419]
