@@ -231,6 +231,108 @@ playwright cli -s=<session> tab-select 1
 - 高顿平台（glivepro.gaodun.com）：attach模式成功共享登录状态，无需重新登录
 - 分章真题测22题：使用attach模式完成全部题目，正确率95%
 
+### 4.5 命令卡住/超时处理流程（分级处理）
+
+**适用场景**：Playwright CLI命令执行时间过长、无响应、超时被移到后台。
+
+**判断标准**：
+- 简单命令（tab-list、eval获取URL）超过10秒无响应 → 可能卡住
+- 复杂命令（snapshot深度>8、find大范围搜索）超过30秒无响应 → 可能卡住
+- 命令被自动移到后台且TaskOutput无新输出 → 确认卡住
+
+**分级处理流程（从简单到复杂，逐级尝试）**：
+
+#### 第一级：轻量级恢复（优先尝试）
+
+1. **检查session是否存活**：
+   ```bash
+   playwright cli -s=<session> tab-list
+   ```
+   - 如果成功 → session存活，问题可能是页面状态或特定命令
+   - 如果失败 → session断开，跳到第三级
+
+2. **检查当前页面状态**：
+   ```bash
+   playwright cli -s=<session> eval "window.location.href"
+   ```
+   - 如果成功 → 页面正常，问题可能是特定元素的ref失效
+   - 如果失败 → 页面可能卡住，跳到第二级
+
+3. **重新获取snapshot**：如果ref失效，重新执行`snapshot`获取新的ref
+
+#### 第二级：页面级恢复
+
+1. **刷新当前页面**：
+   ```bash
+   playwright cli -s=<session> eval "location.reload()"
+   ```
+   等待3-5秒后重新操作
+
+2. **关闭多余标签页**：如果有多个重复标签页，从后往前关闭多余页面
+   ```bash
+   playwright cli -s=<session> tab-close <index>
+   ```
+
+3. **切换到其他标签页再切回**：有时页面焦点问题导致命令无响应
+   ```bash
+   playwright cli -s=<session> tab-select <other_index>
+   playwright cli -s=<session> tab-select <target_index>
+   ```
+
+#### 第三级：Session级恢复（attach模式）
+
+当第一级和第二级都无效，或者重新打开session后登录状态丢失时，使用attach模式：
+
+1. **关闭当前session**：
+   ```bash
+   playwright cli -s=<session> close
+   ```
+
+2. **使用extension模式attach到用户的Chrome浏览器**：
+   ```bash
+   playwright cli -s=<session> attach --extension=chrome
+   ```
+
+3. **使用tab-new打开目标页面**（共享登录状态）：
+   ```bash
+   playwright cli -s=<session> tab-new "https://目标网站URL"
+   ```
+
+4. **切换到新标签页并验证**：
+   ```bash
+   playwright cli -s=<session> tab-select 1
+   playwright cli -s=<session> eval "window.location.href"
+   ```
+
+#### 第四级：环境级恢复（最后手段）
+
+当attach模式也无效，或者用户的Chrome浏览器本身有问题时：
+
+1. **通知用户检查Chrome浏览器**：
+   - Chrome是否正常运行？
+   - 是否登录了目标网站？
+   - 是否有弹窗或对话框阻塞？
+
+2. **建议用户重启Chrome浏览器**：关闭所有Chrome窗口，重新打开并登录
+
+3. **如果Chrome重启后仍然无效**：建议用户重启豆包应用
+
+**重要原则**：
+- ❌ 不要在卡住的命令上反复重试（浪费时间）
+- ❌ 不要跳过分级直接使用最高级恢复（可能丢失上下文）
+- ✅ 每级恢复后都要验证是否成功，再决定是否进入下一级
+- ✅ 记录卡住的原因和解决方法，补充到本文档
+
+**常见卡住原因与对应处理级别**：
+
+| 卡住原因 | 症状 | 处理级别 |
+|----------|------|----------|
+| ref失效 | click/find报"ref not found" | 第一级（重新snapshot） |
+| 页面加载慢 | eval超时但tab-list成功 | 第二级（刷新页面） |
+| 登录状态丢失 | 跳转到登录页面 | 第三级（attach模式） |
+| Chrome无响应 | 所有命令超时 | 第四级（重启Chrome/豆包） |
+| 网络问题 | 页面加载失败 | 第四级（检查网络） |
+
 ## 五、多轮迭代测试优化流程
 
 ### 5.1 触发条件
