@@ -146,24 +146,81 @@ end tell"
 
 在课程表页，每个直播场次下有"讲义|"/"课件|"前缀的条目，带"下载"链接。
 
+#### 6.1 后台自动下载（必须遵守）
+
+**⚠️ 约束：必须使用后台自动下载，禁止弹出下载确认对话框。**
+
+此问题已发生多次，必须严格遵守以下流程：
+
+**方法1：调整Chrome下载设置（推荐，一次性设置）**
+
+1. 打开 Chrome 设置 → 下载内容（chrome://settings/downloads）
+2. 关闭"下载前询问每个文件的保存位置"开关
+3. 设置默认下载目录为 `~/Downloads/`
+4. 设置完成后，后续所有下载都会自动后台进行，不会弹出确认框
+
+**方法2：直接获取下载链接用curl下载（备选）**
+
+如果无法调整Chrome设置，可以通过拦截网络请求获取下载链接，然后用curl下载：
+
 ```bash
-# 在浏览器中提取下载链接
-npx playwright cli -s=ga eval "
-(() => {
-  const items = document.querySelectorAll('.gp-classmate-item, [class*=material]');
-  // 遍历找到含'下载'的元素，提取 href 或 onclick 中的 URL
-  ...
-})()
-"
+# 1. 点击下载按钮前，开启网络请求监听
+# 2. 点击下载按钮，捕获下载请求的URL
+# 3. 用curl下载到目标目录
+curl -L -o "目标目录/文件名.pdf" "下载链接" \
+  -H "Cookie: 从浏览器复制" \
+  -H "User-Agent: Mozilla/5.0 ..."
 ```
 
-下载 PDF 到对应场次的 `docs/` 子目录。
+#### 6.2 下载操作流程
+
+```bash
+# 1. 用 snapshot 找到讲义下载按钮的 ref
+npx playwright cli -s=ga snapshot | grep -A 3 "讲义\|下载"
+
+# 2. 使用原生 click 命令点击下载按钮（不要用 eval click）
+npx playwright cli -s=ga click <ref>
+
+# 3. 等待下载完成（根据文件大小等待，小文件5秒，大文件30秒）
+sleep 10
+
+# 4. 检查 ~/Downloads/ 目录中的新文件
+ls -lt ~/Downloads/ | head -5
+
+# 5. 移动并重命名到目标目录
+mv ~/Downloads/下载的文件.pdf "目标目录/docs/讲义_名称.pdf"
+```
+
+**注意事项：**
+- 下载按钮可能在折叠的讲义列表中，需要先点击讲次标题展开
+- Chrome 下载的临时文件名格式为 `.com.google.Chrome.xxxxx`，下载完成后会自动重命名
+- 如果临时文件没有自动重命名，说明下载可能未完成，需要等待或重新下载
+
+#### 6.3 完整性验证（必须执行）
+
+下载完成后，必须验证文件完整性：
+
+```bash
+# 1. 检查文件类型
+file "目标目录/docs/文件名.pdf"
+
+# 2. 检查PDF页数（macOS）
+mdls -name kMDItemNumberOfPages "目标目录/docs/文件名.pdf"
+
+# 3. 检查PDF是否以%%EOF结尾（完整性标记）
+tail -c 100 "目标目录/docs/文件名.pdf" | grep -q "%%EOF" && echo "✓ 完整" || echo "⚠️ 可能不完整"
+
+# 4. 对比文件大小与页面显示的大小
+ls -lh "目标目录/docs/文件名.pdf"
+```
+
+**验证标准：**
+- PDF 文件必须有 `%%EOF` 结尾标记
+- 文件大小应与页面显示的大小一致（误差 < 5%）
+- 页数应合理（讲义通常5-50页，课件通常10-100页）
+- 文件类型应为 `PDF document`
 
 **文档格式**：可能是 PDF、PPT、DOC 等，以实际下载为准。下载后用 `file` 命令确认格式。
-
-**完整性校验**：
-- PDF 可用 `pdfinfo` 检查页数
-- 检查文件大小是否合理（过小可能下载不完整）
 
 ### 步骤7：目录结构
 
