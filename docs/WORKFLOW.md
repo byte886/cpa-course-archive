@@ -236,6 +236,23 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
 - 检查文件大小是否与页面显示一致
 - PDF 可用 `pdfinfo` 检查页数
 
+### 3.4 下一步：文档文字提取（OCR）
+
+**⚠️ 下载完成后，必须进行文档文字提取，详见第5.2节。**
+
+**重要提醒**：
+- 高顿课件 PDF 多为**图片型 PDF**（PPT导出为图片），无法直接提取文字，**必须使用 OCR**
+- **OCR方案**：macOS Vision 框架（系统原生免费，中文识别效果好），**不是 tesseract**
+- **工具**：Swift 编译的 `/tmp/ocr_vision` + PyMuPDF（200 DPI）
+- **性能**：116页约2分钟，每页约1秒
+- **批量脚本**：`transcription/batch_ocr.sh`（后台运行 + iTerm tail -f）
+- **详细文档**：[development/ocr.md](./development/ocr.md)
+
+**执行前检查清单**：
+- [ ] 检查 `/tmp/ocr_vision` 二进制是否存在，不存在则先编译
+- [ ] 检查 PDF 是否有文本层（有文本层可直接提取，无需OCR）
+- [ ] 图片型 PDF 必须使用 macOS Vision 框架 OCR，**不要安装 tesseract**
+
 ---
 
 ## 4. 同步百度网盘
