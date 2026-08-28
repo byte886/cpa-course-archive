@@ -92,10 +92,20 @@ IV 从 m3u8 的 `#EXT-X-KEY` 行提取，去掉 `0x` 前缀。
 
 **验证**：检查每个分片解密后首字节为 0x47（TS sync byte）。
 
-### 步骤5：压缩（在 iTerm 中运行，显示实时进度）
+### 步骤5：压缩（必须在 iTerm 中运行，禁止后台运行）
+
+> ⚠️ **强制要求：必须在 iTerm 终端窗口中运行，禁止使用 `&` 后台运行！**
+>
+> **为什么必须在 iTerm 中运行：**
+> 1. 用户可以实时看到 ffmpeg 编码进度（frame、time、speed、bitrate 等）
+> 2. 可以及时发现编码错误或异常
+> 3. 后台运行可能因进程管理问题导致异常退出（已发生过：输出只有8.3MB不完整）
+> 4. 压缩完成后脚本会自动验证时长和可播放性，需要终端输出验证结果
+>
+> **违反后果：** 如果发现使用后台运行压缩，必须立即停止，删除不完整文件，在 iTerm 中重新运行。
 
 ```bash
-# 在 iTerm 新标签页中运行（用户可见 ffmpeg 实时进度）
+# ✅ 正确方式：在 iTerm 新标签页中运行（用户可见 ffmpeg 实时进度）
 osascript -e "tell application \"iTerm\"
   tell current window
     create tab with default profile
@@ -104,6 +114,10 @@ osascript -e "tell application \"iTerm\"
     end tell
   end tell
 end tell"
+
+# ❌ 错误方式：禁止后台运行
+# bash compress.sh merged.ts video.mp4 30 &
+# nohup bash compress.sh merged.ts video.mp4 30 &
 ```
 
 **压缩参数**：

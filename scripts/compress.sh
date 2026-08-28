@@ -14,6 +14,34 @@
 
 set -euo pipefail
 
+# ⚠️ 运行时检测：必须在终端中运行，禁止后台运行
+if [ ! -t 1 ]; then
+  echo "========================================"
+  echo "⚠️  警告：检测到非终端环境运行！"
+  echo "========================================"
+  echo ""
+  echo "本脚本必须在 iTerm 终端窗口中运行，禁止使用 & 后台运行。"
+  echo "原因："
+  echo "  1. 用户需要实时看到 ffmpeg 编码进度"
+  echo "  2. 后台运行可能因进程管理问题导致异常退出"
+  echo "  3. 压缩完成后需要终端输出验证结果"
+  echo ""
+  echo "正确方式：在 iTerm 新标签页中运行"
+  echo "  osascript -e 'tell application \"iTerm\""
+  echo "    tell current window"
+  echo "      create tab with default profile"
+  echo "      tell current session"
+  echo "        write text \"cd $(pwd) && bash $0 $*\""
+  echo "      end tell"
+  echo "    end tell"
+  echo "  end tell'"
+  echo ""
+  echo "========================================"
+  echo "继续运行（5秒后自动继续，按 Ctrl+C 停止）..."
+  echo "========================================"
+  sleep 5
+fi
+
 INPUT="${1:?Usage: compress.sh <input.ts> <output.mp4> [crf]}"
 OUTPUT="${2:?Usage: compress.sh <input.ts> <output.mp4> [crf]}"
 CRF="${3:-30}"
