@@ -9,7 +9,7 @@
 1. **Playwright Extension 模式**：用户 Chrome 已安装 Playwright Extension 并提供 token
    - 连接命令：`PLAYWRIGHT_MCP_EXTENSION_TOKEN=<token> npx playwright cli -s=ga attach --extension=chrome`
    - 会话名：`ga`
-2. **Node.js**：用于下载解密脚本（`skill/scripts/download_decrypt.js`）
+2. **Node.js**：用于下载解密脚本（`scripts/download_decrypt.js`）
 3. **ffmpeg**：需支持 libx265，路径通常为 `/usr/local/bin/ffmpeg`
 4. **iTerm2**：压缩命令在 iTerm 窗口中运行，用户可直接看进度
 
@@ -43,7 +43,7 @@
 - **每个视频密钥不同**：必须逐个捕获，不能复用
 - **m3u8 token 会过期**：批量下载时需定期重新打开播放器获取新 token
 
-详细逆向分析见 `../../skill/references/encryption.md`。
+详细逆向分析见 `encryption.md`。
 
 ## 详细操作流程
 
@@ -67,7 +67,7 @@ PLAYWRIGHT_MCP_EXTENSION_TOKEN=<token> npx playwright cli -s=ga attach --extensi
 在播放器标签页运行 capture_key.js（注入 Worker hook → reload → 播放 → 切换 1080P → 提取密钥）：
 
 ```bash
-npx playwright cli -s=ga run-code skill/scripts/capture_key.js
+npx playwright cli -s=ga run-code scripts/capture_key.js
 ```
 
 返回 JSON 包含 `streams` 数组，每项有 `quality`、`m3u8`、`keyAscii`。取 `FHD-1080P` 项。
@@ -85,7 +85,7 @@ curl -s -o playlist.m3u8 "<fhd_m3u8_url>" \
   -H "User-Agent: Mozilla/5.0 ..." -H "Referer: https://v-glive.gaodun.com/"
 
 # 下载+解密+合并全部分片（20并发，支持断点续传）
-node skill/scripts/download_decrypt.js playlist.m3u8 merged.ts ./segments <keyAscii> <iv_hex> 20
+node scripts/download_decrypt.js playlist.m3u8 merged.ts ./segments <keyAscii> <iv_hex> 20
 ```
 
 IV 从 m3u8 的 `#EXT-X-KEY` 行提取，去掉 `0x` 前缀。
@@ -215,17 +215,17 @@ npx playwright cli -s=ga eval "
 
 | 脚本 | 位置 | 说明 |
 |------|------|------|
-| 密钥捕获 | `skill/scripts/capture_key.js` | Playwright Worker hook 注入脚本 |
-| 下载解密 | `skill/scripts/download_decrypt.js` | HLS分片下载解密合并脚本 |
-| 压缩脚本 | `skill/scripts/compress.sh` | ffmpeg H.265压缩脚本 |
+| 密钥捕获 | `scripts/capture_key.js` | Playwright Worker hook 注入脚本 |
+| 下载解密 | `scripts/download_decrypt.js` | HLS分片下载解密合并脚本 |
+| 压缩脚本 | `scripts/compress.sh` | ffmpeg H.265压缩脚本 |
 | 知识库结构检查 | `scripts/check-kb-structure.sh` | 自动检测重复节点、空节点、链接问题 |
 
 ## 参考文档
 
 | 文档 | 位置 | 说明 |
 |------|------|------|
-| 加密逆向分析 | `skill/references/encryption.md` | HLS AES-128 加密详细逆向分析 |
-| 百度网盘 | `skill/references/baidupan.md` | 百度网盘API配置和使用 |
+| 加密逆向分析 | `docs/development/encryption.md` | HLS AES-128 加密详细逆向分析 |
+| 百度网盘 | `docs/development/netdisk-setup.md` | 百度网盘API配置和使用 |
 | 总体工作流 | `../WORKFLOW.md` | 完整工作流（下载→压缩→转写→知识库→做题验证） |
 | 知识库组织规范 | `knowledge-base-organization.md` | 知识库结构设计、节点命名规范、父页面规范 |
 | 飞书API使用说明 | `feishu-api.md` | wiki节点删除、文档更新、权限设置、常见问题 |

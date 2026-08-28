@@ -56,17 +56,100 @@
 
 ---
 
+## 1.5 Playwright 浏览器连接（所有浏览器操作的前置步骤）
+
+### 参考文档
+- [scripts/playwright_connect.sh](../scripts/playwright_connect.sh) — Playwright 连接脚本，自动检测并处理连接确认
+
+### 连接方式
+**必须使用 Extension 模式附加到用户已登录的 Chrome，禁止用 `open` 打开新窗口**（新窗口没有登录状态）。
+
+```bash
+# 方式1：使用连接脚本（推荐，自动处理连接确认）
+bash scripts/playwright_connect.sh
+
+# 方式2：手动连接
+npx playwright cli -s=ga attach --extension=chrome
+```
+
+### ⚠️ 操作前必须关闭不相关的tab页（重要）
+
+**每次开始浏览器操作前，必须先检查并关闭不相关的tab页**，避免误点击、页面混淆、内存占用。
+
+**详细流程和命令**：参考 [docs/development/interaction-workflow.md](development/interaction-workflow.md) 第1节"页面管理原则"
+
+**原则摘要**：
+- 操作前检查tab数量，超过2个就需要清理
+- 只保留当前任务需要的页面
+- 异常时可以重新开新页面，但必须关掉多余的旧页面
+- 适用于所有浏览器操作场景
+
+### 第一次连接的确认流程
+1. 运行连接命令后，Chrome 会自动打开"Playwright Extension"连接确认页面
+2. 连接脚本会自动切换到该页面并激活 Chrome
+3. **需要手动点击高顿网站标签页右侧的 "Allow & select" 按钮**（这是 Chrome 扩展的安全机制，无法完全绕过）
+4. 点击后连接自动建立，**之后会被记住，不需要再次确认**
+
+### 完全自动化（可选，推荐）
+如果希望脚本自动点击 "Allow & select"，需要在 Chrome 中开启"允许 Apple 事件中的 JavaScript"：
+
+**开启方法（只需一次）：**
+1. 切换到 Chrome 窗口
+2. 菜单栏 → 查看 → 开发者 → 允许 Apple 事件中的 JavaScript
+3. 点击后菜单项前会出现 ✓ 标记，表示已开启
+
+**开启后的效果：**
+- 连接脚本可以自动检测连接确认页面
+- 自动切换到该页面
+- 自动点击高顿网站标签页的 "Allow & select" 按钮
+- 完全无需人工干预
+
+**如果不开启：**
+- 第一次连接时需要手动点击 "Allow & select" 按钮
+- 之后连接会被记住，不需要再次确认
+- 连接脚本会自动切换到连接确认页面并提示操作
+
+### Token 自动刷新流程（连接失败时使用）
+
+当出现 `Failed to connect to MCP relay: WebSocket error` 或 token 过期时，需要刷新 token。
+
+**详细流程和脚本**：参考 [docs/development/playwright-cli-guide.md](development/playwright-cli-guide.md) 第4节"Token 自动刷新流程"
+
+**摘要**：
+- Extension 状态页面：`chrome-extension://mmlmfjhmonkocbjadbfplnigmagldckm/status.html`
+- 使用 AppleScript 点击刷新按钮并获取新 token
+- 点击刷新后旧连接会断开，必须用 AppleScript 获取新 token
+- 获取新 token 后重新设置环境变量并连接
+
+### 常见问题
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| 跳转到登录页面 | 用了 `open` 打开新窗口，没有登录状态 | 必须用 `attach --extension=chrome` 附加到已登录的 Chrome |
+| 连接确认对话框反复出现 | 没有点击 "Allow & select"，或点击了错误的标签页 | 找到高顿网站的标签页，点击其右侧的 "Allow & select" |
+| `The browser 'ga' is not open` | 连接已断开或未建立 | 重新运行连接脚本 |
+
+**更多常见错误和解决方案**：参考 [docs/development/playwright-cli-guide.md](development/playwright-cli-guide.md) 第3节"常见错误与解决方案"
+
+### 连接验证
+连接成功后，验证当前页面是否为高顿网站：
+```bash
+npx playwright cli -s=ga eval "window.location.href"
+# 应该返回包含 glivepro.gaodun.com 的 URL
+```
+
+---
+
 ## 2. 下载视频
 
 ### 参考文档
 - [docs/development/video-processing.md](development/video-processing.md) — 视频处理详细指南：前置条件、加密方案逆向分析、详细操作流程、关键陷阱汇总
-- [skill/SKILL.md](../skill/SKILL.md) — 视频下载、解密、压缩的完整脚本和参数说明（skill副本）
+- [docs/development/video-processing.md](development/video-processing.md) — 视频下载、解密、压缩的完整流程和参数说明
 
 ### 2.1 捕获密钥和 m3u8
 
 1. Playwright Extension 模式附加 Chrome（会话名 `ga`）
 2. 打开课程表页，点击目标讲座的"看回放"
-3. 注入 Worker hook 脚本（`skill/scripts/capture_key.js`）
+3. 注入 Worker hook 脚本（`scripts/capture_key.js`）
 4. reload 播放器页面，等待视频开始加载
 5. 切换到 1080P 分辨率（右下角按钮）
 6. 从 hook 截获的通信中提取：
@@ -77,7 +160,7 @@
 ### 2.2 下载解密合并
 
 ```bash
-node skill/scripts/download_decrypt.js <m3u8_url> <key> <iv> <输出目录>
+node scripts/download_decrypt.js <m3u8_url> <key> <iv> <输出目录>
 ```
 
 - 多线程下载 .ts 分片，支持断点续传
@@ -174,7 +257,7 @@ curl -L -o docs/课件.pdf -e "https://glivepro.gaodun.com/" "<CDN直链>"
 
 **注意**：网盘路径必须包含 `高顿/` 层，与本地目录结构完全一致。上传脚本 `scripts/batch_upload.sh` 中 `REMOTE_BASE="/apps/CPA课程归档/高顿"`。
 
-API 参考：`skill/references/baidupan.md`，完整创建过程：`docs/BAIDU_NETDISK_SETUP.md`
+API 参考：`docs/development/netdisk-setup.md`，完整创建过程：`docs/development/netdisk-setup.md`
 
 ---
 
@@ -469,13 +552,22 @@ lark-cli wiki +node-delete --node-token "<URL>" --yes
 每套试卷：
 
 1. 进入课程表页该讲座下的试卷
-2. **先根据知识库的内容学习**，然后再应答题目
-3. 逐题作答，验证知识库是否覆盖相关知识点
+2. **⚠️ 先根据知识库的内容学习，查询相关知识点，记录查询结果，然后再应答题目（禁止凭记忆答题）**
+3. 逐题作答，每道题都要：
+   - **单选题**：查询知识库 → 记录正确答案 → 点击选项 → 检查蓝色圆圈标记 → 确认跳题
+   - **多选题**：查询知识库 → 逐个选项验证 → 记录所有正确答案 → 逐个点击选项（每个等待1000ms）→ 检查每个选项的蓝色方框标记 → 点击"下一题"
+   - **每道题做完后必须检查是否选择了对应答案（蓝色标记），确认后才能进行下一步**
 4. **如果做错了**，如果系统有提示错误，可以重新做，直到完成为止
 5. 记录错题和未覆盖的知识点
 6. **获取全部解析**：逐题点击"下一题"遍历所有题目，获取官方解析和用户留言
-7. 全部完成后，将错题涉及的知识点、易错点补充回知识库的"考试指导"文档
-8. 记录做题结果到任务报告
+7. **补题流程**（发现未做题时）：
+   - 记录所有未做题编号
+   - 通过答题卡依次点击未做题编号补做（不要从头依次做，避免反向取消已做题）
+   - 每道补做题都要检查蓝色标记
+   - **中途不交卷，完成所有未做题后才交卷**
+8. 全部完成后，将错题涉及的知识点、易错点补充回知识库的"考试指导"文档
+9. **如果错题是因为知识库有误，修正知识库内容**
+10. 记录做题结果到任务报告
 
 ### 7.6 第一次做 vs 重新做
 

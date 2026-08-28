@@ -16,10 +16,17 @@
 | `setup-data-symlink.sh` | Shell | 创建/调整 data/高顿 符号链接（跨电脑数据目录路径不同） | `./scripts/setup-data-symlink.sh [路径] [--check]` |
 | `setup-transcription-env.sh` | Shell | 新电脑一键搭建音频转写环境（FunASR虚拟环境） | `./scripts/setup-transcription-env.sh [Python版本] [--check]` |
 | `pre-commit` | Shell | Git pre-commit hook源文件（大文件/敏感信息检查） | 复制到 `.git/hooks/pre-commit` 生效 |
+| `capture_key.js` | JavaScript | Playwright注入Worker hook捕获HLS AES密钥（SD/FHD） | `npx playwright cli -s=<session> run-code scripts/capture_key.js` |
+| `download_decrypt.js` | JavaScript | 下载HLS分片并AES-128解密合并为.ts文件 | `node scripts/download_decrypt.js <m3u8路径> <输出.ts> <分片目录> <key> <iv> [并发数]` |
+| `compress.sh` | Shell | ffmpeg压缩.ts为H.265 MP4（CRF30，iTerm显示进度） | `bash scripts/compress.sh <input.ts> <output.mp4> [crf]` |
+| `playwright_connect.sh` | Shell | Playwright连接脚本（自动检测并处理连接确认） | `bash scripts/playwright_connect.sh` |
 
 ## 脚本分类
 
-### 视频处理
+### 视频下载与处理
+- `capture_key.js` - 捕获HLS AES密钥（Playwright Worker hook注入）
+- `download_decrypt.js` - 下载分片并解密合并（Node.js，AES-128-CBC）
+- `compress.sh` - ffmpeg压缩为H.265 MP4（CRF30，iTerm显示进度）
 - `transcribe_pipeline.py` - 单视频转写（核心逻辑）
 - `batch_transcribe.sh` - 批量转写（调用 transcribe_pipeline.py，循环处理）
 - `batch_ocr.sh` - 批量OCR（讲义文档）
@@ -79,8 +86,10 @@ nohup python3 scripts/baidu_upload.py file.mp4 /path/ > /tmp/upload.log 2>&1 &
 | `baidu_upload.py`, `batch_upload.sh` | [docs/development/netdisk-setup.md](../docs/development/netdisk-setup.md) |
 | `transcribe_pipeline.py`, `batch_transcribe.sh` | [docs/development/transcription.md](../docs/development/transcription.md) |
 | `batch_ocr.sh` | [docs/development/ocr.md](../docs/development/ocr.md) |
-| `secrets.sh` | [skill/references/encryption.md](../skill/references/encryption.md) |
+| `secrets.sh` | [docs/development/encryption.md](../docs/development/encryption.md) |
 | `pre-commit` | [docs/development/git-workflow.md](../docs/development/git-workflow.md) |
+| `capture_key.js`, `download_decrypt.js`, `compress.sh` | [docs/development/video-processing.md](../docs/development/video-processing.md) |
+| `playwright_connect.sh` | [docs/development/playwright-cli-guide.md](../docs/development/playwright-cli-guide.md) |
 
 ## 注意事项
 

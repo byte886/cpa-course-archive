@@ -190,6 +190,72 @@ Not allowed
 
 **解决方案**：使用 Playwright CLI 命令，不要尝试使用 CDP。
 
+### 3.6 错误：Failed to connect to MCP relay: WebSocket error
+
+**错误信息**：
+```
+Failed to connect to MCP relay: WebSocket error
+```
+
+**原因**：Playwright Extension 的 token 过期或连接异常，需要刷新 token。
+
+**解决方案**：按下面的"Token 自动刷新流程"刷新 token 并重新连接。
+
+## 四、Token 自动刷新流程
+
+当出现 `Failed to connect to MCP relay: WebSocket error` 或 token 过期时，需要刷新 token。
+
+### 4.1 Extension 状态页面
+
+- **URL**：`chrome-extension://mmlmfjhmonkocbjadbfplnigmagldckm/status.html`
+- **刷新按钮**：class 为 `.auth-token-refresh`
+- **token 显示**：class 为 `.auth-token-code`
+
+### 4.2 自动刷新流程（使用 AppleScript）
+
+```bash
+# 步骤1：打开Extension状态页面并点击刷新按钮
+osascript << 'EOF'
+tell application "Google Chrome"
+    open location "chrome-extension://mmlmfjhmonkocbjadbfplnigmagldckm/status.html"
+    delay 2
+    set currentTab to active tab of front window
+    execute currentTab javascript "document.querySelector('.auth-token-refresh').click();"
+    delay 1
+end tell
+EOF
+
+# 步骤2：获取新token
+NEW_TOKEN=$(osascript << 'EOF'
+tell application "Google Chrome"
+    set currentTab to active tab of front window
+    set tokenText to execute currentTab javascript "document.querySelector('.auth-token-code').textContent"
+    return tokenText
+end tell
+EOF
+)
+
+# 步骤3：提取纯token值（去掉 PLAYWRIGHT_MCP_EXTENSION_TOKEN= 前缀）
+PURE_TOKEN=$(echo "$NEW_TOKEN" | sed 's/PLAYWRIGHT_MCP_EXTENSION_TOKEN=//')
+
+# 步骤4：设置环境变量并重新连接
+export PLAYWRIGHT_MCP_EXTENSION_TOKEN="$PURE_TOKEN"
+npx playwright cli -s=ga open
+```
+
+### 4.3 注意事项
+
+- 点击刷新按钮后，旧的连接会立即断开（这是正常的）
+- 必须用 AppleScript 获取新 token，因为 Playwright 连接已断开
+- 获取新 token 后，需要重新设置环境变量并重新连接
+- 新 token 格式：`PLAYWRIGHT_MCP_EXTENSION_TOKEN=xxxxx`，需要去掉前缀只保留 `xxxxx`
+
+### 4.4 已验证的 token 刷新记录
+
+| 刷新时间 | 旧 token | 新 token | 刷新原因 |
+|----------|----------|----------|----------|
+| 2026-08-28 | JK0HlLRvp68DTxJKai2ZT6UHw3u6hnUwFugi8NkQc6g | ABG0ojdWZTmQzZ1nnntl9yQYJPin7nDzTdI-UCzs4xw | 测试自动刷新流程 |
+
 ## 四、最佳实践
 
 ### 4.1 命令执行前检查

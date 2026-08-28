@@ -32,7 +32,7 @@
 
 | 任务类型 | 先看 | 再看 |
 |----------|------|------|
-| 视频下载/压缩 | `docs/WORKFLOW.md` 第2节 | `skill/SKILL.md` |
+| 视频下载/压缩 | `docs/WORKFLOW.md` 第2节 | `docs/development/video-processing.md` |
 | 文档下载 | `docs/WORKFLOW.md` 第3节 | - |
 | 百度网盘同步 | `docs/WORKFLOW.md` 第4节 | `docs/development/netdisk-setup.md` |
 | 视频转文字 | `docs/WORKFLOW.md` 第5节 | `docs/development/transcription.md` |
@@ -58,6 +58,35 @@
 ### 定期检查项目结构
 
 每次开始新任务前、完成大任务后，必须检查项目结构是否合理，发现问题主动梳理调整。
+
+### 写文档前必须检查文档组织（强制，即时触发）
+
+**遇到问题需要写文档、更新文档或新增内容时，必须先检查项目文档组织和分工，禁止直接写到任意文档中。**
+
+**检查流程（必须执行）**：
+1. **查看文档目录结构**：`ls -la docs/`、`ls -la docs/development/`、`ls -la docs/project-management/`
+2. **查找相关文档**：用 `grep -r "关键词" docs/` 查找是否已有相关内容的文档
+3. **确认文档分工**：
+   - `docs/WORKFLOW.md` — 主工作流（只放流程概览和链接，不放详细内容）
+   - `docs/development/*.md` — 专项技术文档（如playwright-cli-guide、interaction-workflow、transcription等）
+   - `docs/project-management/*.md` — 项目管理文档（如DOC_SYNC_CHECKLIST、standards等）
+   - `docs/knowledge-base/*.md` — 知识库相关文档
+4. **选择正确的文档**：根据内容性质选择对应的专项文档，WORKFLOW.md只放摘要和链接
+5. **确保文档关联**：新增或更新内容后，确保相关文档之间有链接，不会找不到
+
+**常见错误（禁止）**：
+- ❌ 直接把详细技术内容写到WORKFLOW.md中
+- ❌ 不检查是否已有相关文档就新建文档
+- ❌ 把交互规范写到技术文档中，或把技术规范写到交互文档中
+- ❌ 新增内容后不更新相关文档的链接
+
+**违反规则的后果**：
+如果发现写文档时没有先检查文档组织导致内容放错位置，必须：
+1. 立即停止当前操作
+2. 检查文档组织，找到正确的文档位置
+3. 将内容移到正确的文档中
+4. 在原文档中只保留摘要和链接
+5. 将本次教训补充到本规则中
 
 ### 文档同步规则（强制）
 

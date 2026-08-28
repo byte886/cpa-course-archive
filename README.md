@@ -102,28 +102,24 @@ cpa-course-archive/
 ├── .secrets/                 # 加密凭证（已提交，密码由用户保管）
 │   ├── gh_token.enc          # GitHub Personal Access Token（加密）
 │   └── baidu_credentials.enc # 百度网盘API凭证（加密）
-├── skill/                    # 全局 Skill 副本（gaodun-course-downloader）
-│   ├── SKILL.md              # Skill说明文档
-│   ├── scripts/              # Skill脚本
-│   │   ├── capture_key.js    # HLS密钥截获
-│   │   ├── download_decrypt.js # HLS下载解密
-│   │   └── compress.sh       # ffmpeg压缩脚本
-│   └── references/           # Skill参考文档
-│       ├── encryption.md     # 加密说明
-│       └── baidupan.md      # 百度网盘API说明
-├── scripts/                  # 所有脚本统一放这里
-│   ├── baidu_upload.py       # 百度网盘分片上传
-│   ├── batch_upload.sh       # 批量上传
+├── scripts/                  # 所有可执行脚本（视频下载/压缩/转写/上传等）
+│   ├── capture_key.js        # HLS AES密钥捕获（Playwright Worker hook注入）
+│   ├── download_decrypt.js   # HLS分片下载并AES-128解密合并
+│   ├── compress.sh           # ffmpeg压缩为H.265 MP4（CRF30，iTerm显示进度）
+│   ├── baidu_upload.py       # 百度网盘分片上传（4MB分片+MD5秒传）
+│   ├── batch_upload.sh       # 批量上传视频（iTerm运行，断点续传）
+│   ├── upload_course.sh      # 课程目录批量上传（自动过滤技术过程文档）
 │   ├── transcribe_pipeline.py # 音频转文字（FunASR+VAD）
-│   ├── batch_transcribe.sh   # 批量转写
-│   ├── batch_ocr.sh          # 批量OCR（macOS Vision）
-│   ├── secrets.sh            # 密钥加密/解密工具
+│   ├── batch_transcribe.sh   # 批量转写（iTerm运行，断点续传）
+│   ├── batch_ocr.sh          # 批量OCR（macOS Vision框架）
+│   ├── playwright_connect.sh # Playwright连接脚本（自动处理连接确认）
+│   ├── secrets.sh            # 密钥加密/解密工具（AES-256-CBC）
 │   ├── setup-data-symlink.sh # data/符号链接设置（跨电脑调整路径）
 │   ├── setup-transcription-env.sh # 转写环境搭建（新电脑一键创建虚拟环境）
-│   └── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
+│   ├── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
+│   └── README.md             # 脚本说明文档（用途/用法/依赖/相关文档）
 ├── docs/
 │   ├── WORKFLOW.md           # 总体工作流（索引+流程）
-│   ├── manifest.json         # 文档清单
 │   ├── project-management/   # 项目管理
 │   │   ├── README.md         # 项目管理规范（任务管理/测试驱动/缺陷管理）
 │   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
@@ -139,32 +135,40 @@ cpa-course-archive/
 │   ├── development/          # 开发文档
 │   │   ├── README.md         # 开发文档索引
 │   │   ├── git-workflow.md   # Git工作流（SSH/代理/大文件/pre-commit/敏感信息）
+│   │   ├── playwright-cli-guide.md # Playwright CLI使用指南（正确用法/常见错误/最佳实践）
+│   │   ├── video-processing.md # 视频处理详细指南（下载/解密/压缩/验证/加密逆向分析）
+│   │   ├── encryption.md     # HLS AES-128加密逆向分析（密钥提取/解密参数/验证方法）
 │   │   ├── transcription.md  # 音频转文字（FunASR环境/参数/性能）
-│   │   ├── ocr.md            # OCR文字提取（macOS Vision）
-│   │   ├── netdisk-setup.md # 百度网盘接入（API/上传/目录管理）
-│   │   ├── feishu-api.md     # 飞书API使用（知识库/文档/表格）
-│   │   ├── knowledge-base-organization.md # 知识库结构设计、节点命名规范
-│   │   └── exam-workflow.md  # 做题工作流（交互优化、分级规则、交卷检查）
+│   │   ├── ocr.md            # OCR文字提取（macOS Vision/表格图表AI补充）
+│   │   ├── netdisk-setup.md # 百度网盘接入（应用创建/API配置/上传脚本）
+│   │   ├── feishu-api.md     # 飞书API使用（知识库/文档/表格/权限设置）
+│   │   ├── knowledge-base-organization.md # 知识库结构设计/节点命名规范/父页面规范
+│   │   ├── knowledge-base-sources.md # 知识库来源清单/来源选择流程/同步流程
+│   │   ├── exam-workflow.md  # 做题工作流（页面管理/补题流程/答题卡操作/踩坑记录）
+│   │   └── interaction-workflow.md # 通用交互流程与优化规范（适用于做题/模考等所有Web交互）
 │   └── knowledge-base/       # 知识库内容（本地）
-│       ├── VERIFICATION_税法总论_分章真题测.md # 知识库质量验证报告
+│       ├── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
 │       ├── methodology/      # 方法论文档
-│       │   ├── 做题流程与方法论.md # 做题完整流程、API探索、经验总结
-│       │   └── 交互优化指南.md     # 做题页面交互规律、问题、优化方案
+│       │   ├── 做题流程与方法论.md # 做题完整流程/API探索/经验总结
+│       │   └── 交互优化指南.md     # 做题页面交互规律/问题/优化方案
 │       ├── organized-content/ # 整理后的知识内容
 │       │   ├── 做题思路解析.md     # 面向学习者的通用做题思路
 │       │   └── 01税法总论/         # 章节知识
+│       │       ├── README.md        # 章节概览（含子节点链接）
 │       │       ├── 知识拆解.md      # 章节核心知识点
-│       │       └── 考试指导.md      # 做题技巧、易错点、记忆口诀
+│       │       ├── 考试指导.md      # 做题技巧/易错点/记忆口诀
+│       │       ├── VERIFICATION_税法总论_分章真题测.md # 知识库质量验证报告
+│       │       └── SYNC_REPORT_税法总论_20260828.md # 飞书知识库同步报告
 │       └── source-materials/ # 原始素材
 │           └── 税法总论/
 │               ├── 做题记录_*.md    # 各试卷做题记录
+│               ├── 解析与用户留言_*.md # 官方解析和用户留言整理
 │               └── 用户笔记精华_税法总论.md # 高赞用户留言整理
 ├── transcription/            # 转写工作目录
 │   ├── requirements.txt      # Python依赖清单（64个包，新电脑复现环境用）
 │   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）
 │   └── transcripts_full/     # 转写结果输出（gitignore忽略，不提交）
 │       └── video/            # 视频转写结果（transcript.md/transcript.json）
-├── .venv-transcribe/         # 转写虚拟环境（gitignore忽略，不提交）
 ├── data/                     # 符号链接目录（gitignore忽略，不提交）
 │   └── 高顿/                 # 符号链接 → ~/Desktop/高顿/（不同电脑可指向不同路径）
 └── .git/hooks/

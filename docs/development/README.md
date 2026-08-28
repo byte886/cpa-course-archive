@@ -18,7 +18,7 @@
 | [exam-workflow.md](./exam-workflow.md) | 做题流程与交互规范：页面管理/补题流程/答题卡操作/踩坑记录 | ✅ 已完成 |
 | [interaction-workflow.md](./interaction-workflow.md) | 通用交互流程与优化规范：页面管理/强制执行检查清单/结果读取/异常处理（适用于做题、模考等所有Web交互场景） | ✅ 已完成 |
 
-> **说明**：视频处理（下载、解密、压缩、验证）的详细说明在 `video-processing.md` 中，包含加密方案逆向分析和关键陷阱汇总。脚本在 `skill/scripts/` 目录下。
+> **说明**：视频处理（下载、解密、压缩、验证）的详细说明在 `video-processing.md` 中，包含加密方案逆向分析和关键陷阱汇总。脚本在 `scripts/` 目录下。
 
 ## 技术栈
 
@@ -38,8 +38,8 @@
 
 | 脚本 | 位置 | 说明 |
 |------|------|------|
-| 视频下载解密 | `skill/scripts/download_decrypt.js` | HLS分片下载解密合并 |
-| 视频压缩 | `skill/scripts/compress.sh` | ffmpeg批量压缩 |
+| 视频下载解密 | `scripts/download_decrypt.js` | HLS分片下载解密合并 |
+| 视频压缩 | `scripts/compress.sh` | ffmpeg批量压缩 |
 | 网盘上传 | `scripts/baidu_upload.py` | 百度网盘分片上传 |
 | 批量上传 | `scripts/batch_upload.sh` | 批量上传到网盘 |
 | 音频转写 | `scripts/transcribe_pipeline.py` | FunASR单视频转写 |
