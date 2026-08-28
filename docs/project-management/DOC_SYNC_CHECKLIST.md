@@ -39,6 +39,14 @@
 |------|------|---------|
 | COURSE_INDEX.md | `docs/project-management/active/COURSE_INDEX.md` | 所有课程的清单、讲座数量、完成进度 |
 
+### 2.4 大任务执行状态
+
+| 文档 | 位置 | 更新内容 |
+|------|------|---------|
+| BATCH_TASK_STATUS.md | `docs/project-management/active/BATCH_TASK_STATUS.md` | 批量任务的详细进度、当前步骤、检查点、问题记录 |
+
+> **触发时机**：开始大任务前创建，每完成一个步骤更新，遇到异常记录，恢复任务前读取。详见 `standards/BATCH_TASK_EXECUTION.md`。
+
 ---
 
 ## 三、做题产出类

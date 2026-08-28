@@ -12,9 +12,11 @@ docs/project-management/
 ├── standards/                   # 规范/指南类（教你如何做）
 │   ├── PROJECT_PLAN.md          # 项目计划
 │   ├── PROJECT_MAINTENANCE.md   # 项目维护规范（结构维护/文档组织/文档分解/Docs as Code）
-│   └── QUALITY_ASSURANCE.md     # 质量保证规范（验证标准和流程）
+│   ├── QUALITY_ASSURANCE.md     # 质量保证规范（验证标准和流程）
+│   └── BATCH_TASK_EXECUTION.md  # 大任务执行状态记录与异常恢复机制
 ├── active/                      # 过程文档类（实际做了什么）
 │   ├── TASK_STATUS.md           # 任务状态（唯一任务状态来源）
+│   ├── BATCH_TASK_STATUS.md     # 大任务执行状态（批量任务的详细进度和恢复点）
 │   └── COURSE_INDEX.md          # 课程清单索引
 └── test-plans/                  # 测试计划（每个测试任务一个文件）
     └── TEST_PLAN_税法01.md      # 税法01完整流程测试计划
@@ -25,7 +27,9 @@ docs/project-management/
 | `standards/PROJECT_PLAN.md` | 项目计划 |
 | `standards/PROJECT_MAINTENANCE.md` | 项目维护规范（结构维护/文档组织/文档分解/Docs as Code） |
 | `standards/QUALITY_ASSURANCE.md` | 质量保证规范（验证标准和流程） |
+| `standards/BATCH_TASK_EXECUTION.md` | 大任务执行状态记录与异常恢复机制（检查点/预警/触发机制） |
 | `active/TASK_STATUS.md` | 任务状态（唯一任务状态来源） |
+| `active/BATCH_TASK_STATUS.md` | 大任务执行状态（批量任务的详细进度和恢复点） |
 | `active/COURSE_INDEX.md` | 课程清单索引 |
 | `test-plans/TEST_PLAN_*.md` | 测试计划（如 TEST_PLAN_税法01.md） |
 
