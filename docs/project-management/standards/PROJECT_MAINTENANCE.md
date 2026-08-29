@@ -409,7 +409,7 @@ find . -name "*.md" -not -path "*/.git/*" -not -path "*/venv/*" -exec wc -c {} \
 #### 第一步：读取相关最佳实践文档
 
 在开始优化前，必须先读取相关的最佳实践文档：
-- AGENTS.md 优化 → 读取 `docs/development/AGENTS_MD_BEST_PRACTICES.md`
+- AGENTS.md 优化 → 读取 `docs/development/guides/AGENTS_MD_BEST_PRACTICES.md`
 - README.md 优化 → 读取软件工程中 README 写作最佳实践
 - 其他文档优化 → 读取相关的写作规范或最佳实践
 

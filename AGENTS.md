@@ -8,7 +8,7 @@
 > 本文档是AI代理的操作手册，命令式、可执行。与README.md（给人看的项目介绍）互补。
 > 执行任何任务前必须先阅读本文档对应部分，**核心规则在第3章，必须优先阅读**。
 >
-> **写作原则**：基于 [AGENTS_MD_BEST_PRACTICES.md](docs/development/AGENTS_MD_BEST_PRACTICES.md)，只包含AI无法推断的内容，已在其他文档中的内容只链接不重复。
+> **写作原则**：基于 [AGENTS_MD_BEST_PRACTICES.md](docs/development/guides/AGENTS_MD_BEST_PRACTICES.md)，只包含AI无法推断的内容，已在其他文档中的内容只链接不重复。
 
 ---
 
@@ -22,7 +22,7 @@
 | **不包含** | 项目目标介绍、存储分工、课程列表 | → [README.md](README.md) |
 | **不包含** | 详细操作流程、各环节步骤 | → [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | **不包含** | 需求定义、功能清单、验收标准 | → [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) |
-| **不包含** | 编码规范 | → [docs/development/CODE_STYLE.md](docs/development/CODE_STYLE.md) |
+| **不包含** | 编码规范 | → [docs/development/guides/CODE_STYLE.md](docs/development/guides/CODE_STYLE.md) |
 | **不包含** | 目录结构详细说明 | → [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) |
 | **不包含** | 系统要求与环境配置 | → [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) |
 
@@ -205,7 +205,7 @@
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
 | Git操作 | `docs/development/guides/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |
-| 编码规范 | `docs/development/CODE_STYLE.md` | - |
+| 编码规范 | `docs/development/guides/CODE_STYLE.md` | - |
 | OCR识别 | `docs/development/tools/ocr.md` | - |
 | 飞书API | `docs/development/api/feishu-api.md` | - |
 

@@ -169,7 +169,7 @@ AGENTS.md 应该只包含以下四类内容：
 ### 5.2 应该移走的内容
 
 - **Project Overview** → 移到 README.md（给人看的）
-- **Code Style** → 移到 `docs/development/CODE_STYLE.md`
+- **Code Style** → 移到 `docs/development/guides/CODE_STYLE.md`
 - **Testing Instructions** → 分散移到对应专项文档
 - **Architecture Notes 中的目录结构** → 链接到 `docs/DIRECTORY_STRUCTURE.md`
 - **Tech Stack 中的详细版本** → 链接到 `docs/SYSTEM_REQUIREMENTS.md`
