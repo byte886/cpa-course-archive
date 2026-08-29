@@ -1,5 +1,26 @@
 # 高顿 CPA 课程智能归档项目
 
+> **文档类型**：Concept（概念说明 — 项目介绍）
+> **更新频率**：项目结构/课程/存储分工变更时
+> **维护者**：AI自动维护 + 用户审核
+> **读者**：人类（新加入项目者）和AI（首次了解项目时）
+
+---
+
+## 文档边界
+
+| 维度 | 本文档（README.md） | 其他文档 |
+|------|---------------------|----------|
+| **定位** | 项目介绍，给人看的概览 | - |
+| **读者** | 人类（新加入项目者）和AI（首次了解项目时） | - |
+| **包含** | 项目目标、仓库地址、常用查询话术、课程列表、存储分工、目录结构 | - |
+| **不包含** | AI执行规则、命令、Things to Avoid | → [AGENTS.md](AGENTS.md) |
+| **不包含** | 详细操作流程、各环节步骤 | → [docs/WORKFLOW.md](docs/WORKFLOW.md) |
+| **不包含** | 需求定义、功能清单、验收标准 | → [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) |
+| **不包含** | 文档索引、所有文档清单 | → [docs/DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md) |
+
+---
+
 把在线课程变成你自己的、可搜索、可问答、永久保存的备考资产。
 
 最终你会得到：
@@ -11,6 +32,22 @@
 ## 仓库地址
 
 - GitHub: https://github.com/byte886/cpa-course-archive （公有）
+
+## 常用查询话术（直接复制使用）
+
+想了解项目状态时，直接复制下面的话术发送给AI：
+
+| 你想知道 | 直接复制 |
+|----------|----------|
+| 还有哪些任务要做 | `查询任务状态：还有哪些待完成的任务？` |
+| 有什么问题/BUG | `查询问题：当前有哪些未解决的问题或BUG？` |
+| 需要做什么维护 | `查询维护：当前有哪些待完成的维护工作？` |
+| 项目整体进度 | `查询概览：给我一个项目整体状态的总结` |
+| 为什么这样做 | `查询历史：为什么[某个决策]是这样做的？` |
+| **刷新Playwright token** | `刷新Playwright token` |
+| 不确定想查什么 | `我想了解项目状态，请给我几个选项让我选择` |
+
+**完整速查表**：[PROJECT_STATUS_QUERY.md](docs/project-management/standards/PROJECT_STATUS_QUERY.md) 第零节
 
 ## 课程
 
@@ -242,17 +279,17 @@ cpa-course-archive/
 | 任务类型 | 先看 | 再看 |
 |----------|------|------|
 | **全局规则** | [AGENTS.md](AGENTS.md) | - |
-| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [video-processing.md](docs/development/video-processing.md) |
+| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [video-processing.md](docs/development/tools/video-processing.md) |
 | 文档下载 | [WORKFLOW.md 第3节](docs/WORKFLOW.md) | - |
-| 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/netdisk-setup.md) |
-| 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/transcription.md) |
-| 知识库生成 | [WORKFLOW.md 第6节](docs/WORKFLOW.md) | [knowledge-base-organization.md](docs/development/knowledge-base-organization.md) |
+| 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/api/netdisk-setup.md) |
+| 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/tools/transcription.md) |
+| 知识库生成 | [WORKFLOW.md 第6节](docs/WORKFLOW.md) | [knowledge-base-organization.md](docs/development/knowledge/knowledge-base-organization.md) |
 | **做题验证** | [WORKFLOW.md 第7节](docs/WORKFLOW.md) | ⚠️ [交互优化指南.md](docs/knowledge-base/methodology/交互优化指南.md) |
 | 任务报告 | [WORKFLOW.md 第8节](docs/WORKFLOW.md) | [project-management/README.md](docs/project-management/README.md) |
-| Git操作 | [git-workflow.md](docs/development/git-workflow.md) | - |
+| Git操作 | [git-workflow.md](docs/development/workflow/git-workflow.md) | - |
 | 项目维护 | [PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md) | - |
-| OCR识别 | [ocr.md](docs/development/ocr.md) | - |
-| 飞书API | [feishu-api.md](docs/development/feishu-api.md) | - |
+| OCR识别 | [ocr.md](docs/development/tools/ocr.md) | - |
+| 飞书API | [feishu-api.md](docs/development/api/feishu-api.md) | - |
 
 ## 文档同步清单
 

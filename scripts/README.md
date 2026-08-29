@@ -1,99 +1,313 @@
-# 脚本说明
+# 脚本索引（Scripts Reference）
 
-本目录存放项目所有可执行脚本（Python、Shell），统一管理，不分散在各子目录。
+> **文档类型**：Reference（参考资料 — 脚本说明）
+> **更新频率**：新增/修改脚本时
+> **维护者**：AI自动维护
+> **读者**：AI代理（执行任务前查脚本用途）和人类（了解脚本功能）
 
-## 脚本清单
+本文档是项目所有脚本的完整索引，按功能分类。每个脚本说明用途、用法、可靠性、相关文档。
 
-| 脚本 | 类型 | 用途 | 用法 |
-|------|------|------|------|
-| `baidu_upload.py` | Python | 百度网盘分片上传大文件（4MB分片，MD5秒传） | `BAIDU_ENC_PASS=<密码> python3 scripts/baidu_upload.py <本地文件> <网盘路径>` |
-| `batch_upload.sh` | Shell | 批量上传视频到百度网盘（iTerm运行，断点续传） | `bash scripts/batch_upload.sh` |
-| `upload_course.sh` | Shell | 课程目录批量上传（自动过滤技术过程文档，递归遍历目录） | `bash scripts/upload_course.sh <本地课程目录> <网盘课程目录>` |
-| `transcribe_pipeline.py` | Python | 单视频音频转文字（FunASR + VAD，输出transcript.md/json） | `python3 scripts/transcribe_pipeline.py <视频路径> <输出目录>` |
-| `batch_transcribe.sh` | Shell | 批量视频转写（iTerm运行，自动依次处理，断点续传） | `bash scripts/batch_transcribe.sh` |
-| `batch_ocr.sh` | Shell | 批量PDF OCR（macOS Vision框架，输出合并Markdown） | `bash scripts/batch_ocr.sh` |
-| `secrets.sh` | Shell | 密钥加密/解密工具（AES-256-CBC，GitHub Token和百度网盘凭证） | `./scripts/secrets.sh encrypt/decrypt/gh-auth/baidu` |
-| `setup-data-symlink.sh` | Shell | 创建/调整 data/高顿 符号链接（跨电脑数据目录路径不同） | `./scripts/setup-data-symlink.sh [路径] [--check]` |
-| `setup-transcription-env.sh` | Shell | 新电脑一键搭建音频转写环境（FunASR虚拟环境） | `./scripts/setup-transcription-env.sh [Python版本] [--check]` |
-| `pre-commit` | Shell | Git pre-commit hook源文件（大文件/敏感信息检查） | 复制到 `.git/hooks/pre-commit` 生效 |
-| `capture_key.js` | JavaScript | Playwright注入Worker hook捕获HLS AES密钥（SD/FHD） | `npx playwright cli -s=<session> run-code scripts/capture_key.js` |
-| `download_decrypt.js` | JavaScript | 下载HLS分片并AES-128解密合并为.ts文件 | `node scripts/download_decrypt.js <m3u8路径> <输出.ts> <分片目录> <key> <iv> [并发数]` |
-| `compress.sh` | Shell | ffmpeg压缩.ts为H.265 MP4（CRF30，iTerm显示进度） | `bash scripts/compress.sh <input.ts> <output.mp4> [crf]` |
-| `playwright_connect.sh` | Shell | Playwright连接脚本（自动检测并处理连接确认） | `bash scripts/playwright_connect.sh` |
+---
 
-## 脚本分类
+## 脚本总览（19个）
 
-### 视频下载与处理
-- `capture_key.js` - 捕获HLS AES密钥（Playwright Worker hook注入）
-- `download_decrypt.js` - 下载分片并解密合并（Node.js，AES-128-CBC）
-- `compress.sh` - ffmpeg压缩为H.265 MP4（CRF30，iTerm显示进度）
-- `transcribe_pipeline.py` - 单视频转写（核心逻辑）
-- `batch_transcribe.sh` - 批量转写（调用 transcribe_pipeline.py，循环处理）
-- `batch_ocr.sh` - 批量OCR（讲义文档）
+| 分类 | 脚本数 | 说明 |
+|------|--------|------|
+| 做题自动化 | 3 | 单选题、多选题、交卷 |
+| 视频处理 | 2 | 下载解密、压缩 |
+| 音频转写 | 3 | 单文件转写、批量转写、环境搭建 |
+| OCR文字提取 | 1 | 批量OCR |
+| 百度网盘上传 | 3 | 单文件上传、批量上传、课程上传 |
+| 环境与工具 | 4 | Playwright连接、密钥管理、数据符号链接、pre-commit |
+| 检查与验证 | 2 | 目录结构检查、知识库结构检查 |
+| 数据采集 | 2 | 按键捕获、解析采集 |
 
-### 百度网盘
-- `baidu_upload.py` - 单文件分片上传（核心逻辑，4MB分片+MD5秒传）
-- `batch_upload.sh` - 批量上传视频（调用 baidu_upload.py，循环处理多个视频）
-- `upload_course.sh` - 课程目录批量上传（递归遍历目录，自动过滤技术过程文档）
+---
 
-> **文件过滤原则**：`upload_course.sh` 自动过滤技术过程文档（VERIFICATION_*.md、transcript.json、*.tmp、*.log），只上传面向使用者的内容。详细原则见 [PROJECT_MAINTENANCE.md 第九章](../docs/project-management/standards/PROJECT_MAINTENANCE.md)。
+## 一、做题自动化（3个）
 
-> **单文件+批量分工模式**：核心逻辑用 Python（功能强、可复用），批量调度用 Shell（简单、支持断点续传、iTerm显示进度）。同样的模式还有 `transcribe_pipeline.py` + `batch_transcribe.sh`。
+### `answer_option.sh` — 单选题选项点击
 
-### 环境与配置
-- `setup-data-symlink.sh` - 数据符号链接（跨电脑数据目录路径不同）
-- `setup-transcription-env.sh` - 转写环境搭建（新电脑一键创建FunASR虚拟环境）
-- `secrets.sh` - 密钥管理（加密/解密GitHub Token和百度网盘凭证）
+| 项目 | 说明 |
+|------|------|
+| **用途** | 点击单选题的单个选项（A/B/C/D） |
+| **用法** | `bash scripts/answer_option.sh C` |
+| **可靠性** | ✅ 高（已验证，JavaScript直接点击，不依赖ref） |
+| **相关文档** | `docs/knowledge-base/methodology/交互优化指南.md` |
 
-### Git 钩子
-- `pre-commit` - pre-commit hook源文件（大文件/敏感信息检查，复制到.git/hooks/生效）
+**原理**：通过文本内容匹配选项元素，使用 `element.click()` 直接点击。过滤条件：文本精确匹配、元素可见、top>150（排除导航）、尺寸合理。
 
-## 运行方式
+---
 
-### iTerm 运行（推荐，可看进度）
-批量脚本（batch_*.sh）建议在 iTerm 中运行，可实时查看进度：
-```bash
-cd /path/to/project
-bash scripts/batch_transcribe.sh
-```
+### `answer_multi.sh` — 多选题选项点击
 
-### 后台运行
-单文件脚本可后台运行：
-```bash
-nohup python3 scripts/baidu_upload.py file.mp4 /path/ > /tmp/upload.log 2>&1 &
-```
+| 项目 | 说明 |
+|------|------|
+| **用途** | 点击多选题的多个选项（可传多个参数） |
+| **用法** | `bash scripts/answer_multi.sh A B D` |
+| **可靠性** | ✅ 高（已验证，解决了ref失效问题） |
+| **相关文档** | `docs/knowledge-base/methodology/交互优化指南.md` |
 
-### 环境检查
-```bash
-./scripts/setup-data-symlink.sh --check
-./scripts/setup-transcription-env.sh --check
-```
+**注意**：多选题点击后不会自动跳题，需要手动点击"下一题"。
 
-## 依赖说明
+---
 
-| 脚本 | 依赖 | 安装方式 |
-|------|------|----------|
-| `baidu_upload.py` | Python3, requests | `pip install requests` |
-| `transcribe_pipeline.py` | Python3, funasr, torch | `./scripts/setup-transcription-env.sh` |
-| `batch_ocr.sh` | macOS, Vision框架, pdftoppm | 系统自带 + `brew install poppler` |
-| `secrets.sh` | openssl | 系统自带 |
-| `setup-*.sh` | bash, python3 | 系统自带 |
+### `submit_exam.sh` — 交卷并查看成绩
 
-## 相关文档
+| 项目 | 说明 |
+|------|------|
+| **用途** | 点击交卷按钮，等待成绩页面加载 |
+| **用法** | `bash scripts/submit_exam.sh` |
+| **可靠性** | ✅ 高（已验证） |
+| **相关文档** | `docs/development/workflow/exam-workflow.md` |
 
-| 脚本 | 详细文档 |
-|------|----------|
-| `baidu_upload.py`, `batch_upload.sh` | [docs/development/netdisk-setup.md](../docs/development/netdisk-setup.md) |
-| `transcribe_pipeline.py`, `batch_transcribe.sh` | [docs/development/transcription.md](../docs/development/transcription.md) |
-| `batch_ocr.sh` | [docs/development/ocr.md](../docs/development/ocr.md) |
-| `secrets.sh` | [docs/development/encryption.md](../docs/development/encryption.md) |
-| `pre-commit` | [docs/development/git-workflow.md](../docs/development/git-workflow.md) |
-| `capture_key.js`, `download_decrypt.js`, `compress.sh` | [docs/development/video-processing.md](../docs/development/video-processing.md) |
-| `playwright_connect.sh` | [docs/development/playwright-cli-guide.md](../docs/development/playwright-cli-guide.md) |
+**注意**：交卷前必须检查所有题目已作答（打开答题卡确认无未做题）。
 
-## 注意事项
+---
 
-1. **批量脚本支持断点续传**：已完成的文件会自动跳过，不完整的会重新处理
-2. **密钥不硬编码**：`secrets.sh` 解密时需要用户提供密码，不要硬编码
-3. **路径使用相对路径**：脚本中统一使用项目相对路径，避免硬编码绝对路径
-4. **新增脚本时**：必须在本文档中添加说明，包括用途、用法、依赖、相关文档
+## 二、视频处理（2个）
+
+### `download_decrypt.js` — HLS视频下载解密合并
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 下载高顿网站HLS分片视频，AES-128解密，合并为完整MP4 |
+| **用法** | `node scripts/download_decrypt.js <m3u8_url> <output.mp4>` |
+| **可靠性** | ✅ 高（已验证，支持加密视频） |
+| **相关文档** | `docs/development/tools/video-processing.md` |
+
+**原理**：解析m3u8播放列表，下载所有.ts分片，使用AES-128密钥解密，ffmpeg合并为MP4。
+
+---
+
+### `compress.sh` — 视频批量压缩
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 使用ffmpeg H.265 CRF30压缩视频，支持单文件和批量目录 |
+| **用法** | `bash scripts/compress.sh <input.mp4> <output.mp4>` 或 `bash scripts/compress.sh <input_dir> <output_dir>` |
+| **可靠性** | ✅ 高（已验证，压缩比约8:1） |
+| **相关文档** | `docs/development/tools/video-processing.md` |
+
+**参数**：libx265 / CRF 30 / preset fast / AAC 96k / hvc1标签 / faststart。
+**验证**：压缩后自动检查时长误差<2秒、编码格式、可播放性。
+
+---
+
+## 三、音频转写（3个）
+
+### `transcribe_pipeline.py` — 单视频音频转写
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 从视频提取音频，使用faster-whisper/FunASR转写为文字 |
+| **用法** | `python3 scripts/transcribe_pipeline.py <video.mp4> [output.md]` |
+| **可靠性** | ✅ 中（依赖模型质量，专业术语可能出错） |
+| **相关文档** | `docs/development/tools/transcription.md` |
+
+**输出**：带时间戳的文字稿（Markdown格式）。
+
+---
+
+### `batch_transcribe.sh` — 批量视频转写
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 批量转写目录下所有视频，在iTerm中运行可看实时进度 |
+| **用法** | `bash scripts/batch_transcribe.sh <input_dir> <output_dir>` |
+| **可靠性** | ✅ 中（依赖单文件转写的可靠性） |
+| **相关文档** | `docs/development/tools/transcription.md` |
+
+**注意**：必须在iTerm中运行（`bash scripts/batch_transcribe.sh`），不要在后台运行，方便查看进度和异常。
+
+---
+
+### `setup-transcription-env.sh` — 转写环境搭建
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 创建Python虚拟环境，安装faster-whisper/FunASR及依赖 |
+| **用法** | `bash scripts/setup-transcription-env.sh` |
+| **可靠性** | ✅ 高（首次设置后不需要重复运行） |
+| **相关文档** | `docs/development/tools/transcription.md` |
+
+**输出**：`.venv-transcribe/` 虚拟环境目录（已在.gitignore中忽略）。
+
+---
+
+## 四、OCR文字提取（1个）
+
+### `batch_ocr.sh` — 批量PDF/讲义OCR
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 使用macOS Vision框架批量提取PDF中的文字，支持图片型PDF |
+| **用法** | `bash scripts/batch_ocr.sh <pdf_dir> <output_dir>` |
+| **可靠性** | ✅ 中高（macOS原生OCR，文字清晰时准确率高；表格/图表需AI补充） |
+| **相关文档** | `docs/development/tools/ocr.md` |
+
+**注意**：表格和图表中的文字OCR可能不完整，需要AI视觉模型补充识别。
+
+---
+
+## 五、百度网盘上传（3个）
+
+### `baidu_upload.py` — 单文件上传到百度网盘
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 使用百度网盘API分片上传单个文件 |
+| **用法** | `python3 scripts/baidu_upload.py <local_path> <remote_path>` |
+| **可靠性** | ✅ 高（已验证，支持大文件分片上传） |
+| **相关文档** | `docs/development/api/netdisk-setup.md` |
+
+**注意**：上传时不要通过代理（百度网盘API直连更快）。上传后验证文件大小与本地一致。
+
+---
+
+### `batch_upload.sh` — 批量文件上传
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 批量上传目录下所有文件到百度网盘，保持目录结构 |
+| **用法** | `bash scripts/batch_upload.sh <local_dir> <remote_dir>` |
+| **可靠性** | ✅ 高（依赖baidu_upload.py） |
+| **相关文档** | `docs/development/api/netdisk-setup.md` |
+
+---
+
+### `upload_course.sh` — 完整课程上传
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 上传一个完整课程目录（视频+讲义+文字稿）到百度网盘对应位置 |
+| **用法** | `bash scripts/upload_course.sh <course_name>` |
+| **可靠性** | ✅ 中（依赖目录结构规范） |
+| **相关文档** | `docs/development/api/netdisk-setup.md` |
+
+---
+
+## 六、环境与工具（4个）
+
+### `playwright_connect.sh` — Playwright连接恢复
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 检查Playwright连接状态，失败时自动刷新Token并重连 |
+| **用法** | `bash scripts/playwright_connect.sh` |
+| **可靠性** | ✅ 高（已验证，自动恢复流程） |
+| **相关文档** | `docs/development/tools/playwright-cli-guide.md` 第4节 |
+
+**注意**：连接失败时先运行此脚本自动恢复，**禁止直接要求用户手动操作**。
+
+---
+
+### `secrets.sh` — 加密凭证管理
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 加密/解密敏感凭证（GitHub Token、百度网盘API密钥等） |
+| **用法** | `bash scripts/secrets.sh encrypt <input> <output.enc>` 或 `bash scripts/secrets.sh decrypt <input.enc>` |
+| **可靠性** | ✅ 高（OpenSSL AES-256加密） |
+| **相关文档** | `docs/development/api/encryption.md` |
+
+**规则**：加密文件（*.enc）可以提交到GitHub，明文文件（*.json, *.txt）在.gitignore中忽略。
+
+---
+
+### `setup-data-symlink.sh` — 数据目录符号链接
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 创建/检查 `data/高顿/` 符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`） |
+| **用法** | `bash scripts/setup-data-symlink.sh`（创建）或 `bash scripts/setup-data-symlink.sh --check`（检查） |
+| **可靠性** | ✅ 高（不同电脑可指向不同路径） |
+| **相关文档** | `README.md` 存储分工部分 |
+
+**注意**：`data/` 目录已在.gitignore中忽略，不会提交到GitHub。
+
+---
+
+### `pre-commit` — Git提交前检查
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | Git提交前自动检查：大文件（>50MB）、敏感信息（明文Token）、文件编码 |
+| **用法** | 自动执行（已安装到 `.git/hooks/pre-commit`） |
+| **可靠性** | ✅ 高（不依赖读文档，自动执行） |
+| **相关文档** | `docs/development/workflow/git-workflow.md` |
+
+**安装**：`cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
+
+---
+
+## 七、检查与验证（2个）
+
+### `check_directory_structure.sh` — 目录结构检查
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 检查本地课程目录结构是否符合规范（高顿/CPA/课程库/课程名/章节名/） |
+| **用法** | `bash scripts/check_directory_structure.sh <data_dir>` |
+| **可靠性** | ✅ 中高（基于命名规范检查） |
+| **相关文档** | `docs/project-management/NAMING_CONVENTION.md` |
+
+---
+
+### `check-kb-structure.sh` — 知识库结构检查
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 检查本地知识库文档结构是否符合规范（知识拆解.md + 考试指导.md） |
+| **用法** | `bash scripts/check-kb-structure.sh <kb_dir>` |
+| **可靠性** | ✅ 中（基于文件命名检查） |
+| **相关文档** | `docs/development/knowledge/knowledge-base-organization.md` |
+
+---
+
+## 八、数据采集（2个）
+
+### `capture_key.js` — 按键捕获
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 捕获页面中的加密密钥（用于HLS视频解密） |
+| **用法** | `node scripts/capture_key.js <url>` |
+| **可靠性** | ⚠️ 中（依赖页面结构，可能需要调整） |
+| **相关文档** | `docs/development/tools/video-processing.md` |
+
+---
+
+### `collect_analysis.js` — 解析与用户留言采集
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 从做题页面采集官方解析和用户留言精华 |
+| **用法** | `node scripts/collect_analysis.js <exam_url>` |
+| **可靠性** | ⚠️ 中（依赖页面结构，可能需要滚动加载） |
+| **相关文档** | `docs/development/workflow/exam-workflow.md` |
+
+**注意**：用户留言可能需要向下滚动才能完整加载，脚本在"笔记"关键词处可能截断。
+
+---
+
+## 脚本使用原则
+
+1. **先查本文档再用脚本**：执行任务前，先在本文档中找到对应脚本，了解用途、用法、可靠性
+2. **优先用脚本，不手动写命令**：已有脚本的功能，必须用脚本，不要手动写JavaScript或curl
+3. **做题必须用脚本**：`answer_option.sh` / `answer_multi.sh` / `submit_exam.sh`，禁止手动写ref点击
+4. **批量任务在iTerm中运行**：`batch_transcribe.sh`、`batch_ocr.sh`、`compress.sh`（批量模式）必须在iTerm中运行，不要后台运行
+5. **新增脚本必须更新本文档**：新增脚本时，必须在本文档对应分类中添加说明（用途/用法/可靠性/相关文档）
+
+---
+
+## 维护规则
+
+1. **新增脚本时**：在本文档对应分类中添加条目，说明用途、用法、可靠性、相关文档
+2. **修改脚本时**：更新本文档中对应条目的用法和可靠性说明
+3. **删除脚本时**：从本文档中移除条目，并检查是否有其他文档引用该脚本
+4. **定期检查**：每次大阶段完成后，检查本文档与实际脚本是否一致（`ls scripts/` 对比）
+
+---
+
+*本文档是项目脚本的唯一权威索引，所有新增/修改/删除脚本时必须同步更新。*

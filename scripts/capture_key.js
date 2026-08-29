@@ -94,7 +94,7 @@ async (page) => {
   await page.waitForTimeout(8000);
 
   // Step 5: extract all keys and m3u8 URLs
-  const result = await page.evaluate(() => {
+  const streamsJson = await page.evaluate(() => {
     const msgs = window.__workerData || [];
     // initHls messages contain m3u8 URLs
     const inits = msgs.filter(m => m.msg && m.msg.type === 'initHls');
@@ -118,8 +118,9 @@ async (page) => {
         keyBytes: keyBytes ? Array.from(keyBytes) : null
       });
     }
-    return JSON.stringify({ fhdSwitch: fhdResult, streams }, null, 2);
+    return JSON.stringify(streams);
   });
 
-  return result;
+  const streams = JSON.parse(streamsJson);
+  return JSON.stringify({ fhdSwitch: fhdResult, streams }, null, 2);
 }

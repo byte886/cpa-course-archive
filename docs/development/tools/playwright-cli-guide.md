@@ -1,5 +1,10 @@
 # Playwright CLI 使用指南
 
+> **文档类型**：Task（操作指南）
+> **更新频率**：工具变更时
+> **维护者**：AI自动维护
+> **读者**：AI代理
+
 > 本文档记录 Playwright CLI 的正确用法、常见错误和最佳实践。
 > 每次遇到新的问题或错误时，应及时更新本文档。
 
@@ -240,7 +245,7 @@ PURE_TOKEN=$(echo "$NEW_TOKEN" | sed 's/PLAYWRIGHT_MCP_EXTENSION_TOKEN=//')
 
 # 步骤4：设置环境变量并重新连接
 export PLAYWRIGHT_MCP_EXTENSION_TOKEN="$PURE_TOKEN"
-npx playwright cli -s=ga open
+npx playwright cli -s=ga attach --extension=chrome
 ```
 
 ### 4.3 注意事项
@@ -256,7 +261,19 @@ npx playwright cli -s=ga open
 |----------|----------|----------|----------|
 | 2026-08-28 | JK0HlLRvp68DTxJKai2ZT6UHw3u6hnUwFugi8NkQc6g | ABG0ojdWZTmQzZ1nnntl9yQYJPin7nDzTdI-UCzs4xw | 测试自动刷新流程 |
 
-## 四、最佳实践
+### 4.5 常用话术
+
+用户可以直接复制以下话术触发 Token 刷新流程：
+
+> `刷新Playwright token`
+
+或
+
+> `Playwright连接失败，帮我刷新token`
+
+AI 收到后，应自动执行 4.2 中的步骤1（用 AppleScript 打开扩展状态页面并点击刷新按钮），然后自动获取新 token 并重新连接。
+
+## 五、最佳实践
 
 ### 4.1 命令执行前检查
 
@@ -310,7 +327,7 @@ sleep 2
 npx playwright cli -s=ga tab-list
 ```
 
-## 五、命令速查表
+## 六、命令速查表
 
 | 操作 | 正确命令 | 常见错误 |
 |------|----------|----------|
@@ -328,7 +345,7 @@ npx playwright cli -s=ga tab-list
 | 断开连接 | `detach` | - |
 | 关闭浏览器 | `close` | - |
 
-## 六、相关文档
+## 七、相关文档
 
 - [video-processing.md](./video-processing.md) — 视频处理详细指南（包含 Playwright 捕获密钥的步骤）
 - [exam-workflow.md](./exam-workflow.md) — 做题流程与交互规范（包含页面管理原则）

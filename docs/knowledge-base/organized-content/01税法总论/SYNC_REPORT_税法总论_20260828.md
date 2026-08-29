@@ -1,5 +1,10 @@
 # 知识库同步输出报告：税法总论
 
+> **文档类型**：Active（过程记录）
+> **更新频率**：每次同步/验证后
+> **维护者**：AI自动维护
+> **读者**：AI代理+人类
+
 ## 报告基本信息
 
 | 项目 | 内容 |
@@ -219,8 +224,8 @@
 | 本地考试指导.md | `docs/knowledge-base/organized-content/01税法总论/考试指导.md` |
 | 飞书知识本身：税法总论 | https://zcnjheoajxng.feishu.cn/wiki/M763wvGcnigwWVkqaOIcDbxPnib |
 | 飞书考试指导：税法总论 | https://zcnjheoajxng.feishu.cn/wiki/YfOmwNUp7irm9akqy88ckmknnyg |
-| 知识库来源清单 | `docs/development/knowledge-base-sources.md` |
-| 知识库组织规范 | `docs/development/knowledge-base-organization.md` |
+| 知识库来源清单 | `docs/development/knowledge/knowledge-base-sources.md` |
+| 知识库组织规范 | `docs/development/knowledge/knowledge-base-organization.md` |
 | 工作流文档 | `docs/WORKFLOW.md` |
 
 ### 8.2 同步命令参考

@@ -106,4 +106,4 @@
 ---
 
 > 本验证报告由自动化对比生成，验证结果客观可追溯。
-> 规范参考：docs/development/knowledge-base-organization.md
+> 规范参考：docs/development/knowledge/knowledge-base-organization.md

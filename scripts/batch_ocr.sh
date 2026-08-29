@@ -2,13 +2,46 @@
 # 高顿课程PDF批量OCR脚本
 # 使用macOS Vision框架，将PDF每页转图片后OCR，输出合并的Markdown
 # 在iTerm中运行，显示进度，支持断点续传
+#
+# 用法:
+#   bash scripts/batch_ocr.sh <PDF路径> [输出目录]
+#   示例: bash scripts/batch_ocr.sh "课程/docs/讲义.pdf" "课程/docs"
+#
+# 如果不提供参数，使用默认配置（需手动修改下方DEFAULT_*变量）
 
 # 不用set -e，避免iTerm环境下某个命令失败导致整个脚本退出
 
-# 配置
-PDF_PATH="$HOME/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_税法全面精讲01-税法总论/docs/01-课件_税法总论.pdf"
-OUTPUT_DIR="$HOME/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_税法全面精讲01-税法总论/docs"
-OUTPUT_MD="$OUTPUT_DIR/讲义文字稿.md"
+# 默认配置（不提供参数时使用）
+DEFAULT_PDF_PATH="$HOME/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_税法全面精讲01-税法总论/docs/01-课件_税法总论.pdf"
+DEFAULT_OUTPUT_DIR="$HOME/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）/01_税法全面精讲01-税法总论/docs"
+
+# 参数处理
+if [ $# -ge 1 ]; then
+  PDF_PATH="$1"
+else
+  PDF_PATH="$DEFAULT_PDF_PATH"
+fi
+
+if [ $# -ge 2 ]; then
+  OUTPUT_DIR="$2"
+else
+  OUTPUT_DIR="$(dirname "$PDF_PATH")"
+fi
+
+# 自动生成输出文件名
+PDF_BASENAME=$(basename "$PDF_PATH" .pdf)
+OUTPUT_MD="$OUTPUT_DIR/${PDF_BASENAME}_OCR.md"
+
+# 自动检测Python路径（优先使用项目venv）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+VENV_PYTHON="$PROJECT_DIR/transcription/venv/bin/python"
+if [ -x "$VENV_PYTHON" ]; then
+  PYTHON="$VENV_PYTHON"
+else
+  PYTHON="python3"
+fi
+
 TEMP_DIR="/tmp/gaodun_ocr_pages"
 OCR_BIN="/tmp/ocr_vision"
 DPI=200
@@ -20,22 +53,38 @@ if [ ! -f "$OCR_BIN" ]; then
   exit 1
 fi
 
+# 检查PDF文件是否存在
+if [ ! -f "$PDF_PATH" ]; then
+  echo "[错误] PDF文件不存在: $PDF_PATH"
+  echo "用法: bash scripts/batch_ocr.sh <PDF路径> [输出目录]"
+  exit 1
+fi
+
+# 创建输出目录
+mkdir -p "$OUTPUT_DIR"
+
 # 创建临时目录
 mkdir -p "$TEMP_DIR"
 
 # 获取PDF页数
-TOTAL_PAGES=$(python3 -c "
+TOTAL_PAGES=$("$PYTHON" -c "
 import pymupdf
 doc = pymupdf.open('$PDF_PATH')
 print(len(doc))
 doc.close()
 ")
 
+if [ -z "$TOTAL_PAGES" ] || [ "$TOTAL_PAGES" -eq 0 ]; then
+  echo "[错误] 无法获取PDF页数，可能是pymupdf未安装或PDF文件损坏"
+  exit 1
+fi
+
 echo "============================================"
 echo "  高顿课程PDF批量OCR"
 echo "  PDF: $(basename "$PDF_PATH")"
 echo "  总页数: $TOTAL_PAGES"
 echo "  输出: $OUTPUT_MD"
+echo "  Python: $PYTHON"
 echo "  开始时间: $(date '+%Y-%m-%d %H:%M:%S')"
 echo "============================================"
 echo ""
@@ -46,7 +95,7 @@ SKIPPED=0
 FAILED=0
 
 # 初始化输出文件
-echo "# 01-课件_税法总论（OCR文字稿）" > "$OUTPUT_MD"
+echo "# ${PDF_BASENAME}（OCR文字稿）" > "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
 echo "> 自动OCR识别 | 共${TOTAL_PAGES}页 | 使用macOS Vision框架" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
@@ -72,7 +121,7 @@ for ((page=1; page<=TOTAL_PAGES; page++)); do
   
   # 步骤1：PDF转图片
   if [ ! -f "$IMG_PATH" ]; then
-    python3 -c "
+    "$PYTHON" -c "
 import pymupdf
 doc = pymupdf.open('$PDF_PATH')
 page = doc[$page-1]

@@ -82,10 +82,10 @@
 ### 实例
 
 WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解为：
-- `docs/development/git-workflow.md`（Git 工作流）
-- `docs/development/transcription.md`（音频转文字）
-- `docs/development/ocr.md`（OCR 文字提取）
-- `docs/development/netdisk-setup.md`（百度网盘集成）
+- `docs/development/workflow/git-workflow.md`（Git 工作流）
+- `docs/development/tools/transcription.md`（音频转文字）
+- `docs/development/tools/ocr.md`（OCR 文字提取）
+- `docs/development/api/netdisk-setup.md`（百度网盘集成）
 - WORKFLOW.md 只保留总体流程和索引链接
 
 ---
@@ -106,6 +106,32 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 - 操作指南和参考分开："怎么做"和"参数是什么"不要混在一篇
 - 教程和操作指南分开：教程假设零基础，操作指南假设已有基础
 - 写文档前先判断：读者读这篇文档是想学习、想完成任务、想查参数、还是想理解概念？
+
+### 文档类型标注（强制）
+
+**每个文档开头必须标注类型**，格式如下：
+
+```markdown
+# 文档标题
+
+> **文档类型**：Task（操作指南）/ Concept（概念说明）/ Reference（参考资料）/ Governance（治理规范）/ Active（过程记录）/ Knowledge（知识内容）
+> **更新频率**：每次流程变更时 / 每月定期 / 按需
+> **维护者**：AI自动维护 / AI+用户审核 / 用户维护
+> **读者**：AI代理 / 人类 / AI+人类
+```
+
+**本项目使用的文档类型**：
+
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| **Governance** | 治理规范，AI必须遵守的规则 | AGENTS.md, 项目维护规范, 质量保证规范 |
+| **Task** | 操作指南，教你怎么做 | WORKFLOW.md, 视频处理指南, 做题交互优化指南 |
+| **Concept** | 概念说明，解释是什么 | README.md, 知识库组织结构说明 |
+| **Reference** | 参考资料，查事实用 | DOCUMENTATION_MAP.md, 脚本说明, 命名规范 |
+| **Active** | 过程记录，做了什么 | TASK_STATUS.md, 做题记录, 验证报告 |
+| **Knowledge** | 知识内容，学什么用 | 知识拆解.md, 考试指导.md |
+
+**已完成类型标注的核心文档**：AGENTS.md (Governance), README.md (Concept), WORKFLOW.md (Task), DOCUMENTATION_MAP.md (Reference)。其他文档在后续维护中逐步补充标注。
 
 ---
 
@@ -301,6 +327,50 @@ find . -name "*.md" -not -path "*/.git/*" -not -path "*/venv/*" -exec wc -c {} \
 - ✅ 互联网分享权限设置
 - 🔄 做题验证知识库（完成作业+错题反馈）
 - ⏳ 测试报告生成
+
+---
+
+## 十一、状态查询协议触发机制
+
+### 11.1 触发场景
+
+当用户询问项目状态、任务、问题、维护工作等信息时，AI必须触发状态查询协议，而不是凭记忆或猜测回答。
+
+**典型触发话术**（包括但不限于）：
+- "还有什么要做的"、"当前进度"、"下一步是什么" → Q1 任务状态查询
+- "有什么问题"、"有哪些bug"、"有什么异常" → Q2 问题/BUG查询
+- "需要做什么维护"、"有什么待优化"、"定期检查什么" → Q3 维护工作查询
+- "某某文档在哪里"、"怎么操作某某"、"流程是什么" → Q4 文档/操作查询
+- "项目现在什么情况"、"总结一下"、"整体进度" → Q5 项目概览查询
+- "为什么这样做"、"之前做了什么决定" → Q6 决策/历史查询
+- "刷新Playwright token" → 自动化token刷新流程
+
+### 11.2 执行流程
+
+1. **识别意图**：根据模糊表达映射表，判断用户查询属于哪一类（Q1-Q6）
+2. **读取权威文档**：根据意图，读取对应的权威文档（TASK_STATUS / ISSUES / PROJECT_MAINTENANCE / DOCUMENTATION_MAP / README / ADR）
+3. **结构化响应**：按标准响应格式回答，不凭记忆或猜测
+4. **意图不明确时**：主动给用户2-3个选项，让用户选择，而不是猜测
+
+### 11.3 权威文档对应关系
+
+| 查询意图 | 权威文档 | 说明 |
+|----------|----------|------|
+| Q1 任务状态 | `docs/project-management/active/TASK_STATUS.md` | 唯一任务状态来源 |
+| Q2 问题/BUG | `docs/project-management/active/ISSUES.md` | 问题跟踪唯一来源 |
+| Q3 维护工作 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` + TASK_STATUS待优化项 | 维护规范和待优化项 |
+| Q4 文档/操作 | `docs/DOCUMENTATION_MAP.md` + `docs/WORKFLOW.md` | 文档索引和工作流 |
+| Q5 项目概览 | `README.md` + `TASK_STATUS.md` | 项目介绍和任务状态 |
+| Q6 决策/历史 | `docs/project-management/decisions/ADR-*.md` | 架构决策记录 |
+
+### 11.4 完整协议文档
+
+详细的查询意图分类、模糊表达映射表、标准响应格式见：
+`docs/project-management/standards/PROJECT_STATUS_QUERY.md`
+
+常用查询话术速查表（27条）见：
+- `README.md` 常用查询话术表格（精简版，7条最常用）
+- `docs/project-management/standards/PROJECT_STATUS_QUERY.md` 第零节（完整版，27条）
 
 ---
 

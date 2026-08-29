@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
-"""百度网盘文件上传脚本 - 分片上传大文件
+"""百度网盘文件管理脚本 - 上传、列出、重命名、删除、创建目录
 
 用法:
-  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py <本地文件> <网盘路径> [token]
+  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py upload <本地文件> <网盘路径>
+  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py list <网盘目录>
+  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py rename <网盘路径> <新名称>
+  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py delete <网盘路径>
+  BAIDU_ENC_PASS=lover123 python3 baidu_upload.py mkdir <网盘目录>
+
+兼容旧用法: python3 baidu_upload.py <本地文件> <网盘路径> [token]
 
 网盘路径必须以 /apps/CPA课程归档/ 开头。
 直连百度服务器（国内服务，不走代理）。
@@ -168,23 +174,114 @@ def mkdir_p(remote_dir, token):
             print(f"  mkdir {current} returned: {result}")
 
 
+def list_files(remote_dir, token):
+    """列出网盘目录下的文件和子目录"""
+    import urllib.parse
+    url = f"{API_BASE}?method=list&access_token={token}&dir={urllib.parse.quote(remote_dir)}&web=web"
+    cmd = ["curl", "-s", "--connect-timeout", "10", url]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    data = json.loads(result.stdout)
+    if data.get("errno") != 0:
+        print(f"List failed: {data}", file=sys.stderr)
+        return []
+    items = data.get("list", [])
+    for item in items:
+        t = "目录" if item["isdir"] else f"{item['size']}B"
+        print(f"  {item['server_filename']} ({t})")
+    return items
+
+
+def rename_file(remote_path, new_name, token):
+    """重命名网盘文件或目录（使用 filemanager API）"""
+    filelist = json.dumps([{"path": remote_path, "newname": new_name}])
+    result = curl_api(API_BASE, {
+        "method": "filemanager",
+        "access_token": token,
+        "opera": "rename",
+    }, {
+        "filelist": filelist,
+    })
+    if result.get("errno") == 0:
+        print(f"  Renamed: {remote_path} -> {new_name}")
+    else:
+        print(f"  Rename failed: {result}", file=sys.stderr)
+    return result
+
+
+def delete_file(remote_path, token):
+    """删除网盘文件或目录（使用 filemanager API）"""
+    filelist = json.dumps([remote_path])
+    result = curl_api(API_BASE, {
+        "method": "filemanager",
+        "access_token": token,
+        "opera": "delete",
+    }, {
+        "filelist": filelist,
+    })
+    if result.get("errno") == 0:
+        print(f"  Deleted: {remote_path}")
+    else:
+        print(f"  Delete failed: {result}", file=sys.stderr)
+    return result
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
 
-    local_file = sys.argv[1]
-    remote_file = sys.argv[2]
-    token = sys.argv[3] if len(sys.argv) > 3 else get_token()
+    command = sys.argv[1]
+    token = get_token()
 
-    if not os.path.isfile(local_file):
-        print(f"File not found: {local_file}", file=sys.stderr)
-        sys.exit(1)
+    # 兼容旧用法: python3 baidu_upload.py <本地文件> <网盘路径>
+    if command not in ("upload", "list", "rename", "delete", "mkdir"):
+        local_file = sys.argv[1]
+        remote_file = sys.argv[2]
+        if not os.path.isfile(local_file):
+            print(f"File not found: {local_file}", file=sys.stderr)
+            sys.exit(1)
+        remote_dir = os.path.dirname(remote_file)
+        if remote_dir and remote_dir != "/":
+            print(f"Ensuring directory: {remote_dir}")
+            mkdir_p(remote_dir, token)
+        upload_file(local_file, remote_file, token)
+        sys.exit(0)
 
-    # 确保远程目录存在
-    remote_dir = os.path.dirname(remote_file)
-    if remote_dir and remote_dir != "/":
-        print(f"Ensuring directory: {remote_dir}")
-        mkdir_p(remote_dir, token)
+    if command == "upload":
+        if len(sys.argv) < 4:
+            print("用法: baidu_upload.py upload <本地文件> <网盘路径>", file=sys.stderr)
+            sys.exit(1)
+        local_file = sys.argv[2]
+        remote_file = sys.argv[3]
+        if not os.path.isfile(local_file):
+            print(f"File not found: {local_file}", file=sys.stderr)
+            sys.exit(1)
+        remote_dir = os.path.dirname(remote_file)
+        if remote_dir and remote_dir != "/":
+            print(f"Ensuring directory: {remote_dir}")
+            mkdir_p(remote_dir, token)
+        upload_file(local_file, remote_file, token)
 
-    upload_file(local_file, remote_file, token)
+    elif command == "list":
+        if len(sys.argv) < 3:
+            print("用法: baidu_upload.py list <网盘目录>", file=sys.stderr)
+            sys.exit(1)
+        list_files(sys.argv[2], token)
+
+    elif command == "rename":
+        if len(sys.argv) < 4:
+            print("用法: baidu_upload.py rename <网盘路径> <新名称>", file=sys.stderr)
+            sys.exit(1)
+        rename_file(sys.argv[2], sys.argv[3], token)
+
+    elif command == "delete":
+        if len(sys.argv) < 3:
+            print("用法: baidu_upload.py delete <网盘路径>", file=sys.stderr)
+            sys.exit(1)
+        delete_file(sys.argv[2], token)
+
+    elif command == "mkdir":
+        if len(sys.argv) < 3:
+            print("用法: baidu_upload.py mkdir <网盘目录>", file=sys.stderr)
+            sys.exit(1)
+        mkdir_p(sys.argv[2], token)

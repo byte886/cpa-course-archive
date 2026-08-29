@@ -1,5 +1,10 @@
 # 课程内容索引
 
+> **文档类型**：Reference（参考资料）
+> **更新频率**：课程变更时
+> **维护者**：AI自动维护
+> **读者**：AI代理
+
 记录每个讲次的标题、文件位置和知识库链接。
 
 ## 字段说明
@@ -26,8 +31,8 @@
 | # | 讲次 | 日期 | 视频 | 文档 | 转写 | 网盘 | 知识库 |
 |---|------|------|------|------|------|------|--------|
 | 00 | 开班典礼&规划方法 | 2026-03-10 | pending | pending | pending | pending | pending |
-| 01 | 税法全面精讲01-税法总论 | 2026-03-13 | uploaded | done | pending | done | pending |
-| 02 | 税法全面精讲02-消费税法（1） | 2026-03-17 | pending | pending | pending | pending | pending |
+| 01 | 税法全面精讲01-税法总论 | 2026-03-13 | uploaded | done | done | done | done |
+| 02 | 税法全面精讲02-消费税法（1） | 2026-03-17 | uploaded | done+ocr | done | done | synced |
 | 03 | 税法全面精讲03-消费税法（2） | 2026-03-20 | pending | pending | pending | pending | pending |
 | 04 | 税法全面精讲04-消费税（3）、城市维护建设税和烟叶税、关税和船舶吨税（1） | 2026-03-24 | pending | pending | pending | pending | pending |
 | 05 | 税法全面精讲05-关税和船舶吨税（2） | 2026-03-27 | pending | pending | pending | pending | pending |

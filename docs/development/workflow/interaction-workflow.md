@@ -1,5 +1,10 @@
 # 通用交互流程与优化规范
 
+> **文档类型**：Task（操作指南）
+> **更新频率**：流程变更时
+> **维护者**：AI自动维护
+> **读者**：AI代理
+
 > 本文档记录高顿平台（GlivePro）及其他Web应用自动化交互的通用流程规范、优化经验和踩坑总结。
 > 适用于：做题、模考、视频播放、文档下载等所有需要通过Playwright CLI进行Web交互的场景。
 > 特定场景的详细流程请参考对应文档（如做题流程参考 `exam-workflow.md`）。
@@ -333,6 +338,40 @@ playwright cli -s=<session> tab-select 1
 | Chrome无响应 | 所有命令超时 | 第四级（重启Chrome/豆包） |
 | 网络问题 | 页面加载失败 | 第四级（检查网络） |
 
+### 4.6 入口找不到时的处理流程（3次尝试原则，强制执行）
+
+**适用场景**：在课程表、学习空间、题库等页面中找不到目标入口（如课后练习、试卷、视频、文档下载等）。
+
+**处理流程（必须严格执行，不得跳过）**：
+
+1. **第1次尝试**：使用当前方法查找目标入口
+   - 检查页面是否完全加载
+   - 使用 `snapshot` 或 `find` 查找目标关键词
+   - 滚动页面查看是否在可视区域外
+
+2. **第2次尝试**：换一种方法查找
+   - 使用 JavaScript (`eval`/`run-code`) 查找包含目标关键词的可点击元素
+   - 点击展开相关课程/章节的详情
+   - 检查是否有折叠/展开的内容
+
+3. **第3次尝试**：再换一种方法查找
+   - 刷新页面后重新查找
+   - 从其他入口（如学习空间、题库首页）导航到目标页面
+   - 检查页面是否有标签页切换、筛选条件等影响显示
+
+4. **3次都找不到**：停止尝试，向用户说明情况并请求协助
+   - 说明已经尝试了哪3种方法
+   - 询问用户目标入口的位置或直接URL
+   - 不得在未尝试3次的情况下就问用户
+
+**禁止行为**：
+- ❌ 第1次找不到就问用户
+- ❌ 3次尝试使用同一种方法（必须换方法）
+- ❌ 不记录尝试过程就放弃
+
+**已验证场景**：
+- 高顿课程表查找课后练习入口：3次尝试（snapshot查找、JavaScript查找、刷新页面）后仍找不到，需用户协助
+
 ## 五、多轮迭代测试优化流程
 
 ### 5.1 触发条件
@@ -481,10 +520,10 @@ playwright cli -s=<session> tab-select 1
 
 ### 6.2 相关文档
 
-- 做题流程：`docs/development/exam-workflow.md`
-- Playwright CLI使用指南：`docs/development/playwright-cli-guide.md`
-- 知识库组织：`docs/development/knowledge-base-organization.md`
-- 知识库来源：`docs/development/knowledge-base-sources.md`
+- 做题流程：`docs/development/workflow/exam-workflow.md`
+- Playwright CLI使用指南：`docs/development/tools/playwright-cli-guide.md`
+- 知识库组织：`docs/development/knowledge/knowledge-base-organization.md`
+- 知识库来源：`docs/development/knowledge/knowledge-base-sources.md`
 
 ### 6.3 快速索引
 

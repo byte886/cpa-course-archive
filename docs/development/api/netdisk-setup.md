@@ -1,5 +1,10 @@
 # 百度网盘开放平台接入文档
 
+> **文档类型**：Reference（参考资料）
+> **更新频率**：API变更时
+> **维护者**：AI自动维护
+> **读者**：AI代理
+
 ## 概述
 
 通过百度网盘开放平台 API 实现课程视频和文档的自动上传、目录管理。应用名称：**CPA课程归档**，类型：个人开发者/软件/学习教育。
@@ -125,17 +130,26 @@ curl -X POST "https://openapi.baidu.com/oauth/2.0/token" \
 
 ### 2.2 目录结构规划
 
+完整命名规范见 [NAMING_CONVENTION.md](../project-management/standards/NAMING_CONVENTION.md)。
+
 ```
 /apps/CPA课程归档/
-├── 税法-蔡俊峻/
-│   ├── 01_税法全面精讲01-税法总论/
-│   │   ├── video.mp4
-│   │   └── docs/
-│   ├── 02_...
-│   └── ...
-└── 会计-罗翔/
-    ├── 01_...
-    └── ...
+└── 高顿/                           ← 教育公司名
+    └── CPA/                        ← 专业名
+        ├── 课程库/                  ← 走完整流程（有知识库）
+        │   └── 【26考季】VIPCPA系列-税法（蔡俊峻老师）/
+        │       ├── 00_开班典礼&规划方法/
+        │       │   ├── video.mp4
+        │       │   ├── transcript.md
+        │       │   ├── 知识拆解.md
+        │       │   ├── 考试指导.md
+        │       │   ├── docs/
+        │       │   └── docs_text/
+        │       └── 01_税法全面精讲01-税法总论/
+        │           └── ...
+        └── 待整理/                  ← 未走完整流程（暂无知识库）
+            └── 【26考季】VIPCPA系列-会计（罗翔老师）/
+                └── ...
 ```
 
 ### 2.3 常用 API
@@ -166,6 +180,22 @@ curl -s "https://pan.baidu.com/rest/2.0/xpan/file?method=list&access_token=<TOKE
 使用 `scripts/baidu_upload.py` 脚本：
 
 ```bash
+# 上传文件
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py upload <本地文件> <网盘路径>
+
+# 列出目录
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py list <网盘目录>
+
+# 重命名文件/目录
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py rename <网盘路径> <新名称>
+
+# 删除文件/目录
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py delete <网盘路径>
+
+# 创建目录
+BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py mkdir <网盘目录>
+
+# 兼容旧用法（等同于 upload）
 BAIDU_ENC_PASS=lover123 python3 scripts/baidu_upload.py <本地文件> <网盘路径>
 ```
 
@@ -178,11 +208,20 @@ curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&acc
   -d 'filelist=["/apps/CPA课程归档/测试目录"]'
 ```
 
-#### 移动/重命名
+#### 重命名文件/文件夹
+
+```bash
+curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&access_token=<TOKEN>&opera=rename" \
+  --data-urlencode 'filelist=[{"path":"/apps/CPA课程归档/旧名","newname":"新名称"}]'
+```
+
+**注意**：参数名是 `newname`，不是 `newtitle`。使用 `method=rename` 端点会返回 31296 internal error，必须使用 `method=filemanager&opera=rename`。
+
+#### 移动文件/文件夹
 
 ```bash
 curl -s -X POST "https://pan.baidu.com/rest/2.0/xpan/file?method=filemanager&access_token=<TOKEN>&opera=move" \
-  -d 'filelist=[{"path":"/apps/CPA课程归档/旧名","dest":"/apps/CPA课程归档/新名"}]'
+  -d 'filelist=[{"path":"/apps/CPA课程归档/旧路径","dest":"/apps/CPA课程归档/新路径"}]'
 ```
 
 ### 2.4 错误码
