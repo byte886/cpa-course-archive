@@ -128,7 +128,7 @@ Closes #123
 
 ### 文档同步清单
 
-每次需求/流程/结构变更时，按 `docs/project-management/DOC_SYNC_CHECKLIST.md` 检查是否需要同步更新相关文档。
+每次需求/流程/结构变更时，按 `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` 检查是否需要同步更新相关文档。
 
 ---
 

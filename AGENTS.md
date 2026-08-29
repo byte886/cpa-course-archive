@@ -76,7 +76,7 @@
 
 ### 3.5 文档同步规则（强制）
 
-每次完成阶段性任务、生成新文档、或变化项目结构时，必须按 `docs/project-management/DOC_SYNC_CHECKLIST.md` 检查并同步相关文档。
+每次完成阶段性任务、生成新文档、或变化项目结构时，必须按 `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` 检查并同步相关文档。
 
 **同步时机**：完成单个讲座流程后 / 完成所有试卷后 / 发现问题并解决后 / 项目结构调整后 / 大阶段完成后
 

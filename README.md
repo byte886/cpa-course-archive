@@ -85,10 +85,10 @@
 
 ```
 项目根目录/
-├── docs/                 # 项目文档（方法论、指导、规范、流程、模板）
+├── docs/                 # 项目文档（只放静态内容：方法论、指导、规范、流程、模板）
+├── project-management/   # 项目管理（动态内容：任务状态、问题跟踪、测试计划、报告）
 ├── knowledge-base/       # 知识库内容（本地源头，同步到飞书）
 ├── scripts/              # 脚本（下载、压缩、转写、上传、做题等）
-├── reports/              # 报告（实际报告）
 ├── transcription/        # 转写工作目录（.gitignore忽略）
 ├── .secrets/             # 加密凭证（加密文件提交到仓库）
 ├── data/                 # 符号链接，指向外部数据目录（.gitignore忽略）
@@ -220,7 +220,7 @@
 
 ## 文档同步清单
 
-每次完成阶段性任务后，按清单检查并同步相关文档。详见 [docs/project-management/DOC_SYNC_CHECKLIST.md](docs/project-management/DOC_SYNC_CHECKLIST.md)。
+每次完成阶段性任务后，按清单检查并同步相关文档。详见 [docs/project-management/standards/DOC_SYNC_CHECKLIST.md](docs/project-management/standards/DOC_SYNC_CHECKLIST.md)。
 
 清单包含：
 - 任务管理类（任务状态、测试计划、课程索引）
