@@ -42,13 +42,13 @@
 | 文件类型 | 放置位置 | 说明 |
 |----------|----------|------|
 | 通用规范/流程 | `docs/` 对应子目录 | 如 QUALITY_ASSURANCE.md、PROJECT_MAINTENANCE.md |
-| 通用模板 | `reports/` 或 `docs/` | 如 REPORT_TEMPLATE.md、VERIFICATION_TEMPLATE.md |
+| 通用模板 | `project-management/task-reports/` 或 `docs/` | 如 REPORT_TEMPLATE.md、VERIFICATION_TEMPLATE.md |
 | 具体课程产出物 | 对应课程目录下 | 如 video.mp4、knowledge.md、transcript.md |
 | 具体课程验证报告 | 对应课程目录下 | 如 VERIFICATION_knowledge.md |
 | 具体课程测试计划 | `docs/project-management/` | 测试计划是项目管理文档，不是课程产出物 |
-| 具体任务报告 | `reports/` 或对应课程目录 | 根据报告性质决定 |
+| 具体任务报告 | `project-management/task-reports/` 或对应课程目录 | 根据报告性质决定 |
 
-**原则**：针对具体课程/讲座的产出物，放在对应课程目录下；通用模板和规范放在 `docs/` 或 `reports/` 下。
+**原则**：针对具体课程/讲座的产出物，放在对应课程目录下；通用模板和规范放在 `docs/` 或 `project-management/task-reports/` 下。
 
 ---
 
@@ -155,8 +155,8 @@
 
 | 查询意图 | 权威文档 | 说明 |
 |----------|----------|------|
-| Q1 任务状态 | `docs/project-management/active/TASK_STATUS.md` | 唯一任务状态来源 |
-| Q2 问题/BUG | `docs/project-management/active/ISSUES.md` | 问题跟踪唯一来源 |
+| Q1 任务状态 | `project-management/active/TASK_STATUS.md` | 唯一任务状态来源 |
+| Q2 问题/BUG | `project-management/active/ISSUES.md` | 问题跟踪唯一来源 |
 | Q3 维护工作 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` + TASK_STATUS待优化项 | 维护规范和待优化项 |
 | Q4 文档/操作 | `docs/DOCUMENTATION_MAP.md` + `docs/WORKFLOW.md` | 文档索引和工作流 |
 | Q5 项目概览 | `README.md` + `TASK_STATUS.md` | 项目介绍和任务状态 |

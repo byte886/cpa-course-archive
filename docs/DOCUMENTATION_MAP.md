@@ -17,7 +17,7 @@
 2. `README.md` — 项目概览、存储分工
 3. `docs/REQUIREMENTS.md` — 项目需求文档（核心诉求、功能需求、验收标准）
 4. `docs/WORKFLOW.md` — 主工作流，找到当前任务所属环节
-5. `docs/project-management/active/TASK_STATUS.md` — 当前任务状态和前置依赖
+5. `project-management/active/TASK_STATUS.md` — 当前任务状态和前置依赖
 
 ### 做题验证前
 1. `docs/development/guides/exam-workflow.md` — 做题流程与交互规范（含交互优化、检查清单、v4 JavaScript方法）
@@ -121,7 +121,7 @@
 | 脚本说明 | `scripts/README.md` | 所有脚本的用途、参数、可靠性 |
 | 开发文档索引 | `docs/development/README.md` | 开发文档快速索引 |
 | 项目管理索引 | `docs/project-management/README.md` | 项目管理文档快速索引 |
-| 报告模板 | `reports/README.md`、`docs/development/templates/REPORT_TEMPLATE.md` | 任务报告模板 |
+| 报告模板 | `project-management/task-reports/README.md`、`docs/development/templates/REPORT_TEMPLATE.md` | 任务报告模板 |
 | 验证报告模板 | `docs/development/templates/VERIFICATION_TEMPLATE.md`、`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md` | 验证报告模板 |
 
 ### 四、过程记录（Active — 做了什么）
@@ -130,17 +130,17 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 任务状态 | `docs/project-management/active/TASK_STATUS.md` | 当前任务进度（唯一权威来源） |
-| 问题/BUG跟踪 | `docs/project-management/active/ISSUES.md` | 未解决问题、已解决问题、潜在风险 |
-| 批量任务状态 | `docs/project-management/active/BATCH_TASK_STATUS.md` | 大任务执行进度、恢复点 |
-| 课程索引 | `docs/project-management/active/COURSE_INDEX.md` | 所有课程清单、进度、资源位置 |
-| 测试计划 | `docs/project-management/test-plans/TEST_PLAN_*.md` | 各课程测试计划 |
-| 验证报告 | `docs/project-management/active/verification-reports/VERIFICATION_*.md` | 各课程验证结果 |
+| 任务状态 | `project-management/active/TASK_STATUS.md` | 当前任务进度（唯一权威来源） |
+| 问题/BUG跟踪 | `project-management/active/ISSUES.md` | 未解决问题、已解决问题、潜在风险 |
+| 批量任务状态 | `project-management/active/BATCH_TASK_STATUS.md` | 大任务执行进度、恢复点 |
+| 课程索引 | `project-management/active/COURSE_INDEX.md` | 所有课程清单、进度、资源位置 |
+| 测试计划 | `project-management/test-plans/TEST_PLAN_*.md` | 各课程测试计划 |
+| 验证报告 | `project-management/verification-reports/VERIFICATION_*.md` | 各课程验证结果 |
 | 决策记录（ADR） | `docs/project-management/decisions/ADR-*.md` | 重要决策的背景、原因、后果 |
 | 做题记录（原始素材） | `knowledge-base/source-materials/*/做题记录_*.md` | 各章节做题过程记录（不要求引用） |
 | 解析与用户留言（原始素材） | `knowledge-base/source-materials/*/解析与用户留言_*.md` | 官方解析和用户留言采集（不要求引用） |
 | 用户笔记精华（原始素材） | `knowledge-base/source-materials/*/用户笔记精华_*.md` | 用户留言精华整理（不要求引用） |
-| 任务报告 | `reports/REPORT_*.md` | 各任务执行报告（不要求引用） |
+| 任务报告 | `project-management/task-reports/REPORT_*.md` | 各任务执行报告（不要求引用） |
 
 ### 五、治理规范（Governance — 规则）
 

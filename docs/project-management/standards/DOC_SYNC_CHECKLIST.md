@@ -30,26 +30,26 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| TASK_STATUS.md | `docs/project-management/active/TASK_STATUS.md` | 当前任务进度、待办事项、完成状态 |
+| TASK_STATUS.md | `project-management/active/TASK_STATUS.md` | 当前任务进度、待办事项、完成状态 |
 | 飞书多维表格 | 在线 | 同步任务状态（与TASK_STATUS.md保持一致） |
 
 ### 2.2 测试计划
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| TEST_PLAN_*.md | `docs/project-management/test-plans/` | 每个课程的测试计划、试卷清单、完成状态 |
+| TEST_PLAN_*.md | `project-management/test-plans/` | 每个课程的测试计划、试卷清单、完成状态 |
 
 ### 2.3 课程索引
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| COURSE_INDEX.md | `docs/project-management/active/COURSE_INDEX.md` | 所有课程的清单、讲座数量、完成进度 |
+| COURSE_INDEX.md | `project-management/active/COURSE_INDEX.md` | 所有课程的清单、讲座数量、完成进度 |
 
 ### 2.4 大任务执行状态
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| BATCH_TASK_STATUS.md | `docs/project-management/active/BATCH_TASK_STATUS.md` | 批量任务的详细进度、当前步骤、检查点、问题记录 |
+| BATCH_TASK_STATUS.md | `project-management/active/BATCH_TASK_STATUS.md` | 批量任务的详细进度、当前步骤、检查点、问题记录 |
 
 > **触发时机**：开始大任务前创建，每完成一个步骤更新，遇到异常记录，恢复任务前读取。详见 `standards/BATCH_TASK_EXECUTION.md`。
 
@@ -74,7 +74,7 @@
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
 | VERIFICATION_*.md | `knowledge-base/organized-content/` | 知识库质量验证报告（做题正确率、覆盖度分析） |
-| VERIFICATION_TEMPLATE.md | `reports/` | 验证报告模板（如有优化则更新） |
+| VERIFICATION_TEMPLATE.md | `project-management/task-reports/` | 验证报告模板（如有优化则更新） |
 
 ---
 

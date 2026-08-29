@@ -37,7 +37,7 @@
 2. **再读 `docs/REQUIREMENTS.md`** — 理解项目目标、功能范围、验收标准
 3. **再读 `docs/WORKFLOW.md` 对应环节** — 找到当前任务所属的流程环节，阅读详细步骤
 4. **按 WORKFLOW 中的「参考文档」链接查阅专项文档** — 如做题交互规范、压缩参数说明等
-5. **最后检查 `docs/project-management/active/TASK_STATUS.md`** — 确认当前任务状态和前置依赖
+5. **最后检查 `project-management/active/TASK_STATUS.md`** — 确认当前任务状态和前置依赖
 
 **参考资料（按需查阅，不需要每次都读）：**
 - `docs/DIRECTORY_STRUCTURE.md` — 目录结构详细说明

@@ -313,13 +313,13 @@
   - 做题结果
   - 缺陷统计（按严重程度和优先级分类）
   - 下一步建议
-- **存放位置**：飞书文档 + 本地 `reports/` 目录
+- **存放位置**：飞书文档 + 本地 `project-management/task-reports/` 目录
 - **验收标准**：每次任务都有报告，内容完整可追溯
 
 #### 2.8.2 任务状态跟踪
 
 - **需求**：实时跟踪任务状态，方便查询和接手
-- **唯一权威来源**：`docs/project-management/active/TASK_STATUS.md`（Markdown文档）
+- **唯一权威来源**：`project-management/active/TASK_STATUS.md`（Markdown文档）
 - **飞书Base**：保留作为可视化模板，供其他同事参考，不日常更新（避免双轨维护）
 - **内容**：
   - 课程列表和进度

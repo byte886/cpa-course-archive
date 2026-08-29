@@ -12,7 +12,7 @@
 ## 目录结构
 
 ```
-docs/project-management/
+docs/project-management/        # 项目管理方法论（静态内容）
 ├── README.md                    # 本文档，项目管理规范总览
 ├── standards/                   # 规范/指南类（教你如何做）
 │   ├── PROJECT_PLAN.md          # 项目计划
@@ -22,20 +22,12 @@ docs/project-management/
 │   ├── PROJECT_STATUS_QUERY.md  # 状态查询协议、意图分类、模糊表达映射
 │   ├── NAMING_CONVENTION.md     # 命名规范（文件、目录、变量）
 │   └── DOC_SYNC_CHECKLIST.md    # 文档同步清单
-├── active/                      # 过程文档类（实际做了什么）
-│   ├── TASK_STATUS.md           # 任务状态（唯一任务状态来源）
-│   ├── BATCH_TASK_STATUS.md     # 大任务执行状态（批量任务的详细进度和恢复点）
-│   ├── COURSE_INDEX.md          # 课程清单索引
-│   ├── ISSUES.md                # 问题/BUG跟踪
-│   └── verification-reports/    # 验证报告
-├── decisions/                   # 决策记录（ADR）
-│   ├── README.md                # ADR索引
-│   └── ADR-*.md                 # 各决策记录
-└── test-plans/                  # 测试计划（每个测试任务一个文件）
-    └── TEST_PLAN_*.md           # 各课程测试计划
+└── decisions/                   # 决策记录（ADR，半静态，只增不改）
+    ├── README.md                # ADR索引
+    └── ADR-*.md                 # 各决策记录
 ```
 
-> **报告类文档**（任务报告、验证报告）统一放在 `reports/` 目录下，详见 `reports/README.md`。
+> **动态内容**（任务状态、问题跟踪、测试计划、报告等）已移到项目根目录下的 `project-management/` 目录，详见 [project-management/README.md](../../project-management/README.md)。
 > **具体课程验证报告**放在对应课程目录下（和被验证对象在一起）。
 
 ---
@@ -44,7 +36,7 @@ docs/project-management/
 
 ### 唯一任务状态来源
 
-**`docs/project-management/active/TASK_STATUS.md`**（Markdown 文档）
+**`project-management/active/TASK_STATUS.md`**（Markdown 文档）
 
 - 所有任务状态、进度、详情以本文档为准
 - AI 助手直接编辑本文档更新任务状态

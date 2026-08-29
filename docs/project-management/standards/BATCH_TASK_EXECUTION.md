@@ -30,7 +30,7 @@
 
 ### 2.1 记录位置
 
-**统一记录在 `docs/project-management/active/BATCH_TASK_STATUS.md`**
+**统一记录在 `project-management/active/BATCH_TASK_STATUS.md`**
 
 - 这是大任务执行状态的唯一来源
 - 所有大任务（批量处理>3个讲次）都必须在此记录

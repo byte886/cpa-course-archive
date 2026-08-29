@@ -17,21 +17,25 @@
 
 ```
 项目根目录/
-├── docs/                          # 项目文档（方法论、指导、规范、流程、模板）
+├── docs/                          # 项目文档（只放静态内容：方法论、指导、规范、流程、模板）
 │   ├── development/               # 开发文档
 │   │   ├── api/                   # API文档（飞书API、百度网盘API）
 │   │   ├── guides/                # 详细操作指南（做题、Git、交互）
 │   │   ├── knowledge/             # 知识库方法论（组织规范、来源清单）
 │   │   ├── templates/             # 模板（知识库模板、父节点模板）
 │   │   └── tools/                 # 工具使用文档（视频处理、转写、OCR、Playwright）
-│   ├── project-management/        # 项目管理
-│   │   ├── active/                # 活动状态（任务状态、问题跟踪、课程索引）
-│   │   ├── decisions/             # 决策记录（ADR）
-│   │   ├── standards/             # 规范文档（命名规范、文档同步、项目维护等）
-│   │   └── test-plans/            # 测试计划
+│   ├── project-management/        # 项目管理方法论（静态）
+│   │   ├── decisions/             # 决策记录（ADR，半静态，只增不改）
+│   │   └── standards/             # 规范文档（命名规范、文档同步、项目维护等）
 │   ├── WORKFLOW.md                # 主工作流（总体流程概览）
 │   ├── REQUIREMENTS.md            # 需求文档
+│   ├── DIRECTORY_STRUCTURE.md     # 目录结构说明
 │   └── DOCUMENTATION_MAP.md       # 文档地图（所有文档索引）
+├── project-management/            # 项目管理（动态内容：任务状态、问题跟踪、测试计划、报告）
+│   ├── active/                    # 活动状态（任务状态、问题跟踪、课程索引）
+│   ├── test-plans/                # 测试计划（按课程生成）
+│   ├── task-reports/              # 任务执行报告（按任务生成）
+│   └── verification-reports/      # 质量验证报告（按验证生成）
 ├── knowledge-base/                # 知识库内容（本地源头，同步到飞书）
 │   ├── organized-content/         # 整理后的知识内容（成品）
 │   │   ├── 通用方法/              # 面向所有课程的通用方法论
@@ -41,7 +45,6 @@
 │       ├── 税法-总论/             # 各课程的做题记录、解析、用户笔记
 │       └── ...
 ├── scripts/                       # 脚本（下载、压缩、转写、上传、做题等）
-├── reports/                       # 报告（实际报告，模板已移到 docs/development/templates/）
 ├── transcription/                 # 转写工作目录（.gitignore忽略）
 ├── .secrets/                      # 加密凭证（加密文件提交到仓库）
 ├── .github/                       # GitHub模板（PR模板、Issue模板）
@@ -91,22 +94,17 @@ cpa-course-archive/
 │   ├── REQUIREMENTS.md       # 需求文档
 │   ├── DOCUMENTATION_MAP.md  # 文档地图
 │   ├── DIRECTORY_STRUCTURE.md # 目录结构详细说明（本文档）
-│   ├── project-management/   # 项目管理
+│   ├── project-management/   # 项目管理方法论（静态）
 │   │   ├── README.md         # 项目管理规范
-│   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
-│   │   ├── active/           # 活跃文档
-│   │   │   ├── TASK_STATUS.md    # 任务状态（唯一任务状态来源）
-│   │   │   ├── ISSUES.md         # 问题跟踪
-│   │   │   └── COURSE_INDEX.md   # 课程清单索引
 │   │   ├── standards/        # 标准规范
 │   │   │   ├── PROJECT_PLAN.md   # 项目计划
 │   │   │   ├── QUALITY_ASSURANCE.md # 质量保证规范
 │   │   │   ├── PROJECT_MAINTENANCE.md # 项目维护规则
 │   │   │   ├── NAMING_CONVENTION.md # 命名规范
 │   │   │   ├── BATCH_TASK_EXECUTION.md # 大任务执行规范
+│   │   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
 │   │   │   └── PROJECT_STATUS_QUERY.md # 状态查询协议
-│   │   ├── decisions/        # 决策记录（ADR）
-│   │   └── test-plans/       # 测试计划
+│   │   └── decisions/        # 决策记录（ADR，半静态，只增不改）
 │   └── development/          # 开发文档
 │       ├── README.md         # 开发文档索引
 │       ├── api/              # API文档
@@ -132,6 +130,20 @@ cpa-course-archive/
 │           ├── REPORT_TEMPLATE.md          # 任务报告模板
 │           ├── VERIFICATION_TEMPLATE.md    # 通用验证报告模板
 │           └── VERIFICATION_TEMPLATE_knowledge_base.md # 知识库验证报告模板
+├── project-management/       # 项目管理（动态内容）
+│   ├── README.md             # 项目管理目录说明
+│   ├── active/               # 活动状态（频繁更新）
+│   │   ├── TASK_STATUS.md    # 任务状态（唯一任务状态来源）
+│   │   ├── ISSUES.md         # 问题跟踪
+│   │   ├── BATCH_TASK_STATUS.md # 批量任务状态
+│   │   └── COURSE_INDEX.md   # 课程清单索引
+│   ├── test-plans/           # 测试计划（按课程生成）
+│   │   └── TEST_PLAN_*.md
+│   ├── task-reports/         # 任务执行报告（按任务生成）
+│   │   ├── README.md         # 报告目录说明
+│   │   └── REPORT_*.md
+│   └── verification-reports/ # 质量验证报告（按验证生成）
+│       └── VERIFICATION_*.md
 ├── knowledge-base/           # 知识库实际内容（本地）
 │   ├── organized-content/    # 整理后的知识内容
 │   │   ├── 通用方法/         # 面向所有课程的通用方法论
@@ -150,9 +162,6 @@ cpa-course-archive/
 │   ├── requirements.txt      # Python依赖清单（新电脑复现环境用）
 │   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）
 │   └── transcripts_full/     # 转写结果输出（gitignore忽略，不提交）
-├── reports/                  # 报告（实际报告）
-│   ├── README.md             # 报告目录说明
-│   └── REPORT_00_开班典礼.md # 实际报告
 ├── data/                     # 符号链接目录（gitignore忽略，不提交）
 │   └── 高顿/                 # 符号链接 → ~/Desktop/高顿/
 └── .git/hooks/
@@ -274,7 +283,7 @@ cat docs/DOCUMENTATION_MAP.md
 | Explanation（解释说明） | `docs/development/knowledge/` | 概念、原理、方法论 |
 | Standard（规范标准） | `docs/project-management/standards/` | 命名规范、质量标准等 |
 | Decision（决策记录） | `docs/project-management/decisions/` | ADR架构决策记录 |
-| Active（活动状态） | `docs/project-management/active/` | 任务状态、问题跟踪等 |
+| Active（活动状态） | `project-management/active/` | 任务状态、问题跟踪等 |
 | Template（模板） | `docs/development/templates/` | 各类文档模板 |
 | Tool（工具文档） | `docs/development/tools/` | 工具使用说明 |
 
@@ -323,7 +332,7 @@ grep -r "文档名" scripts/ -l
 3. 删除后是否会影响后续工作？
 
 **如果内容已融入其他文档且无追溯价值**：可以删除
-**如果还有追溯价值**：考虑移到 `docs/project-management/active/` 或归档目录
+**如果还有追溯价值**：考虑移到 `project-management/active/` 或归档目录
 
 #### 第三步：删除文档并更新索引
 
