@@ -260,6 +260,46 @@ cpa-course-archive/
 - **磁盘**：建议 500GB 以上（原始视频 + 压缩视频 + 转写中间文件）
 - **网络**：稳定的互联网连接（视频下载、网盘上传、飞书API）
 
+### 开发与测试环境（当前配置）
+
+> 项目目前主要在以下 Mac 环境下开发和测试，其他环境可能存在兼容性问题。
+
+**系统信息**：
+- **操作系统**：macOS 15.7.8 (Sequoia)
+- **BuildVersion**：24G824
+- **Shell**：bash 3.2.57(1)-release（Mac自带版本）
+
+**硬件配置**：
+- **机型**：Mac Pro
+- **CPU**：13th Intel Core i5-13600KF @ 3.5 GHz（14核20线程）
+- **内存**：128 GB
+- **磁盘**：3.7TB NVMe（可用3.1TB）
+
+**已安装工具与版本**：
+
+| 工具 | 版本 | 安装方式 |
+|------|------|---------|
+| ffmpeg | 8.1.2 | Homebrew |
+| Node.js | v20.20.2 | Homebrew |
+| npm | 10.8.2 | 随Node.js |
+| Python | 3.13.13 | Homebrew |
+| pip | 26.1.1 | 随Python |
+| git | 2.45.2 | Xcode Command Line Tools |
+| Homebrew | 6.0.19 | 官方安装脚本 |
+| Google Chrome | 最新版 | 官方下载 |
+| iTerm2 | 最新版 | 官方下载 |
+
+**Mac 特定设置**：
+- **OCR**：使用 macOS Vision 框架（系统原生，无需额外安装）
+- **终端**：批量任务必须在 iTerm2 前台运行，禁止后台运行
+- **安全设置**：允许 Apple 事件中的 JavaScript（iTerm 控制需要）
+- **Playwright**：使用 Extension 模式附加已运行的 Chrome，不使用 CDP 模式
+
+**注意事项**：
+- 项目在 Intel Mac 上测试通过，Apple Silicon (M1/M2/M3) 可能需要额外配置（如 FunASR 环境）
+- macOS 版本低于 12 可能不支持部分 Vision 框架功能
+- bash 脚本基于 bash 3.2 编写，在 bash 4+ 上可能需要调整
+
 ### 迁移到新 Mac 的步骤
 
 1. 克隆仓库：`git clone <repo-url>`
