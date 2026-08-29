@@ -50,7 +50,7 @@
 ### 2.3 本地目录结构
 
 ```
-~/Doubao/chats/2026-08-26/new-chat/gaodun_downloads/
+~/Doubao/chats/2026-08-26/new-chat/gaodun-course-knowledge-base/
 ├── 税法-蔡俊峻/
 │   ├── 01_税法全面精讲01-税法总论/
 │   │   ├── video.mp4              # 压缩后视频

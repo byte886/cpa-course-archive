@@ -18,6 +18,7 @@
 - 文档治理优化：合并重叠文档、统一文档结构、明确文档边界
 
 ### 变更
+- 项目重命名：`cpa-course-archive` → `gaodun-course-knowledge-base`，本地目录 `gaodun_downloads` → `gaodun-course-knowledge-base`，标题"高顿 CPA 课程智能归档项目" → "高顿课程知识库系统"（百度网盘应用名称保持不变）
 - 文档结构优化：将 project-management/ 根目录的规范文档移到 standards/ 子目录
 - 合并做题交互相关文档（交互优化指南、exam-workflow、interaction-workflow 中的做题部分）
 - 合并做题方法论文档（做题流程与方法论、做题思路解析）

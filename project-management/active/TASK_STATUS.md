@@ -37,7 +37,7 @@
 
 | 子任务 | 状态 | 详情 |
 |--------|------|------|
-| 1.1 GitHub 仓库 | ✅ | byte886/cpa-course-archive（公有），SSH 443直连 |
+| 1.1 GitHub 仓库 | ✅ | byte886/gaodun-course-knowledge-base（公有），SSH 443直连 |
 | 1.2 全局 Skill | ✅ | gaodun-course-downloader（视频下载/压缩/网盘上传） |
 | 1.3 飞书知识库 | ✅ | "CPA备考知识库"，space_id: 7678261729456852192 |
 | 1.4 百度网盘 API | ✅ | 应用"CPA课程归档"，沙箱目录 /apps/CPA课程归档/高顿/ |

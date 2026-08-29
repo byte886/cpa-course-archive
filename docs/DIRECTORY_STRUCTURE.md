@@ -60,7 +60,7 @@
 ### 1.2 详细版（含文件说明）
 
 ```
-cpa-course-archive/
+gaodun-course-knowledge-base/
 ├── .gitignore                # Git忽略规则（视频/文档/音频/转写结果等）
 ├── README.md                 # 项目说明
 ├── AGENTS.md                 # 全局执行规则、文档快速入口、存储分工
