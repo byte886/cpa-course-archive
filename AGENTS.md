@@ -189,7 +189,10 @@ gaodun_downloads/
 - `docs/WORKFLOW.md` — 主工作流（只放流程概览和链接，不放详细内容）
 - `docs/development/*.md` — 专项技术文档（工具使用、API、流程细节）
 - `docs/project-management/*.md` — 项目管理（规范、状态、测试计划）
-- `docs/knowledge-base/*` — 知识库相关（模板、方法论、整理内容、原始素材）
+- `docs/development/templates/` — 知识库模板
+- `docs/development/knowledge/` — 知识库方法论（组织规范、来源清单）
+- `knowledge-base/organized-content/` — 整理后的知识内容（知识拆解、考试指导）
+- `knowledge-base/source-materials/` — 原始素材（做题记录、解析、用户笔记）
 
 ---
 

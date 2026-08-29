@@ -183,21 +183,23 @@ cpa-course-archive/
 │   │   ├── knowledge-base-sources.md # 知识库来源清单/来源选择流程/同步流程
 │   │   ├── exam-workflow.md  # 做题工作流（页面管理/补题流程/答题卡操作/踩坑记录）
 │   │   └── interaction-workflow.md # 通用交互流程与优化规范（适用于做题/模考等所有Web交互）
-│   └── knowledge-base/       # 知识库内容（本地）
-│       ├── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
-│       ├── organized-content/ # 整理后的知识内容
-│       │   ├── 做题思路解析.md     # 面向学习者的通用做题思路
-│       │   └── 01税法总论/         # 章节知识
-│       │       ├── README.md        # 章节概览（含子节点链接）
-│       │       ├── 知识拆解.md      # 章节核心知识点
-│       │       ├── 考试指导.md      # 做题技巧/易错点/记忆口诀
-│       │       ├── VERIFICATION_税法总论_分章真题测.md # 知识库质量验证报告
-│       │       └── SYNC_REPORT_税法总论_20260828.md # 飞书知识库同步报告
-│       └── source-materials/ # 原始素材
-│           └── 税法总论/
-│               ├── 做题记录_*.md    # 各试卷做题记录
-│               ├── 解析与用户留言_*.md # 官方解析和用户留言整理
-│               └── 用户笔记精华_税法总论.md # 高赞用户留言整理
+│   └── templates/            # 模板文件
+│       ├── PARENT_NODE_TEMPLATE.md # 父节点页面模板
+│       └── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
+├── knowledge-base/           # 知识库实际内容（本地）
+│   ├── organized-content/    # 整理后的知识内容
+│   │   ├── 做题思路解析.md     # 面向学习者的通用做题思路
+│   │   └── 01税法总论/         # 章节知识
+│   │       ├── README.md        # 章节概览（含子节点链接）
+│   │       ├── 知识拆解.md      # 章节核心知识点
+│   │       ├── 考试指导.md      # 做题技巧/易错点/记忆口诀
+│   │       ├── VERIFICATION_税法总论_分章真题测.md # 知识库质量验证报告
+│   │       └── SYNC_REPORT_税法总论_20260828.md # 飞书知识库同步报告
+│   └── source-materials/     # 原始素材
+│       └── 税法-总论/
+│           ├── 做题记录_*.md    # 各试卷做题记录
+│           ├── 解析与用户留言_*.md # 官方解析和用户留言整理
+│           └── 用户笔记精华_税法总论.md # 高赞用户留言整理
 ├── transcription/            # 转写工作目录
 │   ├── requirements.txt      # Python依赖清单（64个包，新电脑复现环境用）
 │   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）

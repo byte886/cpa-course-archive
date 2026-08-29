@@ -43,7 +43,7 @@
 - 工作流文档（`docs/WORKFLOW.md`）
 - 开发文档（`docs/development/`）
 - 项目管理规范（`docs/project-management/`）
-- 知识库模板（`docs/knowledge-base/`）
+- 知识库模板（`docs/development/templates/`）
 
 ---
 

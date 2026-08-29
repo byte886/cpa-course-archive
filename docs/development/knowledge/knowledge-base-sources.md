@@ -17,10 +17,10 @@
 | **视频转写文字** | `transcription/transcripts_full/video/<课程名>/<讲座名>/transcript.md` | 视频语音转文字结果，包含老师讲解的全部内容 | 知识拆解、考试指导 |
 | **讲义文档** | `data/高顿/CPA/课程库/<课程名>/<讲座名>/docs/` | 老师提供的讲义（PDF/PPT/DOC），包含知识点、例题、图表 | 知识拆解、考试指导 |
 | **讲义OCR文字** | `transcription/transcripts_full/video/<课程名>/<讲座名>/docs_text/` | 讲义文档中图片的OCR识别结果（表格、图表中的文字） | 知识拆解 |
-| **用户留言/笔记** | `docs/knowledge-base/source-materials/<课程名>/用户笔记精华_<课程名>.md` | 高顿题库中其他用户的高赞留言、笔记、记忆口诀 | 考试指导 |
-| **做题验证结果** | `docs/knowledge-base/source-materials/<课程名>/做题记录_<试卷名>.md` | 做题过程中发现的易错点、混淆点、考点补充 | 考试指导、知识拆解 |
-| **官方解析** | `docs/knowledge-base/source-materials/<课程名>/做题记录_<试卷名>.md` | 每道题的官方解析、答案解释 | 考试指导 |
-| **知识库质量验证报告** | `docs/knowledge-base/VERIFICATION_<课程名>_<试卷名>.md` | 验证知识库质量的报告，包含覆盖度分析、需补充的知识点 | 知识拆解、考试指导 |
+| **用户留言/笔记** | `knowledge-base/source-materials/<课程名>/用户笔记精华_<课程名>.md` | 高顿题库中其他用户的高赞留言、笔记、记忆口诀 | 考试指导 |
+| **做题验证结果** | `knowledge-base/source-materials/<课程名>/做题记录_<试卷名>.md` | 做题过程中发现的易错点、混淆点、考点补充 | 考试指导、知识拆解 |
+| **官方解析** | `knowledge-base/source-materials/<课程名>/做题记录_<试卷名>.md` | 每道题的官方解析、答案解释 | 考试指导 |
+| **知识库质量验证报告** | `knowledge-base/organized-content/<课程名>/VERIFICATION_*.md` | 验证知识库质量的报告，包含覆盖度分析、需补充的知识点 | 知识拆解、考试指导 |
 
 ---
 
@@ -28,7 +28,7 @@
 
 ### 2.1 知识拆解.md
 
-**位置**：`docs/knowledge-base/organized-content/<章节名>/知识拆解.md`
+**位置**：`knowledge-base/organized-content/<章节名>/知识拆解.md`
 
 **内容来源**：
 1. 视频转写文字（主要来源）
@@ -46,7 +46,7 @@
 
 ### 2.2 考试指导.md
 
-**位置**：`docs/knowledge-base/organized-content/<章节名>/考试指导.md`
+**位置**：`knowledge-base/organized-content/<章节名>/考试指导.md`
 
 **内容来源**：
 1. 视频转写文字中的考点提示、易错点提醒
@@ -65,7 +65,7 @@
 
 ### 2.3 做题思路解析.md
 
-**位置**：`docs/knowledge-base/organized-content/做题思路解析.md`
+**位置**：`knowledge-base/organized-content/做题思路解析.md`
 
 **内容来源**：
 1. 做题思路解析（通用方法）
@@ -213,7 +213,7 @@
 
 ### 步骤1：更新本地文档
 - 所有知识库内容的变更，**必须先在本地文档中完成**
-- 本地文档位置：`docs/knowledge-base/organized-content/<章节名>/`
+- 本地文档位置：`knowledge-base/organized-content/<章节名>/`
 
 ### 步骤2：验证本地文档
 - 检查文档结构是否完整

@@ -181,4 +181,4 @@
 
 ### 做题记录
 
-详细做题记录见：`docs/knowledge-base/source-materials/税法-总论/做题记录_税法原则.md`
+详细做题记录见：`knowledge-base/source-materials/税法-总论/做题记录_税法原则.md`

@@ -168,9 +168,9 @@ console.log('未做题编号：', unanswered);
 - **注意**：分级规则仅适用于同一套题的重复练习，新试卷必须从L1开始
 
 **知识库位置**：
-- 知识拆解：`docs/knowledge-base/organized-content/XX课程名/知识拆解.md`
-- 考试指导：`docs/knowledge-base/organized-content/XX课程名/考试指导.md`
-- 做题记录：`docs/knowledge-base/source-materials/XX课程名/做题记录_*.md`
+- 知识拆解：`knowledge-base/organized-content/XX课程名/知识拆解.md`
+- 考试指导：`knowledge-base/organized-content/XX课程名/考试指导.md`
+- 做题记录：`knowledge-base/source-materials/XX课程名/做题记录_*.md`
 
 **反例**：
 1. 2026-08-28 错题加练中，关于"税收立法权"的多选题，知识库中已有"地方立法权需要经国务院授权"的记录，但未参考知识库，自己猜了全选，导致答错。
@@ -184,14 +184,14 @@ console.log('未做题编号：', unanswered);
 
 1. **已识别考点**：确认这道题考查的是什么知识点（如税法原则、税法要素、税收立法等）
 2. **已查阅知识库**：确认已查阅知识库中对应的知识拆解和考试指导文档
-   - 知识拆解：`docs/knowledge-base/organized-content/XX课程名/知识拆解.md`
-   - 考试指导：`docs/knowledge-base/organized-content/XX课程名/考试指导.md`
+   - 知识拆解：`knowledge-base/organized-content/XX课程名/知识拆解.md`
+   - 考试指导：`knowledge-base/organized-content/XX课程名/考试指导.md`
 3. **已找到相关内容**：确认在知识库中找到了与这道题相关的知识点
 4. **基于知识库作答**：确认答案是基于知识库内容，而不是凭记忆或猜测
 5. **易错题特别检查**：如果是易错题（全站正确率<50%），必须逐字核对知识库中的表述
 
 **执行方式**：
-- 可以使用`grep`命令快速搜索知识库中的相关内容：`grep -r "关键词" docs/knowledge-base/organized-content/`
+- 可以使用`grep`命令快速搜索知识库中的相关内容：`grep -r "关键词" knowledge-base/organized-content/`
 - 对于多选题，必须确认每个选项都在知识库中有对应的依据
 - 对于记忆模糊的题目，必须查阅知识库，不能凭印象作答
 
@@ -306,7 +306,7 @@ for (let el of allElements) {
 4. **做错题加练**：在成绩页面点击"错题加练"按钮，重新做错题，验证是否掌握
 5. **验证效果**：错题加练的正确率应达到100%，否则重复上述流程
 
-**错题记录位置**：`docs/knowledge-base/source-materials/XX课程名/做题记录_*.md`
+**错题记录位置**：`knowledge-base/source-materials/XX课程名/做题记录_*.md`
 
 ## 四、本次踩坑记录（2026-08-27）
 
@@ -494,7 +494,7 @@ for (let el of allElements) {
 ### 6.2 知识库检索效率优化
 
 1. **按考点快速定位**：知识库按课程名组织，知识拆解和考试指导分开，可快速定位
-2. **使用grep批量搜索**：使用`grep -r "关键词" docs/knowledge-base/`批量搜索相关内容
+2. **使用grep批量搜索**：使用`grep -r "关键词" knowledge-base/`批量搜索相关内容
 3. **高频考点标记**：在考试指导文档中标记高频考点和易错题，方便快速查阅
 
 ### 6.3 交卷确认自动化

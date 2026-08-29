@@ -21,9 +21,9 @@
 
 ### 做题验证前
 1. `docs/development/workflow/exam-workflow.md` — 做题流程与交互规范（含交互优化、检查清单、v4 JavaScript方法）
-2. `docs/knowledge-base/organized-content/<章节名>/知识拆解.md` — 知识库内容
-3. `docs/knowledge-base/organized-content/<章节名>/考试指导.md` — 考点分析、易错点
-4. `docs/knowledge-base/organized-content/做题思路解析.md` — 通用做题方法论
+2. `knowledge-base/organized-content/<章节名>/知识拆解.md` — 知识库内容
+3. `knowledge-base/organized-content/<章节名>/考试指导.md` — 考点分析、易错点
+4. `knowledge-base/organized-content/做题思路解析.md` — 通用做题方法论
 5. `scripts/answer_option.sh` / `scripts/answer_multi.sh` / `scripts/submit_exam.sh` — 做题脚本
 
 ### 视频下载/压缩
@@ -45,7 +45,7 @@
 1. `docs/WORKFLOW.md` 第6节
 2. `docs/development/knowledge/knowledge-base-organization.md` — 知识库组织结构
 3. `docs/development/knowledge/knowledge-base-sources.md` — 知识库来源清单
-4. `docs/knowledge-base/KNOWLEDGE_BASE_TEMPLATE.md` — 知识库模板
+4. `docs/development/templates/KNOWLEDGE_BASE_TEMPLATE.md` — 知识库模板
 
 ### 百度网盘同步
 1. `docs/WORKFLOW.md` 第4节
@@ -112,7 +112,7 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 知识库模板 | `docs/knowledge-base/KNOWLEDGE_BASE_TEMPLATE.md` | 知识拆解/考试指导模板 |
+| 知识库模板 | `docs/development/templates/KNOWLEDGE_BASE_TEMPLATE.md` | 知识拆解/考试指导模板 |
 | 父节点模板 | `docs/development/templates/PARENT_NODE_TEMPLATE.md` | 知识库父节点内容模板 |
 | 命名规范 | `docs/project-management/standards/NAMING_CONVENTION.md` | 文件、目录、变量命名 |
 | 文档同步清单 | `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` | 同步时机、更新内容 |
@@ -137,9 +137,9 @@
 | 测试计划 | `docs/project-management/test-plans/TEST_PLAN_*.md` | 各课程测试计划 |
 | 验证报告 | `docs/project-management/active/verification-reports/VERIFICATION_*.md` | 各课程验证结果 |
 | 决策记录（ADR） | `docs/project-management/decisions/ADR-*.md` | 重要决策的背景、原因、后果 |
-| 做题记录（原始素材） | `docs/knowledge-base/source-materials/*/做题记录_*.md` | 各章节做题过程记录（不要求引用） |
-| 解析与用户留言（原始素材） | `docs/knowledge-base/source-materials/*/解析与用户留言_*.md` | 官方解析和用户留言采集（不要求引用） |
-| 用户笔记精华（原始素材） | `docs/knowledge-base/source-materials/*/用户笔记精华_*.md` | 用户留言精华整理（不要求引用） |
+| 做题记录（原始素材） | `knowledge-base/source-materials/*/做题记录_*.md` | 各章节做题过程记录（不要求引用） |
+| 解析与用户留言（原始素材） | `knowledge-base/source-materials/*/解析与用户留言_*.md` | 官方解析和用户留言采集（不要求引用） |
+| 用户笔记精华（原始素材） | `knowledge-base/source-materials/*/用户笔记精华_*.md` | 用户留言精华整理（不要求引用） |
 | 任务报告 | `reports/REPORT_*.md` | 各任务执行报告（不要求引用） |
 
 ### 五、治理规范（Governance — 规则）
@@ -156,10 +156,10 @@
 
 | 文档 | 路径 | 用途 |
 |------|------|------|
-| 做题思路解析 | `docs/knowledge-base/organized-content/做题思路解析.md` | 通用做题方法论（面向学习者） |
-| 各章节知识拆解 | `docs/knowledge-base/organized-content/<章节>/知识拆解.md` | 知识点整理 |
-| 各章节考试指导 | `docs/knowledge-base/organized-content/<章节>/考试指导.md` | 考点、易错点、记忆口诀 |
-| 原始素材 | `docs/knowledge-base/source-materials/<章节>/` | 做题记录、用户笔记、解析 |
+| 做题思路解析 | `knowledge-base/organized-content/做题思路解析.md` | 通用做题方法论（面向学习者） |
+| 各章节知识拆解 | `knowledge-base/organized-content/<章节>/知识拆解.md` | 知识点整理 |
+| 各章节考试指导 | `knowledge-base/organized-content/<章节>/考试指导.md` | 考点、易错点、记忆口诀 |
+| 原始素材 | `knowledge-base/source-materials/<章节>/` | 做题记录、用户笔记、解析 |
 
 ---
 

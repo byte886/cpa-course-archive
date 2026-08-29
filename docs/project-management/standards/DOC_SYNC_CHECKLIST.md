@@ -60,19 +60,19 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 做题记录_*.md | `docs/knowledge-base/source-materials/<课程名>/` | 每套试卷的做题过程、错题分析、用户留言 |
+| 做题记录_*.md | `knowledge-base/source-materials/<课程名>/` | 每套试卷的做题过程、错题分析、用户留言 |
 
 ### 3.2 用户笔记精华
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 用户笔记精华_*.md | `docs/knowledge-base/source-materials/<课程名>/` | 高赞用户留言整理、记忆口诀、易错点 |
+| 用户笔记精华_*.md | `knowledge-base/source-materials/<课程名>/` | 高赞用户留言整理、记忆口诀、易错点 |
 
 ### 3.3 验证报告
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| VERIFICATION_*.md | `docs/knowledge-base/` | 知识库质量验证报告（做题正确率、覆盖度分析） |
+| VERIFICATION_*.md | `knowledge-base/organized-content/` | 知识库质量验证报告（做题正确率、覆盖度分析） |
 | VERIFICATION_TEMPLATE.md | `reports/` | 验证报告模板（如有优化则更新） |
 
 ---
@@ -83,21 +83,21 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 知识拆解.md | `docs/knowledge-base/organized-content/<NN章节名>/` | 章节核心知识点（根据做题结果补充遗漏） |
+| 知识拆解.md | `knowledge-base/organized-content/<NN章节名>/` | 章节核心知识点（根据做题结果补充遗漏） |
 | 飞书知识库 | 在线 | 同步更新后的知识拆解 |
 
 ### 4.2 考试指导
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 考试指导.md | `docs/knowledge-base/organized-content/<NN章节名>/` | 做题技巧、易错点、记忆口诀（根据做题结果补充） |
+| 考试指导.md | `knowledge-base/organized-content/<NN章节名>/` | 做题技巧、易错点、记忆口诀（根据做题结果补充） |
 | 飞书知识库 | 在线 | 同步更新后的考试指导 |
 
 ### 4.3 通用方法
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 做题思路解析.md | `docs/knowledge-base/organized-content/` | 通用做题方法（面向所有CPA课程） |
+| 做题思路解析.md | `knowledge-base/organized-content/` | 通用做题方法（面向所有CPA课程） |
 | 飞书知识库 | 在线 | 同步更新后的做题思路解析 |
 
 ---
@@ -108,7 +108,7 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 做题思路解析.md | `docs/knowledge-base/organized-content/` | 通用做题方法论（面向学习者） |
+| 做题思路解析.md | `knowledge-base/organized-content/` | 通用做题方法论（面向学习者） |
 | exam-workflow.md | `docs/development/workflow/` | 做题流程、交互规范、v4 JavaScript方法、检查清单 |
 
 ### 5.2 知识库组织方法论

@@ -220,8 +220,8 @@
 
 | 文档 | 位置 |
 |------|------|
-| 本地知识拆解.md | `docs/knowledge-base/organized-content/01税法总论/知识拆解.md` |
-| 本地考试指导.md | `docs/knowledge-base/organized-content/01税法总论/考试指导.md` |
+| 本地知识拆解.md | `knowledge-base/organized-content/01税法总论/知识拆解.md` |
+| 本地考试指导.md | `knowledge-base/organized-content/01税法总论/考试指导.md` |
 | 飞书知识本身：税法总论 | https://zcnjheoajxng.feishu.cn/wiki/M763wvGcnigwWVkqaOIcDbxPnib |
 | 飞书考试指导：税法总论 | https://zcnjheoajxng.feishu.cn/wiki/YfOmwNUp7irm9akqy88ckmknnyg |
 | 知识库来源清单 | `docs/development/knowledge/knowledge-base-sources.md` |
@@ -232,14 +232,14 @@
 
 ```bash
 # 更新知识本身：税法总论
-cat docs/knowledge-base/organized-content/01税法总论/知识拆解.md | lark-cli docs +update \
+cat knowledge-base/organized-content/01税法总论/知识拆解.md | lark-cli docs +update \
   --doc M763wvGcnigwWVkqaOIcDbxPnib \
   --command overwrite \
   --doc-format markdown \
   --content -
 
 # 更新考试指导：税法总论
-cat docs/knowledge-base/organized-content/01税法总论/考试指导.md | lark-cli docs +update \
+cat knowledge-base/organized-content/01税法总论/考试指导.md | lark-cli docs +update \
   --doc YfOmwNUp7irm9akqy88ckmknnyg \
   --command overwrite \
   --doc-format markdown \
