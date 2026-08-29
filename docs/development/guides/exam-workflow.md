@@ -5,7 +5,7 @@
 > **维护者**：AI自动维护
 > **读者**：AI代理
 
-本文档记录高顿题库（GlivePro）做题自动化的流程规范和交互注意事项。通用交互流程（页面管理、补题流程）见 [interaction-workflow.md](interaction-workflow.md)，历史记录和统计数据见 [../../project-management/active/EXAM_HISTORY.md](../../project-management/active/EXAM_HISTORY.md)。
+本文档记录高顿题库（GlivePro）做题自动化的流程规范和交互注意事项。通用交互流程（页面管理、补题流程）见 [interaction-workflow.md](interaction-workflow.md)。
 
 ---
 
@@ -277,4 +277,4 @@ for (let el of allElements) {
 
 ---
 
-**文档维护**：本文件记录做题操作规范，随做题实践持续更新。通用交互流程见 [interaction-workflow.md](interaction-workflow.md)，历史记录和统计数据见 [EXAM_HISTORY.md](../../project-management/active/EXAM_HISTORY.md)。
+**文档维护**：本文件记录做题操作规范，随做题实践持续更新。通用交互流程见 [interaction-workflow.md](interaction-workflow.md)。
