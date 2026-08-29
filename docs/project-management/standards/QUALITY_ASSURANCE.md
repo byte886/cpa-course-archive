@@ -64,7 +64,7 @@ done
 
 验证报告命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
 
-**模板位置**：`reports/VERIFICATION_TEMPLATE.md`
+**模板位置**：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 
 **具体报告位置**：放在**对应课程目录下**，和被验证的对象在一起（如 `01_税法全面精讲01-税法总论/VERIFICATION_knowledge.md`）
 
@@ -128,7 +128,7 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 
 ## 四、验证报告归档
 
-- 验证报告模板：`reports/VERIFICATION_TEMPLATE.md`
+- 验证报告模板：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 - 具体验证报告：放在**对应课程目录下**（和被验证对象在一起）
 - 命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
 - 验证报告随课程产出物一起同步到百度网盘

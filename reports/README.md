@@ -1,21 +1,23 @@
 # 报告目录
 
 > **文档类型**：Reference（参考资料）
-> **更新频率**：新增报告类型时
+> **更新频率**：新增报告时
 > **维护者**：AI自动维护
 > **读者**：AI代理+人类
 
-本目录存放项目中所有报告类文档，包括任务报告和验证报告。
+本目录存放项目中所有**实际报告**，包括任务报告和验证报告。
+
+> ⚠️ **模板已迁移**：所有模板文件已统一移到 [`docs/development/templates/`](../docs/development/templates/) 目录，本目录只放实际报告。
+
+---
 
 ## 文档清单
 
-| 文档 | 用途 |
-|------|------|
-| `REPORT_TEMPLATE.md` | 任务报告模板 |
-| `VERIFICATION_TEMPLATE.md` | 验证报告通用模板 |
-| `VERIFICATION_TEMPLATE_knowledge_base.md` | 飞书知识库导入验证模板 |
+| 文档 | 类型 | 说明 |
+|------|------|------|
+| `REPORT_00_开班典礼.md` | 任务报告 | 开班典礼任务完成报告 |
 
-> **具体报告位置**：针对具体课程的任务报告和验证报告，放在**对应课程目录下**（和被验证对象在一起），不放在本目录。本目录只存放通用模板。
+---
 
 ## 报告类型
 
@@ -30,7 +32,7 @@
 - 做题结果
 - 缺陷统计
 
-**模板**：`REPORT_TEMPLATE.md`
+**模板**：[`docs/development/templates/REPORT_TEMPLATE.md`](../docs/development/templates/REPORT_TEMPLATE.md)
 
 ### 2. 验证报告
 
@@ -41,8 +43,13 @@
 - 验证结论
 - 后续建议
 
-**模板**：`VERIFICATION_TEMPLATE.md`
-**规范**：`docs/project-management/standards/QUALITY_ASSURANCE.md`
+**模板**：
+- 通用验证：[`docs/development/templates/VERIFICATION_TEMPLATE.md`](../docs/development/templates/VERIFICATION_TEMPLATE.md)
+- 知识库验证：[`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md`](../docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md)
+
+**规范**：[`docs/project-management/standards/QUALITY_ASSURANCE.md`](../docs/project-management/standards/QUALITY_ASSURANCE.md)
+
+---
 
 ## 命名规范
 
@@ -51,8 +58,13 @@
 | 任务报告 | `REPORT_{课程编号}_{任务类型}.md` | `REPORT_税法01_批量压缩.md` |
 | 验证报告 | `VERIFICATION_{课程编号}_{对象类型}.md` | `VERIFICATION_税法01_knowledge.md` |
 
+> **注意**：针对具体课程的任务报告和验证报告，优先放在**对应课程目录下**（和被验证对象在一起），本目录只放跨课程的通用报告。
+
+---
+
 ## 归档规则
 
 - 所有报告随项目代码一起提交到GitHub
 - 报告完成后在任务状态文档中标记
 - 定期回顾报告，统计常见问题，优化流程
+- 模板变更时，已生成的报告不需要强制更新，但新报告必须使用新模板

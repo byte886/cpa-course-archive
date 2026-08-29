@@ -121,8 +121,8 @@
 | 脚本说明 | `scripts/README.md` | 所有脚本的用途、参数、可靠性 |
 | 开发文档索引 | `docs/development/README.md` | 开发文档快速索引 |
 | 项目管理索引 | `docs/project-management/README.md` | 项目管理文档快速索引 |
-| 报告模板 | `reports/README.md`、`reports/REPORT_TEMPLATE.md` | 任务报告模板 |
-| 验证报告模板 | `reports/VERIFICATION_TEMPLATE.md`、`reports/VERIFICATION_TEMPLATE_knowledge_base.md` | 验证报告模板 |
+| 报告模板 | `reports/README.md`、`docs/development/templates/REPORT_TEMPLATE.md` | 任务报告模板 |
+| 验证报告模板 | `docs/development/templates/VERIFICATION_TEMPLATE.md`、`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md` | 验证报告模板 |
 
 ### 四、过程记录（Active — 做了什么）
 

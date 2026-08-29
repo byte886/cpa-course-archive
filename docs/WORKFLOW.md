@@ -285,7 +285,7 @@
 - 知识库更新情况
 - 做题结果
 
-**报告模板**：[REPORT_TEMPLATE.md](../reports/REPORT_TEMPLATE.md)
+**报告模板**：[REPORT_TEMPLATE.md](../docs/development/templates/REPORT_TEMPLATE.md)
 
 ---
 

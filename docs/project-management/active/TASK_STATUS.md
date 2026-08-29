@@ -178,7 +178,7 @@
 | 5.3 测试计划模板 | ✅ | TEST_PLAN_税法01.md（含小问题/大问题分类） |
 | 5.4 缺陷管理规范 | ✅ | 严重程度+优先级分类，小问题顺手修复/大问题讨论处理 |
 | 5.5 Git工作流文档 | ✅ | git-workflow.md 14章（SSH/代理/大文件/pre-commit/敏感信息） |
-| 5.6 任务报告模板 | ✅ | reports/REPORT_TEMPLATE.md |
+| 5.6 任务报告模板 | ✅ | docs/development/templates/REPORT_TEMPLATE.md |
 | 5.7 状态查询协议 | ✅ | PROJECT_STATUS_QUERY.md（6类意图+27条常用话术+标准响应格式） |
 | 5.8 问题跟踪文档 | ✅ | ISSUES.md（未解决/已解决/潜在风险，I-001~I-005+R-001~R-003） |
 | 5.9 文档类型标注 | ✅ | 62个文档全部标注（Governance 6/Task 11/Concept 5/Reference 10/Active 25/Knowledge 5） |
