@@ -143,57 +143,24 @@
 
 ---
 
-## 5. 工具与版本（精确版本）
+## 5. 工具与版本（关键版本）
 
-| 工具 | 版本 | 用途 |
-|------|------|------|
-| Python | 3.13.13 | 脚本开发（上传、转写管道） |
-| Node.js | v20.20.2 | Playwright CLI运行环境 |
-| ffmpeg | 8.1.2 | 视频压缩、音频提取 |
-| Playwright CLI | latest | 浏览器自动化（高顿网站操作） |
-| faster-whisper / FunASR | latest | 音频转文字 |
-| 飞书API | - | 知识库、文档、多维表格 |
-| 百度网盘API | - | 文件存储同步 |
+> 详细的工具版本、平台兼容性、硬件要求、环境检查命令见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md)。
 
-**DO NOT** 自行升级以上工具版本，除非用户明确要求。版本变更可能导致脚本不兼容。
+**关键版本（版本变更可能导致脚本不兼容，禁止自行升级）：**
+- Python 3.13.13 / Node.js v20.20.2 / ffmpeg 8.1.2
 
-### 平台兼容性（重要）
-
-> ⚠️ **项目主要在 macOS 下运行**，部分工具依赖 macOS 原生功能。执行任务前必须确认当前平台。
-
-**Mac 专用工具（不可在其他平台直接使用）**：
+**Mac 专用工具（不可在其他平台直接使用）：**
 - **macOS Vision 框架**：PDF/图片 OCR，必须用 `scripts/batch_ocr.sh`，**禁止安装 tesseract**
 - **iTerm2**：批量任务必须在 iTerm 前台运行（实时进度），禁止后台运行
-- **textutil**：DOC/DOCX 文字提取（macOS 原生命令）
-- **AppleScript**：iTerm 窗口控制
-
-**跨平台工具（可直接使用）**：
-- ffmpeg、Playwright CLI、Node.js、Python、FunASR/faster-whisper、百度网盘API、飞书API
-
-> 详细的开发与测试环境配置见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md)。
 
 ---
 
 ## 6. 常用命令（逐字可执行）
 
-### 6.1 环境检查（新机器/环境变化时按需执行）
+> 环境检查命令（新机器/环境变化时）见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) 第4节。
 
-> 同一台机器日常执行不需要每次检查，仅在以下场景执行：新机器第一次执行 / 系统更新或工具升级后 / 遇到工具相关错误排查时
-
-```bash
-cd /Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads
-
-# 检查Playwright连接
-npx playwright cli -s=ga tab-list
-
-# 检查ffmpeg
-ffmpeg -version | head -1
-
-# 检查Python依赖
-python3 -c "import faster_whisper" 2>/dev/null || echo "faster_whisper not installed"
-```
-
-### 6.2 常用操作命令
+### 6.1 常用操作命令
 
 ```bash
 # 视频压缩（单文件）
@@ -218,7 +185,7 @@ python3 scripts/baidu_upload.py <local_path> <remote_path>
 bash scripts/batch_ocr.sh <pdf_dir> <output_dir>
 ```
 
-### 6.3 Playwright连接失败自动恢复
+### 6.2 Playwright连接失败自动恢复
 
 ```bash
 # 连接失败时，先刷新Token（参考 docs/development/tools/playwright-cli-guide.md 第4节）
