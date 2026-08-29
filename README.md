@@ -185,9 +185,6 @@ cpa-course-archive/
 │   │   └── interaction-workflow.md # 通用交互流程与优化规范（适用于做题/模考等所有Web交互）
 │   └── knowledge-base/       # 知识库内容（本地）
 │       ├── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
-│       ├── methodology/      # 方法论文档
-│       │   ├── 做题流程与方法论.md # 做题完整流程/API探索/经验总结
-│       │   └── 交互优化指南.md     # 做题页面交互规律/问题/优化方案
 │       ├── organized-content/ # 整理后的知识内容
 │       │   ├── 做题思路解析.md     # 面向学习者的通用做题思路
 │       │   └── 01税法总论/         # 章节知识
