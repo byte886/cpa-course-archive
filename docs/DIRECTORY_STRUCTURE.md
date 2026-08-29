@@ -176,8 +176,7 @@ gaodun-course-knowledge-base/
 | 目录 | 忽略原因 | 复现方式 |
 |------|----------|----------|
 | `transcription/venv/` | Python虚拟环境，路径硬编码，不应复制 | `./scripts/setup-transcription-env.sh` 重新创建 |
-| `transcription/transcripts_full/` | 转写结果，生成文件，放本地和网盘 | 重新运行转写脚本生成 |
-| `data/` | 符号链接指向外部大文件目录（视频/文档） | `./scripts/setup-data-symlink.sh` 创建链接 |
+| `data/` | 符号链接指向外部大文件目录（视频/文档/转写结果） | `./scripts/setup-data-symlink.sh` 创建链接 |
 
 **虚拟环境迁移原则**：Python虚拟环境不直接复制到新电脑，用 `requirements.txt` + 搭建脚本重新创建。
 
@@ -212,10 +211,11 @@ NN_讲座标题/
 ├── video.mp4          # 压缩后的最终视频（H.265 CRF30）
 ├── transcript.md      # 视频文字稿（语音转文字）
 ├── transcript.json    # 转写原始数据（含时间戳）
-├── knowledge.md       # 知识梳理（转写+讲义合并，生成知识库用）
+├── 知识拆解.md         # 知识本身（结构化知识点，用于搜索、应用、AI问答）
+├── 考试指导.md         # 考试指导（考点、易错点、记忆口诀、真题回顾）
 ├── docs/              # 讲义文档原件（PDF/PPT/DOC）
 ├── docs_text/         # OCR文字稿（讲义文档中图片的OCR识别结果）
-├── VERIFICATION_knowledge.md  # 知识梳理文档验证报告
+├── VERIFICATION.md    # 验证报告（视频/知识库等验证结果）
 └── .uploaded          # 上传标记（已上传到百度网盘后生成）
 ```
 

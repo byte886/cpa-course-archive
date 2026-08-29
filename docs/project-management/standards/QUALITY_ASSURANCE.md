@@ -14,7 +14,7 @@
 
 ### 1.1 验证时机
 
-- 知识梳理文档（knowledge.md）生成后，**必须**执行验证
+- 知识梳理文档（知识拆解.md）生成后，**必须**执行验证
 - 验证通过后才能同步到飞书知识库
 - 验证报告随文档一起提交到项目仓库
 
@@ -35,7 +35,7 @@
 
 ```bash
 # 自动化检查（V1-V6）
-KNOWLEDGE_FILE="path/to/knowledge.md"
+KNOWLEDGE_FILE="path/to/知识拆解.md"
 
 # V1: 文件基本信息
 echo "大小: $(wc -c < "$KNOWLEDGE_FILE") 字节"
@@ -60,13 +60,19 @@ for keyword in "关键词1" "关键词2" ...; do
 done
 ```
 
-### 1.4 验证报告模板
+### 1.4 验证报告命名规范
 
-验证报告命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
+验证报告有三种命名格式，各有适用场景：
+
+| 命名格式 | 适用场景 | 示例 |
+|---------|---------|------|
+| `VERIFICATION.md` | 课程目录下的综合验证报告（目录本身已说明是哪个课程） | `01_税法全面精讲01-税法总论/VERIFICATION.md` |
+| `VERIFICATION_<对象>_<范围>.md` | 专项验证报告（如知识库质量验证、做题验证） | `organized-content/VERIFICATION_税法总论_分章真题测.md` |
+| `SYNC_REPORT_<对象>_<日期>.md` | 同步报告（如飞书知识库同步报告） | `SYNC_REPORT_税法总论_20260828.md` |
 
 **模板位置**：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 
-**具体报告位置**：放在**对应课程目录下**，和被验证的对象在一起（如 `01_税法全面精讲01-税法总论/VERIFICATION_knowledge.md`）
+**具体报告位置**：放在**对应课程目录下**，和被验证的对象在一起（如 `01_税法全面精讲01-税法总论/VERIFICATION.md`）
 
 > **文件归属原则**：针对具体课程/讲座的产出物（验证报告、测试计划等），放在对应课程目录下；通用模板和规范放在 `docs/` 或 `project-management/task-reports/` 下。
 
@@ -78,7 +84,7 @@ done
 5. 验证结论（通过/不通过）
 6. 后续建议
 
-参考实例：`data/高顿/CPA/课程库/.../01_税法全面精讲01-税法总论/VERIFICATION_knowledge.md`
+参考实例：`data/高顿/CPA/课程库/.../01_税法全面精讲01-税法总论/VERIFICATION.md`
 
 ### 1.5 问题处理
 
@@ -130,7 +136,7 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 
 - 验证报告模板：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 - 具体验证报告：放在**对应课程目录下**（和被验证对象在一起）
-- 命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_knowledge.md`）
+- 命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_知识拆解.md`）
 - 验证报告随课程产出物一起同步到百度网盘
 - 验证通过后，在任务状态文档中标记"已验证"
 

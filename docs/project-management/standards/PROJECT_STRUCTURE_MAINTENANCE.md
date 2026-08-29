@@ -41,8 +41,8 @@
 |----------|----------|------|
 | 通用规范/流程 | `docs/` 对应子目录 | 如 QUALITY_ASSURANCE.md、PROJECT_MAINTENANCE.md |
 | 通用模板 | `project-management/task-reports/` 或 `docs/` | 如 REPORT_TEMPLATE.md、VERIFICATION_TEMPLATE.md |
-| 具体课程产出物 | 对应课程目录下 | 如 video.mp4、knowledge.md、transcript.md |
-| 具体课程验证报告 | 对应课程目录下 | 如 VERIFICATION_knowledge.md |
+| 具体课程产出物 | 对应课程目录下 | 如 video.mp4、知识拆解.md、transcript.md |
+| 具体课程验证报告 | 对应课程目录下 | 如 VERIFICATION_知识拆解.md |
 | 具体课程测试计划 | `docs/project-management/` | 测试计划是项目管理文档，不是课程产出物 |
 | 具体任务报告 | `project-management/task-reports/` 或对应课程目录 | 根据报告性质决定 |
 
@@ -59,7 +59,7 @@
 | 类别 | 上传？ | 示例 | 说明 |
 |------|--------|------|------|
 | **视频** | ✅ 上传 | video.mp4 | 课程视频 |
-| **知识文档** | ✅ 上传 | knowledge.md, exam-guide.md | 知识本身和考试指导 |
+| **知识文档** | ✅ 上传 | 知识拆解.md, 考试指导.md | 知识本身和考试指导 |
 | **讲义原件** | ✅ 上传 | docs/*.pdf | 原始讲义 |
 | **讲义文字稿** | ✅ 上传 | docs/讲义文字稿.md | 讲义OCR后的文字稿 |
 | **转写文字稿** | ✅ 上传 | transcript.md | 视频转写后的文字稿（可读） |
