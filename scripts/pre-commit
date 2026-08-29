@@ -71,9 +71,28 @@ for file in $(git diff --cached --name-only --diff-filter=ACM); do
   esac
 done
 
+# 4. 检查文档关联性（新增的.md文件是否在DOCUMENTATION_MAP.md中有记录，是否有类型标注）
+echo ""
+echo "📚 检查文档关联性..."
+doc_issues=0
+for file in $(git diff --cached --name-only --diff-filter=A); do
+  if [[ "$file" == *.md ]] && [[ "$file" != CHANGELOG.md ]] && [[ "$file" != project-management/* ]]; then
+    # 检查是否在DOCUMENTATION_MAP.md中有记录
+    if ! grep -q "$file" docs/DOCUMENTATION_MAP.md 2>/dev/null; then
+      echo "  ⚠️  新文档未在DOCUMENTATION_MAP.md中记录: $file"
+      doc_issues=1
+    fi
+    # 检查是否有类型标注
+    if ! head -10 "$file" | grep -q "文档类型\|更新频率\|维护者"; then
+      echo "  ⚠️  新文档缺少类型标注（文档类型/更新频率/维护者）: $file"
+      doc_issues=1
+    fi
+  fi
+done
+
 # 总结
 echo ""
-if [ "$large_files" -eq 1 ] || [ "$sensitive_found" -eq 1 ] || [ "$video_files" -eq 1 ]; then
+if [ "$large_files" -eq 1 ] || [ "$sensitive_found" -eq 1 ] || [ "$video_files" -eq 1 ] || [ "$doc_issues" -eq 1 ]; then
   echo "⚠️  发现潜在问题，请确认是否继续提交"
   echo "   如需跳过检查: git commit --no-verify"
   # 不阻止提交，只警告（单人项目）

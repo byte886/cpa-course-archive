@@ -95,6 +95,8 @@
 | 飞书API | `docs/development/api/feishu-api.md` | 知识库、文档、多维表格API |
 | 加密凭证 | `docs/development/api/encryption.md` | Token加密存储与使用 |
 | Git工作流 | `docs/development/guides/git-workflow.md` | 分支策略、提交规范、pre-commit |
+| AGENTS.md最佳实践 | `docs/development/guides/AGENTS_MD_BEST_PRACTICES.md` | AGENTS.md写作规范、结构优化、AI友好设计 |
+| 编码规范 | `docs/development/guides/CODE_STYLE.md` | Python/Shell脚本编码规范、命名、注释 |
 | Playwright指南 | `docs/development/tools/playwright-cli-guide.md` | CLI使用、Token刷新、常见问题 |
 | 交互工作流 | `docs/development/guides/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
 | **做题流程与交互规范** | `docs/development/guides/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
