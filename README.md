@@ -135,6 +135,7 @@
 | 任务报告 | [WORKFLOW.md 第8节](docs/WORKFLOW.md) | [project-management/README.md](docs/project-management/README.md) |
 | Git操作 | [git-workflow.md](docs/development/guides/git-workflow.md) | - |
 | 项目维护 | [PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md) | - |
+| 决策历史 | [ADR索引](docs/project-management/decisions/README.md) | 做重要决策前先查看历史决策，避免冲突 |
 | OCR识别 | [ocr.md](docs/development/tools/ocr.md) | - |
 | 飞书API | [feishu-api.md](docs/development/api/feishu-api.md) | - |
 

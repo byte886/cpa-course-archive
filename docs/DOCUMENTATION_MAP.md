@@ -66,6 +66,7 @@
 5. `docs/project-management/standards/PROJECT_STATUS_QUERY.md` — 状态查询协议、意图分类、模糊表达映射、标准响应格式
 6. `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` — 文档同步清单
 7. `docs/project-management/standards/NAMING_CONVENTION.md` — 命名规范
+8. `docs/project-management/decisions/README.md` — 架构决策记录（ADR）索引，做重要决策前先查看历史决策
 
 ---
 

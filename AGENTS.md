@@ -43,6 +43,7 @@
 - `docs/DIRECTORY_STRUCTURE.md` — 目录结构详细说明
 - `docs/SYSTEM_REQUIREMENTS.md` — 系统要求与环境配置
 - `docs/DOCUMENTATION_MAP.md` — 文档地图（所有文档索引）
+- `docs/project-management/decisions/` — 架构决策记录（ADR），做重要决策前先查看历史决策，避免冲突
 
 **为什么必须这样做**：本项目流程复杂，每个环节都有专项文档记录了踩过的坑和优化方案。不查阅文档直接执行，大概率会重复犯之前已经解决过的错误。文档是项目的"集体记忆"，必须依赖文档而不是对话记忆。
 
