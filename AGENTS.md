@@ -215,7 +215,7 @@
 
 - ❌ **不要用Chrome浏览器手动下载文件**——必须用脚本（`scripts/download_decrypt.js`或curl）后台下载
 - ❌ **不要在一个Bash命令中做多道题**——每个命令只做一道题，避免超时移到后台导致输出丢失
-- ❌ **不要用ref点击多选题的第二个及以后选项**——ref会失效，必须用 `scripts/answer_multi.sh`（JavaScript直接点击）
+- ✅ **多选题必须用 `scripts/answer_multi.sh`（JavaScript直接点击）**——ref会失效，特别是第二个及以后选项
 - ❌ **不要跳过"做题前查询知识库"步骤**——必须先读对应知识库文档再答题
 - ❌ **不要自行关闭用户打开的Chrome窗口**——只关闭Playwright管理的多余tab页
 

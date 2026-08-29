@@ -133,7 +133,7 @@
 #### 2.3.2 文档文字提取（OCR）
 
 - **需求**：从讲义文档中提取文字内容
-- **技术方案**：统一使用macOS Vision框架（系统原生），禁止混用pymupdf等其他工具
+- **技术方案**：统一使用macOS Vision框架（系统原生）
 - **特殊规则**：
   - PDF中的图片需要OCR识别
   - 表格和图表需要识别（OCR不准确时用AI补充）
@@ -438,7 +438,7 @@
   - 做题（单选）：`scripts/answer_option.sh`
   - 做题（多选）：`scripts/answer_multi.sh`
   - 交卷：`scripts/submit_exam.sh`
-- **OCR统一工具**：macOS Vision框架，禁止混用pymupdf等其他工具
+- **OCR统一工具**：macOS Vision框架
 - **浏览器操作**：使用Playwright附加到已登录Chrome（Extension模式），不新开窗口（新窗口没有登录状态）
 - **下载方式**：使用后台下载（curl），不弹出Chrome下载确认框
 - **Playwright CLI**：`open`命令不支持`--extension`选项，必须用`attach --extension=chrome`模式
