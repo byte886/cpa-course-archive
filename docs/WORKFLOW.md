@@ -27,7 +27,7 @@
 ## 总体流程
 
 ```
-建目录 → 下载视频 → 下载文档 → 同步网盘 → 内容解析 → 知识库(第一阶段：初始生成) → 做题验证 → 知识库(第二阶段：迭代更新) → 任务报告
+建目录 → 下载视频 → 压缩视频 → 压缩验证 → 下载文档 → 同步网盘 → 内容解析 → 知识库(第一阶段：初始生成) → 做题验证 → 知识库(第二阶段：迭代更新) → 任务报告
 ```
 
 **知识库两阶段生成说明：**
@@ -147,7 +147,7 @@
 
 ### 关键要点
 
-- 目录结构：`高顿/CPA/课程库/<课程名>/<序号>_<章节名>/`（包含video.mp4、transcript.md、docs/、docs_text/）
+- 目录结构：`高顿/CPA/课程库/<课程名>/<序号>_<章节名>/`（包含video.mp4、transcript.md、docs/，OCR结果放在docs/下或docs_text/下，具体见DIRECTORY_STRUCTURE.md）
 - 开班典礼用序号00，作为课程的第一讲处理
 - "待整理"中的课程走完知识库流程后，移动到"课程库"下
 - 建目录时必须检查该讲次是否有课后作业（"继续考"），并在任务报告中明确说明
@@ -266,7 +266,9 @@
 ### 5.2 文档文字提取（OCR）
 
 - **方案**：macOS Vision框架OCR（系统原生免费），**不是tesseract**
-- 工具：Swift编译的`/tmp/ocr_vision` + PyMuPDF（200 DPI）
+- **工具分工**：
+  - PyMuPDF（200 DPI）：仅用于将PDF转为图片，不做OCR
+  - Swift编译的`/tmp/ocr_vision`：使用macOS Vision框架做OCR识别
 - 性能：116页约2分钟，每页约1秒
 - 遇到表格/公式/图表时用AI视觉补充识别
 - 批量脚本：`scripts/batch_ocr.sh`
@@ -300,7 +302,7 @@
 - **组织结构**：[knowledge-base-organization.md](development/knowledge/knowledge-base-organization.md) — 知识库结构设计、节点命名、内容分工、父节点规范、模板
 - **来源清单**：[knowledge-base-sources.md](development/knowledge/knowledge-base-sources.md) — 知识库来源清单、来源选择流程、同步流程、发展重设计原则
 - **飞书API**：[feishu-api.md](development/api/feishu-api.md) — 飞书API调用方法、权限配置、常见问题
-- **知识库模板**：[KNOWLEDGE_BASE_TEMPLATE.md](knowledge-base/KNOWLEDGE_BASE_TEMPLATE.md)
+- **知识库模板**：[KNOWLEDGE_BASE_TEMPLATE.md](development/templates/KNOWLEDGE_BASE_TEMPLATE.md)
 
 ---
 
@@ -330,7 +332,7 @@
 ### 参考文档
 
 - **做题流程与交互规范**：[exam-workflow.md](development/guides/exam-workflow.md) — ⚠️ **必读**：页面管理、补题流程、答题卡操作、v4 JavaScript方法、检查清单、试卷统计
-- **做题思路解析**：[做题思路解析.md](knowledge-base/organized-content/做题思路解析.md) — 通用做题方法论（面向学习者）
+- **做题思路解析**：[做题思路解析.md](../knowledge-base/organized-content/做题思路解析.md) — 通用做题方法论（面向学习者）
 - **做题脚本**：`scripts/answer_option.sh`（单选）、`scripts/answer_multi.sh`（多选）、`scripts/submit_exam.sh`（交卷）
 
 ---
