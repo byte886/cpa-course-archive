@@ -33,7 +33,7 @@
 | **用途** | 点击单选题的单个选项（A/B/C/D） |
 | **用法** | `bash scripts/answer_option.sh C` |
 | **可靠性** | ✅ 高（已验证，JavaScript直接点击，不依赖ref） |
-| **相关文档** | `docs/development/workflow/exam-workflow.md` |
+| **相关文档** | `docs/development/guides/exam-workflow.md` |
 
 **原理**：通过文本内容匹配选项元素，使用 `element.click()` 直接点击。过滤条件：文本精确匹配、元素可见、top>150（排除导航）、尺寸合理。
 
@@ -46,7 +46,7 @@
 | **用途** | 点击多选题的多个选项（可传多个参数） |
 | **用法** | `bash scripts/answer_multi.sh A B D` |
 | **可靠性** | ✅ 高（已验证，解决了ref失效问题） |
-| **相关文档** | `docs/development/workflow/exam-workflow.md` |
+| **相关文档** | `docs/development/guides/exam-workflow.md` |
 
 **注意**：多选题点击后不会自动跳题，需要手动点击"下一题"。
 
@@ -59,7 +59,7 @@
 | **用途** | 点击交卷按钮，等待成绩页面加载 |
 | **用法** | `bash scripts/submit_exam.sh` |
 | **可靠性** | ✅ 高（已验证） |
-| **相关文档** | `docs/development/workflow/exam-workflow.md` |
+| **相关文档** | `docs/development/guides/exam-workflow.md` |
 
 **注意**：交卷前必须检查所有题目已作答（打开答题卡确认无未做题）。
 
@@ -235,7 +235,7 @@
 | **用途** | Git提交前自动检查：大文件（>50MB）、敏感信息（明文Token）、文件编码 |
 | **用法** | 自动执行（已安装到 `.git/hooks/pre-commit`） |
 | **可靠性** | ✅ 高（不依赖读文档，自动执行） |
-| **相关文档** | `docs/development/workflow/git-workflow.md` |
+| **相关文档** | `docs/development/guides/git-workflow.md` |
 
 **安装**：`cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
 
@@ -285,7 +285,7 @@
 | **用途** | 从做题页面采集官方解析和用户留言精华 |
 | **用法** | `node scripts/collect_analysis.js <exam_url>` |
 | **可靠性** | ⚠️ 中（依赖页面结构，可能需要滚动加载） |
-| **相关文档** | `docs/development/workflow/exam-workflow.md` |
+| **相关文档** | `docs/development/guides/exam-workflow.md` |
 
 **注意**：用户留言可能需要向下滚动才能完整加载，脚本在"笔记"关键词处可能截断。
 

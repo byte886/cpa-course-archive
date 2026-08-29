@@ -520,7 +520,7 @@ playwright cli -s=<session> tab-select 1
 
 ### 6.2 相关文档
 
-- 做题流程：`docs/development/workflow/exam-workflow.md`
+- 做题流程：`docs/development/guides/exam-workflow.md`
 - Playwright CLI使用指南：`docs/development/tools/playwright-cli-guide.md`
 - 知识库组织：`docs/development/knowledge/knowledge-base-organization.md`
 - 知识库来源：`docs/development/knowledge/knowledge-base-sources.md`

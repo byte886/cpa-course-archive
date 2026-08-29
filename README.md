@@ -283,9 +283,9 @@ cpa-course-archive/
 | 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/api/netdisk-setup.md) |
 | 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/tools/transcription.md) |
 | 知识库生成 | [WORKFLOW.md 第6节](docs/WORKFLOW.md) | [knowledge-base-organization.md](docs/development/knowledge/knowledge-base-organization.md) |
-| **做题验证** | [WORKFLOW.md 第7节](docs/WORKFLOW.md) | ⚠️ [exam-workflow.md](docs/development/workflow/exam-workflow.md) |
+| **做题验证** | [WORKFLOW.md 第7节](docs/WORKFLOW.md) | ⚠️ [exam-workflow.md](docs/development/guides/exam-workflow.md) |
 | 任务报告 | [WORKFLOW.md 第8节](docs/WORKFLOW.md) | [project-management/README.md](docs/project-management/README.md) |
-| Git操作 | [git-workflow.md](docs/development/workflow/git-workflow.md) | - |
+| Git操作 | [git-workflow.md](docs/development/guides/git-workflow.md) | - |
 | 项目维护 | [PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md) | - |
 | OCR识别 | [ocr.md](docs/development/tools/ocr.md) | - |
 | 飞书API | [feishu-api.md](docs/development/api/feishu-api.md) | - |

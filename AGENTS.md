@@ -279,9 +279,9 @@ gaodun_downloads/
 | 百度网盘同步 | `docs/WORKFLOW.md` 第4节 | `docs/development/api/netdisk-setup.md` |
 | 视频转文字 | `docs/WORKFLOW.md` 第5节 | `docs/development/tools/transcription.md` |
 | 知识库生成 | `docs/WORKFLOW.md` 第6节 | `docs/development/knowledge/knowledge-base-organization.md` |
-| **做题验证** | `docs/WORKFLOW.md` 第7节 | **`docs/development/workflow/exam-workflow.md`** |
+| **做题验证** | `docs/WORKFLOW.md` 第7节 | **`docs/development/guides/exam-workflow.md`** |
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
-| Git操作 | `docs/development/workflow/git-workflow.md` | - |
+| Git操作 | `docs/development/guides/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |
 
 ---

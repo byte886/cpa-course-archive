@@ -548,6 +548,6 @@
 - [问题跟踪](project-management/active/ISSUES.md) — 未解决问题
 - [知识库组织规范](development/knowledge/knowledge-base-organization.md) — 知识库设计原则
 - [知识库来源清单](development/knowledge/knowledge-base-sources.md) — 知识库内容来源
-- [做题流程与交互规范](development/workflow/exam-workflow.md) — 做题自动化流程
+- [做题流程与交互规范](development/guides/exam-workflow.md) — 做题自动化流程
 - [脚本说明](../scripts/README.md) — 所有脚本的用途和参数
 - [项目管理规范](project-management/README.md) — 测试驱动、缺陷管理、任务报告

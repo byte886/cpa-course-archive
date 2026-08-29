@@ -109,7 +109,7 @@
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
 | 做题思路解析.md | `knowledge-base/organized-content/` | 通用做题方法论（面向学习者） |
-| exam-workflow.md | `docs/development/workflow/` | 做题流程、交互规范、v4 JavaScript方法、检查清单 |
+| exam-workflow.md | `docs/development/guides/` | 做题流程、交互规范、v4 JavaScript方法、检查清单 |
 
 ### 5.2 知识库组织方法论
 

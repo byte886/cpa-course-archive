@@ -87,7 +87,7 @@
 ### 实例
 
 WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解为：
-- `docs/development/workflow/git-workflow.md`（Git 工作流）
+- `docs/development/guides/git-workflow.md`（Git 工作流）
 - `docs/development/tools/transcription.md`（音频转文字）
 - `docs/development/tools/ocr.md`（OCR 文字提取）
 - `docs/development/api/netdisk-setup.md`（百度网盘集成）

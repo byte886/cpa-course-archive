@@ -57,7 +57,7 @@
 
 - **iTerm**：任务完成后立即关闭对应窗口，禁止累积未使用窗口
 - **Chrome TAB**：开始新任务前关闭无关TAB，视频下载完成后立即关闭播放TAB
-- 详细操作命令：参考 [interaction-workflow.md](development/workflow/interaction-workflow.md) 第1节
+- 详细操作命令：参考 [interaction-workflow.md](development/guides/interaction-workflow.md) 第1节
 
 ### 统一使用已有工具（必须遵守）
 
@@ -95,7 +95,7 @@
 ### 参考文档
 
 - **命名规范**：[NAMING_CONVENTION.md](project-management/standards/NAMING_CONVENTION.md) — 目录和文件命名的完整规范
-- **资源管理**：[interaction-workflow.md](development/workflow/interaction-workflow.md) — Chrome TAB和iTerm窗口管理
+- **资源管理**：[interaction-workflow.md](development/guides/interaction-workflow.md) — Chrome TAB和iTerm窗口管理
 - **目录检查脚本**：`scripts/check_directory_structure.sh` — 自动检测并清理不完整命名的空目录
 
 ---
@@ -268,7 +268,7 @@
 
 ### 参考文档
 
-- **做题流程与交互规范**：[exam-workflow.md](development/workflow/exam-workflow.md) — ⚠️ **必读**：页面管理、补题流程、答题卡操作、v4 JavaScript方法、检查清单、试卷统计
+- **做题流程与交互规范**：[exam-workflow.md](development/guides/exam-workflow.md) — ⚠️ **必读**：页面管理、补题流程、答题卡操作、v4 JavaScript方法、检查清单、试卷统计
 - **做题思路解析**：[做题思路解析.md](knowledge-base/organized-content/做题思路解析.md) — 通用做题方法论（面向学习者）
 - **做题脚本**：`scripts/answer_option.sh`（单选）、`scripts/answer_multi.sh`（多选）、`scripts/submit_exam.sh`（交卷）
 

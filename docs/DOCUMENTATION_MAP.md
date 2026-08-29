@@ -20,7 +20,7 @@
 5. `docs/project-management/active/TASK_STATUS.md` — 当前任务状态和前置依赖
 
 ### 做题验证前
-1. `docs/development/workflow/exam-workflow.md` — 做题流程与交互规范（含交互优化、检查清单、v4 JavaScript方法）
+1. `docs/development/guides/exam-workflow.md` — 做题流程与交互规范（含交互优化、检查清单、v4 JavaScript方法）
 2. `knowledge-base/organized-content/<章节名>/知识拆解.md` — 知识库内容
 3. `knowledge-base/organized-content/<章节名>/考试指导.md` — 考点分析、易错点
 4. `knowledge-base/organized-content/做题思路解析.md` — 通用做题方法论
@@ -55,7 +55,7 @@
 ### 遇到问题/异常
 1. `grep -rn "关键词" docs/` — 搜索相关文档
 2. `docs/development/tools/playwright-cli-guide.md` — Playwright常见问题
-3. `docs/development/workflow/interaction-workflow.md` — 交互异常处理
+3. `docs/development/guides/interaction-workflow.md` — 交互异常处理
 4. `AGENTS.md` 第10节 — 异常处理流程
 
 ### 项目维护/文档更新
@@ -90,10 +90,10 @@
 | 网盘操作 | `docs/development/api/netdisk-setup.md` | 百度网盘API配置与上传 |
 | 飞书API | `docs/development/api/feishu-api.md` | 知识库、文档、多维表格API |
 | 加密凭证 | `docs/development/api/encryption.md` | Token加密存储与使用 |
-| Git工作流 | `docs/development/workflow/git-workflow.md` | 分支策略、提交规范、pre-commit |
+| Git工作流 | `docs/development/guides/git-workflow.md` | 分支策略、提交规范、pre-commit |
 | Playwright指南 | `docs/development/tools/playwright-cli-guide.md` | CLI使用、Token刷新、常见问题 |
-| 交互工作流 | `docs/development/workflow/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
-| **做题流程与交互规范** | `docs/development/workflow/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
+| 交互工作流 | `docs/development/guides/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
+| **做题流程与交互规范** | `docs/development/guides/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
 | 文档下载 | `docs/development/tools/document-download.md` | CDN直链、curl后台下载、完整性校验 |
 
 ### 二、概念说明（Concept — 是什么）
@@ -185,7 +185,7 @@
 - `.github/PULL_REQUEST_TEMPLATE.md` — PR模板
 
 **合并文档**：
-- `docs/knowledge-base/methodology/交互优化指南.md` → 合并到 `docs/development/workflow/exam-workflow.md`（v4 JavaScript方法、检查清单、试卷统计）
+- `docs/knowledge-base/methodology/交互优化指南.md` → 合并到 `docs/development/guides/exam-workflow.md`（v4 JavaScript方法、检查清单、试卷统计）
 - `docs/knowledge-base/methodology/做题流程与方法论.md` → 技术操作部分已在 `exam-workflow.md`，删除重复文档
 
 **移动文档**：
