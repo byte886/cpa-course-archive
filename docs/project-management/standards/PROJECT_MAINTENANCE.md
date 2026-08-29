@@ -18,6 +18,7 @@
 3. **文档按专业领域分类**：`docs/project-management/`（项目管理）、`docs/development/`（开发文档），WORKFLOW.md 只保留总体流程和索引。
 4. **任务文档不放根目录**：任务状态、测试计划、项目计划等统一放 `docs/project-management/`。
 5. **定期清理**：测试文件、临时日志、残留目录及时清理，不堆积。
+6. **.gitignore 检查**：清理时必须检查 .gitignore，确保临时文件、大文件、敏感文件已被正确忽略；提交前运行 `git status` 确认没有不该提交的文件；发现新的临时文件类型时及时补充到 .gitignore。
 
 ### 检查触发时机
 

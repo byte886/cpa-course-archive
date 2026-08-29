@@ -376,6 +376,9 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 - 测试文件、临时日志、残留目录及时清理
 - 完成任务后检查是否有中间产物需要清理
 - 不要在项目根目录散落临时文件
+- **清理时必须检查 .gitignore**：确保临时文件、大文件、敏感文件已被正确忽略，避免误提交
+- **提交前运行 `git status` 检查**：确认没有不该提交的文件（视频、PDF、音频、密钥明文等）
+- **.gitignore 维护**：发现新的临时文件类型或大文件类型时，及时补充到 .gitignore
 
 ### 13.8 知识库生成规则（强制）
 
