@@ -15,6 +15,7 @@
 |---------|------|---------|
 | `KNOWLEDGE_BASE_TEMPLATE.md` | 知识库内容模板 | 生成知识拆解和考试指导文档时 |
 | `PARENT_NODE_TEMPLATE.md` | 知识库父节点模板 | 生成章节父节点页面（含子节点链接）时 |
+| `EXAM_RECORD_TEMPLATE.md` | 做题记录模板 | 生成做题记录时，明确数据采集规范，避免把错题当答案 |
 | `REPORT_TEMPLATE.md` | 任务报告模板 | 生成任务完成报告时 |
 | `VERIFICATION_TEMPLATE.md` | 通用验证报告模板 | 验证任何对象（视频、转写、OCR等）时 |
 | `VERIFICATION_TEMPLATE_knowledge_base.md` | 知识库验证报告模板 | 验证飞书知识库页面导入质量时 |
@@ -38,6 +39,9 @@
 ### 知识库模板（2个）
 - `KNOWLEDGE_BASE_TEMPLATE.md`：知识拆解 + 考试指导
 - `PARENT_NODE_TEMPLATE.md`：章节父节点（含子节点链接）
+
+### 做题记录模板（1个）
+- `EXAM_RECORD_TEMPLATE.md`：做题记录（含数据采集清单、选项标记规范、避免把错题当答案）
 
 ### 报告模板（1个）
 - `REPORT_TEMPLATE.md`：任务完成报告
