@@ -143,59 +143,7 @@
 
 ---
 
-## 5. 工具与版本（关键版本）
-
-> 详细的工具版本、平台兼容性、硬件要求、环境检查命令见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md)。
-
-**关键版本（版本变更可能导致脚本不兼容，禁止自行升级）：**
-- Python 3.13.13 / Node.js v20.20.2 / ffmpeg 8.1.2
-
-**Mac 专用工具（不可在其他平台直接使用）：**
-- **macOS Vision 框架**：PDF/图片 OCR，必须用 `scripts/batch_ocr.sh`，**禁止安装 tesseract**
-- **iTerm2**：批量任务必须在 iTerm 前台运行（实时进度），禁止后台运行
-
----
-
-## 6. 常用命令（逐字可执行）
-
-> 环境检查命令（新机器/环境变化时）见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) 第4节。
-
-### 6.1 常用操作命令
-
-```bash
-# 视频压缩（单文件）
-bash scripts/compress.sh <input.mp4> <output.mp4>
-
-# 批量视频压缩
-bash scripts/compress.sh <input_dir> <output_dir>
-
-# 音频转文字
-bash scripts/setup-transcription-env.sh  # 首次设置
-python3 scripts/transcribe_pipeline.py <audio.wav>
-
-# 做题（使用脚本，不手动写JavaScript）
-bash scripts/answer_option.sh <A/B/C/D>     # 单选题
-bash scripts/answer_multi.sh <A> <B> <D>     # 多选题
-bash scripts/submit_exam.sh                    # 交卷
-
-# 百度网盘上传
-python3 scripts/baidu_upload.py <local_path> <remote_path>
-
-# OCR讲义
-bash scripts/batch_ocr.sh <pdf_dir> <output_dir>
-```
-
-### 6.2 Playwright连接失败自动恢复
-
-```bash
-# 连接失败时，先刷新Token（参考 docs/development/tools/playwright-cli-guide.md 第4节）
-# 禁止直接要求用户手动操作，先尝试自动恢复
-bash scripts/playwright_connect.sh
-```
-
----
-
-## 7. 浏览器操作任务强制检查清单
+## 5. 浏览器操作任务强制检查清单
 
 **开始任何需要浏览器操作的任务前，必须按以下清单逐项检查：**
 
@@ -209,7 +157,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 8. 存储分工（硬约束）
+## 6. 存储分工（硬约束）
 
 | 位置 | 内容 | 说明 |
 |------|------|------|
@@ -223,7 +171,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 9. 异常处理流程（任何操作失败时）
+## 7. 异常处理流程（任何操作失败时）
 
 **任何操作失败时，必须按以下流程处理，禁止直接要求用户手动操作：**
 
@@ -242,7 +190,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 10. 文档快速入口
+## 8. 文档快速入口
 
 按任务类型查找文档：
 
@@ -263,7 +211,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 11. 状态查询协议（收到用户查询时必须遵守）
+## 9. 状态查询协议（收到用户查询时必须遵守）
 
 当用户询问项目状态、任务、问题、维护工作等信息时，**必须先参考 [PROJECT_STATUS_QUERY.md](docs/project-management/standards/PROJECT_STATUS_QUERY.md) 识别查询意图**，再读取对应文档，按标准格式响应。
 
@@ -283,7 +231,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 12. Definition of Done（任务完成标准）
+## 10. Definition of Done（任务完成标准）
 
 任务完成前，必须逐项验证：
 
