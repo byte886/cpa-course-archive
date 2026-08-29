@@ -190,7 +190,7 @@ __pycache__/
 
 # 生成结果目录
 transcripts/
-transcripts_full/
+transcription/transcripts_full/
 pdf_test_pages/
 ```
 

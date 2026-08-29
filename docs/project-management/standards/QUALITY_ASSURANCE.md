@@ -136,7 +136,7 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 
 - 验证报告模板：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 - 具体验证报告：放在**对应课程目录下**（和被验证对象在一起）
-- 命名格式：`VERIFICATION_{对象类型}.md`（如 `VERIFICATION_知识拆解.md`）
+- 命名格式：见1.4节三种命名规范（综合报告用`VERIFICATION.md`，专项用`VERIFICATION_<对象>_<范围>.md`，同步用`SYNC_REPORT_<对象>_<日期>.md`）
 - 验证报告随课程产出物一起同步到百度网盘
 - 验证通过后，在任务状态文档中标记"已验证"
 

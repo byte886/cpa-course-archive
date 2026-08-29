@@ -41,8 +41,8 @@
 |----------|----------|------|
 | 通用规范/流程 | `docs/` 对应子目录 | 如 QUALITY_ASSURANCE.md、PROJECT_MAINTENANCE.md |
 | 通用模板 | `project-management/task-reports/` 或 `docs/` | 如 REPORT_TEMPLATE.md、VERIFICATION_TEMPLATE.md |
-| 具体课程产出物 | 对应课程目录下 | 如 video.mp4、知识拆解.md、transcript.md |
-| 具体课程验证报告 | 对应课程目录下 | 如 VERIFICATION_知识拆解.md |
+| 具体课程产出物 | 对应课程目录下 | 如 video.mp4、知识拆解.md、考试指导.md、transcript.md |
+| 具体课程验证报告 | 对应课程目录下 | 如 VERIFICATION.md（综合报告）或 VERIFICATION_<对象>_<范围>.md（专项报告） |
 | 具体课程测试计划 | `docs/project-management/` | 测试计划是项目管理文档，不是课程产出物 |
 | 具体任务报告 | `project-management/task-reports/` 或对应课程目录 | 根据报告性质决定 |
 
@@ -61,7 +61,7 @@
 | **视频** | ✅ 上传 | video.mp4 | 课程视频 |
 | **知识文档** | ✅ 上传 | 知识拆解.md, 考试指导.md | 知识本身和考试指导 |
 | **讲义原件** | ✅ 上传 | docs/*.pdf | 原始讲义 |
-| **讲义文字稿** | ✅ 上传 | docs/讲义文字稿.md | 讲义OCR后的文字稿 |
+| **讲义文字稿** | ✅ 上传 | docs_text/*_OCR.md | 讲义OCR后的文字稿（带_OCR后缀） |
 | **转写文字稿** | ✅ 上传 | transcript.md | 视频转写后的文字稿（可读） |
 | **验证报告** | ❌ 不上传 | VERIFICATION_*.md | 技术过程文档，仅用于质量验证 |
 | **原始数据** | ❌ 不上传 | transcript.json | 转写原始JSON，非面向使用者 |

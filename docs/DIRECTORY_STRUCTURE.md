@@ -163,8 +163,7 @@ gaodun-course-knowledge-base/
 │           └── 用户笔记精华_*.md # 高赞用户留言整理
 ├── transcription/            # 转写工作目录
 │   ├── requirements.txt      # Python依赖清单（新电脑复现环境用）
-│   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）
-│   └── transcripts_full/     # 转写结果输出（gitignore忽略，不提交）
+│   └── venv/                 # Python虚拟环境（gitignore忽略，不提交）
 ├── data/                     # 符号链接目录（gitignore忽略，不提交）
 │   └── 高顿/                 # 符号链接 → ~/Desktop/高顿/
 └── .git/hooks/
