@@ -193,6 +193,8 @@ gaodun-course-knowledge-base/
     │   │   ├── 01_税法全面精讲01-税法总论/
     │   │   │   ├── video.mp4
     │   │   │   ├── transcript.md
+    │   │   │   ├── 知识拆解.md
+    │   │   │   ├── 考试指导.md
     │   │   │   ├── docs/
     │   │   │   └── docs_text/
     │   │   └── ...

@@ -189,9 +189,10 @@ __pycache__/
 *.log
 
 # 生成结果目录
-transcripts/
+transcription/transcripts/
 transcription/transcripts_full/
-pdf_test_pages/
+transcription/transcripts_test/
+transcription/pdf_test_pages/
 ```
 
 ### 6.3 清理历史中的大文件
