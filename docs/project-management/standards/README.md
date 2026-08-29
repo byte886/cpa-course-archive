@@ -15,7 +15,10 @@
 |------|------|
 | `NAMING_CONVENTION.md` | 目录与文件命名规范（本地、网盘、知识库统一） |
 | `DOC_SYNC_CHECKLIST.md` | 文档同步清单（需求/流程/结构变更时按清单检查） |
-| `PROJECT_MAINTENANCE.md` | 项目维护规范（Docs as Code、文档分解、AI友好写作） |
+| `PROJECT_MAINTENANCE.md` | 项目维护规范索引（拆分为三个子文档） |
+| `PROJECT_STRUCTURE_MAINTENANCE.md` | 项目结构维护规范（结构维护、文件归属、网盘筛选、测试闭环、状态查询） |
+| `DOCUMENTATION_GUIDE.md` | 文档写作指南（组织、分解、分类、Docs as Code、定期梳理、AI友好写作） |
+| `DOCUMENTATION_OPTIMIZATION.md` | 文档优化流程与变更驱动（优化流程、变更驱动、检查清单、联动关系） |
 | `QUALITY_ASSURANCE.md` | 质量保证规范（验证流程、检查清单、验收标准） |
 | `BATCH_TASK_EXECUTION.md` | 大任务执行规范（检查点、预警、异常恢复） |
 | `PROJECT_STATUS_QUERY.md` | 项目状态查询规范（用户查询时的应答格式） |

@@ -99,7 +99,10 @@ cpa-course-archive/
 │   │   ├── standards/        # 标准规范
 │   │   │   ├── PROJECT_PLAN.md   # 项目计划
 │   │   │   ├── QUALITY_ASSURANCE.md # 质量保证规范
-│   │   │   ├── PROJECT_MAINTENANCE.md # 项目维护规则
+│   │   │   ├── PROJECT_MAINTENANCE.md # 项目维护规范索引
+│   │   │   ├── PROJECT_STRUCTURE_MAINTENANCE.md # 项目结构维护规范
+│   │   │   ├── DOCUMENTATION_GUIDE.md # 文档写作指南
+│   │   │   ├── DOCUMENTATION_OPTIMIZATION.md # 文档优化流程与变更驱动
 │   │   │   ├── NAMING_CONVENTION.md # 命名规范
 │   │   │   ├── BATCH_TASK_EXECUTION.md # 大任务执行规范
 │   │   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
@@ -269,7 +272,7 @@ cat docs/DOCUMENTATION_MAP.md
 
 **如果已有类似文档**：
 - 优先更新现有文档，而不是创建新文档
-- 如果现有文档内容过多需要拆分，参考"文档分解原则"（PROJECT_MAINTENANCE.md 第四章）
+- 如果现有文档内容过多需要拆分，参考"文档分解原则"（DOCUMENTATION_GUIDE.md 第二章）
 
 #### 第二步：确定文档类型和归属目录
 

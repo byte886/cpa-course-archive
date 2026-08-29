@@ -59,10 +59,13 @@
 4. `AGENTS.md` 第10节 — 异常处理流程
 
 ### 项目维护/文档更新
-1. `docs/project-management/standards/PROJECT_MAINTENANCE.md` — 维护规范、文档组织、Docs as Code
-2. `docs/project-management/standards/PROJECT_STATUS_QUERY.md` — 状态查询协议、意图分类、模糊表达映射、标准响应格式
-3. `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` — 文档同步清单
-4. `docs/project-management/standards/NAMING_CONVENTION.md` — 命名规范
+1. `docs/project-management/standards/PROJECT_MAINTENANCE.md` — 项目维护规范索引（拆分为三个子文档）
+2. `docs/project-management/standards/PROJECT_STRUCTURE_MAINTENANCE.md` — 项目结构维护规范
+3. `docs/project-management/standards/DOCUMENTATION_GUIDE.md` — 文档写作指南
+4. `docs/project-management/standards/DOCUMENTATION_OPTIMIZATION.md` — 文档优化流程与变更驱动
+5. `docs/project-management/standards/PROJECT_STATUS_QUERY.md` — 状态查询协议、意图分类、模糊表达映射、标准响应格式
+6. `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` — 文档同步清单
+7. `docs/project-management/standards/NAMING_CONVENTION.md` — 命名规范
 
 ---
 
@@ -104,7 +107,10 @@
 | **项目需求文档** | `docs/REQUIREMENTS.md` | 核心诉求、功能需求、非功能需求、特殊规则、验收标准 |
 | 知识库组织结构 | `docs/development/knowledge/knowledge-base-organization.md` | 知识库设计原则、节点层次 |
 | 知识库来源清单 | `docs/development/knowledge/knowledge-base-sources.md` | 知识库内容来源、优先级 |
-| 项目维护规范 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | Docs as Code、文档分解原则 |
+| 项目维护规范索引 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | 项目维护规范索引（拆分为三个子文档） |
+| 项目结构维护规范 | `docs/project-management/standards/PROJECT_STRUCTURE_MAINTENANCE.md` | 结构维护、文件归属、网盘筛选、测试闭环、状态查询 |
+| 文档写作指南 | `docs/project-management/standards/DOCUMENTATION_GUIDE.md` | 组织、分解、分类、Docs as Code、定期梳理、AI友好写作 |
+| 文档优化流程与变更驱动 | `docs/project-management/standards/DOCUMENTATION_OPTIMIZATION.md` | 优化流程、变更驱动、检查清单、联动关系 |
 | 质量保证规范 | `docs/project-management/standards/QUALITY_ASSURANCE.md` | 验证标准、质量检查流程 |
 | 项目计划 | `docs/project-management/standards/PROJECT_PLAN.md` | 阶段划分、里程碑 |
 
