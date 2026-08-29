@@ -9,7 +9,7 @@
 
 ---
 
-## 脚本总览（19个）
+## 脚本总览（20个）
 
 | 分类 | 脚本数 | 说明 |
 |------|--------|------|
@@ -33,7 +33,7 @@
 | **用途** | 点击单选题的单个选项（A/B/C/D） |
 | **用法** | `bash scripts/answer_option.sh C` |
 | **可靠性** | ✅ 高（已验证，JavaScript直接点击，不依赖ref） |
-| **相关文档** | `docs/knowledge-base/methodology/交互优化指南.md` |
+| **相关文档** | `docs/development/workflow/exam-workflow.md` |
 
 **原理**：通过文本内容匹配选项元素，使用 `element.click()` 直接点击。过滤条件：文本精确匹配、元素可见、top>150（排除导航）、尺寸合理。
 
@@ -46,7 +46,7 @@
 | **用途** | 点击多选题的多个选项（可传多个参数） |
 | **用法** | `bash scripts/answer_multi.sh A B D` |
 | **可靠性** | ✅ 高（已验证，解决了ref失效问题） |
-| **相关文档** | `docs/knowledge-base/methodology/交互优化指南.md` |
+| **相关文档** | `docs/development/workflow/exam-workflow.md` |
 
 **注意**：多选题点击后不会自动跳题，需要手动点击"下一题"。
 
@@ -250,7 +250,7 @@
 | **用途** | 检查本地课程目录结构是否符合规范（高顿/CPA/课程库/课程名/章节名/） |
 | **用法** | `bash scripts/check_directory_structure.sh <data_dir>` |
 | **可靠性** | ✅ 中高（基于命名规范检查） |
-| **相关文档** | `docs/project-management/NAMING_CONVENTION.md` |
+| **相关文档** | `docs/project-management/standards/NAMING_CONVENTION.md` |
 
 ---
 

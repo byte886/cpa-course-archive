@@ -268,9 +268,8 @@
 
 ### 参考文档
 
-- **交互优化指南**：[交互优化指南.md](knowledge-base/methodology/交互优化指南.md) — ⚠️ **必读**：做题页面的交互规律、选项确认方法、脚本使用
-- **做题流程**：[exam-workflow.md](development/workflow/exam-workflow.md) — 页面管理、补题流程、答题卡操作、踩坑记录
-- **做题方法论**：[做题流程与方法论.md](knowledge-base/methodology/做题流程与方法论.md) — 完整流程、API探索方向、经验总结
+- **做题流程与交互规范**：[exam-workflow.md](development/workflow/exam-workflow.md) — ⚠️ **必读**：页面管理、补题流程、答题卡操作、v4 JavaScript方法、检查清单、试卷统计
+- **做题思路解析**：[做题思路解析.md](knowledge-base/organized-content/做题思路解析.md) — 通用做题方法论（面向学习者）
 - **做题脚本**：`scripts/answer_option.sh`（单选）、`scripts/answer_multi.sh`（多选）、`scripts/submit_exam.sh`（交卷）
 
 ---

@@ -225,7 +225,7 @@ gaodun_downloads/
 
 1. **先读 `README.md`** — 了解项目概览、存储分工、核心原则
 2. **再读 `docs/WORKFLOW.md` 对应环节** — 找到当前任务所属的流程环节，阅读详细步骤
-3. **按 WORKFLOW 中的「参考文档」链接查阅专项文档** — 如交互优化指南、压缩参数说明等
+3. **按 WORKFLOW 中的「参考文档」链接查阅专项文档** — 如做题交互规范、压缩参数说明等
 4. **最后检查 `docs/project-management/active/TASK_STATUS.md`** — 确认当前任务状态和前置依赖
 
 **为什么必须这样做**：本项目流程复杂，每个环节都有专项文档记录了踩过的坑和优化方案。不查阅文档直接执行，大概率会重复犯之前已经解决过的错误。文档是项目的"集体记忆"，必须依赖文档而不是对话记忆。
@@ -276,7 +276,7 @@ gaodun_downloads/
 | 百度网盘同步 | `docs/WORKFLOW.md` 第4节 | `docs/development/api/netdisk-setup.md` |
 | 视频转文字 | `docs/WORKFLOW.md` 第5节 | `docs/development/tools/transcription.md` |
 | 知识库生成 | `docs/WORKFLOW.md` 第6节 | `docs/development/knowledge/knowledge-base-organization.md` |
-| **做题验证** | `docs/WORKFLOW.md` 第7节 | **`docs/knowledge-base/methodology/交互优化指南.md`** |
+| **做题验证** | `docs/WORKFLOW.md` 第7节 | **`docs/development/workflow/exam-workflow.md`** |
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
 | Git操作 | `docs/development/workflow/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |

@@ -125,7 +125,7 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 | 类型 | 说明 | 示例 |
 |------|------|------|
 | **Governance** | 治理规范，AI必须遵守的规则 | AGENTS.md, 项目维护规范, 质量保证规范 |
-| **Task** | 操作指南，教你怎么做 | WORKFLOW.md, 视频处理指南, 做题交互优化指南 |
+| **Task** | 操作指南，教你怎么做 | WORKFLOW.md, 视频处理指南, 做题流程与交互规范 |
 | **Concept** | 概念说明，解释是什么 | README.md, 知识库组织结构说明 |
 | **Reference** | 参考资料，查事实用 | DOCUMENTATION_MAP.md, 脚本说明, 命名规范 |
 | **Active** | 过程记录，做了什么 | TASK_STATUS.md, 做题记录, 验证报告 |

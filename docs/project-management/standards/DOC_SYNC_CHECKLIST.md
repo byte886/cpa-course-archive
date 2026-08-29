@@ -108,8 +108,8 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| 做题流程与方法论.md | `docs/knowledge-base/methodology/` | 做题的完整流程、交互优化、经验总结 |
-| 交互优化指南.md | `docs/knowledge-base/methodology/` | 高顿题库做题交互中的问题和优化方法 |
+| 做题思路解析.md | `docs/knowledge-base/organized-content/` | 通用做题方法论（面向学习者） |
+| exam-workflow.md | `docs/development/workflow/` | 做题流程、交互规范、v4 JavaScript方法、检查清单 |
 
 ### 5.2 知识库组织方法论
 
