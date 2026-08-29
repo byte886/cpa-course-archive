@@ -220,6 +220,55 @@ cpa-course-archive/
 > 
 > **虚拟环境迁移原则**：Python虚拟环境不直接复制到新电脑，用 `requirements.txt` + 搭建脚本重新创建。
 
+## 系统要求
+
+> ⚠️ **项目主要在 macOS 下开发和运行**，部分工具依赖 macOS 原生功能。如需在其他平台运行，需替换对应工具。
+
+### 支持的平台
+
+| 平台 | 支持状态 | 说明 |
+|------|---------|------|
+| **macOS 12+** | ✅ 完全支持 | 主要开发和运行环境 |
+| Linux | ⚠️ 部分支持 | 需替换 OCR 方案，终端工具不同 |
+| Windows | ⚠️ 部分支持 | 需替换 OCR 方案，bash 脚本需 WSL |
+
+### Mac 专用工具（不可直接跨平台）
+
+| 工具 | 用途 | 替代方案（其他平台） |
+|------|------|---------------------|
+| **macOS Vision 框架** | PDF/图片 OCR 文字提取 | Tesseract OCR / PaddleOCR |
+| **iTerm2** | 批量任务前台运行（实时进度） | GNOME Terminal / Windows Terminal |
+| **textutil** | DOC/DOCX 文字提取 | python-docx / pandoc |
+| **AppleScript** | iTerm 窗口控制 | 无直接替代 |
+| **bash 3.2** | 脚本运行环境（Mac自带） | 升级到 bash 4+ 或调整脚本 |
+
+### 跨平台工具（可直接使用）
+
+| 工具 | 用途 |
+|------|------|
+| ffmpeg | 视频下载、解密、压缩、验证 |
+| Playwright CLI | 浏览器自动化 |
+| Node.js | HLS 分片下载脚本 |
+| Python 3.10+ | 转写、OCR批处理、网盘上传 |
+| FunASR / faster-whisper | 音频转文字 |
+| 百度网盘 PCS API | 文件上传 |
+
+### 硬件要求
+
+- **CPU**：建议 8 核以上（视频压缩和音频转写耗时较长）
+- **内存**：建议 16GB 以上（转写模型加载需要）
+- **磁盘**：建议 500GB 以上（原始视频 + 压缩视频 + 转写中间文件）
+- **网络**：稳定的互联网连接（视频下载、网盘上传、飞书API）
+
+### 迁移到新 Mac 的步骤
+
+1. 克隆仓库：`git clone <repo-url>`
+2. 安装依赖：`brew install ffmpeg node python@3.11`
+3. 搭建转写环境：`bash scripts/setup-transcription-env.sh`
+4. 配置数据目录：`bash scripts/setup-data-symlink.sh`
+5. 解密凭证：`bash scripts/secrets.sh decrypt baidu_credentials`
+6. 验证：运行 `bash scripts/check_directory_structure.sh`
+
 ## 技术方案
 
 - 浏览器自动化：Playwright Extension 模式附加 Chrome

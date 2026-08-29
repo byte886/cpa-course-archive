@@ -48,6 +48,24 @@
 
 **DO NOT** 自行升级以上工具版本，除非用户明确要求。版本变更可能导致脚本不兼容。
 
+### 平台兼容性（重要）
+
+> ⚠️ **项目主要在 macOS 下运行**，部分工具依赖 macOS 原生功能。执行任务前必须确认当前平台。
+
+**Mac 专用工具（不可在其他平台直接使用）**：
+- **macOS Vision 框架**：PDF/图片 OCR，必须用 `scripts/batch_ocr.sh`，**禁止安装 tesseract**
+- **iTerm2**：批量任务必须在 iTerm 前台运行（实时进度），禁止后台运行
+- **textutil**：DOC/DOCX 文字提取（macOS 原生命令）
+- **AppleScript**：iTerm 窗口控制
+
+**跨平台工具（可直接使用）**：
+- ffmpeg、Playwright CLI、Node.js、Python、FunASR/faster-whisper、百度网盘API、飞书API
+
+**如果在非 Mac 平台执行**：
+1. OCR 必须替换为 Tesseract/PaddleOCR（需用户确认）
+2. iTerm 相关脚本需调整为对应终端
+3. bash 脚本可能需要调整（Mac 自带 bash 3.2，Linux 通常是 bash 4+）
+
 ---
 
 ## 3. Setup Commands（精确命令）
