@@ -1,5 +1,10 @@
 # 变更日志
 
+> **文档类型**：Active（过程记录）
+> **更新频率**：每次重要变更后
+> **维护者**：AI自动维护
+> **读者**：AI代理+人类
+
 > 本文档记录项目的所有重要变更，遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式。
 > 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 

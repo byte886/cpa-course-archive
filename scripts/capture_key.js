@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Playwright run-code script: inject Worker hook, capture HLS AES keys for SD and FHD
 // Usage: npx playwright cli -s=<session> run-code scripts/capture_key.js
 // Prerequisite: player tab is active (v-glive.gaodun.com/player?token=...)
