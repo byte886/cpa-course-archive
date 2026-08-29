@@ -66,38 +66,18 @@
 2. iTerm 相关脚本需调整为对应终端
 3. bash 脚本可能需要调整（Mac 自带 bash 3.2，Linux 通常是 bash 4+）
 
-**开发与测试环境（当前配置）**：
-
-项目目前主要在以下 Mac 环境下开发和测试，执行任务前确认环境匹配：
-
-- **操作系统**：macOS 15.7.8 (Sequoia)
-- **硬件**：Mac Pro / Intel i5-13600KF 14核 / 128GB内存 / 3.7TB NVMe
-- **Shell**：bash 3.2.57(1)-release（Mac自带版本，脚本基于此版本编写）
-- **工具版本**：ffmpeg 8.1.2 / Node.js v20.20.2 / Python 3.13.13 / git 2.45.2 / Homebrew 6.0.19
-- **浏览器**：Google Chrome（最新版，已登录高顿教育）
-- **终端**：iTerm2（最新版，批量任务必须在此前台运行）
-
-**环境检查命令**（开始任务前必跑）：
-```bash
-# 检查macOS版本
-sw_vers
-
-# 检查工具版本
-ffmpeg -version | head -1
-node --version
-python3 --version
-git --version
-
-# 检查Chrome和iTerm是否安装
-ls "/Applications/Google Chrome.app" >/dev/null 2>&1 && echo "Chrome OK"
-ls "/Applications/iTerm.app" >/dev/null 2>&1 && echo "iTerm OK"
-```
+> 详细的开发与测试环境配置见 [README.md](README.md) 的"系统要求"章节。
 
 ---
 
 ## 3. Setup Commands（精确命令）
 
-### 3.1 环境检查（开始任务前必跑）
+### 3.1 环境检查（新机器/环境变化时按需执行）
+
+> 同一台机器日常执行不需要每次检查，仅在以下场景执行：
+> - 新机器第一次执行
+> - 系统更新或工具升级后
+> - 遇到工具相关错误排查时
 
 ```bash
 cd /Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads
