@@ -18,7 +18,7 @@ docs/development/
 │   ├── feishu-api.md            # 飞书API使用注意事项
 │   ├── netdisk-setup.md         # 百度网盘集成：应用创建、API配置、上传脚本
 │   └── encryption.md            # 加密凭证：Token加密存储与使用
-├── workflow/                    # 流程与交互
+├── guides/                      # 详细操作指南（原workflow/，已改名）
 │   ├── exam-workflow.md         # 做题流程与交互规范（含交互优化、检查清单）
 │   ├── interaction-workflow.md  # 通用交互流程与优化规范（所有Web场景）
 │   └── git-workflow.md          # GitHub工作流：SSH配置、代理设置、常见问题
@@ -32,7 +32,8 @@ docs/development/
 │   ├── knowledge-base-organization.md  # 知识库组织规范（AI友好）
 │   └── knowledge-base-sources.md       # 知识库来源清单与整理流程
 └── templates/                   # 模板
-    └── PARENT_NODE_TEMPLATE.md  # 知识库父节点内容模板
+    ├── KNOWLEDGE_BASE_TEMPLATE.md  # 知识库内容模板（知识拆解+考试指导）
+    └── PARENT_NODE_TEMPLATE.md     # 知识库父节点内容模板
 ```
 
 ---

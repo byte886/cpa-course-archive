@@ -183,21 +183,15 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 
 ### 6.1 目录结构逻辑
 
-```
-gaodun_downloads/
-├── AGENTS.md              # 本文档（AI操作手册）
-├── README.md              # 项目介绍（给人看）
-├── scripts/               # 所有可执行脚本（统一管理）
-├── docs/
-│   ├── WORKFLOW.md        # 主工作流（概览+链接）
-│   ├── development/       # 专项技术文档（工具/流程/API）
-│   ├── project-management/ # 项目管理（规范/状态/测试计划）
-│   └── knowledge-base/    # 知识库（模板/方法论/整理内容/原始素材）
-├── data/                  # 数据目录（软链接到 ~/Desktop/高顿/）
-├── output/                # 临时输出（测试用，不上传）
-├── reports/               # 任务报告
-└── transcription/         # 转写中间文件（.gitignore）
-```
+> 详细的项目仓库目录结构见 [README.md](README.md) 的"目录结构"章节。
+
+**核心原则**：
+- `docs/` 放项目文档（方法论、指导、规范、流程、模板）
+- `knowledge-base/` 放知识库内容（本地源头，同步到飞书）
+- `scripts/` 放所有可执行脚本（统一管理）
+- `data/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`）
+- `transcription/` 是转写工作目录（.gitignore忽略）
+- 生成结果（视频、PDF、文字稿）**禁止**放GitHub仓库，放本地 `~/Desktop/高顿/`
 
 ### 6.2 存储分工（硬约束）
 
