@@ -33,7 +33,7 @@
 
 ## 仓库地址
 
-- GitHub: https://github.com/byte886/cpa-course-archive （公有）
+- GitHub: https://github.com/byte886/gaodun-course-knowledge-base （公有）
 
 ## 常用查询话术（直接复制使用）
 
