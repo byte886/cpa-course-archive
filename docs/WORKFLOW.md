@@ -147,7 +147,7 @@
 
 ### 关键要点
 
-- 目录结构：`高顿/CPA/课程库/<课程名>/<序号>_<章节名>/`（包含video.mp4、transcript.md、docs/，OCR结果放在docs/下或docs_text/下，具体见DIRECTORY_STRUCTURE.md）
+- 目录结构：`高顿/CPA/课程库/<课程名>/<序号>_<章节名>/`（包含video.mp4、transcript.md、docs/、docs_text/，具体见DIRECTORY_STRUCTURE.md）
 - 开班典礼用序号00，作为课程的第一讲处理
 - "待整理"中的课程走完知识库流程后，移动到"课程库"下
 - 建目录时必须检查该讲次是否有课后作业（"继续考"），并在任务报告中明确说明
