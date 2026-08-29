@@ -1,4 +1,4 @@
-# AGENTS.md — 高顿CPA课程归档项目
+# AGENTS.md — AI代理操作手册
 
 > **文档类型**：Governance（治理规范 — AI操作手册）
 > **更新频率**：每次流程/工具/规范变更时
@@ -7,30 +7,24 @@
 
 > 本文档是AI代理的操作手册，命令式、可执行。与README.md（给人看的项目介绍）互补。
 > 执行任何任务前必须先阅读本文档对应部分，**核心规则在第3章，必须优先阅读**。
+>
+> **写作原则**：基于 [AGENTS_MD_BEST_PRACTICES.md](docs/development/AGENTS_MD_BEST_PRACTICES.md)，只包含AI无法推断的内容，已在其他文档中的内容只链接不重复。
 
 ---
 
-## 文档边界
+## 1. 文档边界
 
 | 维度 | 本文档（AGENTS.md） | 其他文档 |
 |------|---------------------|----------|
 | **定位** | AI操作手册，命令式、可执行 | - |
 | **读者** | AI代理（每次启动自动加载） | - |
-| **包含** | 核心规则、执行前必读、禁止事项、技术栈、设置命令、异常处理 | - |
+| **包含** | 核心规则、执行前必读、禁止事项、工具版本、常用命令、异常处理 | - |
 | **不包含** | 项目目标介绍、存储分工、课程列表 | → [README.md](README.md) |
 | **不包含** | 详细操作流程、各环节步骤 | → [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | **不包含** | 需求定义、功能清单、验收标准 | → [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) |
-| **不包含** | 文档索引、所有文档清单 | → [docs/DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md) |
-
----
-
-## 1. Project Overview
-
-高顿CPA课程归档项目：自动化完成高顿教育CPA课程的视频下载、压缩、转文字、知识库生成、做题验证全流程。
-
-**核心目标**：将课程视频和讲义转化为结构化知识库，通过做题验证知识库质量，最终支持AI学习和考试辅导。
-
-**使用者**：项目所有者（Mac环境），通过豆包AI代理执行自动化任务。
+| **不包含** | 编码规范 | → [docs/development/CODE_STYLE.md](docs/development/CODE_STYLE.md) |
+| **不包含** | 目录结构详细说明 | → [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) |
+| **不包含** | 系统要求与环境配置 | → [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) |
 
 ---
 
@@ -38,16 +32,17 @@
 
 **执行任何任务前，必须按以下顺序查阅文档，未查阅不得开始执行：**
 
-1. **先读 `README.md`** — 了解项目概览、存储分工、项目维护规则（含核心原则）
+1. **先读 `README.md`** — 了解项目概览、存储分工、课程列表、常用查询话术
+   （核心规则已在本文档第3章，无需重复阅读）
 2. **再读 `docs/REQUIREMENTS.md`** — 理解项目目标、功能范围、验收标准
 3. **再读 `docs/WORKFLOW.md` 对应环节** — 找到当前任务所属的流程环节，阅读详细步骤
 4. **按 WORKFLOW 中的「参考文档」链接查阅专项文档** — 如做题交互规范、压缩参数说明等
 5. **最后检查 `docs/project-management/active/TASK_STATUS.md`** — 确认当前任务状态和前置依赖
 
 **参考资料（按需查阅，不需要每次都读）：**
-- `docs/DIRECTORY_STRUCTURE.md` — 目录结构详细说明（项目仓库、课程目录、知识库结构）
-- `docs/SYSTEM_REQUIREMENTS.md` — 系统要求与环境配置（平台兼容性、硬件要求、迁移步骤）
-- `docs/DOCUMENTATION_MAP.md` — 文档地图（所有文档索引，快速定位）
+- `docs/DIRECTORY_STRUCTURE.md` — 目录结构详细说明
+- `docs/SYSTEM_REQUIREMENTS.md` — 系统要求与环境配置
+- `docs/DOCUMENTATION_MAP.md` — 文档地图（所有文档索引）
 
 **为什么必须这样做**：本项目流程复杂，每个环节都有专项文档记录了踩过的坑和优化方案。不查阅文档直接执行，大概率会重复犯之前已经解决过的错误。文档是项目的"集体记忆"，必须依赖文档而不是对话记忆。
 
@@ -75,8 +70,8 @@
 **检查流程**：
 1. 查看文档目录结构：`ls -la docs/`
 2. 查找相关文档：用 `grep -r "关键词" docs/` 查找是否已有相关内容
-3. 确认文档分工（见第10.3节）
-4. 选择正确的文档，WORKFLOW.md只放摘要和链接
+3. 确认文档分工（见本文档第1章）
+4. 选择正确的文档，WORKFLOW.md只放概览和链接
 5. 确保文档关联：新增或更新后，确保相关文档之间有链接
 
 ### 3.5 文档同步规则（强制）
@@ -104,9 +99,9 @@
 - 测试文件、临时日志、残留目录及时清理
 - 完成任务后检查是否有中间产物需要清理
 - 不要在项目根目录散落临时文件
-- **文件和目录有变化时必须检查 .gitignore**：新增/移动/删除文件或目录后，检查 .gitignore 是否需要更新，确保新的文件类型或目录被正确忽略
-- **提交前运行 `git status` 检查**：确认没有不该提交的文件（视频、PDF、音频、密钥明文、临时文件、node_modules等）
-- **发现新文件类型时及时补充**：遇到之前没有的文件类型（如 .env、.zip、新的临时目录），必须检查是否需要添加到 .gitignore
+- **文件和目录有变化时必须检查 .gitignore**：新增/移动/删除文件或目录后，检查 .gitignore 是否需要更新
+- **提交前运行 `git status` 检查**：确认没有不该提交的文件
+- **发现新文件类型时及时补充**：遇到之前没有的文件类型，必须检查是否需要添加到 .gitignore
 
 ### 3.8 知识库生成规则（强制）
 
@@ -114,9 +109,9 @@
 
 **核心规则**：
 1. **本地是唯一源头**：所有知识库内容必须先在本地 `knowledge-base/organized-content/` 完成并验证，再同步到飞书，禁止直接修改飞书
-2. **父节点必须含子节点链接**：章节父节点（如"01税法总论"）的内容中必须包含知识拆解和考试指导的链接，方便分享给用户时直接使用
-3. **通用方法独立目录**：面向所有课程的通用方法论（如"做题思路解析"）放在 `knowledge-base/organized-content/通用方法/` 目录，不与具体章节混在一起
-4. **验证报告不上传飞书**：`VERIFICATION_*.md` 和 `SYNC_REPORT_*.md` 仅本地保留，不上传到飞书知识库（这些是技术过程文档，不是面向用户的知识内容）
+2. **父节点必须含子节点链接**：章节父节点的内容中必须包含知识拆解和考试指导的链接
+3. **通用方法独立目录**：面向所有课程的通用方法论放在 `knowledge-base/organized-content/通用方法/` 目录
+4. **验证报告不上传飞书**：`VERIFICATION_*.md` 和 `SYNC_REPORT_*.md` 仅本地保留
 5. **子节点内容更新后同步父节点**：当知识拆解或考试指导内容更新时，父节点的概览内容也需要同步更新
 6. **冲突处理**：当用户留言与讲义内容冲突时，以讲义为准
 
@@ -148,7 +143,7 @@
 
 ---
 
-## 5. Tech Stack（版本锁定）
+## 5. 工具与版本（精确版本）
 
 | 工具 | 版本 | 用途 |
 |------|------|------|
@@ -175,16 +170,11 @@
 **跨平台工具（可直接使用）**：
 - ffmpeg、Playwright CLI、Node.js、Python、FunASR/faster-whisper、百度网盘API、飞书API
 
-**如果在非 Mac 平台执行**：
-1. OCR 必须替换为 Tesseract/PaddleOCR（需用户确认）
-2. iTerm 相关脚本需调整为对应终端
-3. bash 脚本可能需要调整（Mac 自带 bash 3.2，Linux 通常是 bash 4+）
-
-> 详细的开发与测试环境配置见 [README.md](README.md) 的"系统要求"章节。
+> 详细的开发与测试环境配置见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md)。
 
 ---
 
-## 6. Setup Commands（常用命令）
+## 6. 常用命令（逐字可执行）
 
 ### 6.1 环境检查（新机器/环境变化时按需执行）
 
@@ -238,59 +228,7 @@ bash scripts/playwright_connect.sh
 
 ---
 
-## 7. Code Style（编码规范）
-
-### 7.1 脚本规范
-
-- **Shell脚本**：`#!/bin/bash`开头，`set -euo pipefail`，变量用双引号
-- **Python脚本**：类型注解，函数式优先，避免全局状态
-- **文件名**：`kebab-case.sh` / `snake_case.py`，功能名清晰
-- **所有脚本放 `scripts/` 目录**，禁止散落在各子目录
-
-### 7.2 文档规范
-
-- **Markdown格式**，标题层级清晰（# → ## → ###）
-- **命令用代码块**，路径用反引号
-- **每个文档开头标注类型**：`> 文档类型：Task / Concept / Reference / Governance`
-- **WORKFLOW.md只放流程概览和链接**，详细内容放专项文档
-
-### 7.3 命名规范
-
-- 课程目录：`高顿/CPA/课程库/<课程名>/<章节名>/`
-- 视频文件：`video.mp4`（统一命名，不保留原始长文件名）
-- 讲义目录：`docs/`
-- 知识库文档：`知识拆解.md` / `考试指导.md`
-
----
-
-## 8. Testing Instructions（验证指南）
-
-### 8.1 视频压缩验证
-
-```bash
-# 验证视频可播放、时长一致
-ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 <output.mp4>
-# 时长与原片误差 <2秒为合格
-```
-
-### 8.2 转文字验证
-
-- 抽样检查3-5段文字稿，确认无明显错字、断句合理
-- 专业术语（如"消费税"、"从价定率"）必须正确
-
-### 8.3 做题验证
-
-- 交卷后检查正确率，错题必须区分"知识错误"和"交互错误"
-- 交互错误必须修复脚本/流程，知识错误必须检查知识库是否有误
-
-### 8.4 上传验证
-
-- 上传后检查文件大小与本地一致
-- 检查目录结构与规划一致
-
----
-
-## 9. 浏览器操作任务强制检查清单
+## 7. 浏览器操作任务强制检查清单
 
 **开始任何需要浏览器操作的任务前，必须按以下清单逐项检查：**
 
@@ -304,21 +242,7 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 
 ---
 
-## 10. Architecture Notes（架构说明）
-
-### 10.1 目录结构逻辑
-
-> 详细的项目仓库目录结构见 [README.md](README.md) 的"目录结构"章节。
-
-**核心原则**：
-- `docs/` 放项目文档（方法论、指导、规范、流程、模板）
-- `knowledge-base/` 放知识库内容（本地源头，同步到飞书）
-- `scripts/` 放所有可执行脚本（统一管理）
-- `data/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`）
-- `transcription/` 是转写工作目录（.gitignore忽略）
-- 生成结果（视频、PDF、文字稿）**禁止**放GitHub仓库，放本地 `~/Desktop/高顿/`
-
-### 10.2 存储分工（硬约束）
+## 8. 存储分工（硬约束）
 
 | 位置 | 内容 | 说明 |
 |------|------|------|
@@ -328,19 +252,11 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 | 飞书知识库 | 知识梳理内容 | 结构化知识，面向学习 |
 | 飞书文档 | 任务报告 | 过程记录 |
 
-### 10.3 文档分工
-
-- `docs/WORKFLOW.md` — 主工作流（只放流程概览和链接，不放详细内容）
-- `docs/development/*.md` — 专项技术文档（工具使用、API、流程细节）
-- `docs/project-management/*.md` — 项目管理（规范、状态、测试计划）
-- `docs/development/templates/` — 知识库模板
-- `docs/development/knowledge/` — 知识库方法论（组织规范、来源清单）
-- `knowledge-base/organized-content/` — 整理后的知识内容（知识拆解、考试指导）
-- `knowledge-base/source-materials/` — 原始素材（做题记录、解析、用户笔记）
+> 详细的目录结构说明见 [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md)。
 
 ---
 
-## 11. 异常处理流程（任何操作失败时）
+## 9. 异常处理流程（任何操作失败时）
 
 **任何操作失败时，必须按以下流程处理，禁止直接要求用户手动操作：**
 
@@ -359,7 +275,7 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 
 ---
 
-## 12. 文档快速入口
+## 10. 文档快速入口
 
 按任务类型查找文档：
 
@@ -374,10 +290,13 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
 | Git操作 | `docs/development/guides/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |
+| 编码规范 | `docs/development/CODE_STYLE.md` | - |
+| OCR识别 | `docs/development/tools/ocr.md` | - |
+| 飞书API | `docs/development/api/feishu-api.md` | - |
 
 ---
 
-## 13. 状态查询协议（收到用户查询时必须遵守）
+## 11. 状态查询协议（收到用户查询时必须遵守）
 
 当用户询问项目状态、任务、问题、维护工作等信息时，**必须先参考 [PROJECT_STATUS_QUERY.md](docs/project-management/standards/PROJECT_STATUS_QUERY.md) 识别查询意图**，再读取对应文档，按标准格式响应。
 
@@ -397,7 +316,7 @@ ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:no
 
 ---
 
-## 14. Definition of Done（任务完成标准）
+## 12. Definition of Done（任务完成标准）
 
 任务完成前，必须逐项验证：
 
