@@ -21,6 +21,8 @@
 
 ---
 
+## 项目介绍
+
 把在线课程变成你自己的、可搜索、可问答、永久保存的备考资产。
 
 最终你会得到：
@@ -116,112 +118,33 @@
 知识库名称：**CPA备考知识库**，结构与本地/网盘一致。
 
 ---
-## 系统要求
 
-> ⚠️ **项目主要在 macOS 下开发和运行**，部分工具依赖 macOS 原生功能。如需在其他平台运行，需替换对应工具。
+## 文档快速入口
 
-### 支持的平台
+按任务类型查找文档（执行前必读对应文档）：
 
-| 平台 | 支持状态 | 说明 |
-|------|---------|------|
-| **macOS 12+** | ✅ 完全支持 | 主要开发和运行环境 |
-| Linux | ⚠️ 部分支持 | 需替换 OCR 方案，终端工具不同 |
-| Windows | ⚠️ 部分支持 | 需替换 OCR 方案，bash 脚本需 WSL |
+| 任务类型 | 先看 | 再看 |
+|----------|------|------|
+| **全局规则** | [AGENTS.md](AGENTS.md) | - |
+| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [video-processing.md](docs/development/tools/video-processing.md) |
+| 文档下载 | [WORKFLOW.md 第3节](docs/WORKFLOW.md) | - |
+| 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/api/netdisk-setup.md) |
+| 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/tools/transcription.md) |
+| 知识库生成 | [WORKFLOW.md 第6节](docs/WORKFLOW.md) | [knowledge-base-organization.md](docs/development/knowledge/knowledge-base-organization.md) |
+| **做题验证** | [WORKFLOW.md 第7节](docs/WORKFLOW.md) | ⚠️ [exam-workflow.md](docs/development/guides/exam-workflow.md) |
+| 任务报告 | [WORKFLOW.md 第8节](docs/WORKFLOW.md) | [project-management/README.md](docs/project-management/README.md) |
+| Git操作 | [git-workflow.md](docs/development/guides/git-workflow.md) | - |
+| 项目维护 | [PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md) | - |
+| OCR识别 | [ocr.md](docs/development/tools/ocr.md) | - |
+| 飞书API | [feishu-api.md](docs/development/api/feishu-api.md) | - |
 
-### Mac 专用工具（不可直接跨平台）
 
-| 工具 | 用途 | 替代方案（其他平台） |
-|------|------|---------------------|
-| **macOS Vision 框架** | PDF/图片 OCR 文字提取 | Tesseract OCR / PaddleOCR |
-| **iTerm2** | 批量任务前台运行（实时进度） | GNOME Terminal / Windows Terminal |
-| **textutil** | DOC/DOCX 文字提取 | python-docx / pandoc |
-| **AppleScript** | iTerm 窗口控制 | 无直接替代 |
-| **bash 3.2** | 脚本运行环境（Mac自带） | 升级到 bash 4+ 或调整脚本 |
+## 完整工作流
 
-### 跨平台工具（可直接使用）
+详见 [docs/WORKFLOW.md](docs/WORKFLOW.md)（持续更新）。
 
-| 工具 | 用途 |
-|------|------|
-| ffmpeg | 视频下载、解密、压缩、验证 |
-| Playwright CLI | 浏览器自动化 |
-| Node.js | HLS 分片下载脚本 |
-| Python 3.10+ | 转写、OCR批处理、网盘上传 |
-| FunASR / faster-whisper | 音频转文字 |
-| 百度网盘 PCS API | 文件上传 |
+简要流程：建目录 → 下载视频 → 下载文档 → 压缩验证 → 同步网盘 → 内容解析 → 知识库 → 做题验证 → 任务报告
 
-### 硬件要求
-
-- **CPU**：建议 8 核以上（视频压缩和音频转写耗时较长）
-- **内存**：建议 16GB 以上（转写模型加载需要）
-- **磁盘**：建议 500GB 以上（原始视频 + 压缩视频 + 转写中间文件）
-- **网络**：稳定的互联网连接（视频下载、网盘上传、飞书API）
-
-### 开发与测试环境（当前配置）
-
-> 项目目前主要在以下 Mac 环境下开发和测试，其他环境可能存在兼容性问题。
-
-**系统信息**：
-- **操作系统**：macOS 15.7.8 (Sequoia)
-- **BuildVersion**：24G824
-- **Shell**：bash 3.2.57(1)-release（Mac自带版本）
-
-**硬件配置**：
-- **机型**：Mac Pro
-- **CPU**：13th Intel Core i5-13600KF @ 3.5 GHz（14核20线程）
-- **内存**：128 GB
-- **磁盘**：3.7TB NVMe（可用3.1TB）
-
-**已安装工具与版本**：
-
-| 工具 | 版本 | 安装方式 |
-|------|------|---------|
-| ffmpeg | 8.1.2 | Homebrew |
-| Node.js | v20.20.2 | Homebrew |
-| npm | 10.8.2 | 随Node.js |
-| Python | 3.13.13 | Homebrew |
-| pip | 26.1.1 | 随Python |
-| git | 2.45.2 | Xcode Command Line Tools |
-| Homebrew | 6.0.19 | 官方安装脚本 |
-| Google Chrome | 最新版 | 官方下载 |
-| iTerm2 | 最新版 | 官方下载 |
-
-**Mac 特定设置**：
-- **OCR**：使用 macOS Vision 框架（系统原生，无需额外安装）
-- **终端**：批量任务必须在 iTerm2 前台运行，禁止后台运行
-- **安全设置**：允许 Apple 事件中的 JavaScript（iTerm 控制需要）
-- **Playwright**：使用 Extension 模式附加已运行的 Chrome，不使用 CDP 模式
-
-**注意事项**：
-- 项目在 Intel Mac 上测试通过，Apple Silicon (M1/M2/M3) 可能需要额外配置（如 FunASR 环境）
-- macOS 版本低于 12 可能不支持部分 Vision 框架功能
-- bash 脚本基于 bash 3.2 编写，在 bash 4+ 上可能需要调整
-
-### 迁移到新 Mac 的步骤
-
-1. 克隆仓库：`git clone <repo-url>`
-2. 安装依赖：`brew install ffmpeg node python@3.11`
-3. 搭建转写环境：`bash scripts/setup-transcription-env.sh`
-4. 配置数据目录：`bash scripts/setup-data-symlink.sh`
-5. 解密凭证：`bash scripts/secrets.sh decrypt baidu_credentials`
-6. 验证：运行 `bash scripts/check_directory_structure.sh`
-
-## 技术方案
-
-- 浏览器自动化：Playwright Extension 模式附加 Chrome
-- 密钥提取：Hook hls.js Worker 通信截获 AES-128 密钥
-- 下载：Node.js 多线程下载 HLS 分片
-- 解密：AES-128-CBC
-- 压缩：ffmpeg H.265 CRF30 + AAC 96k
-- 网盘：百度网盘 PCS API 分片上传（4MB 分片，MD5 秒传）
-- 验证：ffprobe 自动校验时长和可播放性
-
-## 密钥管理
-
-敏感凭证使用 openssl AES-256-CBC -pbkdf2 加密存储，加密文件提交到仓库，解密密码由用户保管。
-
-```bash
-./scripts/secrets.sh decrypt <name>   # 解密查看
-```
 
 ## 项目维护规则
 
@@ -250,30 +173,50 @@
 
 发现任何问题（文件位置不对、脚本有bug、流程有缺陷等）时，必须立即评估是否需要更新文档或自动化检查，评估后必须执行，不能只发现问题不更新。
 
-## 完整工作流
 
-详见 [docs/WORKFLOW.md](docs/WORKFLOW.md)（持续更新）。
+## 系统要求
 
-简要流程：建目录 → 下载视频 → 下载文档 → 压缩验证 → 同步网盘 → 内容解析 → 知识库 → 做题验证 → 任务报告
+> ⚠️ **项目主要在 macOS 下开发和运行**，部分工具依赖 macOS 原生功能。
 
-## 文档快速入口
+> **详细的系统要求与环境配置见 [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md)**，包含：
+> - 支持的平台与兼容性
+> - Mac专用工具与跨平台工具
+> - 硬件要求
+> - 开发与测试环境（当前配置）
+> - 环境检查命令
+> - 迁移到新 Mac 的步骤
 
-按任务类型查找文档（执行前必读对应文档）：
+### 摘要
 
-| 任务类型 | 先看 | 再看 |
-|----------|------|------|
-| **全局规则** | [AGENTS.md](AGENTS.md) | - |
-| 视频下载/压缩 | [WORKFLOW.md 第2节](docs/WORKFLOW.md) | [video-processing.md](docs/development/tools/video-processing.md) |
-| 文档下载 | [WORKFLOW.md 第3节](docs/WORKFLOW.md) | - |
-| 百度网盘同步 | [WORKFLOW.md 第4节](docs/WORKFLOW.md) | [netdisk-setup.md](docs/development/api/netdisk-setup.md) |
-| 视频转文字 | [WORKFLOW.md 第5节](docs/WORKFLOW.md) | [transcription.md](docs/development/tools/transcription.md) |
-| 知识库生成 | [WORKFLOW.md 第6节](docs/WORKFLOW.md) | [knowledge-base-organization.md](docs/development/knowledge/knowledge-base-organization.md) |
-| **做题验证** | [WORKFLOW.md 第7节](docs/WORKFLOW.md) | ⚠️ [exam-workflow.md](docs/development/guides/exam-workflow.md) |
-| 任务报告 | [WORKFLOW.md 第8节](docs/WORKFLOW.md) | [project-management/README.md](docs/project-management/README.md) |
-| Git操作 | [git-workflow.md](docs/development/guides/git-workflow.md) | - |
-| 项目维护 | [PROJECT_MAINTENANCE.md](docs/project-management/standards/PROJECT_MAINTENANCE.md) | - |
-| OCR识别 | [ocr.md](docs/development/tools/ocr.md) | - |
-| 飞书API | [feishu-api.md](docs/development/api/feishu-api.md) | - |
+| 维度 | 要求 |
+|------|------|
+| **平台** | macOS 12+（完全支持），Linux/Windows（部分支持） |
+| **CPU** | 建议 8 核以上 |
+| **内存** | 建议 16GB 以上 |
+| **磁盘** | 建议 500GB 以上 |
+| **关键工具** | ffmpeg、Node.js、Python 3.10+、Playwright CLI、iTerm2 |
+
+---
+
+## 技术方案
+
+- 浏览器自动化：Playwright Extension 模式附加 Chrome
+- 密钥提取：Hook hls.js Worker 通信截获 AES-128 密钥
+- 下载：Node.js 多线程下载 HLS 分片
+- 解密：AES-128-CBC
+- 压缩：ffmpeg H.265 CRF30 + AAC 96k
+- 网盘：百度网盘 PCS API 分片上传（4MB 分片，MD5 秒传）
+- 验证：ffprobe 自动校验时长和可播放性
+
+
+## 密钥管理
+
+敏感凭证使用 openssl AES-256-CBC -pbkdf2 加密存储，加密文件提交到仓库，解密密码由用户保管。
+
+```bash
+./scripts/secrets.sh decrypt <name>   # 解密查看
+```
+
 
 ## 文档同步清单
 
