@@ -72,201 +72,50 @@
 
 本地、百度网盘、飞书知识库三者使用相同的课程/讲座层级结构。
 
-### 项目仓库目录结构（GitHub）
+> **详细的目录结构说明见 [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md)**，包含：
+> - 项目仓库目录结构（简化版 + 详细版）
+> - 本地与百度网盘课程目录结构
+> - 飞书知识库结构
+> - Git忽略目录说明
+> - 目录结构维护原则
+
+### 项目仓库结构（摘要）
 
 ```
 项目根目录/
-├── docs/                          # 项目文档（方法论、指导、规范、流程、模板）
-│   ├── development/               # 开发文档
-│   │   ├── api/                   # API文档（飞书API、百度网盘API）
-│   │   ├── guides/                # 详细操作指南（做题、Git、交互）
-│   │   ├── knowledge/             # 知识库方法论（组织规范、来源清单）
-│   │   ├── templates/             # 模板（知识库模板、父节点模板）
-│   │   └── tools/                 # 工具使用文档（视频处理、转写、OCR、Playwright）
-│   ├── project-management/        # 项目管理
-│   │   ├── active/                # 活动状态（任务状态、问题跟踪、课程索引）
-│   │   ├── decisions/             # 决策记录（ADR）
-│   │   ├── standards/             # 规范文档（命名规范、文档同步、项目维护等）
-│   │   └── test-plans/            # 测试计划
-│   ├── WORKFLOW.md                # 主工作流（总体流程概览）
-│   ├── REQUIREMENTS.md            # 需求文档
-│   └── DOCUMENTATION_MAP.md       # 文档地图（所有文档索引）
-├── knowledge-base/                # 知识库内容（本地源头，同步到飞书）
-│   ├── organized-content/         # 整理后的知识内容（成品）
-│   │   ├── 通用方法/              # 面向所有课程的通用方法论
-│   │   ├── 01税法总论/            # 各章节知识（知识拆解、考试指导、验证报告）
-│   │   └── ...
-│   └── source-materials/          # 原始素材（原材料，用于生成知识库）
-│       ├── 税法-总论/             # 各课程的做题记录、解析、用户笔记
-│       └── ...
-├── scripts/                       # 脚本（下载、压缩、转写、上传、做题等）
-├── reports/                       # 报告模板
-├── transcription/                 # 转写工作目录（.gitignore忽略）
-├── .secrets/                      # 加密凭证（加密文件提交到仓库）
-├── .github/                       # GitHub模板（PR模板、Issue模板）
-├── data/                          # 符号链接，指向外部数据目录（.gitignore忽略）
-├── README.md                      # 项目介绍（本文件）
-├── AGENTS.md                      # AI操作手册（每次启动自动加载）
-├── CHANGELOG.md                   # 变更日志
-├── CONTRIBUTING.md                # 贡献指南
-├── LICENSE                        # MIT协议
-└── .gitignore                     # 忽略规则
+├── docs/                 # 项目文档（方法论、指导、规范、流程、模板）
+├── knowledge-base/       # 知识库内容（本地源头，同步到飞书）
+├── scripts/              # 脚本（下载、压缩、转写、上传、做题等）
+├── reports/              # 报告（实际报告）
+├── transcription/        # 转写工作目录（.gitignore忽略）
+├── .secrets/             # 加密凭证（加密文件提交到仓库）
+├── data/                 # 符号链接，指向外部数据目录（.gitignore忽略）
+├── README.md             # 项目介绍（本文件）
+├── AGENTS.md             # AI操作手册
+└── .gitignore            # 忽略规则
 ```
 
-> **说明**：
-> - `data/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`），已在 `.gitignore` 中忽略
-> - `transcription/` 是转写工作目录，包含临时文件和虚拟环境，已在 `.gitignore` 中忽略
-> - `.secrets/` 中的加密文件提交到仓库，解密密码由用户保管
-> - 详细的文档分工见 [DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md)
-
-### 本地与百度网盘（完全镜像）
+### 课程目录结构（摘要）
 
 ```
-高顿/                                    ← 本地: ~/Desktop/高顿/
-└── CPA/                                 ← 网盘: /apps/CPA课程归档/高顿/CPA/
-    ├── 课程库/                          ← 走完整流程（有知识库）
-    │   ├── 【26考季】VIPCPA系列-税法（蔡俊峻老师）/
-    │   │   ├── 01_税法全面精讲01-税法总论/
-    │   │   │   ├── video.mp4
-    │   │   │   ├── transcript.md
-    │   │   │   ├── docs/
-    │   │   │   └── docs_text/
-    │   │   └── ...
-    │   └── 【26考季】VIPCPA系列-会计（罗翔老师）/
-    └── 待整理/                          ← 未走完整流程（暂无知识库）
-        └── 【26考季】VIPCPA-基础必修-会计（罗翔老师）/
-            ├── 01_会计总论(一)/
-            └── ...
-```
-
-每个讲座目录下：
-```
-NN_讲座标题/
-├── video.mp4          # 压缩后的最终视频（H.265 CRF30）
-├── transcript.md      # 视频文字稿（语音转文字）
-├── transcript.json    # 转写原始数据（含时间戳）
-├── knowledge.md       # 知识梳理（转写+讲义合并，生成知识库用）
-├── docs/              # 讲义文档原件（PDF/PPT/DOC）
-├── VERIFICATION_knowledge.md  # 知识梳理文档验证报告
-└── .uploaded          # 上传标记（已上传到百度网盘后生成）
-```
-
-> **说明**：
-> - `docs_text/` 目录已取消，文档提取的文字直接合并到 `knowledge.md`
-> - `.uploaded` 是上传标记文件，存在表示已上传到百度网盘
-> - 课程根目录下可能有 `upload_log.txt`（上传日志）和 `.DS_Store`（macOS系统文件，应忽略）
-
-### 飞书知识库
-
-知识库名称：**CPA备考知识库**
-
-结构与本地/网盘一致，每个讲座对应一个知识库页面：
-
-```
-CPA备考知识库/
+高顿/
 └── CPA/
-    ├── 课程库/
-    │   ├── 【26考季】VIPCPA系列-税法（蔡俊峻老师）/
-    │   │   ├── 01_税法全面精讲01-税法总论    ← 页面：视频文字稿 + 讲义要点
-    │   │   └── ...
-    │   └── 【26考季】VIPCPA系列-会计（罗翔老师）/
-    └── 待整理/
-        └── 【26考季】VIPCPA-基础必修-会计（罗翔老师）/
+    ├── 课程库/            # 走完整流程（有知识库）
+    │   └── <课程名>/
+    │       └── <章节名>/
+    │           ├── video.mp4
+    │           ├── transcript.md
+    │           ├── knowledge.md
+    │           └── docs/
+    └── 待整理/            # 未走完整流程（暂无知识库）
+        └── <课程名>/
 ```
 
-"待整理"中的课程走完知识库流程后，移动到"课程库"下（本地、网盘、知识库三处同步移动）。
+### 飞书知识库结构（摘要）
 
-### GitHub 仓库
+知识库名称：**CPA备考知识库**，结构与本地/网盘一致。
 
-```
-cpa-course-archive/
-├── .gitignore                # Git忽略规则（视频/文档/音频/转写结果等）
-├── README.md                 # 项目说明（本文档）
-├── AGENTS.md                 # 全局执行规则、文档快速入口、存储分工
-├── .secrets/                 # 加密凭证（已提交，密码由用户保管）
-│   ├── gh_token.enc          # GitHub Personal Access Token（加密）
-│   └── baidu_credentials.enc # 百度网盘API凭证（加密）
-├── scripts/                  # 所有可执行脚本（视频下载/压缩/转写/上传等）
-│   ├── capture_key.js        # HLS AES密钥捕获（Playwright Worker hook注入）
-│   ├── download_decrypt.js   # HLS分片下载并AES-128解密合并
-│   ├── compress.sh           # ffmpeg压缩为H.265 MP4（CRF30，iTerm显示进度）
-│   ├── baidu_upload.py       # 百度网盘分片上传（4MB分片+MD5秒传）
-│   ├── batch_upload.sh       # 批量上传视频（iTerm运行，断点续传）
-│   ├── upload_course.sh      # 课程目录批量上传（自动过滤技术过程文档）
-│   ├── transcribe_pipeline.py # 音频转文字（FunASR+VAD）
-│   ├── batch_transcribe.sh   # 批量转写（iTerm运行，断点续传）
-│   ├── batch_ocr.sh          # 批量OCR（macOS Vision框架）
-│   ├── playwright_connect.sh # Playwright连接脚本（自动处理连接确认）
-│   ├── secrets.sh            # 密钥加密/解密工具（AES-256-CBC）
-│   ├── setup-data-symlink.sh # data/符号链接设置（跨电脑调整路径）
-│   ├── setup-transcription-env.sh # 转写环境搭建（新电脑一键创建虚拟环境）
-│   ├── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
-│   └── README.md             # 脚本说明文档（用途/用法/依赖/相关文档）
-├── docs/
-│   ├── WORKFLOW.md           # 总体工作流（索引+流程）
-│   ├── project-management/   # 项目管理
-│   │   ├── README.md         # 项目管理规范（任务管理/测试驱动/缺陷管理）
-│   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
-│   │   ├── active/           # 活跃文档
-│   │   │   ├── TASK_STATUS.md    # 任务状态（唯一任务状态来源）
-│   │   │   └── COURSE_INDEX.md   # 课程清单索引
-│   │   ├── standards/        # 标准规范
-│   │   │   ├── PROJECT_PLAN.md   # 项目计划
-│   │   │   ├── QUALITY_ASSURANCE.md # 质量保证规范
-│   │   │   └── PROJECT_MAINTENANCE.md # 项目维护规则
-│   │   └── test-plans/       # 测试计划
-│   │       └── TEST_PLAN_税法01.md # 税法01测试计划
-│   ├── development/          # 开发文档
-│   │   ├── README.md         # 开发文档索引
-│   │   ├── git-workflow.md   # Git工作流（SSH/代理/大文件/pre-commit/敏感信息）
-│   │   ├── playwright-cli-guide.md # Playwright CLI使用指南（正确用法/常见错误/最佳实践）
-│   │   ├── video-processing.md # 视频处理详细指南（下载/解密/压缩/验证/加密逆向分析）
-│   │   ├── encryption.md     # HLS AES-128加密逆向分析（密钥提取/解密参数/验证方法）
-│   │   ├── transcription.md  # 音频转文字（FunASR环境/参数/性能）
-│   │   ├── ocr.md            # OCR文字提取（macOS Vision/表格图表AI补充）
-│   │   ├── netdisk-setup.md # 百度网盘接入（应用创建/API配置/上传脚本）
-│   │   ├── feishu-api.md     # 飞书API使用（知识库/文档/表格/权限设置）
-│   │   ├── knowledge-base-organization.md # 知识库结构设计/节点命名规范/父页面规范
-│   │   ├── knowledge-base-sources.md # 知识库来源清单/来源选择流程/同步流程
-│   │   ├── exam-workflow.md  # 做题工作流（页面管理/补题流程/答题卡操作/踩坑记录）
-│   │   └── interaction-workflow.md # 通用交互流程与优化规范（适用于做题/模考等所有Web交互）
-│   └── templates/            # 模板文件
-│       ├── PARENT_NODE_TEMPLATE.md # 父节点页面模板
-│       └── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
-├── knowledge-base/           # 知识库实际内容（本地）
-│   ├── organized-content/    # 整理后的知识内容
-│   │   ├── 做题思路解析.md     # 面向学习者的通用做题思路
-│   │   └── 01税法总论/         # 章节知识
-│   │       ├── README.md        # 章节概览（含子节点链接）
-│   │       ├── 知识拆解.md      # 章节核心知识点
-│   │       ├── 考试指导.md      # 做题技巧/易错点/记忆口诀
-│   │       ├── VERIFICATION_税法总论_分章真题测.md # 知识库质量验证报告
-│   │       └── SYNC_REPORT_税法总论_20260828.md # 飞书知识库同步报告
-│   └── source-materials/     # 原始素材
-│       └── 税法-总论/
-│           ├── 做题记录_*.md    # 各试卷做题记录
-│           ├── 解析与用户留言_*.md # 官方解析和用户留言整理
-│           └── 用户笔记精华_税法总论.md # 高赞用户留言整理
-├── transcription/            # 转写工作目录
-│   ├── requirements.txt      # Python依赖清单（64个包，新电脑复现环境用）
-│   ├── venv/                 # Python虚拟环境（gitignore忽略，不提交）
-│   └── transcripts_full/     # 转写结果输出（gitignore忽略，不提交）
-│       └── video/            # 视频转写结果（transcript.md/transcript.json）
-├── data/                     # 符号链接目录（gitignore忽略，不提交）
-│   └── 高顿/                 # 符号链接 → ~/Desktop/高顿/（不同电脑可指向不同路径）
-└── .git/hooks/
-    └── pre-commit            # 实际生效的pre-commit hook（从scripts/pre-commit复制）
-```
-
-> **Git忽略目录说明**：
-> | 目录 | 忽略原因 | 复现方式 |
-> |------|----------|----------|
-> | `transcription/venv/` | Python虚拟环境，路径硬编码，不应复制 | `./scripts/setup-transcription-env.sh` 重新创建 |
-> | `transcription/transcripts_full/` | 转写结果，生成文件，放本地和网盘 | 重新运行转写脚本生成 |
-> | `data/` | 符号链接指向外部大文件目录（视频/文档） | `./scripts/setup-data-symlink.sh` 创建链接 |
-> 
-> **虚拟环境迁移原则**：Python虚拟环境不直接复制到新电脑，用 `requirements.txt` + 搭建脚本重新创建。
-
+---
 ## 系统要求
 
 > ⚠️ **项目主要在 macOS 下开发和运行**，部分工具依赖 macOS 原生功能。如需在其他平台运行，需替换对应工具。
