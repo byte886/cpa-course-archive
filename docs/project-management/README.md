@@ -16,7 +16,10 @@ docs/project-management/        # 项目管理方法论（静态内容）
 ├── README.md                    # 本文档，项目管理规范总览
 ├── standards/                   # 规范/指南类（教你如何做）
 │   ├── PROJECT_PLAN.md          # 项目计划
-│   ├── PROJECT_MAINTENANCE.md   # 项目维护规范（结构维护/文档组织/文档分解/Docs as Code）
+│   ├── PROJECT_MAINTENANCE.md   # 项目维护规范索引（拆分为三个子文档）
+│   ├── PROJECT_STRUCTURE_MAINTENANCE.md # 项目结构维护规范
+│   ├── DOCUMENTATION_GUIDE.md   # 文档写作指南
+│   ├── DOCUMENTATION_OPTIMIZATION.md # 文档优化流程与变更驱动
 │   ├── QUALITY_ASSURANCE.md     # 质量保证规范（验证标准和流程）
 │   ├── BATCH_TASK_EXECUTION.md  # 大任务执行状态记录与异常恢复机制
 │   ├── PROJECT_STATUS_QUERY.md  # 状态查询协议、意图分类、模糊表达映射
