@@ -8,6 +8,13 @@
 #   ./scripts/setup-transcription-env.sh 3.11      # 指定 Python 版本
 #   ./scripts/setup-transcription-env.sh --check   # 只检查当前环境状态
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

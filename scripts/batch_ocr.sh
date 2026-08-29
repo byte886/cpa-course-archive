@@ -9,6 +9,13 @@
 #
 # 如果不提供参数，使用默认配置（需手动修改下方DEFAULT_*变量）
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 # 不用set -e，避免iTerm环境下某个命令失败导致整个脚本退出
 
 # 默认配置（不提供参数时使用）

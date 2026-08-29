@@ -4,6 +4,13 @@
 # 注意：第一次连接时，Chrome 会弹出连接确认对话框，需要手动点击 "Allow & select" 按钮
 #       之后连接会被记住，不需要再次确认
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 SESSION_NAME="ga"
 
 echo "========================================="

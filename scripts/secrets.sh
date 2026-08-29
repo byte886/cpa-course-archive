@@ -7,6 +7,13 @@
 #   ./scripts/secrets.sh baidu [field]
 # 加密密码: 如需解密请向用户询问密码，不要硬编码或猜测
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 SECRETS_DIR="$(cd "$(dirname "$0")/.." && pwd)/.secrets"
 mkdir -p "$SECRETS_DIR"
 

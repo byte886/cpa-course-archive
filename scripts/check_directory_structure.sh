@@ -8,12 +8,18 @@
 #   bash check_directory_structure.sh both    # 检查本地和网盘
 #   bash check_directory_structure.sh clean   # 清理空的不完整命名目录
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 set -e
 
 # 配置
 LOCAL_ROOT="/Users/wenjiechen/Desktop/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）"
 REMOTE_ROOT="/apps/CPA课程归档/高顿/CPA/课程库/【26考季】VIPCPA系列-税法（蔡俊峻老师）"
-PROJECT_DIR="/Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads"
 CREDENTIALS_FILE="$PROJECT_DIR/.secrets/baidu_credentials.enc"
 ENCRYPT_PASS="lover123"
 

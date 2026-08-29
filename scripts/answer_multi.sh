@@ -4,6 +4,13 @@
 # 适用范围：选项标签为单个字母(A/B/C/D)的多选题
 # 注意：多选题不会自动跳题，需要手动点击下一题
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 SESSION="ga"
 OPTIONS="$@"
 

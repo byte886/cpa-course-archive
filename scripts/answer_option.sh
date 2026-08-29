@@ -3,6 +3,13 @@
 # 可靠性：通过文本内容匹配选项，不依赖ref
 # 适用范围：选项标签为单个字母(A/B/C/D)的题目
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 SESSION="ga"
 OPTION="$1"
 
@@ -11,7 +18,7 @@ if [ -z "$OPTION" ]; then
   exit 1
 fi
 
-cd /Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads
+cd "$PROJECT_DIR"
 
 # 使用JavaScript直接点击选项（简化版，已验证可靠）
 # 匹配条件：文本精确匹配 + 元素可见 + 无子女元素

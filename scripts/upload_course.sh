@@ -12,10 +12,16 @@
 #
 # 网盘路径必须以 /apps/CPA课程归档/ 开头。
 
+set -euo pipefail
+
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
 set -e
 
 # 配置
-PROJECT_DIR="/Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads"
 UPLOAD_SCRIPT="$PROJECT_DIR/scripts/baidu_upload.py"
 export BAIDU_ENC_PASS="lover123"
 

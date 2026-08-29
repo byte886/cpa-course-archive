@@ -14,6 +14,13 @@
 
 set -euo pipefail
 
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+
+set -euo pipefail
+
 # ⚠️ 运行时检测：必须在终端中运行，禁止后台运行
 if [ ! -t 1 ]; then
   echo "========================================"

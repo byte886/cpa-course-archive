@@ -4,8 +4,11 @@
 
 set -e
 
+# 动态获取项目目录（脚本所在目录的上一级）
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
 # 配置
-PROJECT_DIR="/Users/wenjiechen/Doubao/chats/2026-08-26/new-chat/gaodun_downloads"
 TRANSCRIBE_SCRIPT="$PROJECT_DIR/scripts/transcribe_pipeline.py"
 VENV_PYTHON="$PROJECT_DIR/transcription/venv/bin/python"
 BASE_DIR="$HOME/Desktop/高顿/CPA"
