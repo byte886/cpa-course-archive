@@ -72,6 +72,53 @@
 
 本地、百度网盘、飞书知识库三者使用相同的课程/讲座层级结构。
 
+### 项目仓库目录结构（GitHub）
+
+```
+项目根目录/
+├── docs/                          # 项目文档（方法论、指导、规范、流程、模板）
+│   ├── development/               # 开发文档
+│   │   ├── api/                   # API文档（飞书API、百度网盘API）
+│   │   ├── guides/                # 详细操作指南（做题、Git、交互）
+│   │   ├── knowledge/             # 知识库方法论（组织规范、来源清单）
+│   │   ├── templates/             # 模板（知识库模板、父节点模板）
+│   │   └── tools/                 # 工具使用文档（视频处理、转写、OCR、Playwright）
+│   ├── project-management/        # 项目管理
+│   │   ├── active/                # 活动状态（任务状态、问题跟踪、课程索引）
+│   │   ├── decisions/             # 决策记录（ADR）
+│   │   ├── standards/             # 规范文档（命名规范、文档同步、项目维护等）
+│   │   └── test-plans/            # 测试计划
+│   ├── WORKFLOW.md                # 主工作流（总体流程概览）
+│   ├── REQUIREMENTS.md            # 需求文档
+│   └── DOCUMENTATION_MAP.md       # 文档地图（所有文档索引）
+├── knowledge-base/                # 知识库内容（本地源头，同步到飞书）
+│   ├── organized-content/         # 整理后的知识内容（成品）
+│   │   ├── 通用方法/              # 面向所有课程的通用方法论
+│   │   ├── 01税法总论/            # 各章节知识（知识拆解、考试指导、验证报告）
+│   │   └── ...
+│   └── source-materials/          # 原始素材（原材料，用于生成知识库）
+│       ├── 税法-总论/             # 各课程的做题记录、解析、用户笔记
+│       └── ...
+├── scripts/                       # 脚本（下载、压缩、转写、上传、做题等）
+├── reports/                       # 报告模板
+├── transcription/                 # 转写工作目录（.gitignore忽略）
+├── .secrets/                      # 加密凭证（加密文件提交到仓库）
+├── .github/                       # GitHub模板（PR模板、Issue模板）
+├── data/                          # 符号链接，指向外部数据目录（.gitignore忽略）
+├── README.md                      # 项目介绍（本文件）
+├── AGENTS.md                      # AI操作手册（每次启动自动加载）
+├── CHANGELOG.md                   # 变更日志
+├── CONTRIBUTING.md                # 贡献指南
+├── LICENSE                        # MIT协议
+└── .gitignore                     # 忽略规则
+```
+
+> **说明**：
+> - `data/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`），已在 `.gitignore` 中忽略
+> - `transcription/` 是转写工作目录，包含临时文件和虚拟环境，已在 `.gitignore` 中忽略
+> - `.secrets/` 中的加密文件提交到仓库，解密密码由用户保管
+> - 详细的文档分工见 [DOCUMENTATION_MAP.md](docs/DOCUMENTATION_MAP.md)
+
 ### 本地与百度网盘（完全镜像）
 
 ```
