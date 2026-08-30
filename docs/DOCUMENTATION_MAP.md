@@ -117,6 +117,8 @@
 | 文档优化流程与变更驱动 | `docs/project-management/standards/DOCUMENTATION_OPTIMIZATION.md` | 优化流程、变更驱动、检查清单、联动关系 |
 | 质量保证规范 | `docs/project-management/standards/QUALITY_ASSURANCE.md` | 验证标准、质量检查流程 |
 | 项目计划 | `docs/project-management/standards/PROJECT_PLAN.md` | 阶段划分、里程碑 |
+| 目录结构说明 | `docs/DIRECTORY_STRUCTURE.md` | 仓库/本地/网盘/飞书目录结构、Git忽略说明、维护原则 |
+| 系统要求与环境配置 | `docs/SYSTEM_REQUIREMENTS.md` | 平台兼容性、硬件要求、环境配置、迁移新Mac步骤 |
 
 ### 三、参考资料（Reference — 查什么）
 
@@ -133,6 +135,7 @@
 | 项目管理索引 | `docs/project-management/README.md` | 项目管理文档快速索引 |
 | 报告模板 | `project-management/task-reports/README.md`、`docs/development/templates/REPORT_TEMPLATE.md` | 任务报告模板 |
 | 验证报告模板 | `docs/development/templates/VERIFICATION_TEMPLATE.md`、`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md` | 验证报告模板 |
+| 做题记录模板 | `docs/development/templates/EXAM_RECORD_TEMPLATE.md` | 做题记录标准格式、数据采集清单、选项✓标记规范 |
 
 ### 四、过程记录（Active — 做了什么）
 
@@ -144,6 +147,8 @@
 | 问题/BUG跟踪 | `project-management/active/ISSUES.md` | 未解决问题、已解决问题、潜在风险 |
 | 批量任务状态 | `project-management/active/BATCH_TASK_STATUS.md` | 大任务执行进度、恢复点 |
 | 课程索引 | `project-management/active/COURSE_INDEX.md` | 所有课程清单、进度、资源位置 |
+| 任务交接文档 | `project-management/active/任务交接文档.md` | 开启新对话时快速恢复项目状态、角色与建议下一步 |
+| 章节验证/同步报告（仅本地） | `knowledge-base/organized-content/*/VERIFICATION_*.md`、`SYNC_REPORT_*.md` | 知识库质量验证与飞书同步报告，按AGENTS 3.8仅本地保留、不上传飞书 |
 | 测试计划 | `project-management/test-plans/TEST_PLAN_*.md` | 各课程测试计划 |
 | 验证报告 | `project-management/verification-reports/VERIFICATION_*.md` | 各课程验证结果 |
 | 决策记录（ADR） | `docs/project-management/decisions/ADR-*.md` | 重要决策的背景、原因、后果 |

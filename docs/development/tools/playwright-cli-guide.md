@@ -348,5 +348,5 @@ npx playwright cli -s=ga tab-list
 ## 七、相关文档
 
 - [video-processing.md](./video-processing.md) — 视频处理详细指南（包含 Playwright 捕获密钥的步骤）
-- [exam-workflow.md](./exam-workflow.md) — 做题流程与交互规范（包含页面管理原则）
-- [../WORKFLOW.md](../WORKFLOW.md) — 总体工作流
+- [exam-workflow.md](../guides/exam-workflow.md) — 做题流程与交互规范（包含页面管理原则）
+- [WORKFLOW.md](../../WORKFLOW.md) — 总体工作流

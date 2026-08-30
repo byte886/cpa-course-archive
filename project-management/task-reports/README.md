@@ -7,7 +7,7 @@
 
 本目录存放项目中所有**实际报告**，包括任务报告和验证报告。
 
-> ⚠️ **模板已迁移**：所有模板文件已统一移到 [`docs/development/templates/`](../docs/development/templates/) 目录，本目录只放实际报告。
+> ⚠️ **模板已迁移**：所有模板文件已统一移到 [`docs/development/templates/`](../../docs/development/templates/) 目录，本目录只放实际报告。
 
 ---
 
@@ -32,7 +32,7 @@
 - 做题结果
 - 缺陷统计
 
-**模板**：[`docs/development/templates/REPORT_TEMPLATE.md`](../docs/development/templates/REPORT_TEMPLATE.md)
+**模板**：[`docs/development/templates/REPORT_TEMPLATE.md`](../../docs/development/templates/REPORT_TEMPLATE.md)
 
 ### 2. 验证报告
 
@@ -44,10 +44,10 @@
 - 后续建议
 
 **模板**：
-- 通用验证：[`docs/development/templates/VERIFICATION_TEMPLATE.md`](../docs/development/templates/VERIFICATION_TEMPLATE.md)
-- 知识库验证：[`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md`](../docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md)
+- 通用验证：[`docs/development/templates/VERIFICATION_TEMPLATE.md`](../../docs/development/templates/VERIFICATION_TEMPLATE.md)
+- 知识库验证：[`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md`](../../docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md)
 
-**规范**：[`docs/project-management/standards/QUALITY_ASSURANCE.md`](../docs/project-management/standards/QUALITY_ASSURANCE.md)
+**规范**：[`docs/project-management/standards/QUALITY_ASSURANCE.md`](../../docs/project-management/standards/QUALITY_ASSURANCE.md)
 
 ---
 

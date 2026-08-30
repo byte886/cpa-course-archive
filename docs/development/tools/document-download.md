@@ -174,7 +174,7 @@ pdfinfo docs/讲义.pdf | grep Pages
 | 脚本 | 批量OCR | `scripts/batch_ocr.sh` |
 | 文档 | OCR指南 | [ocr.md](./ocr.md) |
 | 文档 | 命名规范 | [../../project-management/standards/NAMING_CONVENTION.md](../../project-management/standards/NAMING_CONVENTION.md) |
-| 文档 | 主工作流 | [../WORKFLOW.md](../WORKFLOW.md) 第3节 |
+| 文档 | 主工作流 | [../../WORKFLOW.md](../../WORKFLOW.md) 第3节 |
 
 ---
 

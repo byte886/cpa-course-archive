@@ -130,7 +130,7 @@ curl -X POST "https://openapi.baidu.com/oauth/2.0/token" \
 
 ### 2.2 目录结构规划
 
-完整命名规范见 [NAMING_CONVENTION.md](../project-management/standards/NAMING_CONVENTION.md)。
+完整命名规范见 [NAMING_CONVENTION.md](../../project-management/standards/NAMING_CONVENTION.md)。
 
 ```
 /apps/CPA课程归档/

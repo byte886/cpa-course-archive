@@ -16,10 +16,10 @@
 | 文档 | 位置 | 内容 |
 |------|------|------|
 | **知识库来源清单与选择流程** | [knowledge-base-sources.md](./knowledge-base-sources.md) | 来源清单、来源选择流程与顺序、冲突处理规则、来源标注要求 |
-| **知识库同步流程** | [WORKFLOW.md 6.6节](../WORKFLOW.md) | 先本地后飞书、先验证后同步的核心规范 |
-| **知识库发展与重设计原则** | [WORKFLOW.md 6.7节](../WORKFLOW.md) | 何时重设计、重设计原则、扩展原则、变更管理流程 |
-| **做题验证知识库** | [WORKFLOW.md 第7节](../WORKFLOW.md) | 验证-补充闭环，错题补充回知识库 |
-| **飞书API使用** | [feishu-api.md](./feishu-api.md) | 飞书API调用方法、权限配置 |
+| **知识库同步流程** | [WORKFLOW.md 6.6节](../../WORKFLOW.md) | 先本地后飞书、先验证后同步的核心规范 |
+| **知识库发展与重设计原则** | [WORKFLOW.md 6.7节](../../WORKFLOW.md) | 何时重设计、重设计原则、扩展原则、变更管理流程 |
+| **做题验证知识库** | [WORKFLOW.md 第7节](../../WORKFLOW.md) | 验证-补充闭环，错题补充回知识库 |
+| **飞书API使用** | [feishu-api.md](../api/feishu-api.md) | 飞书API调用方法、权限配置 |
 
 > **重要提示**：所有知识库内容的变更，必须先在本地文档中完成并验证，再同步到飞书知识库。禁止直接在飞书知识库中编辑内容（除非是紧急修复）。
 
@@ -36,7 +36,7 @@
 | **知识拆解** | 知识本身（定义、特征、分类、表格、结构化知识点） | 应用、搜索、AI问答 | `知识拆解.md` | `知识拆解` |
 | **考试指导** | 考试指导（考点、易错点、记忆口诀、真题、考情、学习建议） | 备考、应试 | `考试指导.md` | `考试指导` |
 
-> **命名规范**：完整命名规范见 [NAMING_CONVENTION.md](../project-management/standards/NAMING_CONVENTION.md)。所有本地文件和知识库节点必须统一使用中文命名（知识拆解、考试指导），禁止使用英文命名（knowledge.md、exam-guide.md）。
+> **命名规范**：完整命名规范见 [NAMING_CONVENTION.md](../../project-management/standards/NAMING_CONVENTION.md)。所有本地文件和知识库节点必须统一使用中文命名（知识拆解、考试指导），禁止使用英文命名（knowledge.md、exam-guide.md）。
 
 **为什么分离**：
 - 知识本身用于应用和搜索，应该纯净、结构化，不受考试内容干扰
