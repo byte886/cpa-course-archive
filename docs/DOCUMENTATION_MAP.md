@@ -101,7 +101,7 @@
 | 交互工作流 | `docs/development/guides/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
 | **做题流程与交互规范** | `docs/development/guides/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
 | 文档下载 | `docs/development/tools/document-download.md` | CDN直链、curl后台下载、完整性校验 |
-| **豆包多角色定制指南** | `docs/development/guides/doubao-multi-role-guide.md` | 角色配置、AGENTS.md编辑（ClipboardEvent方案）、技能管理、踩坑记录 |
+| **角色定义** | `docs/roles/` | 本项目外围多角色任务的4种角色配置（AGENTS/IDENTITY/SOUL/USER），仅用于配置豆包工作伙伴 |
 
 ### 二、概念说明（Concept — 是什么）
 
