@@ -100,6 +100,7 @@
 | Playwright指南 | `docs/development/tools/playwright-cli-guide.md` | CLI使用、Token刷新、常见问题 |
 | 交互工作流 | `docs/development/guides/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
 | **做题流程与交互规范** | `docs/development/guides/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
+| 多角色协作（项目配合部分） | `docs/development/guides/multi-role-collaboration.md` | 角色定义、职责分工、协作关系；完整方法见飞书知识库 |
 | 文档下载 | `docs/development/tools/document-download.md` | CDN直链、curl后台下载、完整性校验 |
 
 ### 二、概念说明（Concept — 是什么）
