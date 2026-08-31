@@ -15,7 +15,7 @@
 
 | 文档 | 类型 | 说明 |
 |------|------|------|
-| `REPORT_00_开班典礼.md` | 任务报告 | 开班典礼任务完成报告 |
+| `任务报告_00开班典礼.md` | 任务报告 | 开班典礼任务完成报告 |
 
 ---
 
@@ -45,7 +45,7 @@
 
 **模板**：
 - 通用验证：[`docs/development/templates/VERIFICATION_TEMPLATE.md`](../../docs/development/templates/VERIFICATION_TEMPLATE.md)
-- 知识库验证：[`docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md`](../../docs/development/templates/VERIFICATION_TEMPLATE_knowledge_base.md)
+- 知识库验证：[`docs/development/templates/VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md`](../../docs/development/templates/VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md)
 
 **规范**：[`docs/project-management/standards/QUALITY_ASSURANCE.md`](../../docs/project-management/standards/QUALITY_ASSURANCE.md)
 
@@ -55,10 +55,10 @@
 
 | 报告类型 | 命名格式 | 示例 | 适用场景 |
 |----------|----------|------|---------|
-| 任务报告 | `REPORT_{课程编号}_{任务类型}.md` | `REPORT_税法01_批量压缩.md` | 批量任务执行报告 |
+| 任务报告 | `任务报告_{对象}_{日期}.md` | `任务报告_税法01批量压缩_2026-08-29.md` | 批量任务执行报告 |
 | 综合验证报告 | `VERIFICATION.md` | `01_税法全面精讲01-税法总论/VERIFICATION.md` | 课程目录下的综合验证（目录本身已说明课程） |
-| 专项验证报告 | `VERIFICATION_{对象}_{范围}.md` | `VERIFICATION_税法总论_分章真题测.md` | 知识库质量验证、做题验证等专项 |
-| 同步报告 | `SYNC_REPORT_{对象}_{日期}.md` | `SYNC_REPORT_税法总论_20260828.md` | 飞书知识库同步报告 |
+| 专项验证报告 | `验证报告_{对象}_{范围}.md` | `验证报告_税法总论_分章真题测.md` | 知识库质量验证、做题验证等专项 |
+| 同步报告 | `同步报告_{对象}_{日期}.md` | `同步报告_税法总论_2026-08-28.md` | 飞书知识库同步报告 |
 
 > **注意**：针对具体课程的任务报告和验证报告，优先放在**对应课程目录下**（和被验证对象在一起），本目录只放跨课程的通用报告。
 

@@ -168,7 +168,7 @@ pre-commit install
 
 ### 测试计划
 
-每个测试任务创建 `project-management/test-plans/TEST_PLAN_*.md`，包含：
+每个测试任务创建 `project-management/test-plans/测试计划_*.md`，包含：
 - 测试目标
 - 测试范围
 - 测试步骤与状态

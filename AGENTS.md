@@ -8,7 +8,7 @@
 > 本文档是AI代理的操作手册，命令式、可执行。与README.md（给人看的项目介绍）互补。
 > 执行任何任务前必须先阅读本文档对应部分，**核心规则在第3章，必须优先阅读**。
 >
-> **写作原则**：基于 [AGENTS_MD_BEST_PRACTICES.md](docs/development/guides/AGENTS_MD_BEST_PRACTICES.md)，只包含AI无法推断的内容，已在其他文档中的内容只链接不重复。
+> **写作原则**：基于 [agents-md-best-practices.md](docs/development/guides/agents-md-best-practices.md)，只包含AI无法推断的内容，已在其他文档中的内容只链接不重复。
 
 ---
 
@@ -22,7 +22,7 @@
 | **不包含** | 项目目标介绍、存储分工、课程列表 | → [README.md](README.md) |
 | **不包含** | 详细操作流程、各环节步骤 | → [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | **不包含** | 需求定义、功能清单、验收标准 | → [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) |
-| **不包含** | 编码规范 | → [docs/development/guides/CODE_STYLE.md](docs/development/guides/CODE_STYLE.md) |
+| **不包含** | 编码规范 | → [docs/development/guides/code-style.md](docs/development/guides/code-style.md) |
 | **不包含** | 目录结构详细说明 | → [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) |
 | **不包含** | 系统要求与环境配置 | → [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) |
 
@@ -126,7 +126,7 @@
 1. **本地是唯一源头**：所有知识库内容必须先在本地 `knowledge-base/organized-content/` 完成并验证，再同步到飞书，禁止直接修改飞书
 2. **父节点必须含子节点链接**：章节父节点的内容中必须包含知识拆解和考试指导的链接
 3. **通用方法独立目录**：面向所有课程的通用方法论放在 `knowledge-base/organized-content/通用方法/` 目录
-4. **验证报告不上传飞书**：`VERIFICATION_*.md` 和 `SYNC_REPORT_*.md` 仅本地保留
+4. **验证报告不上传飞书**：`验证报告_*.md` 和 `同步报告_*.md` 仅本地保留
 5. **子节点内容更新后同步父节点**：当知识拆解或考试指导内容更新时，父节点的概览内容也需要同步更新
 6. **冲突处理**：当用户留言与讲义内容冲突时，以讲义为准
 
@@ -176,7 +176,7 @@
 1. 先读取`AGENTS.md`（本文档）了解核心规则
 2. 再读取`README.md`了解项目概览
 3. 再读取`project-management/active/TASK_STATUS.md`了解当前任务状态
-4. 读取`project-management/active/任务交接文档.md`（如果有）了解当前进度和建议的下一步
+4. 读取`project-management/active/task-handover.md`（如果有）了解当前进度和建议的下一步
 5. **识别用户指定的角色**（开发工程师/项目架构师/产品经理/私人秘书），根据角色确定职责和关注点：
    - **开发工程师**：关注技术实现、代码结构、待开发功能、技术问题
    - **项目架构师**：关注项目进度、任务状态、风险问题、文档完整性、目录结构、下一步计划
@@ -348,7 +348,7 @@
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
 | Git操作 | `docs/development/guides/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |
-| 编码规范 | `docs/development/guides/CODE_STYLE.md` | - |
+| 编码规范 | `docs/development/guides/code-style.md` | - |
 | OCR识别 | `docs/development/tools/ocr.md` | - |
 | 飞书API | `docs/development/api/feishu-api.md` | - |
 

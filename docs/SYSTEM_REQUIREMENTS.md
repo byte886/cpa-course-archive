@@ -131,8 +131,8 @@ bash scripts/check_directory_structure.sh
 
 1. 克隆仓库：`git clone <repo-url>`
 2. 安装依赖：`brew install ffmpeg node python@3.11`
-3. 搭建转写环境：`bash scripts/setup-transcription-env.sh`
-4. 配置数据目录：`bash scripts/setup-data-symlink.sh`
+3. 搭建转写环境：`bash scripts/setup_transcription_env.sh`
+4. 配置数据目录：`bash scripts/setup_data_symlink.sh`
 5. 解密凭证：`bash scripts/secrets.sh decrypt baidu_credentials`
 6. 验证：运行 `bash scripts/check_directory_structure.sh`
 

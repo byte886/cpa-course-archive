@@ -67,8 +67,8 @@ done
 | 命名格式 | 适用场景 | 示例 |
 |---------|---------|------|
 | `VERIFICATION.md` | 课程目录下的综合验证报告（目录本身已说明是哪个课程） | `01_税法全面精讲01-税法总论/VERIFICATION.md` |
-| `VERIFICATION_<对象>_<范围>.md` | 专项验证报告（如知识库质量验证、做题验证） | `organized-content/VERIFICATION_税法总论_分章真题测.md` |
-| `SYNC_REPORT_<对象>_<日期>.md` | 同步报告（如飞书知识库同步报告） | `SYNC_REPORT_税法总论_20260828.md` |
+| `验证报告_<对象>_<范围>.md` | 专项验证报告（如知识库质量验证、做题验证） | `organized-content/验证报告_税法总论_分章真题测.md` |
+| `同步报告_<对象>_<日期>.md` | 同步报告（如飞书知识库同步报告） | `同步报告_税法总论_2026-08-28.md` |
 
 **模板位置**：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 
@@ -136,7 +136,7 @@ ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default
 
 - 验证报告模板：`docs/development/templates/VERIFICATION_TEMPLATE.md`
 - 具体验证报告：放在**对应课程目录下**（和被验证对象在一起）
-- 命名格式：见1.4节三种命名规范（综合报告用`VERIFICATION.md`，专项用`VERIFICATION_<对象>_<范围>.md`，同步用`SYNC_REPORT_<对象>_<日期>.md`）
+- 命名格式：见1.4节三种命名规范（综合报告用`VERIFICATION.md`，专项用`验证报告_<对象>_<范围>.md`，同步用`同步报告_<对象>_<日期>.md`）
 - 验证报告随课程产出物一起同步到百度网盘
 - 验证通过后，在任务状态文档中标记"已验证"
 

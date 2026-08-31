@@ -87,13 +87,13 @@ gaodun-course-knowledge-base/
 │   ├── batch_ocr.sh          # 批量OCR（macOS Vision框架）
 │   ├── playwright_connect.sh # Playwright连接脚本（自动处理连接确认）
 │   ├── secrets.sh            # 密钥加密/解密工具（AES-256-CBC）
-│   ├── setup-data-symlink.sh # data/符号链接设置（跨电脑调整路径）
-│   ├── setup-transcription-env.sh # 转写环境搭建（新电脑一键创建虚拟环境）
+│   ├── setup_data_symlink.sh # data/符号链接设置（跨电脑调整路径）
+│   ├── setup_transcription_env.sh # 转写环境搭建（新电脑一键创建虚拟环境）
 │   ├── answer_option.sh      # 单选题答题脚本
 │   ├── answer_multi.sh       # 多选题答题脚本
 │   ├── submit_exam.sh        # 交卷脚本
 │   ├── check_directory_structure.sh # 检查目录结构
-│   ├── check-kb-structure.sh # 检查知识库结构
+│   ├── check_kb_structure.sh # 检查知识库结构
 │   ├── collect_analysis.js   # 收集解析
 │   ├── pre-commit            # pre-commit hook源文件（大文件/敏感信息检查）
 │   └── README.md             # 脚本说明文档
@@ -126,8 +126,8 @@ gaodun-course-knowledge-base/
 │       │   ├── exam-workflow.md      # 做题工作流
 │       │   ├── git-workflow.md       # Git工作流
 │       │   ├── interaction-workflow.md # 通用交互流程
-│       │   ├── AGENTS_MD_BEST_PRACTICES.md # AGENTS写作最佳实践
-│       │   ├── CODE_STYLE.md         # 脚本编码规范
+│       │   ├── agents-md-best-practices.md # AGENTS写作最佳实践
+│       │   ├── code-style.md         # 脚本编码规范
 │       │   └── multi-role-collaboration.md # 多角色协作（项目配合部分）
 │       ├── knowledge/        # 知识库方法论
 │       │   ├── knowledge-base-organization.md # 知识库组织规范
@@ -144,7 +144,7 @@ gaodun-course-knowledge-base/
 │           ├── EXAM_RECORD_TEMPLATE.md    # 做题记录模板
 │           ├── REPORT_TEMPLATE.md          # 任务报告模板
 │           ├── VERIFICATION_TEMPLATE.md    # 通用验证报告模板
-│           └── VERIFICATION_TEMPLATE_knowledge_base.md # 知识库验证报告模板
+│           └── VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md # 知识库验证报告模板
 ├── project-management/       # 项目管理（动态内容）
 │   ├── README.md             # 项目管理目录说明
 │   ├── active/               # 活动状态（频繁更新）
@@ -153,12 +153,12 @@ gaodun-course-knowledge-base/
 │   │   ├── BATCH_TASK_STATUS.md # 批量任务状态
 │   │   └── COURSE_INDEX.md   # 课程清单索引
 │   ├── test-plans/           # 测试计划（按课程生成）
-│   │   └── TEST_PLAN_*.md
+│   │   └── 测试计划_*.md
 │   ├── task-reports/         # 任务执行报告（按任务生成）
 │   │   ├── README.md         # 报告目录说明
-│   │   └── REPORT_*.md
+│   │   └── 任务报告_*.md
 │   └── verification-reports/ # 质量验证报告（按验证生成）
-│       └── VERIFICATION_*.md
+│       └── 验证报告_*.md
 ├── knowledge-base/           # 知识库实际内容（本地）
 │   ├── organized-content/    # 整理后的知识内容
 │   │   ├── 通用方法/         # 面向所有课程的通用方法论
@@ -166,8 +166,8 @@ gaodun-course-knowledge-base/
 │   │       ├── README.md        # 章节概览（含子节点链接）
 │   │       ├── 知识拆解.md      # 章节核心知识点
 │   │       ├── 考试指导.md      # 做题技巧/易错点/记忆口诀
-│   │       ├── VERIFICATION_*.md # 知识库质量验证报告
-│   │       └── SYNC_REPORT_*.md  # 飞书知识库同步报告
+│   │       ├── 验证报告_*.md # 知识库质量验证报告
+│   │       └── 同步报告_*.md  # 飞书知识库同步报告
 │   └── source-materials/     # 原始素材
 │       └── 税法-总论/
 │           ├── 做题记录_*.md    # 各试卷做题记录
@@ -186,8 +186,8 @@ gaodun-course-knowledge-base/
 
 | 目录 | 忽略原因 | 复现方式 |
 |------|----------|----------|
-| `transcription/venv/` | Python虚拟环境，路径硬编码，不应复制 | `./scripts/setup-transcription-env.sh` 重新创建 |
-| `data/` | 符号链接指向外部大文件目录（视频/文档/转写结果） | `./scripts/setup-data-symlink.sh` 创建链接 |
+| `transcription/venv/` | Python虚拟环境，路径硬编码，不应复制 | `./scripts/setup_transcription_env.sh` 重新创建 |
+| `data/` | 符号链接指向外部大文件目录（视频/文档/转写结果） | `./scripts/setup_data_symlink.sh` 创建链接 |
 
 **虚拟环境迁移原则**：Python虚拟环境不直接复制到新电脑，用 `requirements.txt` + 搭建脚本重新创建。
 

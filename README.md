@@ -69,7 +69,7 @@
 | 飞书知识库「CPA备考知识库」 | 视频文字稿、文档文字、知识梳理 |
 | 飞书文档 | 任务报告 |
 
-> **符号链接说明**：项目目录中的 `data/高顿/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`）。不同电脑上数据目录路径可能不同，运行 `./scripts/setup-data-symlink.sh` 可快速创建或调整符号链接。检查状态：`./scripts/setup-data-symlink.sh --check`。`data/` 目录已在 `.gitignore` 中忽略，不会提交到GitHub。
+> **符号链接说明**：项目目录中的 `data/高顿/` 是符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`）。不同电脑上数据目录路径可能不同，运行 `./scripts/setup_data_symlink.sh` 可快速创建或调整符号链接。检查状态：`./scripts/setup_data_symlink.sh --check`。`data/` 目录已在 `.gitignore` 中忽略，不会提交到GitHub。
 
 ## 多角色协作
 

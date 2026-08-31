@@ -269,7 +269,7 @@ bash scripts/check_directory_structure.sh clean
 
 ## 九、Git 仓库工程目录与文件命名规范（2026-08-31 新增）
 
-> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`CODE_STYLE.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
+> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`code-style.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
 
 ### 9.1 总原则
 

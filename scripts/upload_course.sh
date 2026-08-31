@@ -37,7 +37,7 @@ REMOTE_DIR="$2"
 # 技术过程文档过滤模式（不上传）
 # 参考: docs/project-management/standards/PROJECT_MAINTENANCE.md 第九章
 SKIP_PATTERNS=(
-    "VERIFICATION_*.md"    # 验证报告
+    "验证报告_*.md"    # 验证报告
     "transcript.json"       # 转写原始JSON
     "*.tmp"                 # 临时文件
     "*.log"                 # 日志文件

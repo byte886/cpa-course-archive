@@ -18,7 +18,7 @@
 | `EXAM_RECORD_TEMPLATE.md` | 做题记录模板 | 生成做题记录时，明确数据采集规范，避免把错题当答案 |
 | `REPORT_TEMPLATE.md` | 任务报告模板 | 生成任务完成报告时 |
 | `VERIFICATION_TEMPLATE.md` | 通用验证报告模板 | 验证任何对象（视频、转写、OCR等）时 |
-| `VERIFICATION_TEMPLATE_knowledge_base.md` | 知识库验证报告模板 | 验证飞书知识库页面导入质量时 |
+| `VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md` | 知识库验证报告模板 | 验证飞书知识库页面导入质量时 |
 
 ---
 
@@ -48,7 +48,7 @@
 
 ### 验证模板（2个）
 - `VERIFICATION_TEMPLATE.md`：通用验证报告
-- `VERIFICATION_TEMPLATE_knowledge_base.md`：知识库验证报告（专用）
+- `VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md`：知识库验证报告（专用）
 
 ---
 

@@ -37,7 +37,7 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| TEST_PLAN_*.md | `project-management/test-plans/` | 每个课程的测试计划、试卷清单、完成状态 |
+| 测试计划_*.md | `project-management/test-plans/` | 每个课程的测试计划、试卷清单、完成状态 |
 
 ### 2.3 课程索引
 
@@ -73,7 +73,7 @@
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
-| VERIFICATION_*.md | `knowledge-base/organized-content/` | 知识库质量验证报告（做题正确率、覆盖度分析） |
+| 验证报告_*.md | `knowledge-base/organized-content/` | 知识库质量验证报告（做题正确率、覆盖度分析） |
 | VERIFICATION_TEMPLATE.md | `project-management/task-reports/` | 验证报告模板（如有优化则更新） |
 
 ---
@@ -157,7 +157,7 @@
 每次完成阶段性任务后，按以下流程检查：
 
 1. **任务状态**：TASK_STATUS.md 和飞书表格是否更新？
-2. **测试计划**：TEST_PLAN_*.md 中的完成状态是否更新？
+2. **测试计划**：测试计划_*.md 中的完成状态是否更新？
 3. **做题产出**：做题记录、用户笔记、验证报告是否生成？
 4. **知识库内容**：知识拆解、考试指导是否需要补充？
 5. **方法论**：是否有新的经验需要总结到方法论文档？

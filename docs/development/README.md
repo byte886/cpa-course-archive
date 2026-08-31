@@ -19,8 +19,8 @@ docs/development/
 │   ├── netdisk-setup.md         # 百度网盘集成：应用创建、API配置、上传脚本
 │   └── encryption.md            # 加密凭证：Token加密存储与使用
 ├── guides/                      # 详细操作指南与规范
-│   ├── AGENTS_MD_BEST_PRACTICES.md  # AGENTS.md写作最佳实践
-│   ├── CODE_STYLE.md            # 编码规范
+│   ├── agents-md-best-practices.md  # AGENTS.md写作最佳实践
+│   ├── code-style.md            # 编码规范
 │   ├── exam-workflow.md         # 做题流程与交互规范（含交互优化、检查清单）
 │   ├── interaction-workflow.md  # 通用交互流程与优化规范（所有Web场景）
 │   └── git-workflow.md          # GitHub工作流：SSH配置、代理设置、常见问题
@@ -38,7 +38,7 @@ docs/development/
     ├── PARENT_NODE_TEMPLATE.md     # 知识库父节点内容模板
     ├── REPORT_TEMPLATE.md          # 任务报告模板
     ├── VERIFICATION_TEMPLATE.md    # 通用验证报告模板
-    └── VERIFICATION_TEMPLATE_knowledge_base.md  # 知识库验证报告模板
+    └── VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md  # 知识库验证报告模板
 ```
 
 ---

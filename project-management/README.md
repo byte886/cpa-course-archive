@@ -24,13 +24,13 @@ project-management/
 │   ├── COURSE_INDEX.md        # 课程索引
 │   └── README.md
 ├── test-plans/                # 测试计划（按课程生成）
-│   ├── TEST_PLAN_税法01.md
+│   ├── 测试计划_税法01.md
 │   └── ...
 ├── task-reports/              # 任务执行报告（按任务生成）
-│   ├── REPORT_00_开班典礼.md
+│   ├── 任务报告_00开班典礼.md
 │   └── ...
-└── verification-reports/      # 质量验证报告（按验证生成）
-    ├── VERIFICATION_02消费税法_试卷1.md
+└── verification-reports/      # 质量验证报告（按验证生成，中文命名）
+    ├── 命名整改第1步-问题调研报告_2026-08-31.md
     └── ...
 ```
 
@@ -66,9 +66,9 @@ project-management/
 
 | 目录 | 命名格式 | 示例 |
 |------|----------|------|
-| test-plans/ | `TEST_PLAN_课程名.md` | `TEST_PLAN_税法01.md` |
-| task-reports/ | `REPORT_序号_课程名.md` | `REPORT_00_开班典礼.md` |
-| verification-reports/ | `VERIFICATION_课程名_验证项.md` | `VERIFICATION_02消费税法_试卷1.md` |
+| test-plans/ | `测试计划_课程名.md` | `测试计划_税法01.md` |
+| task-reports/ | `任务报告_序号_课程名.md` | `任务报告_00开班典礼.md` |
+| verification-reports/ | `验证报告_{对象}_{范围或日期}.md` | `验证报告_02消费税法_试卷1.md` |
 
 ---
 

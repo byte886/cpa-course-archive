@@ -1,8 +1,8 @@
 #!/bin/bash
 # 知识库结构检查脚本
 # 用途：检查飞书知识库节点结构，检测重复节点、空节点、链接问题
-# 用法：./scripts/check-kb-structure.sh <parent_node_token> [space_id]
-# 示例：./scripts/check-kb-structure.sh XTJFwu5zBiUNCDkXqEgcTI2fnPg 7678261729456852192
+# 用法：./scripts/check_kb_structure.sh <parent_node_token> [space_id]
+# 示例：./scripts/check_kb_structure.sh XTJFwu5zBiUNCDkXqEgcTI2fnPg 7678261729456852192
 
 set -e
 

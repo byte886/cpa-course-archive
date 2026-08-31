@@ -122,12 +122,12 @@
 
 ---
 
-### `setup-transcription-env.sh` — 转写环境搭建
+### `setup_transcription_env.sh` — 转写环境搭建
 
 | 项目 | 说明 |
 |------|------|
 | **用途** | 创建Python虚拟环境，安装faster-whisper/FunASR及依赖 |
-| **用法** | `bash scripts/setup-transcription-env.sh` |
+| **用法** | `bash scripts/setup_transcription_env.sh` |
 | **可靠性** | ✅ 高（首次设置后不需要重复运行） |
 | **相关文档** | `docs/development/tools/transcription.md` |
 
@@ -215,12 +215,12 @@
 
 ---
 
-### `setup-data-symlink.sh` — 数据目录符号链接
+### `setup_data_symlink.sh` — 数据目录符号链接
 
 | 项目 | 说明 |
 |------|------|
 | **用途** | 创建/检查 `data/高顿/` 符号链接，指向外部数据目录（默认 `~/Desktop/高顿/`） |
-| **用法** | `bash scripts/setup-data-symlink.sh`（创建）或 `bash scripts/setup-data-symlink.sh --check`（检查） |
+| **用法** | `bash scripts/setup_data_symlink.sh`（创建）或 `bash scripts/setup_data_symlink.sh --check`（检查） |
 | **可靠性** | ✅ 高（不同电脑可指向不同路径） |
 | **相关文档** | `README.md` 存储分工部分 |
 
@@ -254,12 +254,12 @@
 
 ---
 
-### `check-kb-structure.sh` — 知识库结构检查
+### `check_kb_structure.sh` — 知识库结构检查
 
 | 项目 | 说明 |
 |------|------|
 | **用途** | 检查本地知识库文档结构是否符合规范（知识拆解.md + 考试指导.md） |
-| **用法** | `bash scripts/check-kb-structure.sh <kb_dir>` |
+| **用法** | `bash scripts/check_kb_structure.sh <kb_dir>` |
 | **可靠性** | ✅ 中（基于文件命名检查） |
 | **相关文档** | `docs/development/knowledge/knowledge-base-organization.md` |
 

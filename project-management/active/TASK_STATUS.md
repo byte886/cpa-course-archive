@@ -49,7 +49,7 @@
 | 1.10 项目重命名 | ✅ | cpa-course-archive → gaodun-course-knowledge-base（ADR-009） |
 | 1.11 文档治理机制（阶段4） | ✅ | pre-commit文档关联性检查、文档健康度检查清单、4层保障机制 |
 | 1.12 长对话处理规则 | ✅ | AGENTS.md 3.10节，对话超50轮主动建议开新对话 |
-| 1.13 任务交接文档 | ✅ | project-management/active/任务交接文档.md，开启新对话时快速恢复上下文 |
+| 1.13 任务交接文档 | ✅ | project-management/active/task-handover.md，开启新对话时快速恢复上下文 |
 
 ---
 
@@ -186,7 +186,7 @@
 |--------|------|------|
 | 5.1 任务管理方式约定 | ✅ | 唯一来源TASK_STATUS.md，Base保留模板不维护 |
 | 5.2 文档组织原则 | ✅ | 三层保障、文档分解、Diátaxis、Docs as Code、AI友好写作 |
-| 5.3 测试计划模板 | ✅ | TEST_PLAN_税法01.md（含小问题/大问题分类） |
+| 5.3 测试计划模板 | ✅ | 测试计划_税法01.md（含小问题/大问题分类） |
 | 5.4 缺陷管理规范 | ✅ | 严重程度+优先级分类，小问题顺手修复/大问题讨论处理 |
 | 5.5 Git工作流文档 | ✅ | git-workflow.md 14章（SSH/代理/大文件/pre-commit/敏感信息） |
 | 5.6 任务报告模板 | ✅ | docs/development/templates/REPORT_TEMPLATE.md |
@@ -198,7 +198,7 @@
 | 5.12 Playwright自动化token刷新 | ✅ | 验证通过，AppleScript打开扩展页面→点击刷新→获取新token→重新连接 |
 | 5.13 文档治理机制（阶段4） | ✅ | pre-commit文档关联性检查、文档健康度检查清单（11项检查）、4层保障机制 |
 | 5.14 长对话处理规则 | ✅ | AGENTS.md 3.10节，对话超50轮主动建议开新对话，任务交接文档模板 |
-| 5.15 任务交接文档 | ✅ | project-management/active/任务交接文档.md，开启新对话时快速恢复上下文 |
+| 5.15 任务交接文档 | ✅ | project-management/active/task-handover.md，开启新对话时快速恢复上下文 |
 | 5.16 静态/动态内容分离 | ✅ | docs/放静态内容，project-management/放动态内容（ADR-007） |
 | 5.17 PROJECT_MAINTENANCE文档分解 | ✅ | 拆分为3个独立文档（ADR-008） |
 

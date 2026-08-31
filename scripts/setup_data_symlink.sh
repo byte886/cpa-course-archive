@@ -1,12 +1,12 @@
 #!/bin/bash
-# setup-data-symlink.sh
+# setup_data_symlink.sh
 # 用途：在项目目录创建 data/高顿 符号链接，指向外部数据目录
 # 说明：不同电脑的数据目录路径可能不同，运行此脚本可快速创建或调整符号链接
 #
 # 用法：
-#   ./scripts/setup-data-symlink.sh                    # 使用默认路径 ~/Desktop/高顿
-#   ./scripts/setup-data-symlink.sh /path/to/高顿     # 指定自定义路径
-#   ./scripts/setup-data-symlink.sh --check            # 只检查当前符号链接状态
+#   ./scripts/setup_data_symlink.sh                    # 使用默认路径 ~/Desktop/高顿
+#   ./scripts/setup_data_symlink.sh /path/to/高顿     # 指定自定义路径
+#   ./scripts/setup_data_symlink.sh --check            # 只检查当前符号链接状态
 
 set -euo pipefail
 
@@ -97,4 +97,4 @@ echo "=== 说明 ==="
 echo "1. data/ 目录已在 .gitignore 中忽略，不会提交到GitHub"
 echo "2. 不同电脑上运行此脚本可快速调整符号链接路径"
 echo "3. 脚本和文档中统一使用相对路径 data/高顿/ 访问数据"
-echo "4. 检查状态: ./scripts/setup-data-symlink.sh --check"
+echo "4. 检查状态: ./scripts/setup_data_symlink.sh --check"

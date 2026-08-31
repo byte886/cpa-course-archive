@@ -1,12 +1,12 @@
 #!/bin/bash
-# setup-transcription-env.sh
+# setup_transcription_env.sh
 # 用途：在新电脑上快速搭建音频转写环境（FunASR + VAD）
 # 说明：Python虚拟环境不建议直接复制，在新电脑上运行此脚本重新创建
 #
 # 用法：
-#   ./scripts/setup-transcription-env.sh           # 使用默认 Python 3.10
-#   ./scripts/setup-transcription-env.sh 3.11      # 指定 Python 版本
-#   ./scripts/setup-transcription-env.sh --check   # 只检查当前环境状态
+#   ./scripts/setup_transcription_env.sh           # 使用默认 Python 3.10
+#   ./scripts/setup_transcription_env.sh 3.11      # 指定 Python 版本
+#   ./scripts/setup_transcription_env.sh --check   # 只检查当前环境状态
 
 set -euo pipefail
 
@@ -113,7 +113,7 @@ echo "=== 环境搭建完成 ==="
 echo "虚拟环境路径: $VENV_DIR"
 echo "激活环境: source $VENV_DIR/bin/activate"
 echo "运行转写: ./scripts/batch_transcribe.sh"
-echo "检查状态: ./scripts/setup-transcription-env.sh --check"
+echo "检查状态: ./scripts/setup_transcription_env.sh --check"
 echo ""
 echo "=== 注意事项 ==="
 echo "1. 首次运行转写会自动下载模型（约几百MB），需要网络连接"

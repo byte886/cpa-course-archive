@@ -22,7 +22,7 @@
 
 在 AGENTS.md 优化过程中，发现了执行方式的问题：
 - 采用了"逐步优化"的方式，每次只优化一部分
-- 没有充分利用已有的最佳实践文档（`AGENTS_MD_BEST_PRACTICES.md`）
+- 没有充分利用已有的最佳实践文档（`agents-md-best-practices.md`）
 - 很多问题需要用户指出后才意识到，而不是主动分析发现
 
 **根本原因**：有了好的指导文档，但在执行时没有严格按照文档来，而是凭经验逐步优化。
@@ -36,7 +36,7 @@
 ### 第一步：读取相关最佳实践文档
 
 在开始优化前，必须先读取相关的最佳实践文档：
-- AGENTS.md 优化 → 读取 `docs/development/guides/AGENTS_MD_BEST_PRACTICES.md`
+- AGENTS.md 优化 → 读取 `docs/development/guides/agents-md-best-practices.md`
 - README.md 优化 → 读取软件工程中 README 写作最佳实践
 - 其他文档优化 → 读取相关的写作规范或最佳实践
 
@@ -176,7 +176,7 @@
 | **DOCUMENTATION_GUIDE.md** | 文档写作指南 | 写作规范变更时 |
 | **PROJECT_STRUCTURE_MAINTENANCE.md** | 项目结构维护规范 | 维护规则变更时 |
 | **docs/project-management/decisions/** | 架构决策记录（ADR） | 重要架构决策时 |
-| **CODE_STYLE.md** | 编码规范 | 编码规范变更时 |
+| **code-style.md** | 编码规范 | 编码规范变更时 |
 | **WORKFLOW.md** | 主工作流 | 流程变更时 |
 | **README.md** | 项目介绍 + 核心规则摘要 | 核心规则变更时 |
 | **AGENTS.md** | AI操作手册 + 执行前必读 | 执行规则变更时 |

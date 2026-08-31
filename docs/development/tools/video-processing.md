@@ -291,7 +291,7 @@ ls -lh "目标目录/docs/文件名.pdf"
 
 10. **知识库操作必须使用API**：所有知识库操作（创建、更新、删除、移动节点）必须使用lark-cli，不使用Playwright手动操作
 11. **父节点链接必须使用完整URL**：不能使用相对路径（如`./知识拆解`），必须使用完整飞书URL（`https://zcnjheoajxng.feishu.cn/wiki/[node_token]`）
-12. **同步后必须执行结构检查**：避免出现重复节点、空节点、错误位置等问题，使用`scripts/check-kb-structure.sh`
+12. **同步后必须执行结构检查**：避免出现重复节点、空节点、错误位置等问题，使用`scripts/check_kb_structure.sh`
 13. **具体产出物放对应课程目录**：验证报告、同步报告等放在对应课程目录下，不放在通用目录
 14. **删除节点是异步操作**：`lark-cli wiki +node-delete`是异步的，需要轮询任务状态确认完成
 
@@ -302,7 +302,7 @@ ls -lh "目标目录/docs/文件名.pdf"
 | 密钥捕获 | `scripts/capture_key.js` | Playwright Worker hook 注入脚本 |
 | 下载解密 | `scripts/download_decrypt.js` | HLS分片下载解密合并脚本 |
 | 压缩脚本 | `scripts/compress.sh` | ffmpeg H.265压缩脚本 |
-| 知识库结构检查 | `scripts/check-kb-structure.sh` | 自动检测重复节点、空节点、链接问题 |
+| 知识库结构检查 | `scripts/check_kb_structure.sh` | 自动检测重复节点、空节点、链接问题 |
 
 ## 参考文档
 
