@@ -269,7 +269,7 @@ bash scripts/check_directory_structure.sh clean
 
 ## 九、Git 仓库工程目录与文件命名规范（2026-08-31 新增）
 
-> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`code-style.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
+> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`CODE_STYLE.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
 
 ### 9.1 总原则
 
@@ -286,11 +286,26 @@ bash scripts/check_directory_structure.sh clean
 |----|------|-------------|----------|------|
 | L0 | 平台/工具固定名 | 原样（白名单，9.3） | 各处 | `README.md`、`pre-commit`、`.github/` |
 | L1 | 治理规范/标准/模板/状态台账/全局索引/顶层骨架 | 英文 UPPER_SNAKE_CASE（9.6） | `docs/` 根、`standards/`、`templates/`、`active/` 台账 | `NAMING_CONVENTION.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`WORKFLOW.md` |
-| L2 | 方法/操作/流程/工具 API/最佳实践/交接 | 英文小写 kebab-case（9.7） | `guides/api/tools/knowledge/`、项目管理方法件 | `git-workflow.md`、`task-handover.md` |
+| L2 | 方法/操作/流程/工具 API/最佳实践 | 英文小写 kebab-case（9.7） | `guides/api/tools/knowledge/` | `git-workflow.md`、`multi-role-collaboration.md` |
 | L3 | 可执行脚本 | 英文小写 snake_case（9.4） | `scripts/` | `baidu_upload.py` |
 | L4 | 知识库内容（同步飞书） | 中文，对应飞书节点/H1（9.5） | `knowledge-base/` | `知识拆解.md`、`做题记录_x.md` |
 | L5 | 项目管理过程产物（报告/计划/记录） | 中文，对应 H1、ISO 日期（9.5） | `task-reports/`、`test-plans/`、`verification-reports/` | `验证报告_x_2026-08-31.md` |
 | L6 | 架构决策记录 | `ADR-NNN-中文`（9.8） | `decisions/` | `ADR-001-文档拆分与命名规范.md` |
+
+#### 9.1.1 五类命名形态速查（按"文件名长什么样"反查）
+
+> 判型只看文档头部「文档类型」与正文实质，**不看标题用词、也不看所在目录**——标题写"规范/指南"不算数，要看正文是强制标准（Governance）还是操作教程（Task）；头部类型与正文实质冲突时以实质为准并回头修正头部（例：`CODE_STYLE.md` 一度标 Task 改小写，复核通篇为"必须/禁止"的强制规范，改回大写并移至 standards/）。
+
+| 形态 | 分隔符 | 什么时候用（头部类型 / 文档性质） | 真实例子 |
+|------|--------|----------------------------------|----------|
+| ① 固定名 | 原样不改 | 工具/社区钉死的名字（L0，9.3） | `README.md`、`pre-commit`、`requirements.txt` |
+| ② 大写 UPPER_SNAKE | 词间下划线 `_` | Governance 规范 / Template 模板 / Active 持续台账 / 全局索引与顶层骨架——回答"必须遵守什么、标准或当前状态是什么、供复制的骨架" | `NAMING_CONVENTION.md`、`CODE_STYLE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`DIRECTORY_STRUCTURE.md` |
+| ③ 小写 kebab-case | 词间连字符 `-` | Task 方法流程 / Concept 概念 / 工具类 Reference——回答"怎么一步步做一件事" | `git-workflow.md`、`video-processing.md`、`feishu-api.md` |
+| ④ 脚本 snake_case | 全小写、词间 `_` | `.py/.sh/.js` 可执行脚本（L3，9.4） | `baidu_upload.py`、`check_kb_structure.sh` |
+| ⑤ 中文 | 段间 `_`、日期 ISO | Knowledge 学习内容 / 中文过程产物 / ADR（L4/L5/L6） | `知识拆解.md`、`任务报告_02消费税法完成_2026-08-29.md`、`ADR-001-文档结构优化.md` |
+
+> **一句话判据**："是什么 / 必须怎样"→ ②大写；"怎么做"→ ③小写；给学习者的中文内容 → ⑤；代码脚本 → ④；工具钉死的 → ①。
+> **两个最易混点**：(a) `docs/` 根 5 个顶层骨架（WORKFLOW/REQUIREMENTS/SYSTEM_REQUIREMENTS/DOCUMENTATION_MAP/DIRECTORY_STRUCTURE）虽标 Task/Concept/Reference，仍固定按 ②大写（见 9.6）；(b) `active/` 只放持续状态台账（大写），不设任务交接文件，新会话按使用者话术读实时台账了解情况（见 9.10）。
 
 > 下文 9.3–9.8 的**小节顺序跟随 9.2 决策树的判定顺序**（固定名→脚本→内容产物→治理/方法→ADR）；L0–L6 是类别标签，并非小节先后顺序。
 
@@ -305,7 +320,7 @@ bash scripts/check_directory_structure.sh clean
 5. 架构决策记录 → 9.8，`ADR-NNN-中文标题`。
 6. 目录 → 9.9。
 
-> **怎么区分 9.6 大写与 9.7 小写（最易混）**：回答"规则/标准/状态是什么"用大写（如命名规范、质量标准、任务状态表、文档模板）；回答"怎么操作、怎么做"用小写（如 Git 工作流、视频处理、编码方法、AGENTS 写作方法、任务交接流程）。
+> **怎么区分 9.6 大写与 9.7 小写（最易混）**：回答"规则/标准/状态是什么"用大写（如命名规范、质量标准、任务状态表、文档模板）；回答"怎么操作、怎么做"用小写（如 Git 工作流、视频处理、编码方法、AGENTS 写作方法、多角色协作）。
 
 ### 9.3 L0 固定名白名单（与目录、语言无关，必须原样）
 
@@ -350,16 +365,16 @@ bash scripts/check_directory_structure.sh clean
 
 - 判定：回答"必须遵守什么、标准是什么、当前状态、供复制的骨架、清单索引"。
 - 位置：`docs/` 根、`docs/project-management/standards/`、`docs/development/templates/`、`project-management/active/` 的状态台账。
-- 正例：`NAMING_CONVENTION.md`、`QUALITY_ASSURANCE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md`。
+- 正例：`NAMING_CONVENTION.md`、`CODE_STYLE.md`、`QUALITY_ASSURANCE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md`。
 - 模板统一以 `_TEMPLATE` 结尾；禁止同词大小写混排（反例 `VERIFICATION_TEMPLATE_knowledge_base.md`）。
 - **`docs/` 根顶层骨架文档固定大写**：`WORKFLOW.md`、`REQUIREMENTS.md`、`SYSTEM_REQUIREMENTS.md`、`DOCUMENTATION_MAP.md`、`DIRECTORY_STRUCTURE.md` 是全局主工作流/需求/总览/索引/结构骨架，统一 UPPER_SNAKE，**不随其内容类型（Task/Concept/Reference）改小写**，与子目录里的具体方法文档（小写）形成层级区分。
 
 ### 9.7 L2 方法/操作文档：全小写 kebab-case
 
 - 判定：回答"怎么做一件事"，含步骤/流程/工具用法/API/最佳实践/交接流程。**无论放在 `guides/api/tools/knowledge` 还是 `project-management/`，方法性文档一律小写连字符。**
-- 正例：`git-workflow.md`、`video-processing.md`、`feishu-api.md`、`task-handover.md`。
-- 反例（本次整改）：`CODE_STYLE.md→code-style.md`、`AGENTS_MD_BEST_PRACTICES.md→agents-md-best-practices.md`、`任务交接文档.md→task-handover.md`。
-- 方法文档的 **H1 标题仍用中文**（文件名是对应中文标题的英文短名，语义对应即可），如 `task-handover.md` 内首行为 `# 任务交接文档`。
+- 正例：`git-workflow.md`、`video-processing.md`、`feishu-api.md`、`multi-role-collaboration.md`。
+- 整改轨迹：`AGENTS_MD_BEST_PRACTICES.md→agents-md-best-practices.md`（最佳实践是方法，小写留 guides）；`CODE_STYLE.md` 一度改小写 code-style.md，复核内容为"必须/禁止"的强制规范（Governance），**改回大写并移至 `standards/CODE_STYLE.md`**；`任务交接文档.md`（task-handover.md）经职责比对确认冗余，**删除**（角色职责在 AGENTS、项目情况按使用者话术读实时台账，不设交接文件，见 9.10）。
+- 方法文档的 **H1 标题仍用中文**（文件名是对应中文标题的英文短名，语义对应即可），如 `agents-md-best-practices.md` 内首行为中文标题 `# AGENTS.md 写作最佳实践`。
 - 依据：Google 开发者文档风格指南要求文件/目录名小写（Unix 区分大小写），多词用连字符且为搜索引擎词分隔符。
 
 ### 9.8 L6 架构决策记录：ADR-NNN-中文标题
@@ -374,8 +389,8 @@ bash scripts/check_directory_structure.sh clean
 
 ### 9.10 跨类目录说明（避免误判"同目录不一致"）
 
-- `project-management/active/` 可同时容纳三类，各按职责定风格：**状态台账**（L1，大写，如 `TASK_STATUS.md`）、**交接方法文档**（L2，小写，如 `task-handover.md`，头部标 Task）、若临时存放**中文过程件**则按 L5 用中文。一致性指"职责→风格"映射统一，而非"同目录必须同大小写"。
-- `docs/development/guides/` 只放方法文档（L2 小写）。`CODE_STYLE`（编码方法）、`AGENTS_MD_BEST_PRACTICES`（AGENTS 写作方法）判定为 L2 方法/最佳实践，故**改小写后留在 guides**，不移到 standards。
+- `project-management/active/` 只放**持续状态台账**（L1，大写：`TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md`、`BATCH_TASK_STATUS.md`），临时中文过程件按 L5。**不设任务交接文件**：角色职责在 AGENTS、项目当前情况由使用者用话术让 AI 读这些实时台账即可，原 `task-handover.md` 已删除。
+- `docs/development/guides/` 只放方法/最佳实践文档（L2 小写），如 `agents-md-best-practices.md`（AGENTS 写作方法）；`CODE_STYLE.md` 正文是"必须/禁止"的强制编码与文档规范（Governance），已移至 `standards/` 并大写，不放 guides。
 
 ### 9.11 仓库命名检查清单（新增/改名文件时逐项过）
 

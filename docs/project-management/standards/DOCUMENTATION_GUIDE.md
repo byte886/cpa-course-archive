@@ -117,9 +117,9 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 
 | 文档类型 | 文件名风格 | 示例 / 说明 |
 |----------|-----------|-------------|
-| **Governance** 治理规范/标准/协议 | 英文 UPPER_SNAKE_CASE | `NAMING_CONVENTION.md`、`PROJECT_STATUS_QUERY.md` |
+| **Governance** 治理规范/标准/协议 | 英文 UPPER_SNAKE_CASE | `NAMING_CONVENTION.md`、`CODE_STYLE.md`、`PROJECT_STATUS_QUERY.md` |
 | **Template** 模板 | 英文 UPPER_SNAKE_CASE，统一 `_TEMPLATE` 后缀 | `REPORT_TEMPLATE.md` |
-| **Task** 方法/操作/流程/最佳实践 | 英文**小写 kebab-case**（H1 标题仍用中文） | `git-workflow.md`、`code-style.md`、`task-handover.md` |
+| **Task** 方法/操作/流程/最佳实践 | 英文**小写 kebab-case**（H1 标题仍用中文） | `git-workflow.md`、`video-processing.md`、`multi-role-collaboration.md` |
 | **Knowledge** 知识内容 | **中文**，与飞书节点 / H1 标题对应 | `知识拆解.md`、`考试指导.md` |
 | **Reference** 参考 | 看内容：API/工具/参数参考用小写 kebab；全局索引/地图/结构总览用 UPPER_SNAKE | `feishu-api.md`（小写）；`DOCUMENTATION_MAP.md`（大写） |
 | **Concept** 概念/方法论说明 | 英文小写 kebab-case（目录说明用固定名 `README.md`） | `knowledge-base-organization.md`、`README.md` |

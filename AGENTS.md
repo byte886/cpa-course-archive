@@ -22,7 +22,7 @@
 | **不包含** | 项目目标介绍、存储分工、课程列表 | → [README.md](README.md) |
 | **不包含** | 详细操作流程、各环节步骤 | → [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | **不包含** | 需求定义、功能清单、验收标准 | → [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) |
-| **不包含** | 编码规范 | → [docs/development/guides/code-style.md](docs/development/guides/code-style.md) |
+| **不包含** | 编码规范 | → [docs/project-management/standards/CODE_STYLE.md](docs/project-management/standards/CODE_STYLE.md) |
 | **不包含** | 目录结构详细说明 | → [docs/DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md) |
 | **不包含** | 系统要求与环境配置 | → [docs/SYSTEM_REQUIREMENTS.md](docs/SYSTEM_REQUIREMENTS.md) |
 
@@ -170,13 +170,14 @@
 1. 确保所有重要决策已记录到ADR（`docs/project-management/decisions/`）
 2. 确保任务状态已更新到`project-management/active/TASK_STATUS.md`
 3. 确保所有文档已提交并推送到GitHub
-4. 生成任务交接文档（见下方模板）
+
+> 是否在新会话前准备摘要由使用者自行决定，不强制生成交接文件；新会话了解项目情况靠下方“新对话开始时”的读文档顺序与使用者话术。
 
 **新对话开始时必须做的工作**：
 1. 先读取`AGENTS.md`（本文档）了解核心规则
 2. 再读取`README.md`了解项目概览
 3. 再读取`project-management/active/TASK_STATUS.md`了解当前任务状态
-4. 读取`project-management/active/task-handover.md`（如果有）了解当前进度和建议的下一步
+4. 按使用者话术，按需读取 `TASK_STATUS.md`、`BATCH_TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md` 等实时台账了解项目当前情况（角色职责见本文档，无需固定交接摘要或文件）
 5. **识别用户指定的角色**（开发工程师/项目架构师/产品经理/私人秘书），根据角色确定职责和关注点：
    - **开发工程师**：关注技术实现、代码结构、待开发功能、技术问题
    - **项目架构师**：关注项目进度、任务状态、风险问题、文档完整性、目录结构、下一步计划
@@ -184,7 +185,7 @@
    - **私人秘书**：关注个人记忆、日程安排、通用助手功能、用户偏好
    - **未指定角色**：先总结项目状态，询问用户希望以什么角色参与
 6. **根据用户的具体要求和角色确定职责**：
-   - 如果用户说"继续"或"接手"，则按交接文档中对应角色的"建议的下一步任务"执行
+   - 如果用户说"继续"或"接手"，则按 TASK_STATUS.md 的"下一步"与对应角色职责给出建议任务
    - 如果用户有其他要求，则按用户要求执行
    - 如果用户没有明确要求，先总结项目状态和对应角色的建议下一步，和用户确认后再执行
 7. 不要依赖对话记忆，所有重要信息必须从文档中获取
@@ -234,29 +235,6 @@
 - 重要信息必须立即记录到文档，不要依赖对话记忆
 - 发现遗忘时，主动查文档而不是猜测
 - 定期（每10-20轮）回顾关键规则和决策
-
-**任务交接文档模板**：
-```markdown
-# 任务交接
-
-## 当前任务
-[说明当前任务]
-
-## 已完成
-[已完成的工作]
-
-## 待完成
-[待完成的工作]
-
-## 关键决策
-[本次任务的关键决策，引用ADR编号]
-
-## 注意事项
-[需要注意的事项]
-
-## 下一步
-[下一步要做什么]
-```
 
 ---
 
@@ -348,7 +326,7 @@
 | 任务报告 | `docs/WORKFLOW.md` 第8节 | `docs/project-management/README.md` |
 | Git操作 | `docs/development/guides/git-workflow.md` | - |
 | 项目维护 | `docs/project-management/standards/PROJECT_MAINTENANCE.md` | - |
-| 编码规范 | `docs/development/guides/code-style.md` | - |
+| 编码规范 | `docs/project-management/standards/CODE_STYLE.md` | - |
 | OCR识别 | `docs/development/tools/ocr.md` | - |
 | 飞书API | `docs/development/api/feishu-api.md` | - |
 

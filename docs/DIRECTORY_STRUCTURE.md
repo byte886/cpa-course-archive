@@ -13,7 +13,7 @@
 > - **工程目录**：全小写 kebab-case；知识库内容目录用中文体系（`01税法总论`、`税法-总论`）。
 > - **脚本** `scripts/`：全小写 snake_case（`.py/.sh/.js`），Git 固定名 `pre-commit` 除外。
 > - **规范/标准/模板/状态台账/全局索引**：英文 UPPER_SNAKE_CASE（如 `NAMING_CONVENTION.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`DOCUMENTATION_MAP.md`）。
-> - **方法/操作/工具/API/交接文档**：英文小写 kebab-case，H1 标题仍用中文（如 `git-workflow.md`、`task-handover.md`）。
+> - **方法/操作/工具/API 文档**：英文小写 kebab-case，H1 标题仍用中文（如 `git-workflow.md`、`multi-role-collaboration.md`）。
 > - **知识库内容与中文过程报告**：中文，文件名与 H1/飞书节点对应，日期用 ISO `YYYY-MM-DD`（如 `知识拆解.md`、`验证报告_xx_2026-08-31.md`）。
 > - **固定名白名单**：`README.md`/`LICENSE`/`CHANGELOG.md`/`CONTRIBUTING.md`/`AGENTS.md`/`.gitignore`/`requirements.txt`/`pre-commit`/`.github/`。
 
@@ -114,6 +114,7 @@ gaodun-course-knowledge-base/
 │   │   │   ├── NAMING_CONVENTION.md # 命名规范
 │   │   │   ├── BATCH_TASK_EXECUTION.md # 大任务执行规范
 │   │   │   ├── DOC_SYNC_CHECKLIST.md # 文档同步清单
+│   │   │   ├── CODE_STYLE.md        # 编码规范（强制标准）
 │   │   │   └── PROJECT_STATUS_QUERY.md # 状态查询协议
 │   │   └── decisions/        # 决策记录（ADR，半静态，只增不改）
 │   └── development/          # 开发文档
@@ -127,7 +128,6 @@ gaodun-course-knowledge-base/
 │       │   ├── git-workflow.md       # Git工作流
 │       │   ├── interaction-workflow.md # 通用交互流程
 │       │   ├── agents-md-best-practices.md # AGENTS写作最佳实践
-│       │   ├── code-style.md         # 脚本编码规范
 │       │   └── multi-role-collaboration.md # 多角色协作（项目配合部分）
 │       ├── knowledge/        # 知识库方法论
 │       │   ├── knowledge-base-organization.md # 知识库组织规范

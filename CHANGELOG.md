@@ -23,6 +23,7 @@
 - 命名整改四步法·第3步（执行改名）：12 个文件 git mv（模板全大写 1、方法文档小写 3 含任务交接→task-handover、脚本 snake 3、中文过程产物 5），26 个文件 102 处引用级联更新（含 .gitignore 中文 glob、各规范命名模式中文化、目录树/链接/脚本自指注释）；活文档旧名 0 残留、148 相对链接 0 真实断链、类型↔命名自洽 0 问题；新增《命名整改第3步-整改方案与执行结果_2026-08-31》；ADR 与历史报告按规则保留旧名
 
 ### 变更
+- 命名整改·回炉修正两处误判：①删除冗余 `active/task-handover.md`（职责均由 TASK_STATUS/AGENTS 3.10/README 等承担且静态快照已过时），交接不再设任何文件或摘要机制——角色职责在 AGENTS、项目情况由使用者话术让 AI 按需读实时台账；AGENTS 3.10 删交接摘要模板与强制生成条目、DOCUMENTATION_MAP 删交接登记行、TASK_STATUS 删两条交接完成项。②`development/guides/code-style.md` 复核通篇为"必须/禁止"强制规范＝Governance，git mv 回 `standards/CODE_STYLE.md` 并改回大写、头部 Task→Governance，级联 9 份文档路径与分类。NAMING 第九章补"头部类型与正文实质冲突时以实质为准并回头修正头部"判据及五类命名形态速查表；现存 119 文件类型↔命名 0 不自洽、0 真实断链；新增《命名整改-全量文件清单_2026-08-31》（老名/新名/依据三列、0 待决）
 - 项目重命名：`cpa-course-archive` → `gaodun-course-knowledge-base`，本地目录 `gaodun_downloads` → `gaodun-course-knowledge-base`，标题"高顿 CPA 课程智能归档项目" → "高顿课程知识库系统"（百度网盘应用名称保持不变）
 - 文档结构优化：将 project-management/ 根目录的规范文档移到 standards/ 子目录
 - 合并做题交互相关文档（交互优化指南、exam-workflow、interaction-workflow 中的做题部分）

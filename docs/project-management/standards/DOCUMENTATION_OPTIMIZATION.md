@@ -176,7 +176,7 @@
 | **DOCUMENTATION_GUIDE.md** | 文档写作指南 | 写作规范变更时 |
 | **PROJECT_STRUCTURE_MAINTENANCE.md** | 项目结构维护规范 | 维护规则变更时 |
 | **docs/project-management/decisions/** | 架构决策记录（ADR） | 重要架构决策时 |
-| **code-style.md** | 编码规范 | 编码规范变更时 |
+| **CODE_STYLE.md**（standards/） | 编码规范 | 编码规范变更时 |
 | **WORKFLOW.md** | 主工作流 | 流程变更时 |
 | **README.md** | 项目介绍 + 核心规则摘要 | 核心规则变更时 |
 | **AGENTS.md** | AI操作手册 + 执行前必读 | 执行规则变更时 |

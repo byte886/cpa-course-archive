@@ -96,7 +96,6 @@
 | 加密凭证 | `docs/development/api/encryption.md` | Token加密存储与使用 |
 | Git工作流 | `docs/development/guides/git-workflow.md` | 分支策略、提交规范、pre-commit |
 | AGENTS.md最佳实践 | `docs/development/guides/agents-md-best-practices.md` | AGENTS.md写作规范、结构优化、AI友好设计 |
-| 编码规范 | `docs/development/guides/code-style.md` | Python/Shell脚本编码规范、命名、注释 |
 | Playwright指南 | `docs/development/tools/playwright-cli-guide.md` | CLI使用、Token刷新、常见问题 |
 | 交互工作流 | `docs/development/guides/interaction-workflow.md` | 通用页面交互、异常恢复、卡住处理 |
 | **做题流程与交互规范** | `docs/development/guides/exam-workflow.md` | 做题规范、多选题处理、v4 JavaScript方法、检查清单、试卷统计（合并了原交互优化指南） |
@@ -147,7 +146,6 @@
 | 问题/BUG跟踪 | `project-management/active/ISSUES.md` | 未解决问题、已解决问题、潜在风险 |
 | 批量任务状态 | `project-management/active/BATCH_TASK_STATUS.md` | 大任务执行进度、恢复点 |
 | 课程索引 | `project-management/active/COURSE_INDEX.md` | 所有课程清单、进度、资源位置 |
-| 任务交接文档 | `project-management/active/task-handover.md` | 开启新对话时快速恢复项目状态、角色与建议下一步 |
 | 章节验证/同步报告（仅本地） | `knowledge-base/organized-content/*/验证报告_*.md`、`同步报告_*.md` | 知识库质量验证与飞书同步报告，按AGENTS 3.8仅本地保留、不上传飞书 |
 | 测试计划 | `project-management/test-plans/测试计划_*.md` | 各课程测试计划 |
 | 验证报告 | `project-management/verification-reports/验证报告_*.md` | 各课程验证结果 |
@@ -166,6 +164,7 @@
 | 大任务执行规范 | `docs/project-management/standards/BATCH_TASK_EXECUTION.md` | 检查点、预警、异常恢复 |
 | 文档同步清单 | `docs/project-management/standards/DOC_SYNC_CHECKLIST.md` | 同步时机、更新内容 |
 | 项目管理规范总览 | `docs/project-management/README.md` | 项目管理文档索引 |
+| 编码规范 | `docs/project-management/standards/CODE_STYLE.md` | Python/Shell 编码、文档与命名的强制规范 |
 
 ### 六、知识库内容（Knowledge — 学什么）
 

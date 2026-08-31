@@ -49,7 +49,6 @@
 | 1.10 项目重命名 | ✅ | cpa-course-archive → gaodun-course-knowledge-base（ADR-009） |
 | 1.11 文档治理机制（阶段4） | ✅ | pre-commit文档关联性检查、文档健康度检查清单、4层保障机制 |
 | 1.12 长对话处理规则 | ✅ | AGENTS.md 3.10节，对话超50轮主动建议开新对话 |
-| 1.13 任务交接文档 | ✅ | project-management/active/task-handover.md，开启新对话时快速恢复上下文 |
 
 ---
 
@@ -197,8 +196,7 @@
 | 5.11 知识库组织原则补充 | ✅ | 飞书Aily知识空间6原则完整补充（时效可见/层级分类/0敏感） |
 | 5.12 Playwright自动化token刷新 | ✅ | 验证通过，AppleScript打开扩展页面→点击刷新→获取新token→重新连接 |
 | 5.13 文档治理机制（阶段4） | ✅ | pre-commit文档关联性检查、文档健康度检查清单（11项检查）、4层保障机制 |
-| 5.14 长对话处理规则 | ✅ | AGENTS.md 3.10节，对话超50轮主动建议开新对话，任务交接文档模板 |
-| 5.15 任务交接文档 | ✅ | project-management/active/task-handover.md，开启新对话时快速恢复上下文 |
+| 5.14 长对话处理规则 | ✅ | AGENTS.md 3.10节，对话超50轮主动建议开新对话；不设交接文件，新会话按使用者话术读实时台账 |
 | 5.16 静态/动态内容分离 | ✅ | docs/放静态内容，project-management/放动态内容（ADR-007） |
 | 5.17 PROJECT_MAINTENANCE文档分解 | ✅ | 拆分为3个独立文档（ADR-008） |
 

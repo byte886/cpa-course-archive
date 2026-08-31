@@ -20,7 +20,6 @@ docs/development/
 │   └── encryption.md            # 加密凭证：Token加密存储与使用
 ├── guides/                      # 详细操作指南与规范
 │   ├── agents-md-best-practices.md  # AGENTS.md写作最佳实践
-│   ├── code-style.md            # 编码规范
 │   ├── exam-workflow.md         # 做题流程与交互规范（含交互优化、检查清单）
 │   ├── interaction-workflow.md  # 通用交互流程与优化规范（所有Web场景）
 │   └── git-workflow.md          # GitHub工作流：SSH配置、代理设置、常见问题
