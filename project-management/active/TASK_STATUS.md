@@ -192,7 +192,7 @@
 | 5.6 任务报告模板 | ✅ | docs/development/templates/REPORT_TEMPLATE.md |
 | 5.7 状态查询协议 | ✅ | PROJECT_STATUS_QUERY.md（6类意图+27条常用话术+标准响应格式） |
 | 5.8 问题跟踪文档 | ✅ | ISSUES.md（未解决/已解决/潜在风险，I-001~I-005+R-001~R-003） |
-| 5.9 文档类型标注 | ✅ | 仓库内97个文档中78个已标注头部类型（Active25/Reference24/Governance12/Task9/Concept6/Guide1/Template1）；余19个为做题原始素材、知识库正文与过程报告，按规范豁免头部标注（2026-08-31维护检查复核） |
+| 5.9 文档类型标注 | ✅ | 仓库内97个文档中78个已标注头部类型，统一为7类权威封闭词表（Active25/Reference22/Governance13/Task9/Template6/Concept3；Knowledge为知识库正文、仓库内0）；余19个为做题原始素材、知识库正文与过程报告，按规范豁免头部标注（2026-08-31类型词表统一复核） |
 | 5.10 ADR决策记录 | ✅ | 9个ADR（文档结构/视频压缩/音频转写/知识库结构/存储分工/Playwright操作网盘/静态动态分离/文档分解/项目重命名） |
 | 5.11 知识库组织原则补充 | ✅ | 飞书Aily知识空间6原则完整补充（时效可见/层级分类/0敏感） |
 | 5.12 Playwright自动化token刷新 | ✅ | 验证通过，AppleScript打开扩展页面→点击刷新→获取新token→重新连接 |

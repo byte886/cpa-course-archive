@@ -284,6 +284,9 @@ fix: 修复上传脚本路径缺少高顿层
 | 超大文件 | >10MB | ❌ 阻止提交 |
 | 音视频/文档 | .mp4/.wav/.pdf等 | ⚠️ 警告 |
 | 敏感信息 | password/token/secret等 | ⚠️ 警告 |
+| 新文档登记/头部标注 | 新增.md未登记DOCUMENTATION_MAP或缺类型标注 | ⚠️ 警告 |
+| 相对链接有效性 | 暂存.md的相对链接目标不存在（跳过代码块/行内代码/外链/锚点） | ❌ 阻止提交 |
+| 文档类型词白名单 | 类型词不在7类权威词表（Task/Concept/Reference/Governance/Active/Knowledge/Template） | ❌ 阻止提交 |
 
 ### 9.3 安装
 

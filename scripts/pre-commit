@@ -1,6 +1,6 @@
 #!/bin/bash
 # Git pre-commit hook：提交前自动检查
-# 检查内容：大文件、敏感信息、.gitignore遗漏
+# 检查内容：大文件、敏感信息、.gitignore遗漏、新文档登记/类型标注、相对链接有效性、文档类型词白名单
 # 安装：cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 set -e
@@ -44,7 +44,8 @@ echo ""
 echo "🔐 检查敏感信息..."
 sensitive_found=0
 for file in $(git diff --cached --name-only --diff-filter=ACM); do
-  if [ -f "$file" ] && [[ "$file" != *.enc ]] && [[ "$file" != *.md ]]; then
+  # scripts/pre-commit 自身含敏感词检测列表，属自指，跳过；.enc 加密文件与 .md 不扫
+  if [ -f "$file" ] && [[ "$file" != *.enc ]] && [[ "$file" != *.md ]] && [[ "$file" != scripts/pre-commit ]]; then
     for pattern in "${SENSITIVE_PATTERNS[@]}"; do
       if grep -qi "$pattern" "$file" 2>/dev/null; then
         echo "  ⚠️  可能包含敏感信息 ($pattern): $file"
@@ -89,6 +90,60 @@ for file in $(git diff --cached --name-only --diff-filter=A); do
     fi
   fi
 done
+
+# 5. 检查相对链接有效性 + 文档类型词白名单（针对本次暂存的 .md：新增与修改）
+echo ""
+echo "🔗 检查相对链接与类型词..."
+if ! python3 - <<'PYEOF'
+import subprocess, os, re, sys
+files = subprocess.run(["git", "diff", "--cached", "--name-only", "--diff-filter=AM"],
+                       capture_output=True, text=True).stdout.split()
+link_re = re.compile(r'\[[^\]]*\]\(([^)]+)\)')
+type_re = re.compile(r'文档类型\**[：:]\s*([A-Za-z]+)')
+# 权威类型词表（与 DOCUMENTATION_GUIDE 3.1 保持一致，修改需同步）
+ALLOWED = {"Task", "Concept", "Reference", "Governance", "Active", "Knowledge", "Template"}
+bad_link, bad_type = [], []
+for f in files:
+    if not f.endswith(".md") or not os.path.isfile(f):
+        continue
+    base = os.path.dirname(f)
+    in_fence = False
+    head = ""
+    with open(f, encoding="utf-8") as fh:
+        for i, line in enumerate(fh, 1):
+            if i <= 12:
+                head += line
+            if line.lstrip().startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence:  # 跳过围栏代码块
+                continue
+            line = re.sub(r'`[^`]*`', '', line)  # 跳过行内代码
+            for m in link_re.finditer(line):
+                t = m.group(1).split('#')[0].strip()  # 去掉锚点
+                if not t or t.startswith(("http", "mailto:", "<")):
+                    continue  # 外链/邮件/占位不校验
+                t = t.split()[0]
+                if not os.path.exists(os.path.normpath(os.path.join(base, t))):
+                    bad_link.append(f"{f}:{i} -> {t}")
+    mt = type_re.search(head)
+    # 仅当"标了类型但词不在白名单"时报错；按规范豁免、无头部标注的原始素材/知识库正文不查
+    if mt and mt.group(1) not in ALLOWED:
+        bad_type.append(f"{f}: 类型词 '{mt.group(1)}' 不在权威词表 {sorted(ALLOWED)}")
+if bad_link:
+    print("  ❌ 相对链接目标不存在（断链）:")
+    for x in bad_link:
+        print("     -", x)
+if bad_type:
+    print("  ❌ 文档类型词不在权威词表:")
+    for x in bad_type:
+        print("     -", x)
+sys.exit(1 if (bad_link or bad_type) else 0)
+PYEOF
+then
+  echo "   提交被阻止：请修复上述断链/类型词；确认无需处理时可用 git commit --no-verify 跳过"
+  exit 1
+fi
 
 # 总结
 echo ""

@@ -93,7 +93,7 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 ```markdown
 # 文档标题
 
-> **文档类型**：Task（操作指南）/ Concept（概念说明）/ Reference（参考资料）/ Governance（治理规范）/ Active（过程记录）/ Knowledge（知识内容）
+> **文档类型**：Task（操作指南）/ Concept（概念说明）/ Reference（参考资料）/ Governance（治理规范）/ Active（过程记录）/ Knowledge（知识内容）/ Template（模板骨架）
 > **更新频率**：每次流程变更时 / 每月定期 / 按需
 > **维护者**：AI自动维护 / AI+用户审核 / 用户维护
 > **读者**：AI代理 / 人类 / AI+人类
@@ -109,6 +109,9 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 | **Reference** | 参考资料，查事实用 | DOCUMENTATION_MAP.md, 脚本说明, 命名规范 |
 | **Active** | 过程记录，做了什么 | TASK_STATUS.md, 做题记录, 验证报告 |
 | **Knowledge** | 知识内容，学什么用 | 知识拆解.md, 考试指导.md |
+| **Template** | 模板骨架，供复制套用（templates/ 下 `*_TEMPLATE.md`） | KNOWLEDGE_BASE_TEMPLATE.md, REPORT_TEMPLATE.md |
+
+> **权威封闭词表（2026-08-31 起）**：文档类型仅限以上 7 个英文词 `Task / Concept / Reference / Governance / Active / Knowledge / Template`，pre-commit 会对暂存文档做白名单校验；确需新增类型，必须先在本表登记并同步 pre-commit 白名单，不得在单篇文档里自造类型词（如 Guide）。按规范豁免头部标注的原始素材、知识库正文、过程报告不受此限；`templates/README.md` 是目录说明而非模板，标 Reference。
 
 ---
 
