@@ -113,6 +113,20 @@ WORKFLOW.md 原包含视频转写、OCR、Git 操作等详细内容，已分解�
 
 > **权威封闭词表（2026-08-31 起）**：文档类型仅限以上 7 个英文词 `Task / Concept / Reference / Governance / Active / Knowledge / Template`，pre-commit 会对暂存文档做白名单校验；确需新增类型，必须先在本表登记并同步 pre-commit 白名单，不得在单篇文档里自造类型词（如 Guide）。按规范豁免头部标注的原始素材、知识库正文、过程报告不受此限；`templates/README.md` 是目录说明而非模板，标 Reference。
 
+**文档类型 → 文件命名风格映射（与 `NAMING_CONVENTION.md` 第九章一致，2026-08-31 新增）**：先按本节定文档类型，再按下表定文件名风格，二者一一对应，不允许类型与命名冲突。
+
+| 文档类型 | 文件名风格 | 示例 / 说明 |
+|----------|-----------|-------------|
+| **Governance** 治理规范/标准/协议 | 英文 UPPER_SNAKE_CASE | `NAMING_CONVENTION.md`、`PROJECT_STATUS_QUERY.md` |
+| **Template** 模板 | 英文 UPPER_SNAKE_CASE，统一 `_TEMPLATE` 后缀 | `REPORT_TEMPLATE.md` |
+| **Task** 方法/操作/流程/最佳实践 | 英文**小写 kebab-case**（H1 标题仍用中文） | `git-workflow.md`、`code-style.md`、`task-handover.md` |
+| **Knowledge** 知识内容 | **中文**，与飞书节点 / H1 标题对应 | `知识拆解.md`、`考试指导.md` |
+| **Reference** 参考 | 看内容：API/工具/参数参考用小写 kebab；全局索引/地图/结构总览用 UPPER_SNAKE | `feishu-api.md`（小写）；`DOCUMENTATION_MAP.md`（大写） |
+| **Concept** 概念/说明 | 目录说明用固定名 `README.md`；其余按"治理性/方法性"归入大写或小写 | `README.md` |
+| **Active** 过程记录/状态 | 持续状态台账用 UPPER_SNAKE；每次任务产出的中文报告用中文且与 H1 对应 | `TASK_STATUS.md`（大写）；`验证报告_xx_2026-08-31.md`（中文） |
+
+> 桥接逻辑：**治理性**（规定必须遵守什么、状态/模板/索引）→ 大写；**方法性**（教怎么做）→ 小写；**内容性**（给学习者的知识、中文过程产物）→ 中文对应标题。拿不准时回到 `NAMING_CONVENTION.md` 9.2 决策树判定。
+
 ---
 
 ## 四、Docs as Code 理念

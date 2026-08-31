@@ -9,6 +9,14 @@
 
 > README.md 中只保留摘要和链接，详细内容见本文档。
 
+> **命名速查（唯一事实源：`docs/project-management/standards/NAMING_CONVENTION.md` 第九章）**
+> - **工程目录**：全小写 kebab-case；知识库内容目录用中文体系（`01税法总论`、`税法-总论`）。
+> - **脚本** `scripts/`：全小写 snake_case（`.py/.sh/.js`），Git 固定名 `pre-commit` 除外。
+> - **规范/标准/模板/状态台账/全局索引**：英文 UPPER_SNAKE_CASE（如 `NAMING_CONVENTION.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`DOCUMENTATION_MAP.md`）。
+> - **方法/操作/工具/API/交接文档**：英文小写 kebab-case，H1 标题仍用中文（如 `git-workflow.md`、`task-handover.md`）。
+> - **知识库内容与中文过程报告**：中文，文件名与 H1/飞书节点对应，日期用 ISO `YYYY-MM-DD`（如 `知识拆解.md`、`验证报告_xx_2026-08-31.md`）。
+> - **固定名白名单**：`README.md`/`LICENSE`/`CHANGELOG.md`/`CONTRIBUTING.md`/`AGENTS.md`/`.gitignore`/`requirements.txt`/`pre-commit`/`.github/`。
+
 ---
 
 ## 一、项目仓库目录结构（GitHub）
@@ -295,6 +303,8 @@ cat docs/DOCUMENTATION_MAP.md
 | Active（活动状态） | `project-management/active/` | 任务状态、问题跟踪等 |
 | Template（模板） | `docs/development/templates/` | 各类文档模板 |
 | Tool（工具文档） | `docs/development/tools/` | 工具使用说明 |
+
+> **两套词表的关系（避免混淆）**：本表用 Diátaxis 框架判断"归属哪个目录"；文档**头部 `文档类型` 标注**必须用 `DOCUMENTATION_GUIDE.md` 3.1 的 7 类封闭词表（`Task/Concept/Reference/Governance/Active/Knowledge/Template`）。映射：Tutorial/How-to/Tool→`Task`，Explanation→`Concept`，Reference→`Reference`，Standard/Decision→`Governance`（ADR 按 NAMING 9.8），活动状态→`Active`，模板→`Template`，知识内容→`Knowledge`。定完类型与目录后，**文件名风格按 `NAMING_CONVENTION.md` 第九章**。
 
 #### 第三步：评估是否需要新目录
 

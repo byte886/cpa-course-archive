@@ -5,7 +5,7 @@
 > **维护者**：AI自动维护
 > **读者**：AI代理（所有操作必须遵守）
 
-> 本规范适用于高顿CPA课程项目中所有本地目录、百度网盘目录、以及知识库节点的命名。
+> 本规范分两部分：**第一~八章**规范课程数据（本地目录、百度网盘目录、飞书知识库节点）的命名；**第九章**规范 GitHub 仓库内工程目录与文件（脚本、规范、方法文档、过程产物等）的命名，是仓库命名的唯一事实源。
 > 所有自动化脚本和手动操作必须严格遵守本规范。
 
 ---
@@ -264,3 +264,114 @@ bash scripts/check_directory_structure.sh clean
 - 本地目录创建后，必须同步创建到网盘（或在上传时自动创建）
 - 本地目录删除或重命名后，必须同步到网盘
 - 每次上传完成后，必须验证网盘目录结构与本地一致
+
+---
+
+## 九、Git 仓库工程目录与文件命名规范（2026-08-31 新增）
+
+> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`CODE_STYLE.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
+
+### 9.1 总原则
+
+1. **先判性质，再定名字**：按 9.2 决策树判定，不凭"在哪个目录"或个人偏好。
+2. **工程侧用英文，内容侧用中文**：
+   - 工程侧（给 AI/开发者看的规范、方法、脚本、台账、模板）用英文；
+   - 内容侧（同步给学习者的知识库内容、每次任务产出且 H1 为中文的过程产物）用中文，且文件名与一级标题（H1）语义对应，便于和飞书节点、文档标题对齐。
+3. **大小写与分隔符可机械判定**：同职责文件风格一致，禁止同一单词大小写混排（如 `VERIFICATION_TEMPLATE_knowledge_base`）、禁止中英文前缀混排。
+4. **业界依据**：文件/目录名用小写可规避"Linux 区分大小写、macOS/Windows 不区分"导致的跨平台与 URL 问题，连字符被搜索引擎视为词分隔符（Google Developer Documentation Style Guide《Filenames and file types》、Google JavaScript Style Guide）；Python 模块名用全小写下划线 snake_case（PEP 8）。
+
+### 9.2 命名决策树（从上到下，命中即停）
+
+1. 是平台/工具**固定名**？→ 走 9.3 白名单，原样不改。
+2. 是**脚本**（`.py/.sh/.js/.mjs`）？→ 9.4，全小写 snake_case。
+3. 是**内容/过程产物**（H1 为中文、面向学习者，或某次任务产出的中文记录）？→ 9.5，用中文、与 H1 对应。
+4. 其余为**工程文档**（英文），再二选一：
+   - 讲"必须遵守什么 / 标准是什么 / 供复制的模板 / 当前状态 / 清单索引"（规范、标准、模板、台账、索引）→ 9.6，全大写 UPPER_SNAKE_CASE；
+   - 讲"怎么做一件事"（方法、操作、流程、工具/API 用法、最佳实践、交接流程）→ 9.7，全小写 kebab-case。
+5. 架构决策记录 → 9.8，`ADR-NNN-中文标题`。
+6. 目录 → 9.9。
+
+> **怎么区分 9.6 大写与 9.7 小写（最易混）**：回答"规则/标准/状态是什么"用大写（如命名规范、质量标准、任务状态表、文档模板）；回答"怎么操作、怎么做"用小写（如 Git 工作流、视频处理、编码方法、AGENTS 写作方法、任务交接流程）。
+
+### 9.3 L0 固定名白名单（与目录、语言无关，必须原样）
+
+| 固定名 | 说明 |
+|--------|------|
+| `README.md` / `LICENSE` / `CHANGELOG.md` / `CONTRIBUTING.md` / `AGENTS.md` | 开源/社区约定名 |
+| `.gitignore` / `requirements.txt` | 工具固定名 |
+| `pre-commit` | Git hook 固定名，**无扩展名**，不改成 snake/kebab |
+| `.github/` 及其下 `ISSUE_TEMPLATE/`、issue/PR 模板 | GitHub 平台固定路径，允许平台大写 |
+| `.secrets/*.enc` | 加密凭证，主体名小写 snake、扩展名 `.enc` |
+| `video.mp4` / `transcript.md` / `transcript.json` | 课程固定件，见第四章 |
+
+除白名单外，不得新造全大写"固定名"。
+
+### 9.4 L3 脚本：全小写 snake_case
+
+- 适用 `scripts/` 下 `.py/.sh/.js/.mjs`：多词用下划线 `_`，**禁止连字符 `-`、禁止大写**。
+- 正例：`baidu_upload.py`、`check_directory_structure.sh`、`capture_key.js`。
+- 反例：`check-kb-structure.sh`、`setup-transcription-env.sh`、`SetupTranscribe.js`。
+- 依据 PEP 8（Python 模块全小写、可用下划线）；Google JS 指南允许下划线或连字符但要求"跟随项目既有约定"，本项目主流为下划线，统一为 snake_case。
+- 唯一例外 `pre-commit`（见 9.3）。
+
+### 9.5 L4/L5 内容与过程产物：中文，文件名对应 H1 标题
+
+**L4 知识库内容**（`knowledge-base/`，会同步飞书，与中文节点对齐）：
+
+| 类别 | 命名 | 示例 |
+|------|------|------|
+| 成品固定名 | 固定中文名 | `知识拆解.md`、`考试指导.md` |
+| 原始/整理素材 | `{中文类型}_{试卷/对象}.md` | `做题记录_02消费税（一）真题A卷.md`、`解析与用户留言_xx.md`、`用户笔记精华_xx.md` |
+| 知识库同步/验证报告 | `同步报告_{章节}_{日期}.md` / `验证报告_{章节}_{对象}.md` | `同步报告_税法总论_2026-08-28.md` |
+
+**L5 项目管理过程产物**（`project-management/` 下 task-reports / test-plans / verification-reports，以及 active 中的过程件）：每次任务生成、H1 为中文，文件名用中文并与 H1 对应：
+
+- 统一格式：`{中文类型}_{对象}_{日期}.md`；日期用 ISO `YYYY-MM-DD`，无日期的持续性记录可省略日期段，但**不得中英前缀混排、不得用紧凑日期 `YYYYMMDD`**。
+- 中文类型词：任务报告 / 同步报告 / 验证报告 / 测试计划 / 问题调研 / 整改方案 / 优化记录 等。
+- 正例：`任务报告_02消费税法完成_2026-08-29.md`、`验证报告_02消费税法_试卷1.md`、`测试计划_税法01.md`。
+- 反例：`REPORT_02消费税法_完成_20260829.md`、`TEST_PLAN_税法01.md`、`SYNC_REPORT_税法总论_20260828.md`。
+- **英文前缀→中文类型映射（整改对照）**：`REPORT_→任务报告`、`SYNC_REPORT_→同步报告`、`VERIFICATION_→验证报告`、`TEST_PLAN_→测试计划`；紧凑日期 `20260828→2026-08-28`。
+
+### 9.6 L1 治理/规范/模板/台账/索引：全大写 UPPER_SNAKE_CASE
+
+- 判定：回答"必须遵守什么、标准是什么、当前状态、供复制的骨架、清单索引"。
+- 位置：`docs/` 根、`docs/project-management/standards/`、`docs/development/templates/`、`project-management/active/` 的状态台账。
+- 正例：`NAMING_CONVENTION.md`、`QUALITY_ASSURANCE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md`。
+- 模板统一以 `_TEMPLATE` 结尾；禁止同词大小写混排（反例 `VERIFICATION_TEMPLATE_knowledge_base.md`）。
+
+### 9.7 L2 方法/操作文档：全小写 kebab-case
+
+- 判定：回答"怎么做一件事"，含步骤/流程/工具用法/API/最佳实践/交接流程。**无论放在 `guides/api/tools/knowledge` 还是 `project-management/`，方法性文档一律小写连字符。**
+- 正例：`git-workflow.md`、`video-processing.md`、`feishu-api.md`、`task-handover.md`。
+- 反例（本次整改）：`CODE_STYLE.md→code-style.md`、`AGENTS_MD_BEST_PRACTICES.md→agents-md-best-practices.md`、`任务交接文档.md→task-handover.md`。
+- 方法文档的 **H1 标题仍用中文**（文件名是其英文 slug，语义对应即可），如 `task-handover.md` 内首行为 `# 任务交接文档`。
+- 依据：Google 开发者文档风格指南要求文件/目录名小写（Unix 区分大小写），多词用连字符且为搜索引擎词分隔符。
+
+### 9.8 L6 架构决策记录：ADR-NNN-中文标题
+
+- 形如 `ADR-001-文档拆分与命名规范.md`：编号三位、连字符分隔、描述用中文；ADR 半静态、只增不改。
+
+### 9.9 目录命名
+
+- **工程目录**：全小写 kebab-case，如 `task-reports/`、`verification-reports/`、`organized-content/`、`source-materials/`；不用空格、不用大写；`.github/`、`.secrets/` 等隐藏/平台目录从平台约定。
+- **知识库内容目录**用中文体系（详见第二、三章）：`organized-content/` 下用 `NN中文章节名`（`01税法总论`），`source-materials/` 下用 `科目-章节`（`税法-总论`）。二者是"成品/原料"镜像，各自体系内部一致即可，不强行互相统一。
+- 目录名与其中文件的命名风格相互独立：目录按本节，文件按 9.3–9.8。
+
+### 9.10 跨类目录说明（避免误判"同目录不一致"）
+
+- `project-management/active/` 同时容纳：**状态台账**（L1，大写，如 `TASK_STATUS.md`）与**交接方法文档**（L2，小写，如 `task-handover.md`）。按文件职责分别适用 9.6 / 9.7；一致性指"职责→风格"映射统一，而非"同目录必须同大小写"。
+- `docs/development/guides/` 只放方法文档（L2 小写）。`CODE_STYLE`（编码方法）、`AGENTS_MD_BEST_PRACTICES`（AGENTS 写作方法）判定为 L2 方法/最佳实践，故**改小写后留在 guides**，不移到 standards。
+
+### 9.11 仓库命名检查清单（新增/改名文件时逐项过）
+
+- [ ] 是否命中 L0 固定名白名单（9.3）？是则原样
+- [ ] 脚本是否全小写 snake_case（9.4）
+- [ ] 知识内容/中文过程产物是否用中文、与 H1 对应、日期 ISO（9.5）
+- [ ] 治理/规范/模板/台账是否 UPPER_SNAKE_CASE（9.6）
+- [ ] 方法/操作文档是否全小写 kebab-case（9.7）
+- [ ] 是否存在大小写混排、中英前缀混排、空格、紧凑日期 `YYYYMMDD`
+- [ ] 目录是否符合 9.9；改名是否用 `git mv` 并级联更新引用、`DOCUMENTATION_MAP.md`、`DIRECTORY_STRUCTURE.md`
+
+### 9.12 历史文件整改原则
+
+规范定稿后，**存量文件一律按本章整改，不设历史豁免**；old→new 逐文件映射、引用级联与验证见"第 3 步整改方案"。改名一律用 `git mv` 保留历史，并同步更新所有引用路径、文档地图与目录结构树。

@@ -13,14 +13,14 @@
 
 - **Shell脚本**：bash 3.2 兼容（Mac自带版本），set -euo pipefail
 - **Python脚本**：类型注解，函数式优先，避免全局状态
-- **文件名**：`kebab-case.sh` / `snake_case.py`，功能名清晰
+- **文件名**：`.py/.sh/.js` 一律全小写 `snake_case`（下划线分词，禁止连字符与大写），如 `baidu_upload.py`、`check_directory_structure.sh`；唯一例外是 Git 固定名 `pre-commit`。详见 `docs/project-management/standards/NAMING_CONVENTION.md` 第九章 9.4（依据 PEP 8）
 - **所有脚本放 `scripts/` 目录**，禁止散落在各子目录
 
 ## 二、文档规范
 
 - **Markdown格式**，标题层级清晰（# → ## → ###）
 - **命令用代码块**，路径用反引号
-- **每个文档开头标注类型**：`> 文档类型：Task / Concept / Reference / Governance`
+- **每个文档开头标注类型**：`> 文档类型：Task / Concept / Reference / Governance / Active / Knowledge / Template`（7 类封闭词表，以 DOCUMENTATION_GUIDE.md 3.1 为准，不得自造类型词）
 - **WORKFLOW.md只放流程概览和链接**，详细内容放专项文档
 
 ## 三、命名规范
@@ -29,3 +29,4 @@
 - 视频文件：`video.mp4`（统一命名，不保留原始长文件名）
 - 讲义目录：`docs/`
 - 知识库文档：`知识拆解.md` / `考试指导.md`
+- **仓库工程文件命名**：以 `NAMING_CONVENTION.md` 第九章为唯一事实源（脚本 snake_case、方法文档小写 kebab-case、规范/模板/台账 UPPER_SNAKE、中文过程产物与标题对应），本节不再重复规则
