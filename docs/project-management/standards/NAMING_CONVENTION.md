@@ -280,6 +280,20 @@ bash scripts/check_directory_structure.sh clean
 3. **大小写与分隔符可机械判定**：同职责文件风格一致，禁止同一单词大小写混排（如 `VERIFICATION_TEMPLATE_knowledge_base`）、禁止中英文前缀混排。
 4. **业界依据**：文件/目录名用小写可规避"Linux 区分大小写、macOS/Windows 不区分"导致的跨平台与 URL 问题，连字符被搜索引擎视为词分隔符（Google Developer Documentation Style Guide《Filenames and file types》、Google JavaScript Style Guide）；Python 模块名用全小写下划线 snake_case（PEP 8）。
 
+**分层总览（先看这张表）**：
+
+| 层 | 类别 | 语言 / 风格 | 典型位置 | 示例 |
+|----|------|-------------|----------|------|
+| L0 | 平台/工具固定名 | 原样（白名单，9.3） | 各处 | `README.md`、`pre-commit`、`.github/` |
+| L1 | 治理规范/标准/模板/状态台账/全局索引/顶层骨架 | 英文 UPPER_SNAKE_CASE（9.6） | `docs/` 根、`standards/`、`templates/`、`active/` 台账 | `NAMING_CONVENTION.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`WORKFLOW.md` |
+| L2 | 方法/操作/流程/工具 API/最佳实践/交接 | 英文小写 kebab-case（9.7） | `guides/api/tools/knowledge/`、项目管理方法件 | `git-workflow.md`、`task-handover.md` |
+| L3 | 可执行脚本 | 英文小写 snake_case（9.4） | `scripts/` | `baidu_upload.py` |
+| L4 | 知识库内容（同步飞书） | 中文，对应飞书节点/H1（9.5） | `knowledge-base/` | `知识拆解.md`、`做题记录_x.md` |
+| L5 | 项目管理过程产物（报告/计划/记录） | 中文，对应 H1、ISO 日期（9.5） | `task-reports/`、`test-plans/`、`verification-reports/` | `验证报告_x_2026-08-31.md` |
+| L6 | 架构决策记录 | `ADR-NNN-中文`（9.8） | `decisions/` | `ADR-001-文档拆分与命名规范.md` |
+
+> 下文 9.3–9.8 的**小节顺序跟随 9.2 决策树的判定顺序**（固定名→脚本→内容产物→治理/方法→ADR）；L0–L6 是类别标签，并非小节先后顺序。
+
 ### 9.2 命名决策树（从上到下，命中即停）
 
 1. 是平台/工具**固定名**？→ 走 9.3 白名单，原样不改。
@@ -338,13 +352,14 @@ bash scripts/check_directory_structure.sh clean
 - 位置：`docs/` 根、`docs/project-management/standards/`、`docs/development/templates/`、`project-management/active/` 的状态台账。
 - 正例：`NAMING_CONVENTION.md`、`QUALITY_ASSURANCE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`ISSUES.md`、`COURSE_INDEX.md`。
 - 模板统一以 `_TEMPLATE` 结尾；禁止同词大小写混排（反例 `VERIFICATION_TEMPLATE_knowledge_base.md`）。
+- **`docs/` 根顶层骨架文档固定大写**：`WORKFLOW.md`、`REQUIREMENTS.md`、`SYSTEM_REQUIREMENTS.md`、`DOCUMENTATION_MAP.md`、`DIRECTORY_STRUCTURE.md` 是全局主工作流/需求/总览/索引/结构骨架，统一 UPPER_SNAKE，**不随其内容类型（Task/Concept/Reference）改小写**，与子目录里的具体方法文档（小写）形成层级区分。
 
 ### 9.7 L2 方法/操作文档：全小写 kebab-case
 
 - 判定：回答"怎么做一件事"，含步骤/流程/工具用法/API/最佳实践/交接流程。**无论放在 `guides/api/tools/knowledge` 还是 `project-management/`，方法性文档一律小写连字符。**
 - 正例：`git-workflow.md`、`video-processing.md`、`feishu-api.md`、`task-handover.md`。
 - 反例（本次整改）：`CODE_STYLE.md→code-style.md`、`AGENTS_MD_BEST_PRACTICES.md→agents-md-best-practices.md`、`任务交接文档.md→task-handover.md`。
-- 方法文档的 **H1 标题仍用中文**（文件名是其英文 slug，语义对应即可），如 `task-handover.md` 内首行为 `# 任务交接文档`。
+- 方法文档的 **H1 标题仍用中文**（文件名是对应中文标题的英文短名，语义对应即可），如 `task-handover.md` 内首行为 `# 任务交接文档`。
 - 依据：Google 开发者文档风格指南要求文件/目录名小写（Unix 区分大小写），多词用连字符且为搜索引擎词分隔符。
 
 ### 9.8 L6 架构决策记录：ADR-NNN-中文标题
@@ -359,7 +374,7 @@ bash scripts/check_directory_structure.sh clean
 
 ### 9.10 跨类目录说明（避免误判"同目录不一致"）
 
-- `project-management/active/` 同时容纳：**状态台账**（L1，大写，如 `TASK_STATUS.md`）与**交接方法文档**（L2，小写，如 `task-handover.md`）。按文件职责分别适用 9.6 / 9.7；一致性指"职责→风格"映射统一，而非"同目录必须同大小写"。
+- `project-management/active/` 可同时容纳三类，各按职责定风格：**状态台账**（L1，大写，如 `TASK_STATUS.md`）、**交接方法文档**（L2，小写，如 `task-handover.md`，头部标 Task）、若临时存放**中文过程件**则按 L5 用中文。一致性指"职责→风格"映射统一，而非"同目录必须同大小写"。
 - `docs/development/guides/` 只放方法文档（L2 小写）。`CODE_STYLE`（编码方法）、`AGENTS_MD_BEST_PRACTICES`（AGENTS 写作方法）判定为 L2 方法/最佳实践，故**改小写后留在 guides**，不移到 standards。
 
 ### 9.11 仓库命名检查清单（新增/改名文件时逐项过）

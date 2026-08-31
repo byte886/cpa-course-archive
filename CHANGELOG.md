@@ -19,6 +19,7 @@
 - 新增《命名规范审计与整改方案_2026-08-31》：全仓126文件/31目录命名实测，确立 L0-L6 分层命名规则（目录全小写kebab；规范/模板/台账用UPPER_SNAKE；操作指南用小写kebab；脚本统一snake_case；课程内容与过程报告用中文；固定名走白名单），列出 P0-P3 问题（真·大小写混排仅1处）与3批整改清单及D1-D5决策点；本轮只出方案不改名
 - 命名整改四步法·第1步：新增《命名整改第1步-问题调研报告_2026-08-31》——明确8项检查依据并指出依据自身缺陷E1-E4；问题分类（A硬缺陷1/B同目录混用3/C脚本分隔符3/D过程文档6/E依据缺陷/F目录观察）；覆盖28目录组127文件的逐文件检查清单（合规114/待整改12/硬缺陷1，无问题也列出）与P编号追踪表；本步只诊断不改名，作为第2步优化依据文档的输入
 - 命名整改四步法·第2步（优化依据文档）：NAMING_CONVENTION 新增第九章「Git仓库工程目录与文件命名规范」（命名决策树+L0固定名/L1治理大写/L2方法小写kebab/L3脚本snake/L4L5中文内容产物/L6 ADR+目录规则+检查清单，附 Google 开发者风格指南与 PEP8 依据）；CODE_STYLE 脚本统一 snake_case 并补齐7类类型词；DOCUMENTATION_GUIDE 增「文档类型→命名风格映射」；DIRECTORY_STRUCTURE 增命名速查与两套词表衔接；新增《命名整改第2步-依据文档优化记录_2026-08-31》。本步只改规范不改文件名，第3步按12项清单 git mv
+- 命名整改第2步·内容规范化二次迭代：NAMING 第九章补 L0-L6 分层总览表与"docs 根 5 个顶层骨架固定大写"规则；修正 5 处文档类型↔文件名风格不自洽（CODE_STYLE/AGENTS_MD_BEST_PRACTICES/multi-role-collaboration/任务交接文档 改标 Task、knowledge-base-organization 改标 Concept）；DOCUMENTATION_GUIDE 消除 WORKFLOW 矛盾示例并补单文件类型判定。脚本扫描 42 个工程文档不自洽为 0
 
 ### 变更
 - 项目重命名：`cpa-course-archive` → `gaodun-course-knowledge-base`，本地目录 `gaodun_downloads` → `gaodun-course-knowledge-base`，标题"高顿 CPA 课程智能归档项目" → "高顿课程知识库系统"（百度网盘应用名称保持不变）
