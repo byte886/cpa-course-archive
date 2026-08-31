@@ -137,6 +137,7 @@
 - "还有什么要做的"、"当前进度"、"下一步是什么" → Q1 任务状态查询
 - "有什么问题"、"有哪些bug"、"有什么异常" → Q2 问题/BUG查询
 - "需要做什么维护"、"有什么待优化"、"定期检查什么" → Q3 维护工作查询
+- "给项目做个体检"、"维护一下项目"、"检查目录结构/文档规范"、"文档健康度检查" → Q7 项目维护检查（执行型：实际扫描、分级、修复并出报告，见 PROJECT_STATUS_QUERY）
 - "某某文档在哪里"、"怎么操作某某"、"流程是什么" → Q4 文档/操作查询
 - "项目现在什么情况"、"总结一下"、"整体进度" → Q5 项目概览查询
 - "为什么这样做"、"之前做了什么决定" → Q6 决策/历史查询
@@ -156,6 +157,7 @@
 | Q1 任务状态 | `project-management/active/TASK_STATUS.md` | 唯一任务状态来源 |
 | Q2 问题/BUG | `project-management/active/ISSUES.md` | 问题跟踪唯一来源 |
 | Q3 维护工作 | `docs/project-management/standards/PROJECT_STRUCTURE_MAINTENANCE.md` + TASK_STATUS待优化项 | 维护规范和待优化项 |
+| Q7 维护检查（执行型） | `PROJECT_STRUCTURE_MAINTENANCE.md` + `DOCUMENTATION_OPTIMIZATION.md`第12章 + `DIRECTORY_STRUCTURE.md` | 实际执行结构+文档健康度检查并出报告 |
 | Q4 文档/操作 | `docs/DOCUMENTATION_MAP.md` + `docs/WORKFLOW.md` | 文档索引和工作流 |
 | Q5 项目概览 | `README.md` + `TASK_STATUS.md` | 项目介绍和任务状态 |
 | Q6 决策/历史 | `docs/project-management/decisions/ADR-*.md` | 架构决策记录 |

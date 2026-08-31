@@ -22,6 +22,7 @@
 - 文档结构优化：将 project-management/ 根目录的规范文档移到 standards/ 子目录
 - 合并做题交互相关文档（交互优化指南、exam-workflow、interaction-workflow 中的做题部分）
 - 合并做题方法论文档（做题流程与方法论、做题思路解析）
+- 状态查询协议新增 Q7「项目维护检查（执行型）」：补标准话术、模糊表达映射与7步执行流程，明确区分 Q3（只问有哪些维护）与 Q7（实际动手检查/修复/出报告）；README 精简话术表、PROJECT_STRUCTURE_MAINTENANCE 触发机制同步
 
 ### 修复
 - 2026-08-30 项目及文档整理：修复8个文档共14处相对路径断链（文档移入 development 子目录后未同步的层级引用），涉及 task-reports/README、REQUIREMENTS、WORKFLOW、document-download、playwright-cli-guide、knowledge-base-organization、netdisk-setup
