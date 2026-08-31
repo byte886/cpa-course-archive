@@ -117,7 +117,10 @@ gaodun-course-knowledge-base/
 │       ├── guides/           # 详细操作指南
 │       │   ├── exam-workflow.md      # 做题工作流
 │       │   ├── git-workflow.md       # Git工作流
-│       │   └── interaction-workflow.md # 通用交互流程
+│       │   ├── interaction-workflow.md # 通用交互流程
+│       │   ├── AGENTS_MD_BEST_PRACTICES.md # AGENTS写作最佳实践
+│       │   ├── CODE_STYLE.md         # 脚本编码规范
+│       │   └── multi-role-collaboration.md # 多角色协作（项目配合部分）
 │       ├── knowledge/        # 知识库方法论
 │       │   ├── knowledge-base-organization.md # 知识库组织规范
 │       │   └── knowledge-base-sources.md      # 知识库来源清单
@@ -130,6 +133,7 @@ gaodun-course-knowledge-base/
 │       └── templates/        # 模板文件
 │           ├── KNOWLEDGE_BASE_TEMPLATE.md # 知识库页面模板
 │           ├── PARENT_NODE_TEMPLATE.md    # 父节点页面模板
+│           ├── EXAM_RECORD_TEMPLATE.md    # 做题记录模板
 │           ├── REPORT_TEMPLATE.md          # 任务报告模板
 │           ├── VERIFICATION_TEMPLATE.md    # 通用验证报告模板
 │           └── VERIFICATION_TEMPLATE_knowledge_base.md # 知识库验证报告模板
