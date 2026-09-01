@@ -185,7 +185,7 @@
 |--------|------|------|
 | 5.1 任务管理方式约定 | ✅ | 唯一来源TASK_STATUS.md，Base保留模板不维护 |
 | 5.2 文档组织原则 | ✅ | 三层保障、文档分解、Diátaxis、Docs as Code、AI友好写作 |
-| 5.3 测试计划模板 | ✅ | 测试计划_税法01.md（含小问题/大问题分类） |
+| 5.3 测试计划模板 | ✅ | docs/development/templates/TEST_PLAN_TEMPLATE.md（步骤状态+小/大问题分级+通过标准，抽自税法01流程测试） |
 | 5.4 缺陷管理规范 | ✅ | 严重程度+优先级分类，小问题顺手修复/大问题讨论处理 |
 | 5.5 Git工作流文档 | ✅ | git-workflow.md 14章（SSH/代理/大文件/pre-commit/敏感信息） |
 | 5.6 任务报告模板 | ✅ | docs/development/templates/REPORT_TEMPLATE.md |

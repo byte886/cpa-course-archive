@@ -79,9 +79,7 @@
 | 项目介绍 | `README.md` | 项目目标、存储分工、目录结构 |
 | AI操作手册 | `AGENTS.md` | 全局执行规则、Things to Avoid、技术栈、设置命令 |
 | 变更日志 | `CHANGELOG.md` | 版本变更记录（Keep a Changelog格式） |
-| 贡献指南 | `CONTRIBUTING.md` | 贡献流程、代码规范、提交信息规范 |
 | 开源协议 | `LICENSE` | MIT协议 |
-| GitHub模板 | `.github/ISSUE_TEMPLATE/`、`.github/PULL_REQUEST_TEMPLATE.md` | Issue和PR模板 |
 
 ### 一、操作指南（Task — 怎么做）
 
@@ -115,7 +113,6 @@
 | 文档写作指南 | `docs/project-management/standards/DOCUMENTATION_GUIDE.md` | 组织、分解、分类、Docs as Code、定期梳理、AI友好写作 |
 | 文档优化流程与变更驱动 | `docs/project-management/standards/DOCUMENTATION_OPTIMIZATION.md` | 优化流程、变更驱动、检查清单、联动关系 |
 | 质量保证规范 | `docs/project-management/standards/QUALITY_ASSURANCE.md` | 验证标准、质量检查流程 |
-| 项目计划 | `docs/project-management/standards/PROJECT_PLAN.md` | 阶段划分、里程碑 |
 | 目录结构说明 | `docs/DIRECTORY_STRUCTURE.md` | 仓库/本地/网盘/飞书目录结构、Git忽略说明、维护原则 |
 | 系统要求与环境配置 | `docs/SYSTEM_REQUIREMENTS.md` | 平台兼容性、硬件要求、环境配置、迁移新Mac步骤 |
 
@@ -135,6 +132,8 @@
 | 报告模板 | `project-management/task-reports/README.md`、`docs/development/templates/REPORT_TEMPLATE.md` | 任务报告模板 |
 | 验证报告模板 | `docs/development/templates/VERIFICATION_TEMPLATE.md`、`docs/development/templates/VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md` | 验证报告模板 |
 | 做题记录模板 | `docs/development/templates/EXAM_RECORD_TEMPLATE.md` | 做题记录标准格式、数据采集清单、选项✓标记规范 |
+| 批量整改清单模板 | `docs/development/templates/REFACTOR_PLAN_TEMPLATE.md` | 批量重命名/结构整改的全量清单与回归核对（配合 PROJECT_STRUCTURE_MAINTENANCE 第六章 SOP） |
+| 流程测试计划模板 | `docs/development/templates/TEST_PLAN_TEMPLATE.md` | 新学科首跑/链路改造的端到端流程测试（步骤状态、问题两级分级、通过标准） |
 
 ### 四、过程记录（Active — 做了什么）
 
@@ -193,14 +192,11 @@
 **新增文档**：
 - `docs/REQUIREMENTS.md` — 项目需求文档
 - `CHANGELOG.md` — 变更日志
-- `CONTRIBUTING.md` — 贡献指南
 - `LICENSE` — MIT协议
-- `.github/ISSUE_TEMPLATE/` — Issue模板（bug_report、feature_request、documentation_issue）
-- `.github/PULL_REQUEST_TEMPLATE.md` — PR模板
 
 **合并文档**：
 - `docs/knowledge-base/methodology/交互优化指南.md` → 合并到 `docs/development/guides/exam-workflow.md`（v4 JavaScript方法、检查清单、试卷统计）
-- `docs/knowledge-base/methodology/做题流程与方法论.md` → 技术操作部分已在 `exam-workflow.md`，删除重复文档
+- `docs/knowledge-base/methodology/做题流程与方法论.md` → 技术操作部分已在 `docs/development/guides/exam-workflow.md`，删除重复文档
 
 **移动文档**：
 - `docs/project-management/NAMING_CONVENTION.md` → `docs/project-management/standards/NAMING_CONVENTION.md`

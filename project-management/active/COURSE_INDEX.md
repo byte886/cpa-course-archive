@@ -30,7 +30,7 @@
 
 | # | 讲次 | 日期 | 视频 | 文档 | 转写 | 网盘 | 知识库 |
 |---|------|------|------|------|------|------|--------|
-| 00 | 开班典礼&规划方法 | 2026-03-10 | pending | pending | pending | pending | pending |
+| 00 | 开班典礼&规划方法 | 2026-03-10 | uploaded | done | done | done | done |
 | 01 | 税法全面精讲01-税法总论 | 2026-03-13 | uploaded | done | done | done | done |
 | 02 | 税法全面精讲02-消费税法（1） | 2026-03-17 | uploaded | done+ocr | done | done | synced |
 | 03 | 税法全面精讲03-消费税法（2） | 2026-03-20 | pending | pending | pending | pending | pending |
@@ -87,7 +87,7 @@
 | # | 讲次 | 视频 | 网盘 | 备注 |
 |---|------|------|------|------|
 | 01 | 会计总论(一) | uploaded | done | 195MB |
-| 02 | 会计总论(二) | compressing | - | 原始2.8GB |
+| 02 | 会计总论(二) | uploaded | done | 原始2.8GB |
 | 03 | 会计总论(三) | pending | - | |
 | 04 | 会计总论(四)、资产(一) | pending | - | |
 | 05 | 资产(二) | pending | - | |

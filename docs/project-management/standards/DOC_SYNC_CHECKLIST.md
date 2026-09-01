@@ -121,12 +121,11 @@
 
 ---
 
-## 六、工作流与项目计划
+## 六、工作流与规范类
 
 | 文档 | 位置 | 更新内容 |
 |------|------|---------|
 | WORKFLOW.md | `docs/` | 总体工作流程（持续更新） |
-| PROJECT_PLAN.md | `docs/project-management/standards/` | 项目阶段计划、进度状态 |
 | QUALITY_ASSURANCE.md | `docs/project-management/standards/` | 质量保证规范 |
 | PROJECT_MAINTENANCE.md | `docs/project-management/standards/` | 项目维护规则 |
 

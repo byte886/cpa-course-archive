@@ -22,7 +22,6 @@
 | `QUALITY_ASSURANCE.md` | 质量保证规范（验证流程、检查清单、验收标准） |
 | `BATCH_TASK_EXECUTION.md` | 大任务执行规范（检查点、预警、异常恢复） |
 | `PROJECT_STATUS_QUERY.md` | 项目状态查询规范（用户查询时的应答格式） |
-| `PROJECT_PLAN.md` | 项目计划规范（计划制定、跟踪、调整） |
 
 ---
 

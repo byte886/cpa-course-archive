@@ -41,9 +41,9 @@
 │   └── DOCUMENTATION_MAP.md       # 文档地图（所有文档索引）
 ├── project-management/            # 项目管理（动态内容：任务状态、问题跟踪、测试计划、报告）
 │   ├── active/                    # 活动状态（任务状态、问题跟踪、课程索引）
-│   ├── test-plans/                # 测试计划（按课程生成）
-│   ├── task-reports/              # 任务执行报告（按任务生成）
-│   └── verification-reports/      # 质量验证报告（按验证生成）
+│   ├── test-plans/                # 测试计划（按需生成、不常驻，无任务时可不建）
+│   ├── task-reports/              # 任务执行报告（按需生成；目录保留 README）
+│   └── verification-reports/      # 质量验证报告（按需生成、不常驻，无任务时可不建）
 ├── knowledge-base/                # 知识库内容（本地源头，同步到飞书）
 │   ├── organized-content/         # 整理后的知识内容（成品）
 │   │   ├── 通用方法/              # 面向所有课程的通用方法论
@@ -55,12 +55,10 @@
 ├── scripts/                       # 脚本（下载、压缩、转写、上传、做题等）
 ├── transcription/                 # 转写工作目录（.gitignore忽略）
 ├── .secrets/                      # 加密凭证（加密文件提交到仓库）
-├── .github/                       # GitHub模板（PR模板、Issue模板）
 ├── data/                          # 符号链接，指向外部数据目录（.gitignore忽略）
 ├── README.md                      # 项目介绍
 ├── AGENTS.md                      # AI操作手册（每次启动自动加载）
 ├── CHANGELOG.md                   # 变更日志
-├── CONTRIBUTING.md                # 贡献指南
 ├── LICENSE                        # MIT协议
 └── .gitignore                     # 忽略规则
 ```
@@ -105,7 +103,6 @@ gaodun-course-knowledge-base/
 │   ├── project-management/   # 项目管理方法论（静态）
 │   │   ├── README.md         # 项目管理规范
 │   │   ├── standards/        # 标准规范
-│   │   │   ├── PROJECT_PLAN.md   # 项目计划
 │   │   │   ├── QUALITY_ASSURANCE.md # 质量保证规范
 │   │   │   ├── PROJECT_MAINTENANCE.md # 项目维护规范索引
 │   │   │   ├── PROJECT_STRUCTURE_MAINTENANCE.md # 项目结构维护规范
@@ -152,12 +149,12 @@ gaodun-course-knowledge-base/
 │   │   ├── ISSUES.md         # 问题跟踪
 │   │   ├── BATCH_TASK_STATUS.md # 批量任务状态
 │   │   └── COURSE_INDEX.md   # 课程清单索引
-│   ├── test-plans/           # 测试计划（按课程生成）
+│   ├── test-plans/           # 测试计划（按需生成、不常驻）
 │   │   └── 测试计划_*.md
-│   ├── task-reports/         # 任务执行报告（按任务生成）
+│   ├── task-reports/         # 任务执行报告（按需生成；目录保留 README）
 │   │   ├── README.md         # 报告目录说明
 │   │   └── 任务报告_*.md
-│   └── verification-reports/ # 质量验证报告（按验证生成）
+│   └── verification-reports/ # 质量验证报告（按需生成、不常驻）
 │       └── 验证报告_*.md
 ├── knowledge-base/           # 知识库实际内容（本地）
 │   ├── organized-content/    # 整理后的知识内容

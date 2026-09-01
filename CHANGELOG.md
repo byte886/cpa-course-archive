@@ -12,6 +12,14 @@
 
 ## [未发布]
 
+> 自最近一次版本结算以来、尚未定版本的变更先累积于此；结算时把本块整体改名为 `[版本号] - 日期`，并在上方另开一个空的 [未发布]。
+
+（暂无累积）
+
+---
+
+## [0.2.0] - 2026-09-01
+
 ### 新增
 - 创建项目需求文档 `docs/REQUIREMENTS.md`，梳理核心诉求、功能需求、非功能需求、特殊规则和验收标准
 - 创建标准开源文档：CHANGELOG.md、CONTRIBUTING.md、LICENSE、.github/模板
@@ -21,6 +29,7 @@
 - 命名整改四步法·第2步（优化依据文档）：NAMING_CONVENTION 新增第九章「Git仓库工程目录与文件命名规范」（命名决策树+L0固定名/L1治理大写/L2方法小写kebab/L3脚本snake/L4L5中文内容产物/L6 ADR+目录规则+检查清单，附 Google 开发者风格指南与 PEP8 依据）；CODE_STYLE 脚本统一 snake_case 并补齐7类类型词；DOCUMENTATION_GUIDE 增「文档类型→命名风格映射」；DIRECTORY_STRUCTURE 增命名速查与两套词表衔接；新增《命名整改第2步-依据文档优化记录_2026-08-31》。本步只改规范不改文件名，第3步按12项清单 git mv
 - 命名整改第2步·内容规范化二次迭代：NAMING 第九章补 L0-L6 分层总览表与"docs 根 5 个顶层骨架固定大写"规则；修正 5 处文档类型↔文件名风格不自洽（CODE_STYLE/AGENTS_MD_BEST_PRACTICES/multi-role-collaboration/任务交接文档 改标 Task、knowledge-base-organization 改标 Concept）；DOCUMENTATION_GUIDE 消除 WORKFLOW 矛盾示例并补单文件类型判定。脚本扫描 42 个工程文档不自洽为 0
 - 命名整改四步法·第3步（执行改名）：12 个文件 git mv（模板全大写 1、方法文档小写 3 含任务交接→task-handover、脚本 snake 3、中文过程产物 5），26 个文件 102 处引用级联更新（含 .gitignore 中文 glob、各规范命名模式中文化、目录树/链接/脚本自指注释）；活文档旧名 0 残留、148 相对链接 0 真实断链、类型↔命名自洽 0 问题；新增《命名整改第3步-整改方案与执行结果_2026-08-31》；ADR 与历史报告按规则保留旧名
+- 2026-09-01 全仓治理制度化：①新增 `scripts/check_naming_consistency.py` 命名一致性巡检（默认巡检 / `--impact` 改名影响面 / `--regression` 回归三模式，查类型↔命名、中文分隔符、相对断链），pre-commit 增第6节命名提示（警告级不阻断）；②新增 REFACTOR_PLAN_TEMPLATE（批量整改全量清单+回归核对）、TEST_PLAN_TEMPLATE（流程测试计划）两个模板；③AGENTS 增 3.2 变更分级门禁（L0 顺手修 / L1 高扩散先出全量清单确认 / L2 架构先讨论，拿不准就高）与 3.4 新建持久文档前防重复门禁；④PROJECT_STRUCTURE_MAINTENANCE 增第六章批量重命名 SOP 与 1.2「文件去留与沉淀判据」；⑤git-workflow 增 8.3「提交时机分场景」（治理等验收、生产按里程碑及时 commit，commit 与 push 分开）；⑥状态查询 Q7 流程接入命名巡检脚本、报告改按需生成不常驻；AGENTS 3.9 与第十二章明确 pre-commit 仅覆盖机械项、不能替代语义级人工体检
 
 ### 变更
 - 命名整改·回炉修正两处误判：①删除冗余 `active/task-handover.md`（职责均由 TASK_STATUS/AGENTS 3.10/README 等承担且静态快照已过时），交接不再设任何文件或摘要机制——角色职责在 AGENTS、项目情况由使用者话术让 AI 按需读实时台账；AGENTS 3.10 删交接摘要模板与强制生成条目、DOCUMENTATION_MAP 删交接登记行、TASK_STATUS 删两条交接完成项。②`development/guides/code-style.md` 复核通篇为"必须/禁止"强制规范＝Governance，git mv 回 `standards/CODE_STYLE.md` 并改回大写、头部 Task→Governance，级联 9 份文档路径与分类。NAMING 第九章补"头部类型与正文实质冲突时以实质为准并回头修正头部"判据及五类命名形态速查表；现存 119 文件类型↔命名 0 不自洽、0 真实断链；新增《命名整改-全量文件清单_2026-08-31》（老名/新名/依据三列、0 待决）
@@ -31,6 +40,11 @@
 - 状态查询协议新增 Q7「项目维护检查（执行型）」：补标准话术、模糊表达映射与7步执行流程，明确区分 Q3（只问有哪些维护）与 Q7（实际动手检查/修复/出报告）；README 精简话术表、PROJECT_STRUCTURE_MAINTENANCE 触发机制同步
 - 02讲目录级联改名：本地+百度网盘 `02_消费税法（1）`→`02_税法全面精讲02-消费税法（1）`（网盘走 filemanager rename、不重传文件，内容完整）；飞书经核实为"文件系统全名 / 飞书简短标题"双轨制，02与01同级一致、保持"02消费税法（1）"；NAMING_CONVENTION 历史遗留小节重写为双轨制命名现状，BATCH 命名问题销项，结构脚本4目录0问题
 - 文档类型词表统一为7类权威封闭词表（Task/Concept/Reference/Governance/Active/Knowledge/Template，新增 Template、取消自造的 Guide）：DOCUMENTATION_GUIDE 3.1 定词表并由 pre-commit 白名单强校验；6个 `*_TEMPLATE.md` 统一为 Template、multi-role-collaboration 由 Guide 归为 Governance
+- 2026-09-01 全仓四批价值审计与健康度治理：按"对后续工作的价值"逐文件审 A 规范 9 份 / B 顶层骨架 5 份 / C 动态台账 4 份 / D 方法工具与模板 23 份；NAMING_CONVENTION 确立为命名 SSOT（7 类封闭类型 + 实质优先判据，标题用词不决定类型）；SYSTEM_REQUIREMENTS 工具链版本按真机核对更新（macOS 15.7.8 / ffmpeg 8.1.2 / Node 22 / Python 3.14 / git 2.45 等）；PROJECT_MAINTENANCE 去章节锁定瘦身、BATCH_TASK_EXECUTION 真实讲次占位化并统一步骤口径；多份规范做一致性级联修订
+
+### 移除
+- 2026-09-01 归档一次性过程文件（git rm、历史可溯，目录按需不常驻）：删除被 REQUIREMENTS / WORKFLOW / BATCH_TASK_EXECUTION / active 台账全面承接的 PROJECT_PLAN（项目计划职责由 6 份活文档分解、不再单设规范）；移除 verification-reports 5 份命名整改过程报告、task-reports 2 份一次性任务报告、test-plans 1 份一次性测试计划（测试计划先抽成 TEST_PLAN_TEMPLATE 再归档原件）
+- 2026-09-01 移除面向外部贡献者的开源套壳文件（单人项目无外部贡献场景、内容与权威源重复且已过时）：CONTRIBUTING.md（停留旧 5 类词表、main/feature 分支、Node18 等多处与现行规则冲突）与 .github/ 下 PR/Issue 模板共 4 份，级联清理 DOCUMENTATION_MAP、DIRECTORY_STRUCTURE 活引用；LICENSE（MIT）保留（明确授权状态+免责、零维护），NAMING 固定名白名单作为命名规则保留
 
 ### 修复
 - 2026-08-30 项目及文档整理：修复8个文档共14处相对路径断链（文档移入 development 子目录后未同步的层级引用），涉及 task-reports/README、REQUIREMENTS、WORKFLOW、document-download、playwright-cli-guide、knowledge-base-organization、netdisk-setup
@@ -39,6 +53,7 @@
 - 统一进度口径为 3/39、剩余36讲；修正 TASK_STATUS 5.9 文档类型标注统计（95个仓库文档中76个标注、19个按规范豁免）与交接文档"93个文档/剩余35讲"等过时数字
 - 2026-08-31 Q7维护检查：补全 DIRECTORY_STRUCTURE 详细目录树漏列的4个文件（guides 3、templates 1）；统一2处旧角色名残留（交接文档"开发人员"→开发工程师、multi-role 协作角色"知识整理师"→产品经理）；新增0831健康度检查报告
 - pre-commit 新增第5节自动校验：暂存 .md 的相对链接有效性检查（断链硬阻止，跳过围栏/行内代码/外链/锚点）与文档类型词白名单校验；git-workflow 9.2 检查项表同步；已用"故意制造断链+非法类型词"负向用例与空暂存正向用例双向自检
+- 2026-09-01 台账失同步修复：COURSE_INDEX 00 开班典礼状态由全 pending 更正为完成态（对齐 BATCH 九环节已完成）、基础必修 02 由 compressing 更正为 uploaded/done（对齐 12 讲已上传）；ISSUES 未解决区清出 3 条已解决条目（I-002 去重、I-004/I-005 迁入已解决区并保持最近 10 条），未解决仅留 I-001/I-003；.gitignore 为 TEST_PLAN_TEMPLATE 加单点例外（`test_*` 在 macOS 大小写不敏感误伤大写模板）
 
 ---
 

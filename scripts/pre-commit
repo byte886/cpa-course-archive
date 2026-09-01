@@ -1,6 +1,6 @@
 #!/bin/bash
 # Git pre-commit hook：提交前自动检查
-# 检查内容：大文件、敏感信息、.gitignore遗漏、新文档登记/类型标注、相对链接有效性、文档类型词白名单
+# 检查内容：大文件、敏感信息、.gitignore遗漏、新文档登记/类型标注、相对链接有效性、文档类型词白名单、命名一致性提示(警告级)
 # 安装：cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 set -e
@@ -143,6 +143,13 @@ PYEOF
 then
   echo "   提交被阻止：请修复上述断链/类型词；确认无需处理时可用 git commit --no-verify 跳过"
   exit 1
+fi
+
+# 6. 命名一致性提示（警告级，不阻断；硬不自洽/影响面/回归请手动跑 check_naming_consistency.py）
+echo ""
+echo "🧭 检查命名一致性（仅提示，不阻止提交）..."
+if [ -f scripts/check_naming_consistency.py ]; then
+  python3 scripts/check_naming_consistency.py 2>/dev/null | sed 's/^/  /' || true
 fi
 
 # 总结

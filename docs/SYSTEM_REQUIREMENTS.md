@@ -74,15 +74,17 @@
 
 ### 3.3 已安装工具与版本
 
+> 2026-09-01 真机命令核对；版本随环境升级，以 `工具 --version` 实测为准。
+
 | 工具 | 版本 | 安装方式 |
 |------|------|---------|
 | ffmpeg | 8.1.2 | Homebrew |
-| Node.js | v20.20.2 | Homebrew |
-| npm | 10.8.2 | 随Node.js |
-| Python | 3.13.13 | Homebrew |
-| pip | 26.1.1 | 随Python |
+| Node.js | v22.23.2 | Homebrew |
+| npm | 10.9.8 | 随Node.js |
+| Python | 3.14.7 | Homebrew |
+| pip | 26.2.1 | 随Python |
 | git | 2.45.2 | Xcode Command Line Tools |
-| Homebrew | 6.0.19 | 官方安装脚本 |
+| Homebrew | 6.0.20 | 官方安装脚本 |
 | Google Chrome | 最新版 | 官方下载 |
 | iTerm2 | 最新版 | 官方下载 |
 

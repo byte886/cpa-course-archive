@@ -19,6 +19,8 @@
 | `REPORT_TEMPLATE.md` | 任务报告模板 | 生成任务完成报告时 |
 | `VERIFICATION_TEMPLATE.md` | 通用验证报告模板 | 验证任何对象（视频、转写、OCR等）时 |
 | `VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md` | 知识库验证报告模板 | 验证飞书知识库页面导入质量时 |
+| `REFACTOR_PLAN_TEMPLATE.md` | 批量整改清单模板 | 批量重命名/结构整改，出全量清单与回归核对时（配合结构维护 SOP） |
+| `TEST_PLAN_TEMPLATE.md` | 流程测试计划模板 | 新学科首跑/链路改造，做端到端可行性测试时 |
 
 ---
 
@@ -49,6 +51,10 @@
 ### 验证模板（2个）
 - `VERIFICATION_TEMPLATE.md`：通用验证报告
 - `VERIFICATION_TEMPLATE_KNOWLEDGE_BASE.md`：知识库验证报告（专用）
+
+### 流程与治理模板（2个）
+- `REFACTOR_PLAN_TEMPLATE.md`：批量重命名/结构整改的全量清单 + 回归核对
+- `TEST_PLAN_TEMPLATE.md`：端到端流程测试计划（步骤状态、问题两级分级、通过标准）；区别于验证报告——它测的是流程可行性
 
 ---
 

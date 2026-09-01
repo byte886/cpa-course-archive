@@ -15,7 +15,6 @@
 docs/project-management/        # 项目管理方法论（静态内容）
 ├── README.md                    # 本文档，项目管理规范总览
 ├── standards/                   # 规范/指南类（教你如何做）
-│   ├── PROJECT_PLAN.md          # 项目计划
 │   ├── PROJECT_MAINTENANCE.md   # 项目维护规范索引（拆分为三个子文档）
 │   ├── PROJECT_STRUCTURE_MAINTENANCE.md # 项目结构维护规范
 │   ├── DOCUMENTATION_GUIDE.md   # 文档写作指南

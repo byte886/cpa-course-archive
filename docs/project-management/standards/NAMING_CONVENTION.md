@@ -269,7 +269,11 @@ bash scripts/check_directory_structure.sh clean
 
 ## 九、Git 仓库工程目录与文件命名规范（2026-08-31 新增）
 
-> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源**；`CODE_STYLE.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md` 中涉及命名处一律引用本章，不另立规则。第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。
+> 本章规范 **GitHub 仓库内**的工程目录与文件命名，是仓库命名的**唯一事实源（SSOT）**，遵循两条：
+> 1. **只此一处写规则**：其它任何文档（含 `CODE_STYLE.md`、`DIRECTORY_STRUCTURE.md`、`DOCUMENTATION_GUIDE.md`、各目录 README、`scripts/README.md`、目录树注释）涉及命名处**只引用本章、不复述阈值或清单**，避免多处复述导致互相矛盾（曾出现 scripts/README 把 1MB/10MB 误写成 50MB）；规则变更只改本章。
+> 2. **判型以正文实质为准**：头部「文档类型」仅作声明，与正文实质冲突时以实质为准并回头修正头部（见 9.1.1，code-style 即此类）。
+>
+> 第一~八章的课程/网盘/飞书命名与本章并行，互不覆盖。巡检 / 改名影响面 / 整改回归用 `scripts/check_naming_consistency.py`。
 
 ### 9.1 总原则
 
@@ -302,7 +306,7 @@ bash scripts/check_directory_structure.sh clean
 | ② 大写 UPPER_SNAKE | 词间下划线 `_` | Governance 规范 / Template 模板 / Active 持续台账 / 全局索引与顶层骨架——回答"必须遵守什么、标准或当前状态是什么、供复制的骨架" | `NAMING_CONVENTION.md`、`CODE_STYLE.md`、`REPORT_TEMPLATE.md`、`TASK_STATUS.md`、`DIRECTORY_STRUCTURE.md` |
 | ③ 小写 kebab-case | 词间连字符 `-` | Task 方法流程 / Concept 概念 / 工具类 Reference——回答"怎么一步步做一件事" | `git-workflow.md`、`video-processing.md`、`feishu-api.md` |
 | ④ 脚本 snake_case | 全小写、词间 `_` | `.py/.sh/.js` 可执行脚本（L3，9.4） | `baidu_upload.py`、`check_kb_structure.sh` |
-| ⑤ 中文 | 段间 `_`、日期 ISO | Knowledge 学习内容 / 中文过程产物 / ADR（L4/L5/L6） | `知识拆解.md`、`任务报告_02消费税法完成_2026-08-29.md`、`ADR-001-文档结构优化.md` |
+| ⑤ 中文 | 段间 `_`、日期 ISO | Knowledge 学习内容 / 中文过程产物 / ADR（L4/L5/L6） | `知识拆解.md`、`同步报告_税法总论_2026-08-28.md`、`ADR-001-文档结构优化.md` |
 
 > **一句话判据**："是什么 / 必须怎样"→ ②大写；"怎么做"→ ③小写；给学习者的中文内容 → ⑤；代码脚本 → ④；工具钉死的 → ①。
 > **两个最易混点**：(a) `docs/` 根 5 个顶层骨架（WORKFLOW/REQUIREMENTS/SYSTEM_REQUIREMENTS/DOCUMENTATION_MAP/DIRECTORY_STRUCTURE）虽标 Task/Concept/Reference，仍固定按 ②大写（见 9.6）；(b) `active/` 只放持续状态台账（大写），不设任务交接文件，新会话按使用者话术读实时台账了解情况（见 9.10）。
@@ -357,7 +361,7 @@ bash scripts/check_directory_structure.sh clean
 
 - 统一格式：`{中文类型}_{对象}_{日期}.md`；日期用 ISO `YYYY-MM-DD`，无日期的持续性记录可省略日期段，但**不得中英前缀混排、不得用紧凑日期 `YYYYMMDD`**。
 - 中文类型词：任务报告 / 同步报告 / 验证报告 / 测试计划 / 问题调研 / 整改方案 / 优化记录 等。
-- 正例：`任务报告_02消费税法完成_2026-08-29.md`、`验证报告_02消费税法_试卷1.md`、`测试计划_税法01.md`。
+- 正例（格式 `{中文类型}_{对象}_{日期}.md`，下列均为现存文件）：`同步报告_税法总论_2026-08-28.md`、`验证报告_税法总论_分章真题测.md`；无日期者如 `测试计划_课程名.md`。
 - 反例：`REPORT_02消费税法_完成_20260829.md`、`TEST_PLAN_税法01.md`、`SYNC_REPORT_税法总论_20260828.md`。
 - **英文前缀→中文类型映射（整改对照）**：`REPORT_→任务报告`、`SYNC_REPORT_→同步报告`、`VERIFICATION_→验证报告`、`TEST_PLAN_→测试计划`；紧凑日期 `20260828→2026-08-28`。
 

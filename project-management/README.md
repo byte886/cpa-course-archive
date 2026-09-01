@@ -23,15 +23,10 @@ project-management/
 │   ├── BATCH_TASK_STATUS.md   # 批量任务状态
 │   ├── COURSE_INDEX.md        # 课程索引
 │   └── README.md
-├── test-plans/                # 测试计划（按课程生成）
-│   ├── 测试计划_税法01.md
-│   └── ...
+├── test-plans/                # 测试计划（按课程生成；当前暂无留存，历史见 git）
 ├── task-reports/              # 任务执行报告（按任务生成）
-│   ├── 任务报告_00开班典礼.md
-│   └── ...
-└── verification-reports/      # 质量验证报告（按验证生成，中文命名）
-    ├── 命名整改第1步-问题调研报告_2026-08-31.md
-    └── ...
+│   └── README.md
+└── verification-reports/      # 质量验证报告（按验证生成，中文命名；当前暂无留存，历史报告可经 git 查阅）
 ```
 
 ---
@@ -66,9 +61,9 @@ project-management/
 
 | 目录 | 命名格式 | 示例 |
 |------|----------|------|
-| test-plans/ | `测试计划_课程名.md` | `测试计划_税法01.md` |
-| task-reports/ | `任务报告_序号_课程名.md` | `任务报告_00开班典礼.md` |
-| verification-reports/ | `验证报告_{对象}_{范围或日期}.md` | `验证报告_02消费税法_试卷1.md` |
+| test-plans/ | `测试计划_{课程名}.md` | 当前暂无；模板 `TEST_PLAN_TEMPLATE.md` |
+| task-reports/ | `任务报告_{序号}_{课程名}_{日期}.md` | 当前仅历史（见 git）；模板 `REPORT_TEMPLATE.md` |
+| verification-reports/ | `验证报告_{对象}_{范围或日期}.md` | `验证报告_税法总论_分章真题测.md`（knowledge-base） |
 
 ---
 

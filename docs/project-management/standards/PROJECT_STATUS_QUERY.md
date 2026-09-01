@@ -76,7 +76,7 @@
 | 你想要 | 直接复制这句话 |
 |--------|----------------|
 | 一句话做维护 | `以项目架构师身份，对项目做一次维护检查：目录结构一致性+文档健康度，出检查报告` |
-| 结构+规范标准检查 | `以项目架构师身份做项目维护：1)对照DIRECTORY_STRUCTURE查目录/文件归属/空目录/.gitignore并跑check_directory_structure.sh；2)按DOCUMENTATION_OPTIMIZATION第十二章11项清单查文档登记、类型标注、断链、文档孤岛、内容重叠、超长文档、口径与命名。小问题直接修，结构性问题先问我` |
+| 结构+规范标准检查 | `以项目架构师身份做项目维护：1)对照DIRECTORY_STRUCTURE查目录/文件归属/空目录/.gitignore并跑check_directory_structure.sh与check_naming_consistency.py；2)按DOCUMENTATION_OPTIMIZATION第十二章11项清单查文档登记、类型标注、断链、文档孤岛、内容重叠、超长文档、口径与命名。小问题直接修，结构性问题先问我` |
 | 只体检不改 | `以项目架构师身份做只读体检，不改任何文件：跑结构脚本+11项清单全量扫描，问题按"可直接修/需决策"分级，标位置和依据，等我确认` |
 | 只查目录结构 | `以项目架构师身份检查目录结构一致性：对照DIRECTORY_STRUCTURE.md并跑check_directory_structure.sh，列出不一致项` |
 | 只查文档规范/内容 | `以项目架构师身份做文档健康度检查：按11项清单查完整性/关联性/质量/规范，出报告` |
@@ -101,7 +101,7 @@
 | Q4 | 文档/操作查询 | 某某文档在哪里、怎么操作某某、流程是什么 | `docs/DOCUMENTATION_MAP.md` + `docs/WORKFLOW.md` |
 | Q5 | 项目概览查询 | 项目现在什么情况、总结一下、整体进度 | `README.md` + `TASK_STATUS.md` + 最近的验证报告 |
 | Q6 | 决策/历史查询 | 为什么这样做、之前做了什么决定、历史记录 | `docs/project-management/decisions/`（ADR）+ `project-management/task-reports/` |
-| Q7 | 项目维护检查（执行型） | 让AI实际做结构/文档检查、分级、修复并出报告（区别于Q3只"问"有哪些维护） | `PROJECT_STRUCTURE_MAINTENANCE.md` + `DOCUMENTATION_OPTIMIZATION.md`第12章 + `DIRECTORY_STRUCTURE.md` + `scripts/check_directory_structure.sh` |
+| Q7 | 项目维护检查（执行型） | 让AI实际做结构/文档检查、分级、修复并出报告（区别于Q3只"问"有哪些维护） | `PROJECT_STRUCTURE_MAINTENANCE.md` + `DOCUMENTATION_OPTIMIZATION.md`第12章 + `DIRECTORY_STRUCTURE.md` + `scripts/check_directory_structure.sh` + `scripts/check_naming_consistency.py` |
 
 ---
 
@@ -323,12 +323,12 @@
 **Q7 项目维护检查（执行型）的执行流程**（不是返回一段文本，而是动手执行）：
 ```
 1. 先读 AGENTS/README/TASK_STATUS，以及 PROJECT_STRUCTURE_MAINTENANCE、DOCUMENTATION_OPTIMIZATION 第12章、DIRECTORY_STRUCTURE
-2. 结构检查：运行 scripts/check_directory_structure.sh，对照 DIRECTORY_STRUCTURE 查文件归属、空目录、.gitignore
+2. 结构与命名检查：运行 scripts/check_directory_structure.sh，对照 DIRECTORY_STRUCTURE 查文件归属、空目录、.gitignore；运行 scripts/check_naming_consistency.py（--regression）查类型↔命名一致性、中文分隔符与相对断链
 3. 文档健康度：按11项清单逐项查 完整性/关联性/结构/质量/维护；所有结论来自实际扫描或复算，不凭对话记忆
 4. 问题分级：小问题（断链、过时数字、漏登记）直接修；结构性/拿不准的（目录改名、流程或hook变更、文档拆分）列方案先问用户；用户要求"只读/体检"则一律不改
 5. 改后用不同方式复扫验证（重跑脚本、断链扫描），确认无回退、无新增问题
-6. 产出 project-management/verification-reports/文档健康度检查报告_日期.md，并同步 CHANGELOG / DOCUMENTATION_MAP / TASK_STATUS
-7. 按用户要求提交推送，提交前展示改动清单
+6. 需要留痕时在 project-management/verification-reports/ 按需生成《文档健康度检查报告_日期》（该目录按需建、不常驻）；若只是对话内体检、结论已直接落回活文档，则按 PROJECT_STRUCTURE_MAINTENANCE 1.2 去留判据不必另留过程报告。无论是否出报告，都同步 CHANGELOG / DOCUMENTATION_MAP / TASK_STATUS
+7. 按 git-workflow 8.3 分场景提交（治理等用户验收，日常及时 commit，push 按约定），提交前展示改动清单
 ```
 
 ---

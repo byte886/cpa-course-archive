@@ -25,9 +25,10 @@ segments/
 # Temporary
 test_*
 对比_*
-# 例外：测试计划文档需要提交（放在 test-plans/ 子目录下，不被 test_* 忽略）
+# 例外：测试计划/测试模板是正式文档，需要提交（test_* 在 macOS 大小写不敏感，会同时命中大写 TEST_*，需显式放行）
 !project-management/test-plans/
 !project-management/test-plans/测试计划_*.md
+!docs/development/templates/TEST_PLAN_TEMPLATE.md
 
 # Python virtual environments
 transcription/venv/

@@ -19,7 +19,7 @@
 | OCR文字提取 | 1 | 批量OCR |
 | 百度网盘上传 | 3 | 单文件上传、批量上传、课程上传 |
 | 环境与工具 | 4 | Playwright连接、密钥管理、数据符号链接、pre-commit |
-| 检查与验证 | 2 | 目录结构检查、知识库结构检查 |
+| 检查与验证 | 3 | 目录结构检查、知识库结构检查、命名一致性巡检 |
 | 数据采集 | 2 | 按键捕获、解析采集 |
 
 ---
@@ -232,16 +232,16 @@
 
 | 项目 | 说明 |
 |------|------|
-| **用途** | Git提交前自动检查：大文件（>50MB）、敏感信息（明文Token）、文件编码 |
-| **用法** | 自动执行（已安装到 `.git/hooks/pre-commit`） |
+| **用途** | Git 提交前自动检查（检查项与阈值以 git-workflow 9.2 为准）：大文件 >1MB 警告 / >10MB 硬阻止；音视频、PDF 等生成文件误提交警告；敏感信息（明文 password/token/secret/key）警告；新增 .md 未登记 DOCUMENTATION_MAP 或缺头部类型标注警告；暂存 .md 相对链接断链硬阻止；文档类型词不在 7 类白名单（Task/Concept/Reference/Governance/Active/Knowledge/Template）硬阻止 |
+| **用法** | 安装后每次 `git commit` 自动执行（激活副本位于 `.git/hooks/pre-commit`） |
 | **可靠性** | ✅ 高（不依赖读文档，自动执行） |
-| **相关文档** | `docs/development/guides/git-workflow.md` |
+| **相关文档** | `docs/development/guides/git-workflow.md` 第 9 节 |
 
 **安装**：`cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
 
 ---
 
-## 七、检查与验证（2个）
+## 七、检查与验证（3个）
 
 ### `check_directory_structure.sh` — 目录结构检查
 
@@ -262,6 +262,17 @@
 | **用法** | `bash scripts/check_kb_structure.sh <kb_dir>` |
 | **可靠性** | ✅ 中（基于文件命名检查） |
 | **相关文档** | `docs/development/knowledge/knowledge-base-organization.md` |
+
+---
+
+### `check_naming_consistency.py` — 命名一致性巡检 / 影响面 / 回归
+
+| 项目 | 说明 |
+|------|------|
+| **用途** | 按 NAMING 第九章（SSOT）巡检"文档类型↔文件名风格"自洽、客观列出类型复核候选；对 task/test/verification/knowledge-base 下中文文件名提示"段间下划线、日期除外"；改名前 `--impact 老名` 查看引用影响面；整改后 `--regression` 跑自洽+断链回归。所有候选均为警告级、不阻断 |
+| **用法** | `python3 scripts/check_naming_consistency.py`（另有 `--impact NAME` / `--regression`） |
+| **可靠性** | ✅ 高（风格规则可机械判定；语义判型只列候选、通读后可维持原判，不臆断） |
+| **相关文档** | `NAMING_CONVENTION.md` 第九章、`PROJECT_STRUCTURE_MAINTENANCE.md` 第六章 SOP |
 
 ---
 
